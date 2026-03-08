@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 const categories = [
   {
     title: "Web Technologies",
+    emoji: "🌐",
     skills: [
       { name: "HTML5", level: 90 },
       { name: "CSS3", level: 85 },
@@ -14,6 +15,7 @@ const categories = [
   },
   {
     title: "Programming Languages",
+    emoji: "💻",
     skills: [
       { name: "C (DSA)", level: 75 },
       { name: "Java", level: 80 },
@@ -22,6 +24,7 @@ const categories = [
   },
   {
     title: "CS Fundamentals",
+    emoji: "🧠",
     skills: [
       { name: "OOPS", level: 85 },
       { name: "DBMS", level: 75 },
@@ -31,16 +34,16 @@ const categories = [
 ];
 
 const Skills = () => (
-  <section id="skills" className="section-padding bg-secondary/30">
+  <section id="skills" className="section-padding bg-secondary/20 mesh-bg">
     <div className="container mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="section-heading"
       >
-        <p className="text-primary font-mono text-sm mb-2">What I work with</p>
-        <h2 className="text-3xl md:text-4xl font-bold gradient-text">Skills</h2>
+        <p className="subtitle">What I work with</p>
+        <h2 className="text-4xl md:text-5xl font-bold gradient-text">Skills & Technologies</h2>
       </motion.div>
       <div className="grid md:grid-cols-3 gap-8">
         {categories.map((cat, ci) => (
@@ -50,24 +53,29 @@ const Skills = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: ci * 0.15 }}
-            className="glass-card rounded-xl p-6 glow-shadow"
+            className="glass-card rounded-2xl p-8 elevated-shadow card-hover"
           >
-            <h3 className="font-semibold text-foreground mb-6 text-lg">{cat.title}</h3>
-            <div className="space-y-5">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="text-2xl">{cat.emoji}</span>
+              <h3 className="font-bold text-foreground text-lg">{cat.title}</h3>
+            </div>
+            <div className="space-y-6">
               {cat.skills.map((skill, si) => (
                 <div key={skill.name}>
-                  <div className="flex justify-between text-sm mb-1.5">
+                  <div className="flex justify-between text-sm mb-2">
                     <span className="text-foreground font-medium">{skill.name}</span>
-                    <span className="text-muted-foreground font-mono">{skill.level}%</span>
+                    <span className="text-muted-foreground font-mono text-xs">{skill.level}%</span>
                   </div>
-                  <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                  <div className="h-2.5 bg-secondary rounded-full overflow-hidden relative">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1, delay: si * 0.1 + ci * 0.2 }}
-                      className="h-full rounded-full gradient-bg"
-                    />
+                      transition={{ duration: 1.2, delay: si * 0.1 + ci * 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      className="h-full rounded-full gradient-bg relative"
+                    >
+                      <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-r from-transparent to-white/20 rounded-full" />
+                    </motion.div>
                   </div>
                 </div>
               ))}

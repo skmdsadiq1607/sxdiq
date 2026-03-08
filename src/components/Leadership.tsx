@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, BookOpen, Code } from "lucide-react";
+import { Users, BookOpen, Code, ChevronRight } from "lucide-react";
 
 const activities = [
   {
@@ -32,11 +32,11 @@ const activities = [
 ];
 
 const Leadership = () => (
-  <section id="leadership" className="section-padding">
+  <section id="leadership" className="section-padding mesh-bg">
     <div className="container mx-auto max-w-3xl">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-        <p className="text-primary font-mono text-sm mb-2">Where I contribute</p>
-        <h2 className="text-3xl md:text-4xl font-bold gradient-text">Leadership & Activities</h2>
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="subtitle">Where I contribute</p>
+        <h2 className="text-4xl md:text-5xl font-bold gradient-text">Leadership & Activities</h2>
       </motion.div>
       <div className="space-y-6">
         {activities.map((a, i) => (
@@ -45,21 +45,21 @@ const Leadership = () => (
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="glass-card rounded-xl p-6 glow-shadow"
+            transition={{ delay: i * 0.1, duration: 0.5 }}
+            className="glass-card rounded-2xl p-7 elevated-shadow card-hover group"
           >
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center shrink-0">
-                <a.icon size={18} className="text-primary-foreground" />
+            <div className="flex items-start gap-5">
+              <div className="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                <a.icon size={20} className="text-primary-foreground" />
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground">{a.org}</h3>
-                <p className="text-sm text-primary font-medium">{a.role}</p>
-                {a.period && <p className="text-xs text-muted-foreground font-mono mt-0.5">{a.period}</p>}
-                <ul className="mt-3 space-y-1.5">
+              <div className="flex-1">
+                <h3 className="font-bold text-foreground text-lg">{a.org}</h3>
+                <p className="text-sm text-primary font-semibold mt-0.5">{a.role}</p>
+                {a.period && <p className="text-xs text-muted-foreground font-mono mt-1">{a.period}</p>}
+                <ul className="mt-4 space-y-2.5">
                   {a.points.map((p) => (
-                    <li key={p} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full gradient-bg mt-1.5 shrink-0" />
+                    <li key={p} className="text-sm text-muted-foreground flex items-start gap-2.5">
+                      <ChevronRight size={14} className="text-primary mt-0.5 shrink-0" />
                       {p}
                     </li>
                   ))}
