@@ -291,7 +291,10 @@ const Hero = () => {
               <motion.a
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.97 }}
-                href="#"
+                href="/ShaikKempleMohammedSadiqResume.pdf"
+                download
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
               >
                 Resume <Download size={18} />
