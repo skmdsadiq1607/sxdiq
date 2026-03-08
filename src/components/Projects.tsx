@@ -31,7 +31,7 @@ const projects = [
     image: smartCityImg,
     features: [],
     tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
-    demo: "#",
+    demo: "https://sxdiq.netlify.app/",
     github: "https://github.com/skmdsadiq1607",
     featured: false,
     accentColor: "hsl(200 100% 55%)",
