@@ -157,8 +157,8 @@ const Hero = () => {
             </div>
             <div className="hidden sm:flex items-center gap-3">
               {[
-                { icon: Github, href: "https://github.com", label: "GitHub" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377", label: "LinkedIn" },
+                { icon: Github, href: "https://github.com/skmdsadiq1607", label: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377/", label: "LinkedIn" },
               ].map((s) => (
                 <motion.a
                   key={s.label}
