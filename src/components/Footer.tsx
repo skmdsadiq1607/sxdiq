@@ -5,7 +5,7 @@ const Footer = () => (
   <footer className="relative border-t border-border/20 py-12 px-4" style={{ background: 'hsl(225 25% 4%)' }}>
     <div className="container mx-auto">
       <div className="flex flex-col items-center gap-8">
-        <a href="#" className="text-3xl font-bold font-display gradient-text">Sadiq.</a>
+        <a href="#" className="text-3xl font-bold font-display gradient-text">Sxdiq</a>
         <div className="flex items-center gap-4">
           {[
             { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377", label: "LinkedIn", color: "hsl(220 90% 55%)" },
