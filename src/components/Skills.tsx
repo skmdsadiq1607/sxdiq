@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { SiHtml5, SiCss, SiJavascript, SiExpress, SiMongodb, SiPython } from "react-icons/si";
-import { FaJava, FaDatabase, FaCogs, FaServer, FaCode, FaBrain, FaDesktop } from "react-icons/fa";
+import { SiHtml5, SiCss3, SiJavascript, SiExpress, SiMongodb, SiPython } from "react-icons/si";
+import { FaJava, FaDatabase, FaCogs, FaServer, FaCode, FaDesktop } from "react-icons/fa";
 import { MouseEvent } from "react";
 
 const categories = [
@@ -8,9 +8,10 @@ const categories = [
     title: "Web Technologies",
     emoji: "🌐",
     description: "Building modern, responsive web experiences",
+    accentColor: "hsl(170 80% 50%)",
     skills: [
       { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
-      { name: "CSS3", icon: SiCss, color: "#1572B6" },
+      { name: "CSS3", icon: SiCss3, color: "#1572B6" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
       { name: "Express.js", icon: SiExpress, color: "#68A063" },
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
@@ -21,6 +22,7 @@ const categories = [
     title: "Programming Languages",
     emoji: "💻",
     description: "Core languages for problem solving & development",
+    accentColor: "hsl(280 80% 60%)",
     skills: [
       { name: "C (DSA)", icon: FaCode, color: "#A8B9CC" },
       { name: "Java", icon: FaJava, color: "#ED8B00" },
@@ -31,6 +33,7 @@ const categories = [
     title: "CS Fundamentals",
     emoji: "🧠",
     description: "Strong foundation in computer science concepts",
+    accentColor: "hsl(40 100% 55%)",
     skills: [
       { name: "OOPS", icon: FaCogs, color: "#9C27B0" },
       { name: "DBMS", icon: FaDatabase, color: "#FF6F00" },
@@ -51,11 +54,6 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
     y.set(e.clientY - rect.top - rect.height / 2);
   };
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
@@ -64,23 +62,13 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
       transition={{ delay: index * 0.05, type: "spring", stiffness: 200 }}
       style={{ rotateX, rotateY, perspective: 800 }}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="glass-card rounded-2xl p-5 flex flex-col items-center gap-3 group cursor-default relative overflow-hidden"
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      className="rounded-2xl p-6 flex flex-col items-center gap-3 group cursor-default relative overflow-hidden border border-border/20 bg-card/30 backdrop-blur-sm"
     >
-      {/* Glow effect */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-        style={{ background: `radial-gradient(circle at 50% 50%, ${skill.color}15, transparent 70%)` }}
-      />
-      
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" style={{ background: `radial-gradient(circle at 50% 50%, ${skill.color}18, transparent 70%)` }} />
       <div className="relative z-10 flex flex-col items-center gap-3">
-        <motion.div
-          whileHover={{ scale: 1.2, rotate: 5 }}
-          transition={{ type: "spring", stiffness: 400 }}
-          className="w-14 h-14 rounded-2xl flex items-center justify-center"
-          style={{ background: `${skill.color}18`, border: `1px solid ${skill.color}30` }}
-        >
-          <skill.icon size={28} style={{ color: skill.color }} />
+        <motion.div whileHover={{ scale: 1.2, rotate: 5 }} transition={{ type: "spring", stiffness: 400 }} className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: `${skill.color}15`, border: `1px solid ${skill.color}30` }}>
+          <skill.icon size={32} style={{ color: skill.color }} />
         </motion.div>
         <span className="text-sm font-semibold text-foreground text-center">{skill.name}</span>
       </div>
@@ -89,46 +77,28 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
 };
 
 const Skills = () => (
-  <section id="skills" className="section-padding bg-secondary/20 mesh-bg relative overflow-hidden">
-    {/* Background decoration */}
-    <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-primary/5 blur-[100px]" />
-    <div className="absolute bottom-20 left-10 w-60 h-60 rounded-full bg-accent/5 blur-[100px]" />
-    
+  <section id="skills" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(220 30% 8%), hsl(180 20% 6%))' }}>
+    <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(170 80% 50% / 0.3), transparent)' }} />
+    <div className="absolute top-20 right-10 w-72 h-72 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(170 80% 50% / 0.08), transparent 70%)' }} />
+    <div className="absolute bottom-20 left-10 w-60 h-60 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(280 80% 60% / 0.06), transparent 70%)' }} />
+
     <div className="container mx-auto relative z-10">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="section-heading"
-      >
-        <p className="subtitle">What I work with</p>
-        <h2 className="text-4xl md:text-5xl font-bold gradient-text">Skills & Technologies</h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="text-muted-foreground mt-4 max-w-xl mx-auto"
-        >
-          Technologies and tools I use to bring ideas to life
-        </motion.p>
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(170 80% 55%)' }}>What I work with</p>
+        <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(170 80% 55%), hsl(200 100% 60%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Skills & Technologies</h2>
+        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Technologies and tools I use to bring ideas to life</p>
       </motion.div>
-      
+
       <div className="space-y-16">
         {categories.map((cat, ci) => (
-          <motion.div
-            key={cat.title}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: ci * 0.1 }}
-          >
+          <motion.div key={cat.title} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: ci * 0.1 }}>
             <div className="flex items-center gap-3 mb-8 justify-center md:justify-start">
               <span className="text-3xl">{cat.emoji}</span>
               <div>
                 <h3 className="font-bold text-foreground text-xl">{cat.title}</h3>
                 <p className="text-sm text-muted-foreground">{cat.description}</p>
               </div>
+              <div className="hidden md:block flex-1 h-px ml-4" style={{ background: `linear-gradient(90deg, ${cat.accentColor}30, transparent)` }} />
             </div>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
               {cat.skills.map((skill, si) => (
