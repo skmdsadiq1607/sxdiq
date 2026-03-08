@@ -7,7 +7,7 @@ const langs = [
 ];
 
 const LanguagesSection = () => (
-  <section className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(260 15% 6%), hsl(200 15% 6%))' }}>
+  <section className="section-padding relative overflow-hidden" style={{ background: 'var(--section-langs-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(160 80% 50% / 0.3), transparent)' }} />
 
     <div className="container mx-auto max-w-3xl relative z-10">

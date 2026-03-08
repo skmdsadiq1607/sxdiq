@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUp, Linkedin, Github, Mail, Heart, Code } from "lucide-react";
 
 const Footer = () => (
-  <footer className="relative border-t border-border/20 py-12 px-4" style={{ background: 'hsl(225 25% 4%)' }}>
+  <footer className="relative border-t border-border/20 py-12 px-4" style={{ background: 'var(--section-footer-bg)' }}>
     <div className="container mx-auto">
       <div className="flex flex-col items-center gap-8">
         <a href="#" className="text-3xl font-bold font-display gradient-text">Sxdiq</a>

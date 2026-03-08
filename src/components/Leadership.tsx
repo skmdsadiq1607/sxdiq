@@ -20,7 +20,7 @@ const activities = [
 ];
 
 const Leadership = () => (
-  <section id="leadership" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(45 15% 6%), hsl(200 20% 6%))' }}>
+  <section id="leadership" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-leadership-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(200 100% 55% / 0.3), transparent)' }} />
     <div className="absolute bottom-0 right-[15%] w-[350px] h-[350px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(280 80% 60% / 0.08), transparent 70%)' }} />
 
