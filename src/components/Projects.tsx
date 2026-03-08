@@ -25,18 +25,6 @@ const projects = [
     accentColor: "hsl(160 80% 50%)",
   },
   {
-    title: "Smart City AI Agents",
-    tagline: "Hackathon Project",
-    description: "Developed AI agents during the AgentX Hackathon to assist in Smart City Management systems.",
-    image: smartCityImg,
-    features: [],
-    tech: ["AI Agents", "Python", "APIs"],
-    demo: "#",
-    github: "https://github.com/skmdsadiq1607",
-    featured: false,
-    accentColor: "hsl(260 80% 65%)",
-  },
-  {
     title: "Developer Portfolio",
     tagline: "Personal Website",
     description: "My personal developer portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion — featuring smooth animations, dark mode, and a modern glassmorphism design.",
