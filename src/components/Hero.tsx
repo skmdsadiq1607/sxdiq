@@ -49,7 +49,7 @@ const Hero = () => {
   }, [displayText, isDeleting, roleIndex]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[hsl(225,25%,4%)]">
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden" style={{ background: 'var(--section-hero-bg)' }}>
       {/* Interactive gradient that follows mouse */}
       <div
         className="absolute inset-0 opacity-40 transition-all duration-1000 ease-out"
