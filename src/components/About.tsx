@@ -9,7 +9,7 @@ const cards = [
 ];
 
 const About = () => (
-  <section id="about" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(225 25% 6%), hsl(220 30% 8%))' }}>
+  <section id="about" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-about-bg)' }}>
     {/* Section accent */}
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(200 100% 55% / 0.3), transparent)' }} />
     <div className="absolute top-0 left-[20%] w-[400px] h-[400px] rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(200 100% 55% / 0.06), transparent 70%)' }} />

@@ -39,7 +39,7 @@ const projects = [
 ];
 
 const Projects = () => (
-  <section id="projects" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(180 20% 6%), hsl(260 20% 7%))' }}>
+  <section id="projects" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-projects-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(330 80% 60% / 0.3), transparent)' }} />
     <div className="absolute top-[30%] right-0 w-[500px] h-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(330 80% 60% / 0.08), transparent 70%)' }} />
 
