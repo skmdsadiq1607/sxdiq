@@ -10,7 +10,7 @@ const certs = [
 ];
 
 const Certifications = () => (
-  <section className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(30 15% 6%), hsl(260 15% 6%))' }}>
+  <section className="section-padding relative overflow-hidden" style={{ background: 'var(--section-certs-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(260 80% 65% / 0.3), transparent)' }} />
     <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(260 80% 65% / 0.08), transparent 70%)' }} />
 

@@ -28,7 +28,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(200 15% 6%), hsl(225 25% 5%))' }}>
+    <section id="contact" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-contact-bg)' }}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${accentColor}50, transparent)` }} />
       <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full opacity-20" style={{ background: `radial-gradient(circle, ${accentColor}10, transparent 70%)` }} />
 

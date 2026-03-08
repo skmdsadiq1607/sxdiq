@@ -10,7 +10,7 @@ const timeline = [
 const accentColor = "hsl(45 100% 55%)";
 
 const Education = () => (
-  <section id="education" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(260 20% 7%), hsl(45 15% 6%))' }}>
+  <section id="education" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-education-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${accentColor}50, transparent)` }} />
     <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full opacity-20" style={{ background: `radial-gradient(circle, hsl(45 100% 55% / 0.08), transparent 70%)` }} />
 

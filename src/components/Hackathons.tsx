@@ -8,7 +8,7 @@ const items = [
 ];
 
 const Hackathons = () => (
-  <section className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(200 20% 6%), hsl(30 15% 6%))' }}>
+  <section className="section-padding relative overflow-hidden" style={{ background: 'var(--section-hackathons-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(30 100% 55% / 0.3), transparent)' }} />
     <div className="absolute top-[40%] left-[5%] w-[300px] h-[300px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(30 100% 55% / 0.08), transparent 70%)' }} />
 

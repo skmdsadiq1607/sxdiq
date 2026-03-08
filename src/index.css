@@ -27,6 +27,18 @@
     --ring: 200 100% 50%;
     --radius: 0.75rem;
 
+    --section-hero-bg: hsl(220 20% 97%);
+    --section-about-bg: linear-gradient(180deg, hsl(220 20% 97%), hsl(215 25% 95%));
+    --section-skills-bg: linear-gradient(180deg, hsl(215 25% 95%), hsl(175 15% 95%));
+    --section-projects-bg: linear-gradient(180deg, hsl(175 15% 95%), hsl(270 15% 96%));
+    --section-education-bg: linear-gradient(180deg, hsl(270 15% 96%), hsl(40 15% 96%));
+    --section-leadership-bg: linear-gradient(180deg, hsl(40 15% 96%), hsl(210 15% 95%));
+    --section-hackathons-bg: linear-gradient(180deg, hsl(210 15% 95%), hsl(30 15% 96%));
+    --section-certs-bg: linear-gradient(180deg, hsl(30 15% 96%), hsl(270 10% 96%));
+    --section-langs-bg: linear-gradient(180deg, hsl(270 10% 96%), hsl(200 15% 95%));
+    --section-contact-bg: linear-gradient(180deg, hsl(200 15% 95%), hsl(220 20% 97%));
+    --section-footer-bg: hsl(220 20% 95%);
+
     --gradient-primary: linear-gradient(135deg, hsl(200 100% 50%), hsl(260 80% 60%));
     --gradient-accent: linear-gradient(135deg, hsl(260 80% 60%), hsl(330 80% 60%));
     --gradient-text: linear-gradient(135deg, hsl(200 100% 60%), hsl(260 80% 65%), hsl(330 80% 60%));
@@ -59,6 +71,18 @@
     --border: 225 20% 16%;
     --input: 225 20% 16%;
     --ring: 200 100% 55%;
+
+    --section-hero-bg: hsl(225 25% 4%);
+    --section-about-bg: linear-gradient(180deg, hsl(225 25% 6%), hsl(220 30% 8%));
+    --section-skills-bg: linear-gradient(180deg, hsl(220 30% 8%), hsl(180 20% 6%));
+    --section-projects-bg: linear-gradient(180deg, hsl(180 20% 6%), hsl(260 20% 7%));
+    --section-education-bg: linear-gradient(180deg, hsl(260 20% 7%), hsl(45 15% 6%));
+    --section-leadership-bg: linear-gradient(180deg, hsl(45 15% 6%), hsl(200 20% 6%));
+    --section-hackathons-bg: linear-gradient(180deg, hsl(200 20% 6%), hsl(30 15% 6%));
+    --section-certs-bg: linear-gradient(180deg, hsl(30 15% 6%), hsl(260 15% 6%));
+    --section-langs-bg: linear-gradient(180deg, hsl(260 15% 6%), hsl(200 15% 6%));
+    --section-contact-bg: linear-gradient(180deg, hsl(200 15% 6%), hsl(225 25% 5%));
+    --section-footer-bg: hsl(225 25% 4%);
 
     --gradient-primary: linear-gradient(135deg, hsl(200 100% 55%), hsl(260 80% 65%));
     --gradient-accent: linear-gradient(135deg, hsl(260 80% 65%), hsl(330 80% 65%));

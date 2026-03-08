@@ -77,7 +77,7 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
 };
 
 const Skills = () => (
-  <section id="skills" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(220 30% 8%), hsl(180 20% 6%))' }}>
+  <section id="skills" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-skills-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(170 80% 50% / 0.3), transparent)' }} />
     <div className="absolute top-20 right-10 w-72 h-72 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(170 80% 50% / 0.08), transparent 70%)' }} />
     <div className="absolute bottom-20 left-10 w-60 h-60 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(280 80% 60% / 0.06), transparent 70%)' }} />
