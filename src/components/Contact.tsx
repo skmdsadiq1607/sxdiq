@@ -35,11 +35,17 @@ const Contact = () => {
       <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full opacity-20" style={{ background: `radial-gradient(circle, ${accentColor}10, transparent 70%)` }} />
 
       <div className="container mx-auto max-w-5xl relative z-10">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
-          <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: accentColor }}>Get in touch</p>
-          <h2 className="text-4xl md:text-5xl font-bold" style={{ background: `linear-gradient(135deg, ${accentColor}, hsl(260 80% 65%))`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Let's Connect</h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Have an idea or want to collaborate? I'd love to hear from you!</p>
-        </motion.div>
+        <div className="section-heading">
+          <SplitReveal>
+            <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: accentColor }}>Get in touch</p>
+          </SplitReveal>
+          <h2 className="text-4xl md:text-5xl font-bold" style={{ background: `linear-gradient(135deg, ${accentColor}, hsl(260 80% 65%))`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <TextReveal mode="letters" staggerDelay={0.04}>Let's Connect</TextReveal>
+          </h2>
+          <SplitReveal delay={0.3}>
+            <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Have an idea or want to collaborate? I'd love to hear from you!</p>
+          </SplitReveal>
+        </div>
 
         <div className="grid md:grid-cols-5 gap-10">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-2 space-y-4">
