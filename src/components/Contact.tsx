@@ -89,13 +89,16 @@ const Contact = () => {
               <label className="text-xs font-mono text-muted-foreground mb-2 block uppercase tracking-wider">Message</label>
               <textarea placeholder="Tell me about your project or idea..." required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-5 py-3.5 rounded-2xl bg-secondary/40 text-foreground placeholder:text-muted-foreground/40 border border-border/30 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all text-sm resize-none" />
             </div>
-            <motion.button whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }} type="submit" disabled={sending} className="w-full py-4 rounded-2xl text-white font-bold text-base flex items-center justify-center gap-2 transition-shadow disabled:opacity-70" style={{ background: `linear-gradient(135deg, ${accentColor}, hsl(260 80% 65%))`, boxShadow: `0 8px 32px ${accentColor}30` }}>
-              {sending ? (
-                <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
-              ) : (
-                <>Send Message <Send size={18} /></>
-              )}
-            </motion.button>
+            <MagneticButton strength={0.2}>
+              <motion.button whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }} type="submit" disabled={sending} className="w-full py-4 rounded-2xl text-white font-bold text-base flex items-center justify-center gap-2 transition-shadow disabled:opacity-70 relative overflow-hidden group/btn" style={{ background: `linear-gradient(135deg, ${accentColor}, hsl(260 80% 65%))`, boxShadow: `0 8px 32px ${accentColor}30` }}>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
+                {sending ? (
+                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
+                ) : (
+                  <>Send Message <Send size={18} /></>
+                )}
+              </motion.button>
+            </MagneticButton>
           </motion.form>
         </div>
       </div>
