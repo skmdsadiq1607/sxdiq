@@ -309,6 +309,7 @@ const Hero = () => {
                   Resume <Download size={18} />
                 </motion.a>
               </MagneticButton>
+            </motion.div>
 
             {/* Stats row */}
             <motion.div
