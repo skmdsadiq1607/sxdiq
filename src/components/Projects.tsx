@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, ArrowUpRight } from "lucide-react";
+import TextReveal, { SplitReveal } from "./TextReveal";
+import MagneticButton from "./MagneticButton";
 import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark } from "lucide-react";
 import krushiImg from "@/assets/krushi-mitra.png";
 import smartCityImg from "@/assets/smart-city.png";
