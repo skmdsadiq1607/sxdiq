@@ -37,9 +37,11 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 md:px-8">
-        <a href="#" className="text-2xl font-bold gradient-text font-display">
-          Sxdiq
-        </a>
+        <MagneticButton strength={0.3}>
+          <a href="#" className="text-2xl font-bold gradient-text font-display">
+            Sxdiq
+          </a>
+        </MagneticButton>
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <a
