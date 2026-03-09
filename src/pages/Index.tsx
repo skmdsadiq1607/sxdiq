@@ -21,7 +21,8 @@ const Index = () => {
   }, [isDark]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground cursor-none">
+      <CustomCursor />
       <Navbar isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
       <Hero />
       <About />
