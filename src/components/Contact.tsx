@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, Linkedin, Send, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import TextReveal, { SplitReveal } from "./TextReveal";
+import MagneticButton from "./MagneticButton";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "skmdsadiq1607@gmail.com", href: "mailto:skmdsadiq1607@gmail.com", color: "hsl(200 100% 55%)" },
