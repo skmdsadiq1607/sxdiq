@@ -2,7 +2,6 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { SiHtml5, SiCss, SiJavascript, SiExpress, SiMongodb, SiPython } from "react-icons/si";
 import { FaJava, FaDatabase, FaCogs, FaServer, FaCode, FaDesktop } from "react-icons/fa";
 import { MouseEvent } from "react";
-import TextReveal, { SplitReveal } from "./TextReveal";
 
 const categories = [
   {
@@ -84,17 +83,11 @@ const Skills = () => (
     <div className="absolute bottom-20 left-10 w-60 h-60 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(280 80% 60% / 0.06), transparent 70%)' }} />
 
     <div className="container mx-auto relative z-10">
-      <div className="section-heading">
-        <SplitReveal>
-          <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(170 80% 55%)' }}>What I work with</p>
-        </SplitReveal>
-        <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(170 80% 55%), hsl(200 100% 60%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-          <TextReveal mode="letters" staggerDelay={0.03}>Skills & Technologies</TextReveal>
-        </h2>
-        <SplitReveal delay={0.3}>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Technologies and tools I use to bring ideas to life</p>
-        </SplitReveal>
-      </div>
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(170 80% 55%)' }}>What I work with</p>
+        <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(170 80% 55%), hsl(200 100% 60%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Skills & Technologies</h2>
+        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Technologies and tools I use to bring ideas to life</p>
+      </motion.div>
 
       <div className="space-y-16">
         {categories.map((cat, ci) => (

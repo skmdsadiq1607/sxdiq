@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Code, Database, Brain, Rocket, ArrowUpRight } from "lucide-react";
-import TextReveal, { SplitReveal } from "./TextReveal";
 
 const cards = [
   { icon: Code, title: "Web Development", desc: "Crafting responsive, interactive web apps with modern frameworks and clean architecture.", color: "hsl(200 100% 55%)" },
@@ -11,25 +10,20 @@ const cards = [
 
 const About = () => (
   <section id="about" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-about-bg)' }}>
+    {/* Section accent */}
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(200 100% 55% / 0.3), transparent)' }} />
     <div className="absolute top-0 left-[20%] w-[400px] h-[400px] rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(200 100% 55% / 0.06), transparent 70%)' }} />
     <div className="absolute bottom-0 right-[10%] w-[300px] h-[300px] rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(260 80% 65% / 0.05), transparent 70%)' }} />
 
     <div className="container mx-auto relative z-10">
-      <div className="section-heading">
-        <SplitReveal>
-          <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(200 100% 60%)' }}>Get to know me</p>
-        </SplitReveal>
-        <h2 className="text-4xl md:text-5xl font-bold gradient-text">
-          <TextReveal mode="letters" staggerDelay={0.04}>About Me</TextReveal>
-        </h2>
-      </div>
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(200 100% 60%)' }}>Get to know me</p>
+        <h2 className="text-4xl md:text-5xl font-bold gradient-text">About Me</h2>
+      </motion.div>
 
-      <SplitReveal delay={0.2}>
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
-          I'm a passionate B.Tech student focused on becoming a skilled full-stack developer. I love turning complex problems into elegant, user-friendly solutions.
-        </p>
-      </SplitReveal>
+      <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
+        I'm a passionate B.Tech student focused on becoming a skilled full-stack developer. I love turning complex problems into elegant, user-friendly solutions.
+      </motion.p>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card, i) => (

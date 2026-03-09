@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
-import MagneticButton from "./MagneticButton";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -37,11 +36,9 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 md:px-8">
-        <MagneticButton strength={0.3}>
-          <a href="#" className="text-2xl font-bold gradient-text font-display">
-            Sxdiq
-          </a>
-        </MagneticButton>
+        <a href="#" className="text-2xl font-bold gradient-text font-display">
+          Sxdiq
+        </a>
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <a
@@ -52,14 +49,12 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
               {link.label}
             </a>
           ))}
-          <MagneticButton strength={0.5}>
-            <button
-              onClick={toggleTheme}
-              className="ml-3 p-2.5 rounded-xl bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-            >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          </MagneticButton>
+          <button
+            onClick={toggleTheme}
+            className="ml-3 p-2.5 rounded-xl bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
         </div>
         <div className="flex md:hidden items-center gap-3">
           <button

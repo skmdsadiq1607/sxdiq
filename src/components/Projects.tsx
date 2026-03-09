@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import { Github, ArrowUpRight } from "lucide-react";
-import TextReveal, { SplitReveal } from "./TextReveal";
-import MagneticButton from "./MagneticButton";
 import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark } from "lucide-react";
 import krushiImg from "@/assets/krushi-mitra.png";
 import smartCityImg from "@/assets/smart-city.png";
@@ -46,17 +44,11 @@ const Projects = () => (
     <div className="absolute top-[30%] right-0 w-[500px] h-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(330 80% 60% / 0.08), transparent 70%)' }} />
 
     <div className="container mx-auto relative z-10">
-      <div className="section-heading">
-        <SplitReveal>
-          <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(330 80% 65%)' }}>What I've built</p>
-        </SplitReveal>
-        <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(330 80% 65%), hsl(260 80% 65%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-          <TextReveal mode="letters" staggerDelay={0.04}>Featured Projects</TextReveal>
-        </h2>
-        <SplitReveal delay={0.3}>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Real-world applications built with passion and modern technologies</p>
-        </SplitReveal>
-      </div>
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(330 80% 65%)' }}>What I've built</p>
+        <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(330 80% 65%), hsl(260 80% 65%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Featured Projects</h2>
+        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Real-world applications built with passion and modern technologies</p>
+      </motion.div>
 
       <div className="space-y-12">
         {projects.map((project, i) => (
@@ -102,17 +94,12 @@ const Projects = () => (
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <MagneticButton strength={0.3}>
-                    <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.demo} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white text-sm font-bold transition-shadow relative overflow-hidden group/btn" style={{ background: project.accentColor, boxShadow: `0 8px 24px ${project.accentColor}40` }}>
-                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
-                      Live Demo <ArrowUpRight size={16} />
-                    </motion.a>
-                  </MagneticButton>
-                  <MagneticButton strength={0.3}>
-                    <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.github} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-secondary/60 text-secondary-foreground text-sm font-bold hover:bg-muted transition-colors border border-border/30">
-                      <Github size={16} /> Source Code
-                    </motion.a>
-                  </MagneticButton>
+                  <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.demo} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white text-sm font-bold transition-shadow" style={{ background: project.accentColor, boxShadow: `0 8px 24px ${project.accentColor}40` }}>
+                    Live Demo <ArrowUpRight size={16} />
+                  </motion.a>
+                  <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.github} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-secondary/60 text-secondary-foreground text-sm font-bold hover:bg-muted transition-colors border border-border/30">
+                    <Github size={16} /> Source Code
+                  </motion.a>
                 </div>
               </div>
             </div>

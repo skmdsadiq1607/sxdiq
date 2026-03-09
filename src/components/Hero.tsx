@@ -1,8 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Mail, MapPin, Sparkles, ChevronRight, Download, Github, Linkedin } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
-import MagneticButton from "./MagneticButton";
-import TextReveal, { SplitReveal } from "./TextReveal";
 
 const roles = [
   "Full Stack Developer",
@@ -158,22 +156,21 @@ const Hero = () => {
               </span>
             </div>
             <div className="hidden sm:flex items-center gap-3">
-                {[
-                  { icon: Github, href: "https://github.com/skmdsadiq1607", label: "GitHub" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377/", label: "LinkedIn" },
-                ].map((s) => (
-                  <MagneticButton key={s.label} strength={0.5}>
-                    <motion.a
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      href={s.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-10 h-10 rounded-xl border border-border/30 bg-card/20 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
-                    >
-                      <s.icon size={18} />
-                    </motion.a>
-                  </MagneticButton>
-                ))}
+              {[
+                { icon: Github, href: "https://github.com/skmdsadiq1607", label: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377/", label: "LinkedIn" },
+              ].map((s) => (
+                <motion.a
+                  key={s.label}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-xl border border-border/30 bg-card/20 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+                >
+                  <s.icon size={18} />
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 
@@ -269,46 +266,39 @@ const Hero = () => {
               transition={{ delay: 1.3 }}
               className="flex flex-wrap gap-4 justify-center mb-16"
             >
-              <MagneticButton strength={0.3}>
-                <motion.a
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.97 }}
-                  href="#projects"
-                  className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base transition-all duration-300 relative overflow-hidden"
-                  style={{
-                    background: 'linear-gradient(135deg, hsl(200 100% 55%), hsl(260 80% 60%))',
-                    color: 'white',
-                    boxShadow: '0 8px 32px hsl(200 100% 55% / 0.3)',
-                  }}
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                  View Projects
-                  <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </motion.a>
-              </MagneticButton>
-              <MagneticButton strength={0.3}>
-                <motion.a
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.97 }}
-                  href="#contact"
-                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
-                >
-                  Contact Me <Mail size={18} />
-                </motion.a>
-              </MagneticButton>
-              <MagneticButton strength={0.3}>
-                <motion.a
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.97 }}
-                  href="/ShaikKempleMohammedSadiqResume.pdf"
-                  download
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
-                >
-                  Resume <Download size={18} />
-                </motion.a>
-              </MagneticButton>
+              <motion.a
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.97 }}
+                href="#projects"
+                className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(200 100% 55%), hsl(260 80% 60%))',
+                  color: 'white',
+                  boxShadow: '0 8px 32px hsl(200 100% 55% / 0.3)',
+                }}
+              >
+                View Projects
+                <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.97 }}
+                href="#contact"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
+              >
+                Contact Me <Mail size={18} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.97 }}
+                href="/ShaikKempleMohammedSadiqResume.pdf"
+                download
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
+              >
+                Resume <Download size={18} />
+              </motion.a>
             </motion.div>
 
             {/* Stats row */}

@@ -11,7 +11,6 @@ import Certifications from "@/components/Certifications";
 import LanguagesSection from "@/components/LanguagesSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
 
 const Index = () => {
   const [isDark, setIsDark] = useState(true);
@@ -21,8 +20,7 @@ const Index = () => {
   }, [isDark]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground cursor-none">
-      <CustomCursor />
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
       <Hero />
       <About />
