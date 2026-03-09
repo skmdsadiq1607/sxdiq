@@ -25,9 +25,11 @@ const About = () => (
         </h2>
       </div>
 
-      <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
-        I'm a passionate B.Tech student focused on becoming a skilled full-stack developer. I love turning complex problems into elegant, user-friendly solutions.
-      </motion.p>
+      <SplitReveal delay={0.2}>
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
+          I'm a passionate B.Tech student focused on becoming a skilled full-stack developer. I love turning complex problems into elegant, user-friendly solutions.
+        </p>
+      </SplitReveal>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card, i) => (
