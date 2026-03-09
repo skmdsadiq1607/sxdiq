@@ -102,12 +102,17 @@ const Projects = () => (
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.demo} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white text-sm font-bold transition-shadow" style={{ background: project.accentColor, boxShadow: `0 8px 24px ${project.accentColor}40` }}>
-                    Live Demo <ArrowUpRight size={16} />
-                  </motion.a>
-                  <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.github} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-secondary/60 text-secondary-foreground text-sm font-bold hover:bg-muted transition-colors border border-border/30">
-                    <Github size={16} /> Source Code
-                  </motion.a>
+                  <MagneticButton strength={0.3}>
+                    <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.demo} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white text-sm font-bold transition-shadow relative overflow-hidden group/btn" style={{ background: project.accentColor, boxShadow: `0 8px 24px ${project.accentColor}40` }}>
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
+                      Live Demo <ArrowUpRight size={16} />
+                    </motion.a>
+                  </MagneticButton>
+                  <MagneticButton strength={0.3}>
+                    <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.github} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-secondary/60 text-secondary-foreground text-sm font-bold hover:bg-muted transition-colors border border-border/30">
+                      <Github size={16} /> Source Code
+                    </motion.a>
+                  </MagneticButton>
                 </div>
               </div>
             </div>
