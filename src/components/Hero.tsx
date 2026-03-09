@@ -158,21 +158,22 @@ const Hero = () => {
               </span>
             </div>
             <div className="hidden sm:flex items-center gap-3">
-              {[
-                { icon: Github, href: "https://github.com/skmdsadiq1607", label: "GitHub" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377/", label: "LinkedIn" },
-              ].map((s) => (
-                <motion.a
-                  key={s.label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-10 h-10 rounded-xl border border-border/30 bg-card/20 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
-                >
-                  <s.icon size={18} />
-                </motion.a>
-              ))}
+                {[
+                  { icon: Github, href: "https://github.com/skmdsadiq1607", label: "GitHub" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377/", label: "LinkedIn" },
+                ].map((s) => (
+                  <MagneticButton key={s.label} strength={0.5}>
+                    <motion.a
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-10 h-10 rounded-xl border border-border/30 bg-card/20 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+                    >
+                      <s.icon size={18} />
+                    </motion.a>
+                  </MagneticButton>
+                ))}
             </div>
           </motion.div>
 
