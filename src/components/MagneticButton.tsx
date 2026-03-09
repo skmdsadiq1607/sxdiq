@@ -5,11 +5,10 @@ interface MagneticButtonProps {
   children: ReactNode;
   className?: string;
   strength?: number;
-  as?: "a" | "button" | "div";
   [key: string]: any;
 }
 
-const MagneticButton = ({ children, className = "", strength = 0.4, as = "div", ...props }: MagneticButtonProps) => {
+const MagneticButton = ({ children, className = "", strength = 0.4, ...props }: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -23,10 +22,8 @@ const MagneticButton = ({ children, className = "", strength = 0.4, as = "div", 
 
   const reset = () => setPosition({ x: 0, y: 0 });
 
-  const Component = motion[as] || motion.div;
-
   return (
-    <Component
+    <motion.div
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
@@ -36,7 +33,7 @@ const MagneticButton = ({ children, className = "", strength = 0.4, as = "div", 
       {...props}
     >
       {children}
-    </Component>
+    </motion.div>
   );
 };
 
