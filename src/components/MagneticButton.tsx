@@ -1,0 +1,43 @@
+import { useRef, useState, ReactNode, MouseEvent } from "react";
+import { motion } from "framer-motion";
+
+interface MagneticButtonProps {
+  children: ReactNode;
+  className?: string;
+  strength?: number;
+  as?: "a" | "button" | "div";
+  [key: string]: any;
+}
+
+const MagneticButton = ({ children, className = "", strength = 0.4, as = "div", ...props }: MagneticButtonProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e: MouseEvent) => {
+    if (!ref.current) return;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) * strength;
+    const y = (e.clientY - top - height / 2) * strength;
+    setPosition({ x, y });
+  };
+
+  const reset = () => setPosition({ x: 0, y: 0 });
+
+  const Component = motion[as] || motion.div;
+
+  return (
+    <Component
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className={`magnetic-btn ${className}`}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
+};
+
+export default MagneticButton;
