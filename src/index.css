@@ -100,13 +100,19 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: none !important;
   }
   body {
     @apply bg-background text-foreground;
     font-family: 'Outfit', system-ui, sans-serif;
+    cursor: none !important;
   }
   html {
     scroll-behavior: smooth;
+  }
+  @media (hover: none) and (pointer: coarse) {
+    * { cursor: auto !important; }
+    body { cursor: auto !important; }
   }
 }
 
