@@ -2,6 +2,7 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { SiHtml5, SiCss, SiJavascript, SiExpress, SiMongodb, SiPython } from "react-icons/si";
 import { FaJava, FaDatabase, FaCogs, FaServer, FaCode, FaDesktop } from "react-icons/fa";
 import { MouseEvent } from "react";
+import TextReveal, { SplitReveal } from "./TextReveal";
 
 const categories = [
   {
