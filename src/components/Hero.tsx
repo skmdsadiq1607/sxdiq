@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Mail, MapPin, Sparkles, ChevronRight, Download, Github, Linkedin } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
+import MagneticButton from "./MagneticButton";
+import TextReveal, { SplitReveal } from "./TextReveal";
 
 const roles = [
   "Full Stack Developer",
