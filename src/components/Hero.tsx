@@ -269,40 +269,46 @@ const Hero = () => {
               transition={{ delay: 1.3 }}
               className="flex flex-wrap gap-4 justify-center mb-16"
             >
-              <motion.a
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                href="#projects"
-                className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(200 100% 55%), hsl(260 80% 60%))',
-                  color: 'white',
-                  boxShadow: '0 8px 32px hsl(200 100% 55% / 0.3)',
-                }}
-              >
-                View Projects
-                <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                href="#contact"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
-              >
-                Contact Me <Mail size={18} />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                href="/ShaikKempleMohammedSadiqResume.pdf"
-                download
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
-              >
-                Resume <Download size={18} />
-              </motion.a>
-            </motion.div>
+              <MagneticButton strength={0.3}>
+                <motion.a
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="#projects"
+                  className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base transition-all duration-300 relative overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(200 100% 55%), hsl(260 80% 60%))',
+                    color: 'white',
+                    boxShadow: '0 8px 32px hsl(200 100% 55% / 0.3)',
+                  }}
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                  View Projects
+                  <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </motion.a>
+              </MagneticButton>
+              <MagneticButton strength={0.3}>
+                <motion.a
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="#contact"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
+                >
+                  Contact Me <Mail size={18} />
+                </motion.a>
+              </MagneticButton>
+              <MagneticButton strength={0.3}>
+                <motion.a
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="/ShaikKempleMohammedSadiqResume.pdf"
+                  download
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-semibold text-base border border-border/40 bg-card/20 backdrop-blur-sm text-foreground hover:border-primary/40 hover:bg-card/40 transition-all duration-300"
+                >
+                  Resume <Download size={18} />
+                </motion.a>
+              </MagneticButton>
 
             {/* Stats row */}
             <motion.div
