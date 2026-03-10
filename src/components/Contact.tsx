@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Send, MapPin, ArrowUpRight, Sparkles } from "lucide-react";
+import { Mail, Phone, Linkedin, Send, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "skmdsadiq1607@gmail.com", href: "mailto:skmdsadiq1607@gmail.com", color: "hsl(200 100% 55%)", emoji: "✉️" },
-  { icon: Phone, label: "Phone", value: "+91 9441921812", href: "tel:+919441921812", color: "hsl(330 80% 60%)", emoji: "📞" },
-  { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377", color: "hsl(220 90% 55%)", emoji: "💼" },
-  { icon: MapPin, label: "Location", value: "Hyderabad, India", href: "", color: "hsl(160 80% 50%)", emoji: "📍" },
+  { icon: Mail, label: "Email", value: "skmdsadiq1607@gmail.com", href: "mailto:skmdsadiq1607@gmail.com", color: "hsl(200 100% 55%)" },
+  { icon: Phone, label: "Phone", value: "+91 9441921812", href: "tel:+919441921812", color: "hsl(330 80% 60%)" },
+  { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377", color: "hsl(220 90% 55%)" },
+  { icon: MapPin, label: "Location", value: "Hyderabad, India", href: "", color: "hsl(160 80% 50%)" },
 ];
 
 const accentColor = "hsl(200 100% 55%)";
@@ -31,7 +31,6 @@ const Contact = () => {
     <section id="contact" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-contact-bg)' }}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${accentColor}50, transparent)` }} />
       <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full opacity-20" style={{ background: `radial-gradient(circle, ${accentColor}10, transparent 70%)` }} />
-      <div className="absolute top-40 left-5 w-60 h-60 rounded-full opacity-15" style={{ background: `radial-gradient(circle, hsl(260 80% 65% / 0.08), transparent 70%)` }} />
 
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
@@ -41,24 +40,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-5 gap-10">
-          {/* Contact cards */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-2 space-y-4">
-            {/* CTA card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-3xl p-6 mb-6 relative overflow-hidden border border-border/20 bg-card/30 backdrop-blur-sm"
-              style={{ boxShadow: `0 10px 40px -15px ${accentColor}10` }}
-            >
-              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: `linear-gradient(90deg, ${accentColor}, hsl(260 80% 65%))` }} />
-              <div className="flex items-center gap-3 mb-3">
-                <Sparkles size={18} style={{ color: accentColor }} />
-                <span className="text-sm font-bold text-foreground">Let's build something amazing</span>
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">I'm always open to new opportunities, collaborations, and interesting conversations.</p>
-            </motion.div>
-
             {contactInfo.map((item, i) => (
               <motion.a
                 key={item.label}
@@ -72,27 +54,19 @@ const Contact = () => {
                 rel={item.href?.startsWith('http') ? 'noreferrer' : undefined}
                 className="flex items-center gap-4 p-4 rounded-2xl border border-border/20 bg-card/30 backdrop-blur-sm hover:border-border/40 transition-all group"
               >
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 text-xl" style={{ background: item.color, boxShadow: `0 8px 24px ${item.color}40` }}>
-                  {item.emoji}
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500" style={{ background: item.color, boxShadow: `0 8px 24px ${item.color}40` }}>
+                  <item.icon size={20} className="text-white" />
                 </div>
-                <div className="flex-1">
+                <div>
                   <p className="text-xs text-muted-foreground font-mono uppercase tracking-wider">{item.label}</p>
                   <p className="text-sm text-foreground font-semibold">{item.value}</p>
                 </div>
-                {item.href && <ArrowUpRight size={14} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />}
               </motion.a>
             ))}
           </motion.div>
 
-          {/* Form */}
           <motion.form initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} onSubmit={handleSubmit} className="rounded-3xl p-8 space-y-5 md:col-span-3 relative overflow-hidden border border-border/20 bg-card/30 backdrop-blur-sm" style={{ boxShadow: `0 20px 60px -15px ${accentColor}08` }}>
             <div className="absolute top-0 left-0 right-0 h-1" style={{ background: `linear-gradient(90deg, ${accentColor}, hsl(260 80% 65%))` }} />
-            
-            <div className="mb-2">
-              <h3 className="text-xl font-bold text-foreground">Send a Message</h3>
-              <p className="text-xs text-muted-foreground mt-1">Fill out the form and I'll get back to you ASAP</p>
-            </div>
-
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className="text-xs font-mono text-muted-foreground mb-2 block uppercase tracking-wider">Name</label>

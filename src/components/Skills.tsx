@@ -10,12 +10,12 @@ const categories = [
     description: "Building modern, responsive web experiences",
     accentColor: "hsl(170 80% 50%)",
     skills: [
-      { name: "HTML5", icon: SiHtml5, color: "#E34F26", level: 90 },
-      { name: "CSS3", icon: SiCss, color: "#1572B6", level: 85 },
-      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E", level: 80 },
-      { name: "Express.js", icon: SiExpress, color: "#68A063", level: 65 },
-      { name: "MongoDB", icon: SiMongodb, color: "#47A248", level: 60 },
-      { name: "REST APIs", icon: FaServer, color: "#00BCD4", level: 70 },
+      { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
+      { name: "CSS3", icon: SiCss, color: "#1572B6" },
+      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Express.js", icon: SiExpress, color: "#68A063" },
+      { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+      { name: "REST APIs", icon: FaServer, color: "#00BCD4" },
     ],
   },
   {
@@ -24,9 +24,9 @@ const categories = [
     description: "Core languages for problem solving & development",
     accentColor: "hsl(280 80% 60%)",
     skills: [
-      { name: "C (DSA)", icon: FaCode, color: "#A8B9CC", level: 85 },
-      { name: "Java", icon: FaJava, color: "#ED8B00", level: 80 },
-      { name: "Python", icon: SiPython, color: "#3776AB", level: 75 },
+      { name: "C (DSA)", icon: FaCode, color: "#A8B9CC" },
+      { name: "Java", icon: FaJava, color: "#ED8B00" },
+      { name: "Python", icon: SiPython, color: "#3776AB" },
     ],
   },
   {
@@ -35,9 +35,9 @@ const categories = [
     description: "Strong foundation in computer science concepts",
     accentColor: "hsl(40 100% 55%)",
     skills: [
-      { name: "OOPS", icon: FaCogs, color: "#9C27B0", level: 85 },
-      { name: "DBMS", icon: FaDatabase, color: "#FF6F00", level: 75 },
-      { name: "OS", icon: FaDesktop, color: "#0097A7", level: 70 },
+      { name: "OOPS", icon: FaCogs, color: "#9C27B0" },
+      { name: "DBMS", icon: FaDatabase, color: "#FF6F00" },
+      { name: "OS", icon: FaDesktop, color: "#0097A7" },
     ],
   },
 ];
@@ -66,26 +66,11 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
       className="rounded-2xl p-6 flex flex-col items-center gap-3 group cursor-default relative overflow-hidden border border-border/20 bg-card/30 backdrop-blur-sm"
     >
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" style={{ background: `radial-gradient(circle at 50% 50%, ${skill.color}18, transparent 70%)` }} />
-      <div className="relative z-10 flex flex-col items-center gap-3 w-full">
+      <div className="relative z-10 flex flex-col items-center gap-3">
         <motion.div whileHover={{ scale: 1.2, rotate: 5 }} transition={{ type: "spring", stiffness: 400 }} className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: `${skill.color}15`, border: `1px solid ${skill.color}30` }}>
           <skill.icon size={32} style={{ color: skill.color }} />
         </motion.div>
         <span className="text-sm font-semibold text-foreground text-center">{skill.name}</span>
-        
-        {/* Skill progress bar */}
-        <div className="w-full mt-1">
-          <div className="w-full h-1.5 rounded-full bg-secondary/60 overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: `${skill.level}%` }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 + 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="h-full rounded-full"
-              style={{ background: `linear-gradient(90deg, ${skill.color}80, ${skill.color})` }}
-            />
-          </div>
-          <p className="text-[10px] text-muted-foreground font-mono text-center mt-1 opacity-0 group-hover:opacity-100 transition-opacity">{skill.level}%</p>
-        </div>
       </div>
     </motion.div>
   );
@@ -115,7 +100,7 @@ const Skills = () => (
               </div>
               <div className="hidden md:block flex-1 h-px ml-4" style={{ background: `linear-gradient(90deg, ${cat.accentColor}30, transparent)` }} />
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
               {cat.skills.map((skill, si) => (
                 <SkillCard key={skill.name} skill={skill} index={si + ci * 3} />
               ))}

@@ -1,9 +1,8 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Github, ArrowUpRight, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
+import { Github, ArrowUpRight } from "lucide-react";
 import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark } from "lucide-react";
 import krushiImg from "@/assets/krushi-mitra.png";
 import smartCityImg from "@/assets/smart-city.png";
-import { MouseEvent } from "react";
 
 const projects = [
   {
@@ -39,113 +38,6 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-300, 300], [3, -3]);
-  const rotateY = useTransform(x, [-300, 300], [-3, 3]);
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set(e.clientX - rect.left - rect.width / 2);
-    y.set(e.clientY - rect.top - rect.height / 2);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: index * 0.15 }}
-      style={{ rotateX, rotateY, perspective: 1200 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => { x.set(0); y.set(0); }}
-      className="rounded-3xl overflow-hidden group relative border border-border/20 bg-card/30 backdrop-blur-sm"
-      {...(project.featured ? { style: { rotateX, rotateY, perspective: 1200, boxShadow: `0 20px 60px -15px ${project.accentColor}20` } } : { style: { rotateX, rotateY, perspective: 1200, boxShadow: `0 20px 60px -15px ${project.accentColor}15` } })}
-    >
-      {/* Top accent */}
-      <div className="absolute top-0 left-0 right-0 h-1 z-20" style={{ background: `linear-gradient(90deg, ${project.accentColor}, ${project.accentColor}60)` }} />
-
-      <div className="grid md:grid-cols-2">
-        <div className="relative overflow-hidden h-64 md:h-auto min-h-[300px]">
-          <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" />
-          <div className="absolute inset-0 bg-gradient-to-r from-card/90 via-card/40 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-card" />
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent md:hidden" />
-          {project.featured && (
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="absolute top-5 left-5 px-4 py-1.5 rounded-full text-white text-xs font-bold tracking-wide uppercase z-10" style={{ background: project.accentColor, boxShadow: `0 4px 16px ${project.accentColor}40` }}>
-              ⭐ Featured
-            </motion.div>
-          )}
-          
-          {/* Floating preview button */}
-          <motion.a
-            href={project.demo}
-            target="_blank"
-            rel="noreferrer"
-            initial={{ opacity: 0 }}
-            whileHover={{ scale: 1.1 }}
-            className="absolute bottom-5 right-5 w-12 h-12 rounded-2xl flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
-            style={{ background: project.accentColor, boxShadow: `0 8px 24px ${project.accentColor}50` }}
-          >
-            <ExternalLink size={18} />
-          </motion.a>
-        </div>
-
-        <div className="p-8 md:p-10 flex flex-col justify-center">
-          <span className="text-xs font-mono mb-2 uppercase tracking-wider" style={{ color: project.accentColor }}>{project.tagline}</span>
-          <h3 className="text-3xl font-bold text-foreground mb-4 font-display">{project.title}</h3>
-          <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
-          
-          {project.features.length > 0 && (
-            <div className="grid grid-cols-3 gap-3 mb-6">
-              {project.features.map((f, fi) => (
-                <motion.div
-                  key={f.label}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: fi * 0.05 }}
-                  className="flex items-center gap-2 text-sm text-muted-foreground group/feat"
-                >
-                  <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 group-hover/feat:scale-110 transition-transform" style={{ background: `${project.accentColor}15` }}>
-                    <f.icon size={14} style={{ color: project.accentColor }} />
-                  </div>
-                  <span className="text-xs">{f.label}</span>
-                </motion.div>
-              ))}
-            </div>
-          )}
-
-          {/* Tech stack badges */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {project.tech.map((t, ti) => (
-              <motion.span
-                key={t}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: ti * 0.04 }}
-                className="text-xs px-3 py-1.5 rounded-xl font-mono border border-border/30 bg-secondary/60 text-secondary-foreground hover:border-primary/30 transition-colors"
-              >
-                {t}
-              </motion.span>
-            ))}
-          </div>
-
-          <div className="flex gap-4">
-            <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white text-sm font-bold transition-shadow" style={{ background: project.accentColor, boxShadow: `0 8px 24px ${project.accentColor}40` }}>
-              Live Demo <ArrowUpRight size={16} />
-            </motion.a>
-            <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-secondary/60 text-secondary-foreground text-sm font-bold hover:bg-secondary/80 transition-colors border border-border/30">
-              <Github size={16} /> Source Code
-            </motion.a>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const Projects = () => (
   <section id="projects" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-projects-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(330 80% 60% / 0.3), transparent)' }} />
@@ -160,7 +52,58 @@ const Projects = () => (
 
       <div className="space-y-12">
         {projects.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} />
+          <motion.div
+            key={project.title}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="rounded-3xl overflow-hidden group relative border border-border/20 bg-card/30 backdrop-blur-sm"
+            style={{ boxShadow: `0 20px 60px -15px ${project.accentColor}15` }}
+          >
+            <div className="grid md:grid-cols-2">
+              <div className="relative overflow-hidden h-64 md:h-auto">
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" />
+                <div className="absolute inset-0 bg-gradient-to-r from-card/90 via-card/40 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-card" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent md:hidden" />
+                {project.featured && (
+                  <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="absolute top-5 left-5 px-4 py-1.5 rounded-full text-white text-xs font-bold tracking-wide uppercase" style={{ background: project.accentColor }}>
+                    ⭐ Featured
+                  </motion.div>
+                )}
+              </div>
+              <div className="p-8 md:p-10 flex flex-col justify-center">
+                <span className="text-xs font-mono mb-2 uppercase tracking-wider" style={{ color: project.accentColor }}>{project.tagline}</span>
+                <h3 className="text-3xl font-bold text-foreground mb-4 font-display">{project.title}</h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
+                {project.features.length > 0 && (
+                  <div className="grid grid-cols-3 gap-3 mb-6">
+                    {project.features.map((f) => (
+                      <div key={f.label} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0" style={{ background: `${project.accentColor}15` }}>
+                          <f.icon size={14} style={{ color: project.accentColor }} />
+                        </div>
+                        <span className="text-xs">{f.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.tech.map((t) => (
+                    <span key={t} className="text-xs px-3 py-1.5 rounded-xl bg-secondary/60 text-secondary-foreground font-mono border border-border/30">{t}</span>
+                  ))}
+                </div>
+                <div className="flex gap-4">
+                  <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.demo} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white text-sm font-bold transition-shadow" style={{ background: project.accentColor, boxShadow: `0 8px 24px ${project.accentColor}40` }}>
+                    Live Demo <ArrowUpRight size={16} />
+                  </motion.a>
+                  <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={project.github} className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-secondary/60 text-secondary-foreground text-sm font-bold hover:bg-muted transition-colors border border-border/30">
+                    <Github size={16} /> Source Code
+                  </motion.a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         ))}
       </div>
     </div>
