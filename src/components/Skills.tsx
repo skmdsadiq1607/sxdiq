@@ -63,8 +63,10 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
       style={{ rotateX, rotateY, perspective: 800 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { x.set(0); y.set(0); }}
-      className="rounded-2xl p-6 flex flex-col items-center gap-3 group cursor-default relative overflow-hidden border border-border/20 bg-card/30 backdrop-blur-sm"
+      className="rounded-2xl p-6 flex flex-col items-center gap-3 group cursor-default relative overflow-hidden premium-glass"
     >
+      {/* Hover glow ring */}
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700" style={{ boxShadow: `inset 0 0 30px ${skill.color}15, 0 0 20px ${skill.color}10` }} />
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" style={{ background: `radial-gradient(circle at 50% 50%, ${skill.color}18, transparent 70%)` }} />
       <div className="relative z-10 flex flex-col items-center gap-3">
         <motion.div whileHover={{ scale: 1.2, rotate: 5 }} transition={{ type: "spring", stiffness: 400 }} className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: `${skill.color}15`, border: `1px solid ${skill.color}30` }}>
@@ -77,10 +79,11 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
 };
 
 const Skills = () => (
-  <section id="skills" className="section-padding relative overflow-hidden" style={{ background: 'var(--section-skills-bg)' }}>
+  <section id="skills" className="section-padding relative overflow-hidden noise-overlay" style={{ background: 'var(--section-skills-bg)' }}>
     <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(170 80% 50% / 0.3), transparent)' }} />
     <div className="absolute top-20 right-10 w-72 h-72 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(170 80% 50% / 0.08), transparent 70%)' }} />
     <div className="absolute bottom-20 left-10 w-60 h-60 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(280 80% 60% / 0.06), transparent 70%)' }} />
+    <div className="absolute inset-0 dot-pattern opacity-30" />
 
     <div className="container mx-auto relative z-10">
       <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
