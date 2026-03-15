@@ -9,7 +9,7 @@ import htmlCssImg from "@/assets/certs/html-css-bootcamp.jpg";
 const certs = [
   { title: "Programming in Java", issuer: "NPTEL – IIT Kharagpur", badge: "Elite + Silver (82)", highlight: true, color: "hsl(45 100% 55%)", image: null, pdfLink: "/certs/programming-in-java.pdf" },
   { title: "OOPs in Java", issuer: "Great Learning", badge: "", highlight: false, color: "hsl(200 100% 55%)", image: oopsJavaImg, pdfLink: null },
-  { title: "Java for Beginners", issuer: "Infosys Springboard", badge: "", highlight: false, color: "hsl(220 90% 55%)", image: javaBeginnersImg, pdfLink: null },
+  { title: "Java for Beginners", issuer: "Infosys Springboard", badge: "", highlight: false, color: "hsl(260 80% 65%)", image: javaBeginnersImg, pdfLink: null },
   { title: "Basics of Python", issuer: "Infosys Springboard", badge: "", highlight: false, color: "hsl(160 80% 50%)", image: basicsPythonImg, pdfLink: null },
   { title: "HTML & CSS Bootcamp", issuer: "Lets Upgrade", badge: "", highlight: false, color: "hsl(330 80% 60%)", image: htmlCssImg, pdfLink: null },
 ];
@@ -18,54 +18,57 @@ const Certifications = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section className="section-padding relative overflow-hidden noise-overlay" style={{ background: 'var(--section-certs-bg)' }}>
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(260 80% 65% / 0.3), transparent)' }} />
-      <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full opacity-15" style={{ background: 'radial-gradient(circle, hsl(260 80% 65% / 0.1), transparent 70%)' }} />
+    <section className="section-padding relative overflow-hidden" style={{ background: 'var(--section-certs-bg)' }}>
+      <div className="absolute inset-0 grid-lines opacity-30" />
 
-      <div className="container mx-auto relative z-10">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
-          <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(260 80% 70%)' }}>Credentials</p>
-          <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(260 80% 70%), hsl(330 80% 65%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Certifications</h2>
+      <div className="container mx-auto max-w-5xl relative z-10">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-20">
+          <div className="flex items-center gap-3 mb-6 justify-center">
+            <div className="h-px w-8" style={{ background: 'hsl(260 80% 65% / 0.5)' }} />
+            <p className="text-sm font-mono tracking-widest uppercase" style={{ color: 'hsl(260 80% 65%)' }}>Credentials</p>
+            <div className="h-px w-8" style={{ background: 'hsl(260 80% 65% / 0.5)' }} />
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center leading-tight">
+            <span className="text-foreground">Professional </span>
+            <span style={{ background: 'linear-gradient(135deg, hsl(260 80% 65%), hsl(330 80% 60%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Certifications</span>
+          </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {certs.map((c, i) => (
             <motion.div
               key={c.title}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring", stiffness: 120 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className={`rounded-3xl group relative overflow-hidden premium-glass flex flex-col ${c.highlight ? 'sm:col-span-2 lg:col-span-1' : ''}`}
-              style={{ boxShadow: `0 10px 40px -15px ${c.color}15`, ...(c.highlight ? { borderColor: `${c.color}30` } : {}) }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              whileHover={{ y: -6 }}
+              className={`rounded-2xl group relative overflow-hidden premium-glass flex flex-col ${c.highlight ? 'sm:col-span-2 lg:col-span-1' : ''}`}
             >
-              {c.highlight && <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: `linear-gradient(90deg, ${c.color}, hsl(30 100% 60%))` }} />}
+              {c.highlight && <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: c.color }} />}
 
-              {/* Certificate image preview */}
               {c.image && (
                 <div
-                  className="relative h-40 overflow-hidden cursor-pointer"
+                  className="relative h-36 overflow-hidden cursor-pointer"
                   onClick={() => setSelectedImage(c.image!)}
                 >
-                  <img src={c.image} alt={c.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={c.image} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-xl flex items-center justify-center bg-card/60 backdrop-blur-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ExternalLink size={14} />
+                  <div className="absolute top-3 right-3 w-7 h-7 rounded-lg flex items-center justify-center bg-card/60 backdrop-blur-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ExternalLink size={12} />
                   </div>
                 </div>
               )}
 
-              <div className="absolute -top-16 -right-16 w-32 h-32 rounded-full opacity-0 group-hover:opacity-15 blur-2xl transition-opacity duration-700" style={{ background: c.color }} />
-              <div className="relative z-10 p-7 flex-1 flex flex-col">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" style={{ background: c.color, boxShadow: `0 8px 24px ${c.color}40` }}>
-                  <Award size={22} className="text-white" />
+              <div className="relative z-10 p-6 flex-1 flex flex-col">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110" style={{ background: `${c.color}12`, border: `1px solid ${c.color}20` }}>
+                  <Award size={18} style={{ color: c.color }} />
                 </div>
-                <h3 className="font-bold text-foreground text-base mb-1">{c.title}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{c.issuer}</p>
+                <h3 className="font-semibold text-foreground text-sm mb-1">{c.title}</h3>
+                <p className="text-xs text-muted-foreground mb-3">{c.issuer}</p>
                 {c.badge && (
-                  <div className="mt-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold" style={{ background: c.color, color: 'white', boxShadow: `0 4px 16px ${c.color}40` }}>
-                    <Star size={12} /> {c.badge}
+                  <div className="mt-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-semibold" style={{ background: `${c.color}15`, color: c.color, border: `1px solid ${c.color}20` }}>
+                    <Star size={11} /> {c.badge}
                   </div>
                 )}
                 {c.pdfLink && (
@@ -73,10 +76,10 @@ const Certifications = () => {
                     href={c.pdfLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-auto inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:underline"
+                    className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:underline"
                     style={{ color: c.color }}
                   >
-                    View Certificate <ExternalLink size={12} />
+                    View Certificate <ExternalLink size={11} />
                   </a>
                 )}
               </div>
@@ -94,7 +97,7 @@ const Certifications = () => {
           onClick={() => setSelectedImage(null)}
         >
           <motion.img
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             src={selectedImage}
             alt="Certificate"
