@@ -9,7 +9,7 @@ const categories = [
     accentColor: "hsl(200 100% 55%)",
     skills: [
       { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
-      { name: "CSS3", icon: SiCss3, color: "#1572B6" },
+      { name: "CSS3", icon: SiCss, color: "#1572B6" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
       { name: "Express.js", icon: SiExpress, color: "#68A063" },
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
