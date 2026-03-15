@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const items = [
   { icon: Zap, title: "AgentX Hackathon", org: "Dept of IT & Salesforce", date: "Jan 2026", color: "hsl(30 100% 55%)", description: "Built AI agents for smart city management in a 24-hour innovation hackathon", image: agentxImg },
-  { icon: Trophy, title: "Data Dynamo 2.0", org: "Dept of Data Science", date: "2025", color: "hsl(280 80% 60%)", description: "24-hour hackathon focused on data science challenges and analytics", image: dataDynamoImg },
+  { icon: Trophy, title: "Data Dynamo 2.0", org: "Dept of Data Science", date: "Jan 2026", color: "hsl(280 80% 60%)", description: "Built Krushi Mitra, a web platform designed to support farmers with modern agricultural solutions.", image: dataDynamoImg },
   { icon: Code, title: "DevWars", org: "Dept of AI × CodingCubs × Codechef", date: "Jan 2026", color: "hsl(170 80% 50%)", description: "Competitive development challenge organized by the AI department", image: devwarsImg },
   { icon: Code, title: "CodeSprint 2025", org: "CodingCubs × GeeksforGeeks", date: "Sep 2025", color: "hsl(140 70% 45%)", description: "Competitive coding sprint organized by AI department", image: codesprintImg },
   { icon: Code, title: "11 Days of Code", org: "APJ Abdul Kalam Hackers Academy", date: "Dec 2025", color: "hsl(200 100% 55%)", description: "Online coding event by the CSE department", image: daysOfCodeImg },
