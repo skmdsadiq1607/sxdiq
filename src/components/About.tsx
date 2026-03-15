@@ -12,8 +12,8 @@ const cards = [
 const stats = [
   { value: 9.25, label: "CGPA", suffix: "", decimals: 2, icon: Zap, color: "hsl(200 100% 55%)" },
   { value: 2, label: "Projects Built", suffix: "+", decimals: 0, icon: Code, color: "hsl(260 80% 65%)" },
-  { value: 3, label: "Hackathons", suffix: "+", decimals: 0, icon: Users, color: "hsl(330 80% 60%)" },
-  { value: 500, label: "Cups of Coffee", suffix: "+", decimals: 0, icon: Coffee, color: "hsl(30 100% 55%)" },
+  { value: 3, label: "Hackathons Participated", suffix: "+", decimals: 0, icon: Users, color: "hsl(330 80% 60%)" },
+  { value: 5, label: "Events Conducted", suffix: "+", decimals: 0, icon: Coffee, color: "hsl(30 100% 55%)" },
 ];
 
 const AnimatedCounter = ({ value, decimals, suffix }: { value: number; decimals: number; suffix: string }) => {
@@ -65,7 +65,7 @@ const About = () => (
             Beyond coding, I actively participate in hackathons, contribute to student communities, and continuously sharpen my skills in Data Structures and Algorithms. My goal is to create impactful tech solutions that make a difference.
           </p>
           <div className="flex flex-wrap gap-3">
-            {["React", "Node.js", "MongoDB", "TypeScript", "Python", "Java"].map((tech, i) => (
+            {["MongoDB", "Express.js", "React.js", "Node.js", "Java", "C"].map((tech, i) => (
               <motion.span
                 key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
