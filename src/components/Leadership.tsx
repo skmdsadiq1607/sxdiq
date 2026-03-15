@@ -13,7 +13,7 @@ const activities = [
     points: ["Managed academic resources", "Shared notes, circulars, and campus updates for students"],
   },
   {
-    icon: Code, org: "Coding Club", role: "Content Writer", period: "",
+    icon: Code, org: "Coding Club", role: "Content Writer", period: "Jul 2025 – Present",
     color: "hsl(160 80% 50%)",
     points: ["Conducted workshops on coding fundamentals and development concepts"],
   },
