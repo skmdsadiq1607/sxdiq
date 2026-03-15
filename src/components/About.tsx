@@ -13,7 +13,7 @@ const stats = [
   { value: 9.25, label: "CGPA", suffix: "", decimals: 2, icon: Zap, color: "hsl(200 100% 55%)" },
   { value: 2, label: "Projects Built", suffix: "+", decimals: 0, icon: Code, color: "hsl(260 80% 65%)" },
   { value: 3, label: "Hackathons Participated", suffix: "+", decimals: 0, icon: Users, color: "hsl(330 80% 60%)" },
-  { value: 5, label: "Certifications", suffix: "+", decimals: 0, icon: Certificate, color: "hsl(30 100% 55%)" },
+  { value: 5, label: "Certifications", suffix: "+", decimals: 0, icon: Coffee, color: "hsl(30 100% 55%)" },
 ];
 
 const AnimatedCounter = ({ value, decimals, suffix }: { value: number; decimals: number; suffix: string }) => {
