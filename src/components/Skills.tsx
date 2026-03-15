@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { SiHtml5, SiCss, SiJavascript, SiExpress, SiMongodb, SiPython } from "react-icons/si";
+import { SiHtml5, SiCss, SiJavascript, SiExpress, SiMongodb, SiPython, SiBootstrap, SiTailwindcss, SiReact, SiGit, SiGithub } from "react-icons/si";
 import { FaJava, FaDatabase, FaCogs, FaServer, FaCode, FaDesktop } from "react-icons/fa";
 import { MouseEvent } from "react";
 
@@ -13,31 +13,38 @@ const categories = [
       { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
       { name: "CSS3", icon: SiCss, color: "#1572B6" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "React.js", icon: SiReact, color: "#61DAFB" },
       { name: "Express.js", icon: SiExpress, color: "#68A063" },
-      { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
       { name: "REST APIs", icon: FaServer, color: "#00BCD4" },
+      { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+      { name: "SQL", icon: FaDatabase, color: "#4479A1" },
+      { name: "Git", icon: SiGit, color: "#F05032" },
+      { name: "GitHub", icon: SiGithub, color: "#181717" },
     ],
   },
   {
     title: "Programming Languages",
     emoji: "💻",
-    description: "Core languages for problem solving & development",
+    description: "Languages used for development and problem solving",
     accentColor: "hsl(280 80% 60%)",
     skills: [
       { name: "C (DSA)", icon: FaCode, color: "#A8B9CC" },
       { name: "Java", icon: FaJava, color: "#ED8B00" },
       { name: "Python", icon: SiPython, color: "#3776AB" },
+      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
     ],
   },
   {
     title: "CS Fundamentals",
     emoji: "🧠",
-    description: "Strong foundation in computer science concepts",
+    description: "Core computer science concepts",
     accentColor: "hsl(40 100% 55%)",
     skills: [
-      { name: "OOPS", icon: FaCogs, color: "#9C27B0" },
+      { name: "Object-Oriented Programming", icon: FaCogs, color: "#9C27B0" },
       { name: "DBMS", icon: FaDatabase, color: "#FF6F00" },
-      { name: "OS", icon: FaDesktop, color: "#0097A7" },
+      { name: "Operating Systems", icon: FaDesktop, color: "#0097A7" },
     ],
   },
 ];
