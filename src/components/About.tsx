@@ -85,12 +85,28 @@ const About = () => (
             <div className="absolute inset-0 rounded-full blur-2xl opacity-30" style={{ background: 'var(--gradient-primary)' }} />
             {/* Image */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
+              whileHover={{ scale: 1.08, rotate: 2 }}
+              animate={{
+                boxShadow: [
+                  '0 0 20px hsl(200 100% 55% / 0.2), 0 0 60px hsl(200 100% 55% / 0.1)',
+                  '0 0 30px hsl(260 80% 65% / 0.3), 0 0 80px hsl(260 80% 65% / 0.15)',
+                  '0 0 20px hsl(200 100% 55% / 0.2), 0 0 60px hsl(200 100% 55% / 0.1)',
+                ],
+              }}
+              transition={{
+                boxShadow: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                scale: { type: "spring", stiffness: 200 },
+              }}
               className="relative w-full h-full rounded-full overflow-hidden border-2 shadow-xl"
               style={{ borderColor: 'hsl(200 100% 55% / 0.3)' }}
             >
-              <img src={profileImg} alt="Shaik Kemble Mohammed Sadiq" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+              <motion.img
+                src={profileImg}
+                alt="Shaik Kemble Mohammed Sadiq"
+                className="w-full h-full object-cover transition-all duration-700"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              />
             </motion.div>
             {/* Status badge */}
             <motion.div
