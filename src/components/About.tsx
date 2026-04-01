@@ -2,7 +2,6 @@ import { motion, useInView } from "framer-motion";
 import { Code, Database, Brain, Rocket, ArrowUpRight, Zap, Users, Coffee } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
-import profileSketch from "@/assets/profile-sketch.jpg";
 
 const cards = [
   { icon: Code, title: "Web Development", desc: "Crafting responsive, interactive web apps with modern frameworks and clean architecture.", color: "hsl(200 100% 55%)" },
@@ -98,22 +97,13 @@ const About = () => (
                 boxShadow: { duration: 4, repeat: Infinity, ease: "easeInOut" },
                 scale: { type: "spring", stiffness: 200 },
               }}
-              className="relative w-full h-full rounded-full overflow-hidden border-2 shadow-xl group/img"
+              className="relative w-full h-full rounded-full overflow-hidden border-2 shadow-xl"
               style={{ borderColor: 'hsl(200 100% 55% / 0.3)' }}
             >
-              {/* Sketch version (default) */}
-              <motion.img
-                src={profileSketch}
-                alt="Shaik Kemble Mohammed Sadiq - Sketch"
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 group-hover/img:opacity-0"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              />
-              {/* Real photo (on hover) */}
               <motion.img
                 src={profileImg}
                 alt="Shaik Kemble Mohammed Sadiq"
-                className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 group-hover/img:opacity-100"
+                className="w-full h-full object-cover transition-all duration-700"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               />
