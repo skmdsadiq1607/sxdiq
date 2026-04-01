@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { Code, Database, Brain, Rocket, ArrowUpRight, Zap, Users, Coffee } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
+import profileSketch from "@/assets/profile-sketch.jpg";
 
 const cards = [
   { icon: Code, title: "Web Development", desc: "Crafting responsive, interactive web apps with modern frameworks and clean architecture.", color: "hsl(200 100% 55%)" },
