@@ -93,7 +93,7 @@ const Projects = () => (
                 <h3 className="text-3xl font-bold text-foreground mb-4 font-display">{project.title}</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
                 {project.features.length > 0 && (
-                  <div className="grid grid-cols-3 gap-3 mb-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                     {project.features.map((f) => (
                       <div key={f.label} className="flex items-center gap-2 text-sm text-muted-foreground group/feat">
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover/feat:scale-110" style={{ background: `${project.accentColor}12`, border: `1px solid ${project.accentColor}20` }}>

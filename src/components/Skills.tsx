@@ -110,7 +110,7 @@ const Skills = () => (
               </div>
               <div className="hidden md:block flex-1 h-px ml-4" style={{ background: `linear-gradient(90deg, ${cat.accentColor}30, transparent)` }} />
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {cat.skills.map((skill, si) => (
                 <SkillCard key={skill.name} skill={skill} index={si + ci * 3} />
               ))}
