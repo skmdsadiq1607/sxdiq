@@ -52,9 +52,59 @@ const About = () => (
         <h2 className="text-4xl md:text-5xl font-bold gradient-text">About Me</h2>
       </motion.div>
 
-      {/* Two-column layout */}
-      <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-        {/* Left - Text content */}
+      {/* Profile + Text + Stats layout */}
+      <div className="grid lg:grid-cols-[auto_1fr_1fr] gap-12 lg:gap-16 items-center mb-24">
+        {/* Profile Image with animated rings */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="flex justify-center lg:justify-start"
+        >
+          <div className="relative w-56 h-56 md:w-64 md:h-64">
+            {/* Outer orbital ring */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-16px] rounded-full border border-dashed"
+              style={{ borderColor: 'hsl(200 100% 55% / 0.25)' }}
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full" style={{ background: 'hsl(200 100% 55%)', boxShadow: '0 0 12px hsl(200 100% 55% / 0.6)' }} />
+            </motion.div>
+            {/* Inner orbital ring */}
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-8px] rounded-full border"
+              style={{ borderColor: 'hsl(260 80% 65% / 0.2)' }}
+            >
+              <div className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full" style={{ background: 'hsl(260 80% 65%)', boxShadow: '0 0 10px hsl(260 80% 65% / 0.5)' }} />
+            </motion.div>
+            {/* Glow behind image */}
+            <div className="absolute inset-0 rounded-full blur-2xl opacity-30" style={{ background: 'var(--gradient-primary)' }} />
+            {/* Image */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="relative w-full h-full rounded-full overflow-hidden border-2 shadow-xl"
+              style={{ borderColor: 'hsl(200 100% 55% / 0.3)' }}
+            >
+              <img src={profileImg} alt="Shaik Kemble Mohammed Sadiq" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+            </motion.div>
+            {/* Status badge */}
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-mono font-semibold premium-glass whitespace-nowrap"
+              style={{ color: 'hsl(160 80% 50%)', border: '1px solid hsl(160 80% 50% / 0.3)' }}
+            >
+              ● Open to work
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Text content */}
         <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
           <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6 leading-tight">
             A passionate developer turning <span className="text-gradient-primary">ideas into reality</span>
@@ -81,7 +131,7 @@ const About = () => (
           </div>
         </motion.div>
 
-        {/* Right - Animated Stats Grid */}
+        {/* Stats Grid */}
         <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} className="grid grid-cols-2 gap-5">
           {stats.map((stat, i) => (
             <motion.div
