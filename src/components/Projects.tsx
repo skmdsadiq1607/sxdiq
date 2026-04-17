@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Github, ArrowUpRight, ExternalLink } from "lucide-react";
-import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark } from "lucide-react";
+import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark, BookOpen, Users, Calendar, School } from "lucide-react";
 import krushiImg from "@/assets/krushi-mitra.png";
 import smartCityImg from "@/assets/smart-city.png";
+import ignitextImg from "@/assets/ignitext.jpg";
 
 const projects = [
   {
@@ -23,6 +24,25 @@ const projects = [
     github: "https://github.com/skmdsadiq1607",
     featured: true,
     accentColor: "hsl(160 80% 50%)",
+  },
+  {
+    title: "IgniteXT",
+    tagline: "Student Community Website",
+    description: "A centralized student platform that simplifies academic life by bringing together structured learning resources, department-wise communities, and real-time event updates into a single, intuitive interface. Designed to support multiple colleges with seamless collaboration.",
+    image: ignitextImg,
+    features: [
+      { icon: BookOpen, label: "Study Notes" },
+      { icon: Users, label: "Communities" },
+      { icon: Calendar, label: "Live Events" },
+      { icon: School, label: "Multi-College" },
+      { icon: Globe, label: "Centralized" },
+      { icon: Brain, label: "Collaboration" },
+    ],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+    demo: "https://ignitext2026.vercel.app/",
+    github: "https://github.com/skmdsadiq1607/IgniteXT-StudentCommunity",
+    featured: true,
+    accentColor: "hsl(25 95% 60%)",
   },
   {
     title: "Developer Portfolio",
