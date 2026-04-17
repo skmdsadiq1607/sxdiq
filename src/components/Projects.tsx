@@ -3,7 +3,7 @@ import { Github, ArrowUpRight, ExternalLink } from "lucide-react";
 import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark, BookOpen, Users, Calendar, School } from "lucide-react";
 import krushiImg from "@/assets/krushi-mitra.png";
 import smartCityImg from "@/assets/smart-city.png";
-import ignitextImg from "@/assets/ignitext.jpg";
+import ignitextImg from "@/assets/ignitext.png";
 
 const projects = [
   {
