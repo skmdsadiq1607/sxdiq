@@ -15,25 +15,25 @@ import javaFundamentalsImg from "@/assets/certs/infosys/java-programming-fundame
 import programmingJavaImg from "@/assets/certs/infosys/programming-using-java.png";
 import softwareEngAgileImg from "@/assets/certs/infosys/software-engineering-agile.png";
 
-const infosysCerts = [
-  { title: "Java Foundation Certification", image: javaFoundationImg, featured: true },
-  { title: "Programming using Java", image: programmingJavaImg },
-  { title: "Java Programming Fundamentals", image: javaFundamentalsImg },
-  { title: "Data Structures & Algorithms using Java", image: dsaJavaImg },
-  { title: "OOPs in Java", image: oopsJavaImg },
-  { title: "Java for Beginners", image: javaBeginnersImg },
-  { title: "Database Management System - Part 1", image: dbms1Img },
-  { title: "Database Management System - Part 2", image: dbms2Img },
-  { title: "Introduction to NoSQL Databases", image: noSqlImg },
-  { title: "Software Engineering & Agile Software Development", image: softwareEngAgileImg },
-  { title: "Agile Scrum in Practice", image: agileScrumImg },
+const bundleCerts = [
+  { title: "Programming using Java", issuer: "Infosys Springboard", image: programmingJavaImg },
+  { title: "Java Programming Fundamentals", issuer: "Infosys Springboard", image: javaFundamentalsImg },
+  { title: "Data Structures & Algorithms using Java", issuer: "Infosys Springboard", image: dsaJavaImg },
+  { title: "OOPs in Java", issuer: "Great Learning", image: oopsJavaImg },
+  { title: "Java for Beginners", issuer: "Infosys Springboard", image: javaBeginnersImg },
+  { title: "Database Management System - Part 1", issuer: "Infosys Springboard", image: dbms1Img },
+  { title: "Database Management System - Part 2", issuer: "Infosys Springboard", image: dbms2Img },
+  { title: "Introduction to NoSQL Databases", issuer: "Infosys Springboard", image: noSqlImg },
+  { title: "Software Engineering & Agile Software Development", issuer: "Infosys Springboard", image: softwareEngAgileImg },
+  { title: "Agile Scrum in Practice", issuer: "Infosys Springboard", image: agileScrumImg },
+  { title: "Basics of Python", issuer: "Infosys Springboard", image: basicsPythonImg },
+  { title: "HTML & CSS Bootcamp", issuer: "Lets Upgrade", image: htmlCssImg },
 ];
 
 const certs = [
   { title: "Programming in Java", issuer: "NPTEL – IIT Kharagpur", badge: "Elite + Silver (82)", highlight: true, color: "hsl(45 100% 55%)", image: null, pdfLink: "/certs/programming-in-java.pdf" },
-  { title: "Infosys Springboard", issuer: `${infosysCerts.length} Certifications`, badge: "Certification Bundle", highlight: true, color: "hsl(210 90% 50%)", image: null, pdfLink: null, isBundle: true },
-  { title: "Basics of Python", issuer: "Infosys Springboard", badge: "", highlight: false, color: "hsl(160 80% 50%)", image: basicsPythonImg, pdfLink: null },
-  { title: "HTML & CSS Bootcamp", issuer: "Lets Upgrade", badge: "", highlight: false, color: "hsl(330 80% 60%)", image: htmlCssImg, pdfLink: null },
+  { title: "Java Foundation Certification", issuer: "Infosys Springboard", badge: "Certification", highlight: true, color: "hsl(210 90% 50%)", image: javaFoundationImg, pdfLink: null, isCertImage: true },
+  { title: "More Certifications", issuer: `${bundleCerts.length} Courses Completed`, badge: "View All", highlight: true, color: "hsl(260 80% 60%)", image: null, pdfLink: null, isBundle: true },
 ];
 
 const Certifications = () => {
