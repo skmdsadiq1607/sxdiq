@@ -8,6 +8,7 @@ import htmlCssImg from "@/assets/certs/html-css-bootcamp.jpg";
 
 const certs = [
   { title: "Programming in Java", issuer: "NPTEL – IIT Kharagpur", badge: "Elite + Silver (82)", highlight: true, color: "hsl(45 100% 55%)", image: null, pdfLink: "/certs/programming-in-java.pdf" },
+  { title: "Java Foundation Certification", issuer: "Infosys Springboard", badge: "Certification", highlight: true, color: "hsl(210 90% 50%)", image: null, pdfLink: "/certs/java-foundation-certification.png" },
   { title: "OOPs in Java", issuer: "Great Learning", badge: "", highlight: false, color: "hsl(200 100% 55%)", image: oopsJavaImg, pdfLink: null },
   { title: "Java for Beginners", issuer: "Infosys Springboard", badge: "", highlight: false, color: "hsl(220 90% 55%)", image: javaBeginnersImg, pdfLink: null },
   { title: "Basics of Python", issuer: "Infosys Springboard", badge: "", highlight: false, color: "hsl(160 80% 50%)", image: basicsPythonImg, pdfLink: null },
