@@ -32,8 +32,8 @@ const bundleCerts = [
 
 const certs = [
   { title: "Programming in Java", issuer: "NPTEL – IIT Kharagpur", badge: "Elite + Silver (82)", highlight: true, color: "hsl(45 100% 55%)", image: null, pdfLink: "/certs/programming-in-java.pdf" },
-  { title: "Java Foundation Certification", issuer: "Infosys Springboard", badge: "Certification", highlight: true, color: "hsl(210 90% 50%)", image: javaFoundationImg, pdfLink: null, isCertImage: true },
-  { title: "More Certifications", issuer: `${bundleCerts.length} Courses Completed`, badge: "View All", highlight: true, color: "hsl(260 80% 60%)", image: null, pdfLink: null, isBundle: true },
+  { title: "Java Foundation Certification", issuer: "Infosys Springboard", badge: "Certification", highlight: true, color: "hsl(210 90% 50%)", image: null, pdfLink: "/certs/java-foundation-certification.png" },
+  { title: "Course Completion Certificates", issuer: `${bundleCerts.length} Courses Completed`, badge: "View All", highlight: true, color: "hsl(260 80% 60%)", image: null, pdfLink: null, isBundle: true },
 ];
 
 const Certifications = () => {
