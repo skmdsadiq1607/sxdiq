@@ -14,10 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        sans: ['"Source Serif 4"', '"Tiempos Text"', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"Fraunces"', 'Georgia', 'serif'],
-        serif: ['"Fraunces"', 'Georgia', 'serif'],
+        display: ['"Source Serif 4"', '"Copernicus"', 'Georgia', 'serif'],
+        serif: ['"Source Serif 4"', '"Copernicus"', 'Georgia', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
