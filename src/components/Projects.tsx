@@ -20,7 +20,7 @@ const projects = [
       { icon: Landmark, label: "Govt Schemes" },
     ],
     tech: ["HTML5", "CSS3", "JavaScript", "Vite.js", "AI APIs", "Netlify"],
-    demo: "https://krushi-mitra-unquadtrium.netlify.app/",
+    demo: "https://krushi-mitra-unquadtrium.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     featured: true,
     accentColor: "hsl(160 80% 50%)",
