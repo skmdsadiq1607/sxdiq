@@ -23,7 +23,7 @@ const projects = [
     demo: "https://krushi-mitra-unquadtrium.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     featured: true,
-    accentColor: "hsl(160 80% 50%)",
+    accentColor: "hsl(220 45% 24%)",
   },
   {
     title: "IgniteXT",
@@ -42,7 +42,7 @@ const projects = [
     demo: "https://ignitext2026.vercel.app/",
     github: "https://github.com/skmdsadiq1607/IgniteXT-StudentCommunity",
     featured: true,
-    accentColor: "hsl(25 95% 60%)",
+    accentColor: "hsl(25 70% 48%)",
   },
   {
     title: "Developer Portfolio",
@@ -54,21 +54,19 @@ const projects = [
     demo: "https://sxdiq.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     featured: false,
-    accentColor: "hsl(200 100% 55%)",
+    accentColor: "hsl(220 45% 24%)",
   },
 ];
 
 const Projects = () => (
   <section id="projects" className="section-padding relative overflow-hidden noise-overlay" style={{ background: 'var(--section-projects-bg)' }}>
-    <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(330 80% 60% / 0.3), transparent)' }} />
-    <div className="absolute top-[30%] right-0 w-[500px] h-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(330 80% 60% / 0.08), transparent 70%)' }} />
-    <div className="absolute bottom-[20%] left-0 w-[400px] h-[400px] rounded-full opacity-15" style={{ background: 'radial-gradient(circle, hsl(160 80% 50% / 0.06), transparent 70%)' }} />
+    <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
     <div className="container mx-auto relative z-10">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
-        <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(330 80% 65%)' }}>What I've built</p>
-        <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(330 80% 65%), hsl(260 80% 65%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Featured Projects</h2>
-        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Real-world applications built with passion and modern technologies</p>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="subtitle">Selected work</p>
+        <h2 className="text-4xl md:text-5xl font-medium text-foreground">Featured Projects</h2>
+        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Real-world applications built with modern technologies</p>
       </motion.div>
 
       <div className="space-y-16">
@@ -79,11 +77,10 @@ const Projects = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-3xl overflow-hidden group relative premium-glass"
-            style={{ boxShadow: `0 20px 60px -15px ${project.accentColor}15` }}
+            className="rounded-2xl overflow-hidden group relative premium-glass"
           >
             {/* Top accent line */}
-            <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: `linear-gradient(90deg, ${project.accentColor}, hsl(260 80% 65%))` }} />
+            <div className="absolute top-0 left-0 right-0 h-0.5 z-10" style={{ background: project.accentColor, opacity: 0.6 }} />
 
             <div className="grid md:grid-cols-2">
               <div className="relative overflow-hidden h-72 md:h-auto min-h-[320px]">
@@ -130,10 +127,10 @@ const Projects = () => (
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white text-sm font-bold transition-shadow" style={{ background: `linear-gradient(135deg, ${project.accentColor}, hsl(260 80% 65%))`, boxShadow: `0 8px 24px ${project.accentColor}40` }}>
+                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium transition-all hover:bg-primary/90">
                     Live Demo <ExternalLink size={15} />
                   </motion.a>
-                  <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold hover:bg-muted transition-colors premium-glass">
+                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium text-foreground border border-border bg-card hover:bg-secondary transition-colors">
                     <Github size={16} /> Source
                   </motion.a>
                 </div>

@@ -3,17 +3,17 @@ import { Code, Database, Brain, Rocket, ArrowUpRight, Zap, Users, Coffee } from 
 import { useRef, useEffect, useState } from "react";
 
 const cards = [
-  { icon: Code, title: "Web Development", desc: "Crafting responsive, interactive web apps with modern frameworks and clean architecture.", color: "hsl(200 100% 55%)" },
-  { icon: Database, title: "MERN Stack", desc: "Building full-stack applications with MongoDB, Express, React, and Node.js.", color: "hsl(260 80% 65%)" },
-  { icon: Brain, title: "DSA & Problem Solving", desc: "Sharpening algorithmic thinking through competitive programming and daily practice.", color: "hsl(45 100% 55%)" },
-  { icon: Rocket, title: "Real-World Solutions", desc: "Turning ideas into impactful applications that solve genuine problems.", color: "hsl(160 80% 50%)" },
+  { icon: Code, title: "Web Development", desc: "Crafting responsive, interactive web apps with modern frameworks and clean architecture.", color: "hsl(220 45% 24%)" },
+  { icon: Database, title: "MERN Stack", desc: "Building full-stack applications with MongoDB, Express, React, and Node.js.", color: "hsl(220 45% 24%)" },
+  { icon: Brain, title: "DSA & Problem Solving", desc: "Sharpening algorithmic thinking through competitive programming and daily practice.", color: "hsl(25 70% 48%)" },
+  { icon: Rocket, title: "Real-World Solutions", desc: "Turning ideas into impactful applications that solve genuine problems.", color: "hsl(220 45% 24%)" },
 ];
 
 const stats = [
-  { value: 9.25, label: "CGPA", suffix: "", decimals: 2, icon: Zap, color: "hsl(200 100% 55%)" },
-  { value: 2, label: "Projects Built", suffix: "+", decimals: 0, icon: Code, color: "hsl(260 80% 65%)" },
-  { value: 3, label: "Hackathons Participated", suffix: "+", decimals: 0, icon: Users, color: "hsl(330 80% 60%)" },
-  { value: 5, label: "Certifications", suffix: "+", decimals: 0, icon: Coffee, color: "hsl(30 100% 55%)" },
+  { value: 9.25, label: "CGPA", suffix: "", decimals: 2, icon: Zap, color: "hsl(220 45% 24%)" },
+  { value: 2, label: "Projects Built", suffix: "+", decimals: 0, icon: Code, color: "hsl(220 45% 24%)" },
+  { value: 3, label: "Hackathons Participated", suffix: "+", decimals: 0, icon: Users, color: "hsl(25 70% 48%)" },
+  { value: 5, label: "Certifications", suffix: "+", decimals: 0, icon: Coffee, color: "hsl(220 45% 24%)" },
 ];
 
 const AnimatedCounter = ({ value, decimals, suffix }: { value: number; decimals: number; suffix: string }) => {
@@ -39,16 +39,13 @@ const AnimatedCounter = ({ value, decimals, suffix }: { value: number; decimals:
 
 const About = () => (
   <section id="about" className="section-padding relative overflow-hidden noise-overlay" style={{ background: 'var(--section-about-bg)' }}>
-    <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(200 100% 55% / 0.3), transparent)' }} />
-    <div className="absolute top-0 left-[20%] w-[600px] h-[600px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(200 100% 55% / 0.08), transparent 70%)' }} />
-    <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, hsl(260 80% 65% / 0.06), transparent 70%)' }} />
-    {/* Dot pattern */}
-    <div className="absolute inset-0 dot-pattern opacity-40" />
+    <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+    <div className="absolute inset-0 dot-pattern opacity-50" />
 
     <div className="container mx-auto relative z-10">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
-        <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(200 100% 60%)' }}>Get to know me</p>
-        <h2 className="text-4xl md:text-5xl font-bold gradient-text">About Me</h2>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="subtitle">Get to know me</p>
+        <h2 className="text-4xl md:text-5xl font-medium text-foreground">About Me</h2>
       </motion.div>
 
       {/* Two-column layout */}
@@ -127,8 +124,8 @@ const About = () => (
             <div className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: card.color }} />
             <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-15 blur-3xl transition-opacity duration-700" style={{ background: card.color }} />
             <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg" style={{ background: `${card.color}`, boxShadow: `0 8px 24px ${card.color}40` }}>
-                <card.icon size={28} className="text-white" />
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-all duration-300" style={{ background: `${card.color}10`, border: `1px solid ${card.color}25` }}>
+                <card.icon size={24} style={{ color: card.color }} />
               </div>
               <h3 className="font-bold text-foreground mb-3 text-lg">{card.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">{card.desc}</p>

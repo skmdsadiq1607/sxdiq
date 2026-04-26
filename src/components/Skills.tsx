@@ -87,15 +87,13 @@ const SkillCard = ({ skill, index }: { skill: typeof categories[0]["skills"][0];
 
 const Skills = () => (
   <section id="skills" className="section-padding relative overflow-hidden noise-overlay" style={{ background: 'var(--section-skills-bg)' }}>
-    <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(170 80% 50% / 0.3), transparent)' }} />
-    <div className="absolute top-20 right-10 w-72 h-72 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(170 80% 50% / 0.08), transparent 70%)' }} />
-    <div className="absolute bottom-20 left-10 w-60 h-60 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, hsl(280 80% 60% / 0.06), transparent 70%)' }} />
-    <div className="absolute inset-0 dot-pattern opacity-30" />
+    <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+    <div className="absolute inset-0 dot-pattern opacity-40" />
 
     <div className="container mx-auto relative z-10">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
-        <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(170 80% 55%)' }}>What I work with</p>
-        <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(170 80% 55%), hsl(200 100% 60%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Skills & Technologies</h2>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
+        <p className="subtitle">What I work with</p>
+        <h2 className="text-4xl md:text-5xl font-medium text-foreground">Skills &amp; Technologies</h2>
         <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Technologies and tools I use to bring ideas to life</p>
       </motion.div>
 
