@@ -24,6 +24,8 @@ const Index = () => {
     return true;
   });
 
+  const [isMobile, setIsMobile] = useState(false);
+
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
@@ -51,9 +53,19 @@ const Index = () => {
     };
   }, [loading]);
 
-  // Recalculate track width on resize and render
+  // Detect mobile viewports
   useEffect(() => {
-    if (loading) return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Recalculate track width on resize and render for desktop horizontal track
+  useEffect(() => {
+    if (loading || isMobile) return;
 
     const handleResize = () => {
       if (trackRef.current) {
@@ -68,7 +80,7 @@ const Index = () => {
       clearTimeout(timeout);
       window.removeEventListener("resize", handleResize);
     };
-  }, [loading]);
+  }, [loading, isMobile]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollRange]);
 
@@ -77,22 +89,15 @@ const Index = () => {
       <CinematicLoader onComplete={() => setLoading(false)} />
       
       {!loading && (
-        <div ref={containerRef} className="relative bg-background text-foreground transition-colors duration-300 overflow-x-clip" style={{ height: "650vh" }}>
-          
+        <div className="relative bg-background text-foreground transition-colors duration-300">
           {/* Constellation Particle Layer */}
           <StarfieldBackground />
 
           <Navbar isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
-          
-          {/* Sticky view frame */}
-          <div className="sticky top-0 h-screen overflow-hidden flex items-center z-10">
-            
-            {/* Horizontal Track wrapper */}
-            <motion.div 
-              ref={trackRef} 
-              style={{ x }} 
-              className="flex h-screen"
-            >
+
+          {isMobile ? (
+            /* Standard vertical scrolling layout for mobile & tablet */
+            <div className="min-h-screen pt-20 flex flex-col gap-1 z-10 relative">
               <Hero />
               <About />
               <Skills />
@@ -102,9 +107,29 @@ const Index = () => {
               <LanguagesSection />
               <Contact />
               <Footer />
-            </motion.div>
-            
-          </div>
+            </div>
+          ) : (
+            /* Sticky horizontal scrolling layout for desktop */
+            <div ref={containerRef} className="relative overflow-x-clip" style={{ height: "650vh" }}>
+              <div className="sticky top-0 h-screen overflow-hidden flex items-center z-10">
+                <motion.div 
+                  ref={trackRef} 
+                  style={{ x }} 
+                  className="flex h-screen"
+                >
+                  <Hero />
+                  <About />
+                  <Skills />
+                  <Projects />
+                  <TimelineSection />
+                  <Certifications />
+                  <LanguagesSection />
+                  <Contact />
+                  <Footer />
+                </motion.div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>

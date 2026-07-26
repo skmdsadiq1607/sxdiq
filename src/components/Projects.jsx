@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark, BookOpen, Users, Calendar, School } from "lucide-react";
@@ -51,8 +52,36 @@ const projects = [
   },
 ];
 
+const ProjectCardMobile = ({ project }) => {
+  return (
+    <div className="border border-border bg-card flex flex-col justify-between w-full" style={{ borderRadius: "0px" }}>
+      <div className="relative h-48 overflow-hidden border-b border-border">
+        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+        {project.featured && (
+          <div className="absolute top-3 left-3 bg-foreground text-background text-[9px] font-mono font-bold tracking-widest uppercase py-1 px-2.5">
+            ★ Featured
+          </div>
+        )}
+      </div>
+      <div className="p-6">
+        <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-1 block">{project.tagline}</span>
+        <h3 className="text-xl font-extrabold uppercase mb-2 text-foreground">{project.title}</h3>
+        <p className="text-muted-foreground text-xs leading-relaxed mb-4 font-light">{project.description}</p>
+        <div className="flex flex-wrap gap-1 mb-6">
+          {project.tech.map((t) => (
+            <span key={t} className="text-[9px] font-mono px-2 py-1 border border-border bg-secondary text-muted-foreground">{t}</span>
+          ))}
+        </div>
+        <div className="flex gap-3">
+          <a href={project.demo} target="_blank" rel="noreferrer" className="solid-btn-inverted py-2.5 px-4 text-[10px]">Demo</a>
+          <a href={project.github} target="_blank" rel="noreferrer" className="solid-btn py-2.5 px-4 text-[10px]">Source</a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ProjectCard = ({ project, i, scrollYProgress }) => {
-  // Center point for each card's alignment inside projects section scroll range
   const centerPoint = 0.32 + i * 0.08;
   const offset = useTransform(
     scrollYProgress, 
@@ -60,12 +89,11 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
     [-1.5, 0, 1.5]
   );
 
-  // 3D Coverflow stack formulas
   const translateX = useTransform(offset, o => o * 80); 
-  const translateY = useTransform(offset, o => Math.abs(o) * 20); // Arc height
-  const translateZ = useTransform(offset, o => -Math.abs(o) * 160); // Stacking depth
-  const rotateY = useTransform(offset, o => o * -25); // Faces towards center
-  const rotateZ = useTransform(offset, o => o * 4); // Fan rotation
+  const translateY = useTransform(offset, o => Math.abs(o) * 20); 
+  const translateZ = useTransform(offset, o => -Math.abs(o) * 160); 
+  const rotateY = useTransform(offset, o => o * -25); 
+  const rotateZ = useTransform(offset, o => o * 4); 
   const opacity = useTransform(offset, [-1.2, -0.6, 0, 0.6, 1.2], [0.4, 0.8, 1, 0.8, 0.4]);
 
   return (
@@ -155,6 +183,32 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
 
 const Projects = () => {
   const { scrollYProgress } = useScroll();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <section id="projects" className="py-20 px-6 bg-background text-foreground noise-overlay w-full">
+        <div className="mb-8">
+          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 04</span>
+          <h2 className="text-3xl font-black uppercase tracking-tight">SELECTED WORK</h2>
+        </div>
+        <div className="flex flex-col gap-6">
+          {projects.map((project, i) => (
+            <ProjectCardMobile key={i} project={project} />
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="min-h-screen flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border shrink-0" style={{ width: "1750px" }}>

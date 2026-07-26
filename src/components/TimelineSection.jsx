@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Trophy, Zap, Code, Users, BookOpen, Calendar, MapPin, Award, ExternalLink } from "lucide-react";
 
@@ -30,9 +30,115 @@ const hackathonItems = [
 
 const TimelineSection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <section id="leadership" className="py-20 px-6 bg-background text-foreground noise-overlay w-full">
+        {/* Education Stack */}
+        <div className="mb-16">
+          <div className="mb-6">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 01</span>
+            <h2 className="text-3xl font-black uppercase tracking-tight">EDUCATION</h2>
+          </div>
+          <div className="flex flex-col gap-4">
+            {educationItems.map((item, idx) => (
+              <div key={idx} className="border border-border p-6" style={{ borderRadius: "0px" }}>
+                <span className="font-mono text-[10px] text-muted-foreground block mb-2">{item.year}</span>
+                <h3 className="font-bold uppercase text-base mb-1">{item.institution}</h3>
+                <p className="text-xs text-muted-foreground font-light mb-4">{item.degree}</p>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-border">
+                  <Award size={12} />
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider">{item.score}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Experience Stack */}
+        <div className="mb-16">
+          <div className="mb-6">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 02</span>
+            <h2 className="text-3xl font-black uppercase tracking-tight">EXPERIENCE</h2>
+          </div>
+          <div className="flex flex-col gap-4">
+            {activityItems.map((item, idx) => (
+              <div key={idx} className="border border-border p-6" style={{ borderRadius: "0px" }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 border border-border flex items-center justify-center">
+                    <item.icon size={12} />
+                  </div>
+                  <span className="text-[10px] font-mono font-semibold uppercase text-muted-foreground">{item.role}</span>
+                </div>
+                <h3 className="font-bold uppercase text-base mb-2">{item.org}</h3>
+                <span className="text-[9px] font-mono text-zinc-500 block mb-3">{item.period}</span>
+                <ul className="space-y-1">
+                  {item.points.map((p, pIdx) => (
+                    <li key={pIdx} className="text-[11px] text-muted-foreground font-light">- {p}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Hackathons Stack */}
+        <div>
+          <div className="mb-6">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 03</span>
+            <h2 className="text-3xl font-black uppercase tracking-tight">HACKATHONS</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {hackathonItems.map((item, idx) => (
+              <div key={idx} className="border border-border bg-card flex flex-col justify-between" style={{ borderRadius: "0px" }}>
+                <div className="relative h-44 overflow-hidden border-b border-border cursor-pointer" onClick={() => setSelectedImage(item.image)}>
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="p-4">
+                  <span className="text-[9px] font-mono text-zinc-500 block mb-1">{item.date}</span>
+                  <h3 className="font-bold uppercase text-xs mb-1">{item.title}</h3>
+                  <p className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest mb-3">{item.org}</p>
+                  <p className="text-[10px] text-muted-foreground font-light">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Lightbox for certificates */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
+              onClick={() => setSelectedImage(null)}
+            >
+              <div className="relative border border-zinc-800 bg-black p-2" onClick={(e) => e.stopPropagation()}>
+                <button className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest" onClick={() => setSelectedImage(null)}>[Close]</button>
+                <img src={selectedImage} alt="Certificate" className="max-w-full max-h-[80vh] object-contain" />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
+    );
+  }
+
+  // Desktop horizontal layout
   return (
-    <section id="leadership" className="min-h-screen flex items-center bg-background text-foreground noise-overlay select-none shrink-0 py-12 px-12 md:px-24 border-r border-border" style={{ width: "3200px" }}>
+    <section id="leadership" className="min-h-screen flex items-center bg-background text-foreground noise-overlay select-none shrink-0 py-12 px-12 md:px-24 border-r border-border animate-grid-entry" style={{ width: "3200px" }}>
       
       {/* Education Panel */}
       <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[85vh]">
