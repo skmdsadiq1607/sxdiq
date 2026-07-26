@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Mail, Phone, Linkedin, Send, MapPin, ArrowUpRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,6 +15,20 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
 
+  const { scrollYProgress } = useScroll();
+
+  // Scroll range: Contact section is active near the end of the scrolltrack
+  const swingProgress = useTransform(scrollYProgress, [0.82, 0.96], [0, 1]);
+
+  // Swing animations for double-door reveal
+  const rotateLeftY = useTransform(swingProgress, [0, 1], [-35, 0]);
+  const translateLeftX = useTransform(swingProgress, [0, 1], [-120, 0]);
+  const opacityLeft = useTransform(swingProgress, [0, 1], [0.3, 1]);
+
+  const rotateRightY = useTransform(swingProgress, [0, 1], [35, 0]);
+  const translateRightX = useTransform(swingProgress, [0, 1], [120, 0]);
+  const opacityRight = useTransform(swingProgress, [0, 1], [0.3, 1]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
@@ -27,8 +41,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen w-[900px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-16 border-r border-border">
-      <div className="container mx-auto px-6 md:px-16 relative z-10 pt-16">
+    <section id="contact" className="min-h-screen w-[900px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-16 border-r border-border overflow-visible" style={{ perspective: 1200 }}>
+      <div className="container mx-auto px-6 md:px-16 relative z-10 pt-16 overflow-visible">
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
@@ -40,14 +54,16 @@ const Contact = () => {
           <h2>Let's build together</h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 items-start overflow-visible">
           
-          {/* Info Column */}
+          {/* Left Column (Swings from left) */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }} 
-            whileInView={{ opacity: 1, x: 0 }} 
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            style={{
+              rotateY: rotateLeftY,
+              x: translateLeftX,
+              opacity: opacityLeft,
+              transformOrigin: "left center"
+            }}
             className="lg:col-span-5 space-y-3"
           >
             <p className="text-zinc-500 leading-relaxed mb-4 text-xs font-light">
@@ -79,16 +95,21 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Code Editor Form Column */}
+          {/* Code Editor Form Column (Swings from right) */}
           <motion.form
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            style={{
+              rotateY: rotateRightY,
+              x: translateRightX,
+              opacity: opacityRight,
+              transformOrigin: "right center",
+              borderRadius: "0px"
+            }}
             onSubmit={handleSubmit}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-7 border border-border bg-zinc-950 text-zinc-300 font-mono text-[10px] overflow-hidden flex flex-col"
-            style={{ borderRadius: "0px" }}
+            className="lg:col-span-7 border border-border bg-zinc-950 text-zinc-300 font-mono text-[10px] overflow-hidden flex flex-col relative"
           >
+            {/* Scanner laser overlay effect inside editor */}
+            <div className="laser-scanner text-white/5" />
+
             {/* Editor Top Bar */}
             <div className="bg-zinc-900 border-b border-zinc-800 px-4 py-2 flex items-center justify-between select-none">
               <div className="flex items-center gap-2">
