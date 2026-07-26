@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, ArrowUpRight, ExternalLink } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { Leaf, Brain, Globe, CloudSun, FlaskConical, Landmark, BookOpen, Users, Calendar, School } from "lucide-react";
 import krushiImg from "@/assets/krushi-mitra.png";
 import smartCityImg from "@/assets/portfolio-preview.png";
@@ -9,7 +9,7 @@ const projects = [
   {
     title: "Krushi Mitra",
     tagline: "AI-Powered Farming Assistant",
-    description: "Your personal AI-powered companion for smarter, more profitable, and sustainable farming. Features multi-language support, disease detection, weather intelligence, and government scheme recommendations.",
+    description: "Your personal AI companion for smarter, more profitable, and sustainable farming. Features multi-language support, disease detection, weather intelligence, and government scheme recommendations.",
     image: krushiImg,
     features: [
       { icon: Globe, label: "Multi Language" },
@@ -23,7 +23,6 @@ const projects = [
     demo: "https://krushi-mitra-unquadtrium.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     featured: true,
-    accentColor: "hsl(220 45% 24%)",
   },
   {
     title: "IgniteXT",
@@ -42,7 +41,6 @@ const projects = [
     demo: "https://ignitext2026.vercel.app/",
     github: "https://github.com/skmdsadiq1607/IgniteXT-StudentCommunity",
     featured: true,
-    accentColor: "hsl(25 70% 48%)",
   },
   {
     title: "Developer Portfolio",
@@ -54,87 +52,103 @@ const projects = [
     demo: "https://sxdiq.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     featured: false,
-    accentColor: "hsl(220 45% 24%)",
   },
 ];
 
 const Projects = () => (
-  <section id="projects" className="section-padding relative overflow-hidden noise-overlay" style={{ background: 'var(--section-projects-bg)' }}>
+  <section id="projects" className="section-padding relative overflow-hidden bg-background text-foreground noise-overlay">
     <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
-    <div className="container mx-auto relative z-10">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
-        <p className="subtitle">Selected work</p>
-        <h2 className="text-4xl md:text-5xl font-medium text-foreground">Featured Projects</h2>
-        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Real-world applications built with modern technologies</p>
+    <div className="container mx-auto px-6 md:px-16 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="section-heading"
+      >
+        <span className="subtitle">Selected work</span>
+        <h2>Featured Projects</h2>
       </motion.div>
 
-      <div className="space-y-16">
+      <div className="space-y-12">
         {projects.map((project, i) => (
           <motion.div
             key={project.title}
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-2xl overflow-hidden group relative premium-glass"
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            className="border border-border bg-card group relative"
+            style={{ borderRadius: "0px" }}
           >
-            {/* Top accent line */}
-            <div className="absolute top-0 left-0 right-0 h-0.5 z-10" style={{ background: project.accentColor, opacity: 0.6 }} />
-
-            <div className="grid md:grid-cols-2">
-              <div className="relative overflow-hidden h-72 md:h-auto min-h-[320px]">
+            <div className="grid lg:grid-cols-12">
+              
+              {/* Image side */}
+              <div className="lg:col-span-5 relative overflow-hidden h-64 lg:h-auto min-h-[300px] border-b lg:border-b-0 lg:border-r border-border">
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-card/90 via-card/40 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-card" />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent md:hidden" />
+                
                 {project.featured && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="absolute top-5 left-5 px-5 py-2 rounded-full text-white text-xs font-bold tracking-wide uppercase backdrop-blur-sm"
-                    style={{ background: `${project.accentColor}dd` }}
-                  >
-                    ⭐ Featured
-                  </motion.div>
+                  <div className="absolute top-4 left-4 bg-foreground text-background text-[10px] font-mono font-bold tracking-widest uppercase py-1.5 px-3">
+                    ★ Featured
+                  </div>
                 )}
               </div>
-              <div className="p-8 md:p-12 flex flex-col justify-center">
-                <span className="text-xs font-mono mb-2 uppercase tracking-wider" style={{ color: project.accentColor }}>{project.tagline}</span>
-                <h3 className="text-3xl font-bold text-foreground mb-4 font-display">{project.title}</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
+              
+              {/* Content side */}
+              <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-center">
+                <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-2 block">{project.tagline}</span>
+                <h3 className="text-3xl font-extrabold uppercase text-foreground mb-4">{project.title}</h3>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6 font-light">{project.description}</p>
+                
                 {project.features.length > 0 && (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-                    {project.features.map((f) => (
-                      <div key={f.label} className="flex items-center gap-2 text-sm text-muted-foreground group/feat">
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover/feat:scale-110" style={{ background: `${project.accentColor}12`, border: `1px solid ${project.accentColor}20` }}>
-                          <f.icon size={14} style={{ color: project.accentColor }} />
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                    {project.features.map((f, idx) => (
+                      <div key={idx} className="flex items-center gap-2.5 text-xs text-muted-foreground font-mono">
+                        <div className="w-6 h-6 border border-border flex items-center justify-center text-foreground">
+                          <f.icon size={11} />
                         </div>
-                        <span className="text-xs">{f.label}</span>
+                        <span>{f.label}</span>
                       </div>
                     ))}
                   </div>
                 )}
-                <div className="flex flex-wrap gap-2 mb-8">
+                
+                <div className="flex flex-wrap gap-1.5 mb-8">
                   {project.tech.map((t) => (
-                    <span key={t} className="text-xs px-3 py-1.5 rounded-xl bg-secondary/60 text-secondary-foreground font-mono border border-border/30 hover:border-primary/30 transition-colors">{t}</span>
+                    <span 
+                      key={t} 
+                      className="text-[10px] font-mono px-3 py-1.5 border border-border bg-secondary text-muted-foreground"
+                    >
+                      {t}
+                    </span>
                   ))}
                 </div>
+                
                 <div className="flex gap-4">
-                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium transition-all hover:bg-primary/90">
-                    Live Demo <ExternalLink size={15} />
-                  </motion.a>
-                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium text-foreground border border-border bg-card hover:bg-secondary transition-colors">
-                    <Github size={16} /> Source
-                  </motion.a>
+                  <a 
+                    href={project.demo} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="solid-btn-inverted"
+                  >
+                    Demo <ExternalLink size={12} className="ml-2 inline" />
+                  </a>
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="solid-btn"
+                  >
+                    Source <Github size={12} className="ml-2 inline" />
+                  </a>
                 </div>
               </div>
+              
             </div>
           </motion.div>
         ))}

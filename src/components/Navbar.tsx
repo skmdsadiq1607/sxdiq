@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 
 const navLinks = [
@@ -19,6 +19,7 @@ interface NavbarProps {
 const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 50);
@@ -30,59 +31,77 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-card shadow-lg py-2" : "bg-transparent py-4"
+      transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-background/95 border-b border-border py-3 backdrop-blur-md" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 md:px-8">
-        <a href="#" className="text-2xl font-bold gradient-text font-display">
-          Sxdiq
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[2px] bg-foreground origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
+
+      <div className="container mx-auto flex items-center justify-between px-6 md:px-16">
+        <a href="#" className="text-xl font-bold uppercase tracking-widest font-mono text-foreground">
+          Sadiq.
         </a>
-        <div className="hidden md:flex items-center gap-1">
+        
+        <div className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all duration-200"
+              className="px-4 py-2 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
               {link.label}
             </a>
           ))}
           <button
             onClick={toggleTheme}
-            className="ml-3 p-2.5 rounded-xl bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+            className="ml-3 p-2 border border-border hover:border-foreground transition-colors duration-200"
+            style={{ borderRadius: "0px" }}
+            aria-label="Toggle Theme"
           >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            {isDark ? <Sun size={14} className="text-foreground" /> : <Moon size={14} className="text-foreground" />}
           </button>
         </div>
+
         <div className="flex md:hidden items-center gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl bg-secondary text-secondary-foreground"
+            className="p-2 border border-border"
+            style={{ borderRadius: "0px" }}
+            aria-label="Toggle Theme"
           >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            {isDark ? <Sun size={14} className="text-foreground" /> : <Moon size={14} className="text-foreground" />}
           </button>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground p-2">
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          <button 
+            onClick={() => setMobileOpen(!mobileOpen)} 
+            className="text-foreground p-2 border border-border"
+            style={{ borderRadius: "0px" }}
+          >
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
+
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-card border-t border-border"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-background border-b border-border"
           >
-            <div className="flex flex-col gap-1 p-4">
+            <div className="flex flex-col gap-1 p-6">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+                  className="py-3 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground border-b border-border last:border-0 transition-colors"
                 >
                   {link.label}
                 </a>

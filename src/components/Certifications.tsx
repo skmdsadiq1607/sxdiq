@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Star, ExternalLink, Layers, X } from "lucide-react";
+import { Award, Star, ExternalLink, Layers, X, Search } from "lucide-react";
 import { useState } from "react";
 import oopsJavaImg from "@/assets/certs/oops-java.jpg";
 import javaBeginnersImg from "@/assets/certs/java-beginners.jpg";
@@ -31,79 +31,78 @@ const bundleCerts = [
 ];
 
 const certs = [
-  { title: "Programming in Java", issuer: "NPTEL – IIT Kharagpur", badge: "Elite + Silver (82)", highlight: true, color: "hsl(45 100% 55%)", image: null, pdfLink: "/certs/programming-in-java.pdf" },
-  { title: "Java Foundation Certification", issuer: "Infosys Springboard", badge: "Certification", highlight: true, color: "hsl(210 90% 50%)", image: null, pdfLink: "/certs/java-foundation-certification.png" },
-  { title: "Course Completion Certificates", issuer: `${bundleCerts.length} Courses Completed`, badge: "View All", highlight: true, color: "hsl(260 80% 60%)", image: null, pdfLink: null, isBundle: true },
+  { title: "Programming in Java", issuer: "NPTEL – IIT Kharagpur", badge: "Elite + Silver (82)", highlight: true, image: null, pdfLink: "/certs/programming-in-java.pdf" },
+  { title: "Java Foundation Certification", issuer: "Infosys Springboard", badge: "Certification", highlight: true, image: null, pdfLink: "/certs/java-foundation-certification.png" },
+  { title: "Course Completion Certificates", issuer: `${bundleCerts.length} Courses Completed`, badge: "View All", highlight: true, image: null, pdfLink: null, isBundle: true },
 ];
 
 const Certifications = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [bundleOpen, setBundleOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredBundleCerts = bundleCerts.filter((cert) =>
+    cert.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <section className="section-padding relative overflow-hidden noise-overlay" style={{ background: 'var(--section-certs-bg)' }}>
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(260 80% 65% / 0.3), transparent)' }} />
-      <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full opacity-15" style={{ background: 'radial-gradient(circle, hsl(260 80% 65% / 0.1), transparent 70%)' }} />
+    <section className="section-padding relative overflow-hidden bg-background text-foreground noise-overlay">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
-      <div className="container mx-auto relative z-10">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-heading">
-          <p className="text-sm font-mono mb-3 tracking-wider uppercase" style={{ color: 'hsl(260 80% 70%)' }}>Credentials</p>
-          <h2 className="text-4xl md:text-5xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(260 80% 70%), hsl(330 80% 65%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Certifications</h2>
+      <div className="container mx-auto px-6 md:px-16 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="section-heading"
+        >
+          <span className="subtitle">Credentials</span>
+          <h2>Certifications</h2>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {certs.map((c, i) => (
             <motion.div
               key={c.title}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring", stiffness: 120 }}
-              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ delay: i * 0.05, duration: 0.5 }}
               onClick={() => c.isBundle && setBundleOpen(true)}
-              className={`rounded-3xl group relative overflow-hidden premium-glass flex flex-col ${c.highlight ? 'sm:col-span-2 lg:col-span-1' : ''} ${c.isBundle ? 'cursor-pointer' : ''}`}
-              style={{ boxShadow: `0 10px 40px -15px ${c.color}15`, ...(c.highlight ? { borderColor: `${c.color}30` } : {}) }}
+              className={`border border-border bg-card p-8 flex flex-col justify-between group transition-all duration-300 hover:border-foreground ${c.isBundle ? 'cursor-pointer' : ''}`}
+              style={{ borderRadius: "0px" }}
             >
-              {c.highlight && <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: `linear-gradient(90deg, ${c.color}, hsl(30 100% 60%))` }} />}
+              <div>
+                <div className="w-12 h-12 border border-border flex items-center justify-center mb-8 text-foreground group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
+                  {c.isBundle ? <Layers size={20} /> : <Award size={20} />}
+                </div>
+                <h3 className="font-bold uppercase text-base mb-1 tracking-wide">{c.title}</h3>
+                <p className="text-sm text-muted-foreground mb-6 font-light">{c.issuer}</p>
+              </div>
 
-              {/* Certificate image preview */}
-              {c.image && (
-                <div
-                  className="relative h-40 overflow-hidden cursor-pointer"
-                  onClick={() => setSelectedImage(c.image!)}
-                >
-                  <img src={c.image} alt={c.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-xl flex items-center justify-center bg-card/60 backdrop-blur-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ExternalLink size={14} />
-                  </div>
+              {c.badge && !c.pdfLink && (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-foreground text-[10px] font-mono font-bold tracking-widest uppercase w-fit">
+                  {c.badge}
                 </div>
               )}
 
-              <div className="absolute -top-16 -right-16 w-32 h-32 rounded-full opacity-0 group-hover:opacity-15 blur-2xl transition-opacity duration-700" style={{ background: c.color }} />
-              <div className="relative z-10 p-7 flex-1 flex flex-col">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" style={{ background: c.color, boxShadow: `0 8px 24px ${c.color}40` }}>
-                  {c.isBundle ? <Layers size={22} className="text-white" /> : <Award size={22} className="text-white" />}
+              {c.pdfLink && (
+                <a
+                  href={c.pdfLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-foreground hover:underline"
+                >
+                  View Credential <ExternalLink size={12} />
+                </a>
+              )}
+
+              {c.isBundle && (
+                <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-foreground group-hover:underline">
+                  Browse List <Layers size={12} className="ml-1" />
                 </div>
-                <h3 className="font-bold text-foreground text-base mb-1">{c.title}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{c.issuer}</p>
-                {c.badge && (
-                  <div className="mt-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold w-fit" style={{ background: c.color, color: 'white', boxShadow: `0 4px 16px ${c.color}40` }}>
-                    <Star size={12} /> {c.badge}
-                  </div>
-                )}
-                {c.pdfLink && (
-                  <a
-                    href={c.pdfLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-auto inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:underline"
-                    style={{ color: c.color }}
-                  >
-                    View Certificate <ExternalLink size={12} />
-                  </a>
-                )}
-              </div>
+              )}
             </motion.div>
           ))}
         </div>
@@ -116,17 +115,24 @@ const Certifications = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-xl p-4"
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
             onClick={() => setSelectedImage(null)}
           >
-            <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              src={selectedImage}
-              alt="Certificate"
-              className="max-w-full max-h-[85vh] rounded-2xl shadow-2xl object-contain"
-            />
+            <div className="relative border border-zinc-800 bg-black p-2">
+              <button 
+                className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-zinc-400"
+                onClick={() => setSelectedImage(null)}
+              >
+                [Close]
+              </button>
+              <motion.img
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                src={selectedImage}
+                alt="Certificate"
+                className="max-w-full max-h-[80vh] object-contain"
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -138,51 +144,70 @@ const Certifications = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/90 backdrop-blur-xl overflow-y-auto"
+            className="fixed inset-0 z-[999] bg-background/95 overflow-y-auto flex items-center justify-center p-6"
             onClick={() => setBundleOpen(false)}
           >
-            <div className="min-h-full py-10 px-4 md:px-8" onClick={(e) => e.stopPropagation()}>
-              <div className="max-w-6xl mx-auto">
-                <div className="flex items-center justify-between mb-8 sticky top-4 z-10">
-                  <div>
-                    <p className="text-xs font-mono tracking-wider uppercase text-muted-foreground mb-1">All Certifications</p>
-                    <h3 className="text-2xl md:text-3xl font-bold" style={{ background: 'linear-gradient(135deg, hsl(210 90% 55%), hsl(260 80% 65%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                      {bundleCerts.length} Courses Completed
-                    </h3>
-                  </div>
-                  <button
-                    onClick={() => setBundleOpen(false)}
-                    className="w-11 h-11 rounded-full bg-card/80 backdrop-blur-md border border-border flex items-center justify-center hover:bg-card transition"
-                    aria-label="Close"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
+            <div 
+              className="w-full max-w-5xl border border-border bg-card p-8 md:p-12 relative my-8" 
+              onClick={(e) => e.stopPropagation()}
+              style={{ borderRadius: "0px" }}
+            >
+              <button
+                onClick={() => setBundleOpen(false)}
+                className="absolute top-6 right-6 p-2 border border-border hover:border-foreground text-foreground transition-colors"
+                style={{ borderRadius: "0px" }}
+                aria-label="Close"
+              >
+                <X size={16} />
+              </button>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {bundleCerts.map((cert, i) => (
-                    <motion.div
-                      key={cert.title}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.04 }}
-                      onClick={() => setSelectedImage(cert.image)}
-                      className="group rounded-2xl overflow-hidden premium-glass cursor-pointer"
-                    >
-                      <div className="relative h-44 overflow-hidden bg-white">
-                        <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
-                        <div className="absolute top-3 right-3 w-8 h-8 rounded-xl flex items-center justify-center bg-card/60 backdrop-blur-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                          <ExternalLink size={14} />
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        <h4 className="font-semibold text-sm text-foreground leading-snug">{cert.title}</h4>
-                        <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
-                      </div>
-                    </motion.div>
-                  ))}
+              <div className="mb-10">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-2">All Credentials</span>
+                <h3 className="text-3xl font-extrabold uppercase text-foreground leading-none mb-6">
+                  {bundleCerts.length} Courses Completed
+                </h3>
+
+                {/* Search box input */}
+                <div className="relative max-w-md border border-border flex items-center px-4 py-3 bg-secondary/35 text-sm">
+                  <Search size={16} className="text-muted-foreground mr-3" />
+                  <input
+                    type="text"
+                    placeholder="Search certificates..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="bg-transparent border-0 outline-none w-full text-foreground placeholder:text-muted-foreground/50 font-mono"
+                  />
                 </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto pr-2 scrollbar-thin">
+                {filteredBundleCerts.length > 0 ? (
+                  filteredBundleCerts.map((cert) => (
+                    <div
+                      key={cert.title}
+                      onClick={() => setSelectedImage(cert.image)}
+                      className="group border border-border bg-background p-4 cursor-pointer hover:border-foreground transition-colors duration-300"
+                      style={{ borderRadius: "0px" }}
+                    >
+                      <div className="relative h-40 overflow-hidden bg-black border-b border-border mb-4">
+                        <img 
+                          src={cert.image} 
+                          alt={cert.title} 
+                          className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" 
+                        />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-sm uppercase leading-snug tracking-wide text-foreground">{cert.title}</h4>
+                        <p className="text-xs text-muted-foreground font-mono uppercase tracking-wider mt-1">{cert.issuer}</p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-full py-8 text-center text-muted-foreground font-mono text-sm">
+                    No certificates matching "{searchQuery}"
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

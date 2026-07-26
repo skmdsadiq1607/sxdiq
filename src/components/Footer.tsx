@@ -10,32 +10,30 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377/", label: "LinkedIn", color: "hsl(220 90% 55%)" },
-  { icon: Github, href: "https://github.com/skmdsadiq1607", label: "GitHub", color: "hsl(0 0% 60%)" },
-  { icon: Mail, href: "mailto:skmdsadiq1607@gmail.com", label: "Email", color: "hsl(0 80% 55%)" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/shaik-sadiq-b1650a377/", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/skmdsadiq1607", label: "GitHub" },
+  { icon: Mail, href: "mailto:skmdsadiq1607@gmail.com", label: "Email" },
 ];
 
 const Footer = () => (
-  <footer className="relative border-t border-border/20 py-16 px-4" style={{ background: 'var(--section-footer-bg)' }}>
-    <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(200 100% 55% / 0.2), transparent)' }} />
-
-    <div className="container mx-auto max-w-5xl">
+  <footer className="relative border-t border-zinc-800 bg-black text-zinc-300 py-16 px-6 md:px-16">
+    <div className="container mx-auto">
       <div className="grid md:grid-cols-3 gap-12 mb-12">
         {/* Brand */}
         <div>
-          <a href="#" className="text-3xl font-bold font-display gradient-text inline-block mb-4">Sxdiq</a>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <a href="#" className="text-2xl font-bold uppercase tracking-widest font-mono text-white inline-block mb-4">Sadiq.</a>
+          <p className="text-sm text-zinc-500 leading-relaxed font-light">
             Passionate developer building modern web applications. Always learning, always creating.
           </p>
         </div>
 
         {/* Quick links */}
         <div>
-          <h4 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wider font-mono">Quick Links</h4>
+          <h4 className="font-bold text-white mb-4 text-xs uppercase tracking-wider font-mono">Quick Links</h4>
           <ul className="space-y-2.5">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1 group">
+                <a href={link.href} className="text-sm text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-1 group font-mono uppercase text-xs tracking-wider">
                   {link.label}
                   <ExternalLink size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -46,49 +44,45 @@ const Footer = () => (
 
         {/* Connect */}
         <div>
-          <h4 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wider font-mono">Connect</h4>
+          <h4 className="font-bold text-white mb-4 text-xs uppercase tracking-wider font-mono">Connect</h4>
           <div className="flex items-center gap-3 mb-6">
             {socials.map((link) => (
-              <motion.a
+              <a
                 key={link.label}
-                whileHover={{ scale: 1.15, y: -4 }}
-                whileTap={{ scale: 0.95 }}
                 href={link.href}
                 target={link.href.startsWith('http') ? '_blank' : undefined}
                 rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-                className="w-11 h-11 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-shadow"
-                style={{ background: link.color, boxShadow: `0 6px 20px ${link.color}40` }}
+                className="w-10 h-10 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white transition-colors"
                 aria-label={link.label}
+                style={{ borderRadius: "0px" }}
               >
-                <link.icon size={18} />
-              </motion.a>
+                <link.icon size={16} />
+              </a>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground font-mono">skmdsadiq1607@gmail.com</p>
+          <p className="text-xs text-zinc-500 font-mono">skmdsadiq1607@gmail.com</p>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-border/20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="border-t border-zinc-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-center sm:text-left">
-          <p className="text-sm text-muted-foreground flex items-center gap-1.5">
-            © 2026 Built with <Heart size={14} className="text-red-400" /> by Shaik Kemple Mohammed Sadiq
+          <p className="text-xs text-zinc-500 flex items-center gap-1.5 justify-center sm:justify-start font-mono uppercase tracking-wider">
+            © 2026 Built with <Heart size={10} className="text-white" /> by Shaik Kemple Mohammed Sadiq
           </p>
-          <p className="text-xs text-muted-foreground/50 mt-1 flex items-center gap-1">
-            <Code size={12} /> Crafted with React, TypeScript & TailwindCSS
+          <p className="text-[10px] text-zinc-600 mt-1 flex items-center gap-1 justify-center sm:justify-start font-mono">
+            <Code size={11} /> Crafted with React, TypeScript & TailwindCSS
           </p>
         </div>
 
-        <motion.button
-          whileHover={{ scale: 1.1, y: -4 }}
-          whileTap={{ scale: 0.95 }}
+        <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="w-12 h-12 rounded-2xl flex items-center justify-center text-white transition-shadow"
-          style={{ background: 'linear-gradient(135deg, hsl(200 100% 55%), hsl(260 80% 65%))', boxShadow: '0 8px 24px hsl(200 100% 55% / 0.3)' }}
+          className="w-10 h-10 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white transition-colors"
+          style={{ borderRadius: "0px" }}
           aria-label="Scroll to top"
         >
-          <ArrowUp size={20} />
-        </motion.button>
+          <ArrowUp size={16} />
+        </button>
       </div>
     </div>
   </footer>
