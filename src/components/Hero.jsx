@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Mail, Download, Github, Linkedin } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Mail, Download, Github, Linkedin } from "lucide-react";
+import { useState, useEffect } from "react";
 import TerminalConsole from "./TerminalConsole";
 
 const roles = [
@@ -11,18 +11,13 @@ const roles = [
 ];
 
 const Hero = () => {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeout;
     if (!isDeleting && displayText === currentRole) {
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && displayText === "") {
@@ -41,26 +36,25 @@ const Hero = () => {
   }, [displayText, isDeleting, roleIndex]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-background text-foreground noise-overlay">
+    <section className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border">
       {/* Editorial grid divisions */}
-      <div className="absolute inset-0 grid grid-cols-2 sm:grid-cols-4 pointer-events-none opacity-20">
+      <div className="absolute inset-0 grid grid-cols-4 pointer-events-none opacity-20">
         <div className="border-r border-border h-full" />
-        <div className="border-r border-border h-full hidden sm:block" />
-        <div className="border-r border-border h-full hidden sm:block" />
+        <div className="border-r border-border h-full" />
+        <div className="border-r border-border h-full" />
         <div className="h-full" />
       </div>
 
-      <motion.div style={{ opacity: heroOpacity, y: heroY }} className="container mx-auto px-6 md:px-16 relative z-10 pt-28 pb-16">
+      <div className="container mx-auto relative z-10 pt-16">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Heading and info */}
+          {/* Left Column */}
           <div className="lg:col-span-7 flex flex-col text-left">
-            
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-muted-foreground font-mono text-xs uppercase tracking-[0.25em] mb-4"
+              className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.25em] mb-4"
             >
               Shaik Kemple Mohammed Sadiq // Developer
             </motion.p>
@@ -95,7 +89,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="h-8 mb-8 font-mono text-sm sm:text-base text-muted-foreground flex items-center"
+              className="h-8 mb-8 font-mono text-sm sm:text-base text-zinc-500 flex items-center"
             >
               <span className="mr-2">&gt;</span>
               <span>{displayText}</span>
@@ -106,12 +100,12 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="text-base sm:text-lg text-muted-foreground max-w-xl mb-10 leading-relaxed font-light"
+              className="text-sm sm:text-base text-zinc-500 max-w-xl mb-10 leading-relaxed font-light"
             >
               Crafting premium high-performance web experiences using the MERN stack. IT student at Anurag University, Hyderabad, obsessed with algorithmic problem solving.
             </motion.p>
 
-            {/* CTA Buttons - Flat Inversion Style */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -151,19 +145,18 @@ const Hero = () => {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-muted-foreground hover:text-foreground font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-colors duration-200"
+                  className="text-zinc-500 hover:text-foreground font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-colors duration-200"
                 >
                   <s.icon size={14} />
                   <span>{s.label}</span>
                 </a>
               ))}
             </motion.div>
-
           </div>
 
-          {/* Right Column: Console terminal */}
+          {/* Right Column (Console) */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.5 }}
             className="lg:col-span-5 flex justify-center w-full"
@@ -172,22 +165,13 @@ const Hero = () => {
           </motion.div>
 
         </div>
-      </motion.div>
+      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-6 sm:left-16"
-      >
-        <a href="#about" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors font-mono text-xs uppercase tracking-widest">
-          <span>Scroll Down</span>
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-            <ArrowDown size={14} />
-          </motion.div>
-        </a>
-      </motion.div>
+      {/* Scroll indicator for horizontal translation */}
+      <div className="absolute bottom-8 left-12 md:left-24 flex items-center gap-3 text-zinc-500 font-mono text-[10px] uppercase tracking-widest">
+        <span>Scroll Down / Swipe to scroll horizontally</span>
+        <ArrowRight size={12} className="animate-pulse" />
+      </div>
     </section>
   );
 };

@@ -6,17 +6,11 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
   { label: "Experience", href: "#leadership" },
   { label: "Contact", href: "#contact" },
 ];
 
-interface NavbarProps {
-  isDark: boolean;
-  toggleTheme: () => void;
-}
-
-const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
+const Navbar = ({ isDark, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -59,7 +53,7 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
           ))}
           <button
             onClick={toggleTheme}
-            className="ml-3 p-2 border border-border hover:border-foreground transition-colors duration-200"
+            className="ml-3 p-2.5 border border-border hover:border-foreground transition-colors duration-200"
             style={{ borderRadius: "0px" }}
             aria-label="Toggle Theme"
           >

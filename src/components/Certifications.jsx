@@ -37,7 +37,7 @@ const certs = [
 ];
 
 const Certifications = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [bundleOpen, setBundleOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -46,10 +46,8 @@ const Certifications = () => {
   );
 
   return (
-    <section className="section-padding relative overflow-hidden bg-background text-foreground noise-overlay">
-      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
-
-      <div className="container mx-auto px-6 md:px-16 relative z-10">
+    <section className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border">
+      <div className="container mx-auto px-6 md:px-16 relative z-10 pt-16">
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
@@ -70,7 +68,7 @@ const Certifications = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.05, duration: 0.5 }}
               onClick={() => c.isBundle && setBundleOpen(true)}
-              className={`border border-border bg-card p-8 flex flex-col justify-between group transition-all duration-300 hover:border-foreground ${c.isBundle ? 'cursor-pointer' : ''}`}
+              className={`border border-border bg-card p-8 flex flex-col justify-between group transition-all duration-300 hover:border-foreground h-72 ${c.isBundle ? 'cursor-pointer' : ''}`}
               style={{ borderRadius: "0px" }}
             >
               <div>
@@ -118,16 +116,14 @@ const Certifications = () => {
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative border border-zinc-800 bg-black p-2">
+            <div className="relative border border-zinc-800 bg-black p-2" onClick={(e) => e.stopPropagation()}>
               <button 
                 className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-zinc-400"
                 onClick={() => setSelectedImage(null)}
               >
                 [Close]
               </button>
-              <motion.img
-                initial={{ scale: 0.95 }}
-                animate={{ scale: 1 }}
+              <img
                 src={selectedImage}
                 alt="Certificate"
                 className="max-w-full max-h-[80vh] object-contain"

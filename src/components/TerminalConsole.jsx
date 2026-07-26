@@ -1,22 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 
-interface LogEntry {
-  type: "input" | "output";
-  text: string;
-  isHtml?: boolean;
-}
-
 const TerminalConsole = () => {
-  const [history, setHistory] = useState<LogEntry[]>([
+  const [history, setHistory] = useState([
     { type: "output", text: "Welcome to Sadiq's Shell (v1.0.0)" },
     { type: "output", text: "Type 'help' to view available commands, or press TAB for auto-complete hints." },
     { type: "output", text: "" }
   ]);
   const [inputValue, setInputValue] = useState("");
-  const [commandHistory, setCommandHistory] = useState<string[]>([]);
-  const [historyPointer, setHistoryPointer] = useState<number>(-1);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [historyPointer, setHistoryPointer] = useState(-1);
+  const terminalEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   const focusInput = () => {
     if (inputRef.current) {
@@ -34,11 +28,11 @@ const TerminalConsole = () => {
     }
   }, [history]);
 
-  const handleCommand = (cmd: string) => {
+  const handleCommand = (cmd) => {
     const trimmed = cmd.trim();
     if (!trimmed) return;
 
-    const newHistory = [...history, { type: "input", text: trimmed } as LogEntry];
+    const newHistory = [...history, { type: "input", text: trimmed }];
     const cleanCmd = trimmed.toLowerCase();
 
     // Add to history list
@@ -46,7 +40,7 @@ const TerminalConsole = () => {
     setCommandHistory(updatedCmdHistory);
     setHistoryPointer(updatedCmdHistory.length);
 
-    let response: LogEntry[] = [];
+    let response = [];
 
     switch (cleanCmd) {
       case "help":
@@ -124,7 +118,7 @@ const TerminalConsole = () => {
           { type: "output", text: "ACCESS GRANTED... INITIATING MATRIX EMULATION..." },
           { type: "output", text: "01001000 01000001 01000011 01001011 01000101 01000100" },
           { type: "output", text: "System overrides loaded. Sadiq's portfolio is now under your control." },
-          { type: "output", text: "Try changing the theme or checking out Sadiq's certificates!" }
+          { type: "output", text: "Try checking out Sadiq's certificates!" }
         ];
         break;
       default:
@@ -137,7 +131,7 @@ const TerminalConsole = () => {
     setInputValue("");
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleCommand(inputValue);
     } else if (e.key === "ArrowUp") {

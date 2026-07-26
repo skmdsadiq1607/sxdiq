@@ -8,10 +8,8 @@ const langs = [
 ];
 
 const LanguagesSection = () => (
-  <section className="section-padding relative overflow-hidden bg-background text-foreground noise-overlay">
-    <div className="absolute top-0 left-0 right-0 h-px bg-border" />
-
-    <div className="container mx-auto max-w-3xl relative z-10">
+  <section className="min-h-screen w-[700px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-16 border-r border-border">
+    <div className="container mx-auto relative z-10 pt-16">
       <motion.div 
         initial={{ opacity: 0, y: 30 }} 
         whileInView={{ opacity: 1, y: 0 }} 
@@ -23,7 +21,7 @@ const LanguagesSection = () => (
         <h2>Languages</h2>
       </motion.div>
 
-      <div className="grid sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {langs.map((l, i) => (
           <motion.div
             key={l.name}
@@ -31,14 +29,14 @@ const LanguagesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08, duration: 0.5 }}
-            className="border border-border p-8 flex flex-col items-center gap-4 group transition-all duration-300 hover:border-foreground hover:bg-secondary/40 text-center"
+            className="border border-border p-6 flex flex-col items-center gap-4 group transition-all duration-300 hover:border-foreground hover:bg-secondary/40 text-center"
             style={{ borderRadius: "0px" }}
           >
             <div className="relative z-10 flex flex-col items-center gap-4 w-full">
               <span className="text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300">{l.emoji}</span>
               <div>
-                <span className="font-bold uppercase tracking-wide text-foreground text-lg block">{l.name}</span>
-                <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest block mt-1">{l.level}</span>
+                <span className="font-bold uppercase tracking-wide text-foreground text-base block">{l.name}</span>
+                <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest block mt-1">{l.level}</span>
               </div>
               
               {/* Progress bar */}
@@ -51,8 +49,8 @@ const LanguagesSection = () => (
                   className="h-full bg-foreground"
                 />
               </div>
-              <div className="w-8 h-8 border border-border flex items-center justify-center text-foreground mt-2">
-                <MessageCircle size={14} />
+              <div className="w-6 h-6 border border-border flex items-center justify-center text-foreground mt-2">
+                <MessageCircle size={10} />
               </div>
             </div>
           </motion.div>

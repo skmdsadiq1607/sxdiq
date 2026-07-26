@@ -16,8 +16,8 @@ const stats = [
   { value: 5, label: "Certifications", suffix: "+", decimals: 0, icon: Coffee },
 ];
 
-const AnimatedCounter = ({ value, decimals, suffix }: { value: number; decimals: number; suffix: string }) => {
-  const ref = useRef<HTMLSpanElement>(null);
+const AnimatedCounter = ({ value, decimals, suffix }) => {
+  const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   const [display, setDisplay] = useState("0");
 
@@ -25,7 +25,7 @@ const AnimatedCounter = ({ value, decimals, suffix }: { value: number; decimals:
     if (!inView) return;
     const duration = 1800;
     const start = performance.now();
-    const animate = (now: number) => {
+    const animate = (now) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 4); // Quartic ease-out
       setDisplay((value * eased).toFixed(decimals));
@@ -38,11 +38,8 @@ const AnimatedCounter = ({ value, decimals, suffix }: { value: number; decimals:
 };
 
 const About = () => (
-  <section id="about" className="section-padding relative overflow-hidden bg-background text-foreground noise-overlay">
-    {/* Editorial separating border */}
-    <div className="absolute top-0 left-0 right-0 h-px bg-border" />
-    
-    <div className="container mx-auto px-6 md:px-16 relative z-10">
+  <section id="about" className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border">
+    <div className="container mx-auto relative z-10 pt-16">
       <motion.div 
         initial={{ opacity: 0, y: 30 }} 
         whileInView={{ opacity: 1, y: 0 }} 
@@ -55,22 +52,23 @@ const About = () => (
       </motion.div>
 
       {/* Two-column layout */}
-      <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
+      <div className="grid lg:grid-cols-12 gap-12 items-center">
         
-        {/* Left - Text content */}
+        {/* Left Column (Bio & Skills) */}
         <motion.div 
           initial={{ opacity: 0, x: -30 }} 
           whileInView={{ opacity: 1, x: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          className="lg:col-span-6"
         >
-          <h3 className="text-2xl md:text-4xl font-extrabold uppercase mb-6 leading-tight">
+          <h3 className="text-2xl md:text-3xl font-extrabold uppercase mb-6 leading-tight">
             A passionate developer turning ideas into reality.
           </h3>
-          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-6 font-light">
+          <p className="text-zinc-500 text-sm sm:text-base leading-relaxed mb-6 font-light">
             I'm a B.Tech Information Technology student at Anurag University, Hyderabad, deeply passionate about web development and problem-solving. I enjoy building modern, user-centric applications using the MERN stack.
           </p>
-          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8 font-light">
+          <p className="text-zinc-500 text-sm sm:text-base leading-relaxed mb-8 font-light">
             Beyond coding, I actively participate in hackathons, contribute to student communities, and continuously sharpen my skills in Data Structures and Algorithms. My goal is to create impactful tech solutions that make a difference.
           </p>
           
@@ -78,7 +76,7 @@ const About = () => (
             {["MongoDB", "Express.js", "React.js", "Node.js", "Java", "C"].map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 border border-border bg-secondary font-mono text-xs uppercase tracking-wider text-muted-foreground cursor-default"
+                className="px-4 py-2 border border-border bg-secondary font-mono text-[10px] uppercase tracking-wider text-zinc-500"
                 style={{ borderRadius: "0px" }}
               >
                 {tech}
@@ -87,72 +85,35 @@ const About = () => (
           </div>
         </motion.div>
 
-        {/* Right - Sharp Stats Grid */}
+        {/* Right Column (Stats Grid & Focus area list) */}
         <motion.div 
           initial={{ opacity: 0, x: 30 }} 
           whileInView={{ opacity: 1, x: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }} 
-          className="grid grid-cols-2 gap-4"
+          className="lg:col-span-6 grid grid-cols-2 gap-4"
         >
           {stats.map((stat, i) => (
-            <motion.div
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * i, duration: 0.5 }}
-              className="border border-border p-8 flex flex-col justify-between h-44 group transition-colors duration-300 hover:border-foreground"
+              className="border border-border p-6 flex flex-col justify-between h-36 group transition-colors duration-300 hover:border-foreground"
               style={{ borderRadius: "0px" }}
             >
               <div className="flex justify-between items-start">
-                <div className="p-2 border border-border group-hover:border-foreground transition-colors duration-300" style={{ borderRadius: "0px" }}>
-                  <stat.icon size={16} className="text-foreground" />
+                <div className="p-1.5 border border-border group-hover:border-foreground transition-colors duration-300" style={{ borderRadius: "0px" }}>
+                  <stat.icon size={14} className="text-foreground" />
                 </div>
               </div>
               <div>
-                <p className="text-4xl font-extrabold font-mono tracking-tight text-foreground leading-none">
+                <p className="text-3xl font-extrabold font-mono tracking-tight text-foreground leading-none">
                   <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
                 </p>
-                <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest mt-2">{stat.label}</p>
+                <p className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest mt-1.5">{stat.label}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
 
-      </div>
-
-      {/* Focus areas */}
-      <motion.div 
-        initial={{ opacity: 0 }} 
-        whileInView={{ opacity: 1 }} 
-        viewport={{ once: true }} 
-        className="mb-10"
-      >
-        <span className="font-mono text-xs tracking-wider uppercase text-muted-foreground">What I focus on</span>
-      </motion.div>
-
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {cards.map((card, i) => (
-          <motion.div
-            key={card.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08, duration: 0.6 }}
-            className="border border-border p-8 group transition-all duration-300 hover:bg-foreground hover:text-background"
-            style={{ borderRadius: "0px" }}
-          >
-            <div className="w-12 h-12 border border-border group-hover:border-background flex items-center justify-center mb-8 transition-colors duration-300" style={{ borderRadius: "0px" }}>
-              <card.icon size={18} />
-            </div>
-            <h3 className="font-bold uppercase mb-4 text-base tracking-wide transition-colors duration-300">{card.title}</h3>
-            <p className="text-sm text-muted-foreground group-hover:text-background/80 leading-relaxed mb-6 font-light transition-colors duration-300">{card.desc}</p>
-            <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Details <ArrowUpRight size={12} />
-            </div>
-          </motion.div>
-        ))}
       </div>
     </div>
   </section>

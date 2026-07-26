@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface PreloaderProps {
-  onComplete: () => void;
-}
-
 const greetings = [
   "HELLO WORLD",
   "SHAIK SADIQ",
@@ -13,7 +9,7 @@ const greetings = [
   "PORTFOLIO // 2026"
 ];
 
-const Preloader = ({ onComplete }: PreloaderProps) => {
+const Preloader = ({ onComplete }) => {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
