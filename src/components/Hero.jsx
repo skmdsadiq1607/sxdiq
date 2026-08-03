@@ -104,24 +104,24 @@ const Hero = () => {
         <div className="flex-1 flex flex-col justify-center items-center relative z-10 mix-blend-difference text-white px-4">
           <div className="text-center flex flex-col items-center">
             
-            {/* Header Line 1 ("we build custom") */}
+            {/* Header Line 1 ("shaik kemple mohammed") */}
             <div className="kinetic-line-1 opacity-0 overflow-hidden">
               <h2 className="font-times font-normal text-3xl sm:text-6xl xl:text-7xl leading-none tracking-tight lowercase">
-                we build custom
+                shaik kemple mohammed
               </h2>
             </div>
 
-            {/* Center Heading ("WEBSITES") */}
+            {/* Center Heading ("SADIQ") */}
             <div className="kinetic-center opacity-0 my-3 select-none">
               <h1 className="font-extrabold uppercase text-[12vw] sm:text-[13vw] xl:text-[14vw] leading-hero tracking-tight">
-                WEBSITES
+                SADIQ
               </h1>
             </div>
 
-            {/* Footer Line 2 ("that grow business") */}
+            {/* Footer Line 2 ("full stack engineer") */}
             <div className="kinetic-line-2 opacity-0 overflow-hidden">
               <h3 className="font-times font-normal text-3xl sm:text-6xl xl:text-7xl leading-none tracking-tight lowercase">
-                that grow business
+                full stack engineer
               </h3>
             </div>
 
