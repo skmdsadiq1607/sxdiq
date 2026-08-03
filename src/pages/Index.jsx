@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import CinematicLoader from "@/components/CinematicLoader";
 import StarfieldBackground from "@/components/StarfieldBackground";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -14,7 +13,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
-  const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("theme");
@@ -42,8 +40,6 @@ const Index = () => {
     }
   }, [isDark]);
 
-
-
   // Detect mobile viewports
   useEffect(() => {
     const checkMobile = () => {
@@ -56,7 +52,7 @@ const Index = () => {
 
   // Recalculate track width on resize and render for desktop horizontal track
   useEffect(() => {
-    if (loading || isMobile) return;
+    if (isMobile) return;
 
     const handleResize = () => {
       if (trackRef.current) {
@@ -71,32 +67,40 @@ const Index = () => {
       clearTimeout(timeout);
       window.removeEventListener("resize", handleResize);
     };
-  }, [loading, isMobile]);
+  }, [isMobile]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollRange]);
 
   return (
-    <>
-      <CinematicLoader onComplete={() => setLoading(false)} />
+    <div className="relative bg-background text-foreground transition-colors duration-300">
       
-      {!loading && (
-        <div className="relative bg-background text-foreground transition-colors duration-300">
-          
-          {/* Shutter Curtain Staggered Panels */}
-          <div className="fixed inset-0 pointer-events-none z-40 flex">
-            <div className="hero-curtain-panel flex-1 h-full bg-black border-r border-white/10" />
-            <div className="hero-curtain-panel flex-1 h-full bg-black border-r border-white/10" />
-            <div className="hero-curtain-panel flex-1 h-full bg-black" />
-          </div>
+      {/* Constellation Particle Layer */}
+      <StarfieldBackground />
 
-          {/* Constellation Particle Layer */}
-          <StarfieldBackground />
+      <Navbar isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
 
-          <Navbar isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
-
-          {isMobile ? (
-            /* Standard vertical scrolling layout for mobile & tablet */
-            <div className="min-h-screen pt-20 flex flex-col gap-1 z-10 relative">
+      {isMobile ? (
+        /* Standard vertical scrolling layout for mobile & tablet */
+        <div className="min-h-screen pt-20 flex flex-col gap-1 z-10 relative">
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <TimelineSection />
+          <Certifications />
+          <LanguagesSection />
+          <Contact />
+          <Footer />
+        </div>
+      ) : (
+        /* Sticky horizontal scrolling layout for desktop */
+        <div ref={containerRef} className="relative overflow-x-clip" style={{ height: "650vh" }}>
+          <div className="sticky top-0 h-screen overflow-hidden flex items-center z-10">
+            <motion.div 
+              ref={trackRef} 
+              style={{ x }} 
+              className="flex h-screen"
+            >
               <Hero />
               <About />
               <Skills />
@@ -106,32 +110,11 @@ const Index = () => {
               <LanguagesSection />
               <Contact />
               <Footer />
-            </div>
-          ) : (
-            /* Sticky horizontal scrolling layout for desktop */
-            <div ref={containerRef} className="relative overflow-x-clip" style={{ height: "650vh" }}>
-              <div className="sticky top-0 h-screen overflow-hidden flex items-center z-10">
-                <motion.div 
-                  ref={trackRef} 
-                  style={{ x }} 
-                  className="flex h-screen"
-                >
-                  <Hero />
-                  <About />
-                  <Skills />
-                  <Projects />
-                  <TimelineSection />
-                  <Certifications />
-                  <LanguagesSection />
-                  <Contact />
-                  <Footer />
-                </motion.div>
-              </div>
-            </div>
-          )}
+            </motion.div>
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
