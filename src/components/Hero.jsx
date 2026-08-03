@@ -146,19 +146,15 @@ const Hero = () => {
               Shaik Kemple Mohammed Sadiq // Developer
             </p>
 
-            {/* Title word 1 */}
-            <div className="overflow-visible" style={{ perspective: 1200 }}>
-              <h1 className="text-5xl sm:text-7xl xl:text-8xl font-black uppercase tracking-tight leading-none mb-2 select-none">
+            {/* Title words */}
+            <motion.div 
+              style={{ scale, letterSpacing, opacity: fadeOut }} 
+              className="overflow-visible space-y-1 mb-6" 
+            >
+              <h1 className="text-5xl sm:text-7xl xl:text-8xl font-black uppercase tracking-tight leading-none select-none">
                 {renderChars("SHAIK")}
               </h1>
-            </div>
-            
-            {/* Title word 2 (Outline text with dynamic scroll expand) */}
-            <motion.div 
-              style={{ scale, letterSpacing, opacity: fadeOut, perspective: 1200 }} 
-              className="overflow-visible" 
-            >
-              <h1 className="text-5xl sm:text-7xl xl:text-8xl font-black uppercase tracking-tight leading-none mb-6 text-stroke kinetic-outline-text select-none">
+              <h1 className="text-5xl sm:text-7xl xl:text-8xl font-black uppercase tracking-tight leading-none select-none">
                 {renderChars("SADIQ.")}
               </h1>
             </motion.div>
@@ -218,6 +214,14 @@ const Hero = () => {
                   <span>{s.label}</span>
                 </a>
               ))}
+            </div>
+
+            {/* Stark Infinite Marquee Banner */}
+            <div className="w-full border-t border-b border-border py-3.5 overflow-hidden mt-10 bg-foreground text-background relative z-10 select-none">
+              <div className="animate-marquee flex whitespace-nowrap text-[9px] font-mono uppercase tracking-[0.35em] gap-8">
+                <span>SHAIK KEMPLE MOHAMMED SADIQ // FULL STACK DEVELOPER // MERN STACK DEVELOPER // PROBLEM SOLVER //&nbsp;</span>
+                <span>SHAIK KEMPLE MOHAMMED SADIQ // FULL STACK DEVELOPER // MERN STACK DEVELOPER // PROBLEM SOLVER //&nbsp;</span>
+              </div>
             </div>
           </div>
 

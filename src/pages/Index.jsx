@@ -40,6 +40,14 @@ const Index = () => {
     }
   }, [isDark]);
 
+  // Reset scroll and disable scroll restoration to prevent horizontal offset shifts
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   // Detect mobile viewports
   useEffect(() => {
     const checkMobile = () => {
