@@ -215,14 +215,6 @@ const Hero = () => {
                 </a>
               ))}
             </div>
-
-            {/* Stark Infinite Marquee Banner */}
-            <div className="w-full border-t border-b border-border py-3.5 overflow-hidden mt-10 bg-foreground text-background relative z-10 select-none">
-              <div className="animate-marquee flex whitespace-nowrap text-[9px] font-mono uppercase tracking-[0.35em] gap-8">
-                <span>SHAIK KEMPLE MOHAMMED SADIQ // FULL STACK DEVELOPER // MERN STACK DEVELOPER // PROBLEM SOLVER //&nbsp;</span>
-                <span>SHAIK KEMPLE MOHAMMED SADIQ // FULL STACK DEVELOPER // MERN STACK DEVELOPER // PROBLEM SOLVER //&nbsp;</span>
-              </div>
-            </div>
           </div>
 
           {/* Right Column (Console with Laser scanline overlay) */}
