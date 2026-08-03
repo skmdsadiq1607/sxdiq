@@ -90,6 +90,14 @@ const Index = () => {
       
       {!loading && (
         <div className="relative bg-background text-foreground transition-colors duration-300">
+          
+          {/* Shutter Curtain Staggered Panels */}
+          <div className="fixed inset-0 pointer-events-none z-40 flex">
+            <div className="hero-curtain-panel flex-1 h-full bg-zinc-950 border-r border-zinc-900" />
+            <div className="hero-curtain-panel flex-1 h-full bg-zinc-950 border-r border-zinc-900" />
+            <div className="hero-curtain-panel flex-1 h-full bg-zinc-950" />
+          </div>
+
           {/* Constellation Particle Layer */}
           <StarfieldBackground />
 

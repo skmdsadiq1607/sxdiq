@@ -45,7 +45,12 @@ const CinematicLoader = ({ onComplete }) => {
   return (
     <AnimatePresence onExitComplete={onComplete}>
       {visible && (
-        <div className="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center select-none pointer-events-none">
+        <motion.div
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.0 }}
+          className="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center select-none pointer-events-none"
+        >
           
           {/* Top Panel Curtain */}
           <motion.div
@@ -133,7 +138,7 @@ const CinematicLoader = ({ onComplete }) => {
             </motion.div>
           </div>
 
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

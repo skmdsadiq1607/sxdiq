@@ -22,11 +22,8 @@ const Navbar = ({ isDark, toggleTheme }) => {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav
+      className={`global-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 opacity-0 -translate-y-full ${
         scrolled ? "bg-background/95 border-b border-border py-3 backdrop-blur-md" : "bg-transparent py-6"
       }`}
     >
@@ -104,7 +101,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 
