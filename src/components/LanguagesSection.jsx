@@ -36,7 +36,7 @@ const LanguagesSection = () => (
               <span className="text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300">{l.emoji}</span>
               <div>
                 <span className="font-bold uppercase tracking-wide text-foreground text-base block">{l.name}</span>
-                <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest block mt-1">{l.level}</span>
+                <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest block mt-1">{l.level}</span>
               </div>
               
               {/* Progress bar */}

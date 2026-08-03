@@ -65,10 +65,10 @@ const About = () => (
           <h3 className="text-2xl md:text-3xl font-extrabold uppercase mb-6 leading-tight">
             A passionate developer turning ideas into reality.
           </h3>
-          <p className="text-zinc-500 text-sm sm:text-base leading-relaxed mb-6 font-light">
+          <p className="text-foreground/60 text-sm sm:text-base leading-relaxed mb-6 font-light">
             I'm a B.Tech Information Technology student at Anurag University, Hyderabad, deeply passionate about web development and problem-solving. I enjoy building modern, user-centric applications using the MERN stack.
           </p>
-          <p className="text-zinc-500 text-sm sm:text-base leading-relaxed mb-8 font-light">
+          <p className="text-foreground/60 text-sm sm:text-base leading-relaxed mb-8 font-light">
             Beyond coding, I actively participate in hackathons, contribute to student communities, and continuously sharpen my skills in Data Structures and Algorithms. My goal is to create impactful tech solutions that make a difference.
           </p>
           
@@ -76,7 +76,7 @@ const About = () => (
             {["MongoDB", "Express.js", "React.js", "Node.js", "Java", "C"].map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 border border-border bg-secondary font-mono text-[10px] uppercase tracking-wider text-zinc-500"
+                className="px-4 py-2 border border-border bg-secondary font-mono text-[10px] uppercase tracking-wider text-foreground/60"
                 style={{ borderRadius: "0px" }}
               >
                 {tech}
@@ -108,7 +108,7 @@ const About = () => (
                 <p className="text-3xl font-extrabold font-mono tracking-tight text-foreground leading-none">
                   <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
                 </p>
-                <p className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest mt-1.5">{stat.label}</p>
+                <p className="text-[9px] text-foreground/60 font-mono uppercase tracking-widest mt-1.5">{stat.label}</p>
               </div>
             </div>
           ))}

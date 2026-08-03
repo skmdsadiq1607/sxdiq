@@ -47,7 +47,7 @@ const TimelineSection = () => {
         {/* Education Stack */}
         <div className="mb-16">
           <div className="mb-6">
-            <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 01</span>
+            <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-1">// 01</span>
             <h2 className="text-3xl font-black uppercase tracking-tight">EDUCATION</h2>
           </div>
           <div className="flex flex-col gap-4">
@@ -68,7 +68,7 @@ const TimelineSection = () => {
         {/* Experience Stack */}
         <div className="mb-16">
           <div className="mb-6">
-            <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 02</span>
+            <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-1">// 02</span>
             <h2 className="text-3xl font-black uppercase tracking-tight">EXPERIENCE</h2>
           </div>
           <div className="flex flex-col gap-4">
@@ -81,7 +81,7 @@ const TimelineSection = () => {
                   <span className="text-[10px] font-mono font-semibold uppercase text-muted-foreground">{item.role}</span>
                 </div>
                 <h3 className="font-bold uppercase text-base mb-2">{item.org}</h3>
-                <span className="text-[9px] font-mono text-zinc-500 block mb-3">{item.period}</span>
+                <span className="text-[9px] font-mono text-foreground/60 block mb-3">{item.period}</span>
                 <ul className="space-y-1">
                   {item.points.map((p, pIdx) => (
                     <li key={pIdx} className="text-[11px] text-muted-foreground font-light">- {p}</li>
@@ -95,7 +95,7 @@ const TimelineSection = () => {
         {/* Hackathons Stack */}
         <div>
           <div className="mb-6">
-            <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 03</span>
+            <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-1">// 03</span>
             <h2 className="text-3xl font-black uppercase tracking-tight">HACKATHONS</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -105,7 +105,7 @@ const TimelineSection = () => {
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
                 </div>
                 <div className="p-4">
-                  <span className="text-[9px] font-mono text-zinc-500 block mb-1">{item.date}</span>
+                  <span className="text-[9px] font-mono text-foreground/60 block mb-1">{item.date}</span>
                   <h3 className="font-bold uppercase text-xs mb-1">{item.title}</h3>
                   <p className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest mb-3">{item.org}</p>
                   <p className="text-[10px] text-muted-foreground font-light">{item.desc}</p>
@@ -125,8 +125,8 @@ const TimelineSection = () => {
               className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
               onClick={() => setSelectedImage(null)}
             >
-              <div className="relative border border-zinc-800 bg-black p-2" onClick={(e) => e.stopPropagation()}>
-                <button className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest" onClick={() => setSelectedImage(null)}>[Close]</button>
+              <div className="relative border border-white/20 bg-black p-2" onClick={(e) => e.stopPropagation()}>
+                <button className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-white/60" onClick={() => setSelectedImage(null)}>[Close]</button>
                 <img src={selectedImage} alt="Certificate" className="max-w-full max-h-[80vh] object-contain" />
               </div>
             </motion.div>
@@ -143,7 +143,7 @@ const TimelineSection = () => {
       {/* Education Panel */}
       <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[85vh]">
         <div className="mb-10">
-          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-2">// 01</span>
+          <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 01</span>
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">EDUCATION</h2>
           <p className="text-sm text-muted-foreground font-light">My academic background and milestones</p>
         </div>
@@ -165,7 +165,7 @@ const TimelineSection = () => {
               </div>
 
               <div>
-                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono mb-4">
+                <div className="flex items-center gap-1.5 text-xs text-foreground/50 font-mono mb-4">
                   <MapPin size={10} />
                   <span>{item.location}</span>
                 </div>
@@ -182,7 +182,7 @@ const TimelineSection = () => {
       {/* Experience & Activities Panel */}
       <div className="w-[850px] flex flex-col justify-center px-16 border-r border-border h-[85vh]">
         <div className="mb-10">
-          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-2">// 02</span>
+          <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 02</span>
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">EXPERIENCE</h2>
           <p className="text-sm text-muted-foreground font-light">Leadership roles and student community work</p>
         </div>
@@ -203,7 +203,7 @@ const TimelineSection = () => {
               </div>
 
               <div className="space-y-2 mt-auto">
-                <span className="text-[9px] font-mono text-zinc-500 block">{item.period}</span>
+                <span className="text-[9px] font-mono text-foreground/60 block">{item.period}</span>
                 <ul className="space-y-1.5">
                   {item.points.map((p, pIdx) => (
                     <li key={pIdx} className="text-[11px] text-muted-foreground font-light leading-relaxed">
@@ -220,7 +220,7 @@ const TimelineSection = () => {
       {/* Hackathons Panel */}
       <div className="w-[1250px] flex flex-col justify-center pl-16 h-[85vh]">
         <div className="mb-10">
-          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-2">// 03</span>
+          <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 03</span>
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">HACKATHONS</h2>
           <p className="text-sm text-muted-foreground font-light">Competitions, hackathons, and credentials</p>
         </div>
@@ -250,7 +250,7 @@ const TimelineSection = () => {
               <div className="p-4 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[9px] font-mono text-zinc-500">{item.date}</span>
+                    <span className="text-[9px] font-mono text-foreground/60">{item.date}</span>
                   </div>
                   <h3 className="font-bold uppercase text-xs leading-snug mb-1 tracking-wide">{item.title}</h3>
                   <p className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest leading-none mb-2">{item.org}</p>
@@ -272,9 +272,9 @@ const TimelineSection = () => {
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative border border-zinc-800 bg-black p-2" onClick={(e) => e.stopPropagation()}>
+            <div className="relative border border-white/20 bg-black p-2" onClick={(e) => e.stopPropagation()}>
               <button 
-                className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-zinc-400"
+                className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-white/60"
                 onClick={() => setSelectedImage(null)}
               >
                 [Close]

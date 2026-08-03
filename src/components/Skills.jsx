@@ -88,7 +88,7 @@ const Skills = () => (
             className="flex flex-col"
           >
             <div className="border-b border-border pb-4 mb-6">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 block mb-1">{cat.emoji} Category</span>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-foreground/60 block mb-1">{cat.emoji} Category</span>
               <h3 className="font-bold text-base uppercase tracking-tight">{cat.title}</h3>
             </div>
             

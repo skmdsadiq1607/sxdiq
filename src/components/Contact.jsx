@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Mail, Phone, Linkedin, Send, MapPin, ArrowUpRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -46,7 +46,7 @@ const Contact = () => {
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }}
+          viewport={{ once: true }} 
           transition={{ duration: 0.6 }}
           className="section-heading"
         >
@@ -66,7 +66,7 @@ const Contact = () => {
             }}
             className="lg:col-span-5 space-y-3"
           >
-            <p className="text-zinc-500 leading-relaxed mb-4 text-xs font-light">
+            <p className="text-foreground/60 leading-relaxed mb-4 text-xs font-light">
               Whether it's a project idea, a collaboration opportunity, or just a friendly hello — my inbox is always open.
             </p>
 
@@ -84,11 +84,11 @@ const Contact = () => {
                     <item.icon size={12} />
                   </div>
                   <div className="flex-1">
-                    <p className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest">{item.label}</p>
+                    <p className="text-[9px] text-foreground/60 font-mono uppercase tracking-widest">{item.label}</p>
                     <p className="text-[10px] font-mono font-semibold uppercase">{item.value}</p>
                   </div>
                   {item.href && (
-                    <ArrowUpRight size={12} className="text-zinc-500" />
+                    <ArrowUpRight size={12} className="text-foreground/60" />
                   )}
                 </a>
               ))}
@@ -105,27 +105,27 @@ const Contact = () => {
               borderRadius: "0px"
             }}
             onSubmit={handleSubmit}
-            className="lg:col-span-7 border border-border bg-zinc-950 text-zinc-300 font-mono text-[10px] overflow-hidden flex flex-col relative"
+            className="lg:col-span-7 border border-border bg-black text-white/90 font-mono text-[10px] overflow-hidden flex flex-col relative"
           >
             {/* Scanner laser overlay effect inside editor */}
             <div className="laser-scanner text-white/5" />
 
             {/* Editor Top Bar */}
-            <div className="bg-zinc-900 border-b border-zinc-800 px-4 py-2 flex items-center justify-between select-none">
+            <div className="bg-background border-b border-border px-4 py-2 flex items-center justify-between select-none">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full border border-zinc-700 bg-zinc-800" />
-                <div className="w-2.5 h-2.5 rounded-full border border-zinc-700 bg-zinc-800" />
-                <div className="w-2.5 h-2.5 rounded-full border border-zinc-700 bg-zinc-800" />
-                <span className="text-[9px] text-zinc-500 font-semibold ml-2 tracking-wide">message.json</span>
+                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+                <span className="text-[9px] text-foreground/50 font-semibold ml-2 tracking-wide">message.json</span>
               </div>
-              <span className="text-[9px] text-zinc-600 font-semibold">UTF-8</span>
+              <span className="text-[9px] text-foreground/40 font-semibold">UTF-8</span>
             </div>
 
             {/* Editor Body */}
-            <div className="p-4 flex leading-relaxed relative bg-zinc-950">
+            <div className="p-4 flex leading-relaxed relative bg-black">
               
               {/* Line numbers */}
-              <div className="text-zinc-700 text-right pr-4 select-none border-r border-zinc-900 w-10 shrink-0">
+              <div className="text-white/30 text-right pr-4 select-none border-r border-white/10 w-10 shrink-0">
                 <div>1</div>
                 <div>2</div>
                 <div>3</div>
@@ -141,81 +141,81 @@ const Contact = () => {
               </div>
 
               {/* Code lines */}
-              <div className="flex-1 pl-4 space-y-1 text-zinc-400">
+              <div className="flex-1 pl-4 space-y-1 text-white/70">
                 <div>
-                  <span className="text-zinc-500">{`{`}</span>
+                  <span className="text-white/50">{`{`}</span>
                 </div>
                 
                 <div className="pl-4">
-                  <span className="text-zinc-500">"sender"</span>: <span className="text-zinc-500">{`{`}</span>
+                  <span className="text-white/50">"sender"</span>: <span className="text-white/50">{`{`}</span>
                 </div>
                 
                 {/* Name line */}
                 <div className="pl-8 flex items-center flex-wrap gap-1">
-                  <span className="text-zinc-500">"name"</span>: <span className="text-zinc-600">"</span>
+                  <span className="text-white/50">"name"</span>: <span className="text-white/40">"</span>
                   <input
                     type="text"
                     required
                     placeholder="Enter your name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="bg-transparent border-b border-zinc-800 hover:border-zinc-700 focus:border-white text-white outline-none w-44 transition-colors px-1"
+                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-44 transition-colors px-1"
                   />
-                  <span className="text-zinc-600">"</span>,
+                  <span className="text-white/40">"</span>,
                 </div>
                 
                 {/* Email line */}
                 <div className="pl-8 flex items-center flex-wrap gap-1">
-                  <span className="text-zinc-500">"email"</span>: <span className="text-zinc-600">"</span>
+                  <span className="text-white/50">"email"</span>: <span className="text-white/40">"</span>
                   <input
                     type="email"
                     required
                     placeholder="Enter your email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="bg-transparent border-b border-zinc-800 hover:border-zinc-700 focus:border-white text-white outline-none w-44 transition-colors px-1"
+                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-44 transition-colors px-1"
                   />
-                  <span className="text-zinc-600">"</span>
+                  <span className="text-white/40">"</span>
                 </div>
                 
                 <div className="pl-4">
-                  <span className="text-zinc-500">{`},`}</span>
+                  <span className="text-white/50">{`},`}</span>
                 </div>
 
                 {/* Message line */}
                 <div className="pl-4 flex items-start gap-1">
-                  <span className="text-zinc-500 shrink-0">"message"</span>: <span className="text-zinc-600 shrink-0">"</span>
+                  <span className="text-white/50 shrink-0">"message"</span>: <span className="text-white/40 shrink-0">"</span>
                   <textarea
                     required
                     rows={2}
                     placeholder="Type your message..."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="bg-transparent border-b border-zinc-800 hover:border-zinc-700 focus:border-white text-white outline-none w-full transition-colors px-1 resize-none h-12 leading-relaxed"
+                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-full transition-colors px-1 resize-none h-12 leading-relaxed"
                   />
-                  <span className="text-zinc-600 shrink-0">"</span>
+                  <span className="text-white/40 shrink-0">"</span>
                 </div>
                 
                 <div>
-                  <span className="text-zinc-500">{`}`}</span>
+                  <span className="text-white/50">{`}`}</span>
                 </div>
               </div>
             </div>
 
             {/* Editor Action Bar */}
-            <div className="bg-zinc-900 border-t border-zinc-800 px-4 py-3 flex items-center justify-between">
-              <span className="text-[9px] text-zinc-500 font-mono">Run: node send.js</span>
+            <div className="bg-background border-t border-border px-4 py-3 flex items-center justify-between">
+              <span className="text-[9px] text-foreground/50 font-mono">Run: node send.js</span>
               <button
                 type="submit"
                 disabled={sending}
-                className="px-4 py-2 bg-white text-black hover:bg-zinc-200 transition-colors uppercase font-mono text-[9px] tracking-widest font-bold flex items-center gap-1.5 select-none"
+                className="px-4 py-2 bg-foreground text-background hover:opacity-90 transition-opacity uppercase font-mono text-[9px] tracking-widest font-bold flex items-center gap-1.5 select-none"
                 style={{ borderRadius: "0px" }}
               >
                 {sending ? (
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-3 h-3 border-2 border-black/30 border-t-black rounded-full"
+                    className="w-3 h-3 border-2 border-background/30 border-t-background rounded-full"
                   />
                 ) : (
                   <>Send Message <Send size={10} /></>

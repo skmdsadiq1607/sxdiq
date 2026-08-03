@@ -64,7 +64,7 @@ const ProjectCardMobile = ({ project }) => {
         )}
       </div>
       <div className="p-6">
-        <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-1 block">{project.tagline}</span>
+        <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest mb-1 block">{project.tagline}</span>
         <h3 className="text-xl font-extrabold uppercase mb-2 text-foreground">{project.title}</h3>
         <p className="text-muted-foreground text-xs leading-relaxed mb-4 font-light">{project.description}</p>
         <div className="flex flex-wrap gap-1 mb-6">
@@ -127,7 +127,7 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
       {/* Card Body */}
       <div className="p-6 flex-1 flex flex-col justify-between">
         <div>
-          <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-1.5 block">{project.tagline}</span>
+          <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest mb-1.5 block">{project.tagline}</span>
           <h3 className="text-xl font-extrabold uppercase mb-2 text-foreground leading-tight">{project.title}</h3>
           <p className="text-muted-foreground text-xs leading-relaxed font-light mb-4">{project.description}</p>
           
@@ -198,7 +198,7 @@ const Projects = () => {
     return (
       <section id="projects" className="py-20 px-6 bg-background text-foreground noise-overlay w-full">
         <div className="mb-8">
-          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-1">// 04</span>
+          <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-1">// 04</span>
           <h2 className="text-3xl font-black uppercase tracking-tight">SELECTED WORK</h2>
         </div>
         <div className="flex flex-col gap-6">
@@ -215,7 +215,7 @@ const Projects = () => {
       
       {/* Left Info Panel */}
       <div className="w-[350px] shrink-0 pr-16 h-[85vh] flex flex-col justify-center">
-        <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block mb-2">// 04</span>
+        <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 04</span>
         <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">SELECTED WORK</h2>
         <p className="text-sm text-muted-foreground font-light leading-relaxed">
           A curated selection of applications built with modern web technologies, focusing on clean engineering and responsive UI.

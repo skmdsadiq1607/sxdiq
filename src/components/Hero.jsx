@@ -126,8 +126,8 @@ const Hero = () => {
     <section ref={heroRef} className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border relative overflow-hidden">
       
       {/* 2. Ambient Glow Orbs */}
-      <div className="hero-glow-1 absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-zinc-800/10 dark:bg-zinc-100/5 blur-[120px] pointer-events-none -z-10 opacity-0 transform -translate-x-1/2 -translate-y-1/2" />
-      <div className="hero-glow-2 absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-zinc-800/10 dark:bg-zinc-100/5 blur-[100px] pointer-events-none -z-10 opacity-0 transform translate-x-1/2 translate-y-1/2" />
+      <div className="hero-glow-1 absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-foreground/5 dark:bg-foreground/5 blur-[120px] pointer-events-none -z-10 opacity-0 transform -translate-x-1/2 -translate-y-1/2" />
+      <div className="hero-glow-2 absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-foreground/5 dark:bg-foreground/5 blur-[100px] pointer-events-none -z-10 opacity-0 transform translate-x-1/2 translate-y-1/2" />
 
       {/* Editorial grid divisions */}
       <div className="absolute inset-0 grid grid-cols-4 pointer-events-none opacity-20 -z-10">
@@ -142,7 +142,7 @@ const Hero = () => {
           
           {/* Left Column */}
           <div className="lg:col-span-7 flex flex-col text-left">
-            <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.25em] mb-4">
+            <p className="text-foreground/60 font-mono text-[10px] uppercase tracking-[0.25em] mb-4">
               Shaik Kemple Mohammed Sadiq // Developer
             </p>
 
@@ -166,13 +166,13 @@ const Hero = () => {
             {/* 5. Horizontal Laser Sweep Line */}
             <div className="hero-sweep-line h-[1px] bg-foreground/20 my-4 w-full origin-left opacity-0" />
 
-            <div className="h-8 mb-8 font-mono text-sm sm:text-base text-zinc-500 flex items-center">
+            <div className="h-8 mb-8 font-mono text-sm sm:text-base text-foreground/60 flex items-center">
               <span className="mr-2">&gt;</span>
               <span>{displayText}</span>
               <span className="terminal-cursor" />
             </div>
 
-            <p className="hero-subtext text-sm sm:text-base text-zinc-500 max-w-xl mb-10 leading-relaxed font-light opacity-0">
+            <p className="hero-subtext text-sm sm:text-base text-foreground/60 max-w-xl mb-10 leading-relaxed font-light opacity-0">
               Crafting premium high-performance web experiences using the MERN stack. IT student at Anurag University, Hyderabad, obsessed with algorithmic problem solving.
             </p>
 
@@ -212,7 +212,7 @@ const Hero = () => {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-zinc-500 hover:text-foreground font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-colors duration-200"
+                  className="text-foreground/60 hover:text-foreground font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-colors duration-200"
                 >
                   <s.icon size={14} />
                   <span>{s.label}</span>
@@ -233,7 +233,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator for horizontal translation */}
-      <div className="absolute bottom-8 left-12 md:left-24 flex items-center gap-3 text-zinc-500 font-mono text-[10px] uppercase tracking-widest pointer-events-none">
+      <div className="absolute bottom-8 left-12 md:left-24 flex items-center gap-3 text-foreground/50 font-mono text-[10px] uppercase tracking-widest pointer-events-none">
         <span>Scroll Down / Swipe to scroll horizontally</span>
         <ArrowRight size={12} className="animate-pulse" />
       </div>

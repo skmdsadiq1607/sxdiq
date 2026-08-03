@@ -116,9 +116,9 @@ const Certifications = () => {
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative border border-zinc-800 bg-black p-2" onClick={(e) => e.stopPropagation()}>
+            <div className="relative border border-white/20 bg-black p-2" onClick={(e) => e.stopPropagation()}>
               <button 
-                className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-zinc-400"
+                className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-white/60"
                 onClick={() => setSelectedImage(null)}
               >
                 [Close]

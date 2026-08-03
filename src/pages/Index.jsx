@@ -84,9 +84,9 @@ const Index = () => {
           
           {/* Shutter Curtain Staggered Panels */}
           <div className="fixed inset-0 pointer-events-none z-40 flex">
-            <div className="hero-curtain-panel flex-1 h-full bg-zinc-950 border-r border-zinc-900" />
-            <div className="hero-curtain-panel flex-1 h-full bg-zinc-950 border-r border-zinc-900" />
-            <div className="hero-curtain-panel flex-1 h-full bg-zinc-950" />
+            <div className="hero-curtain-panel flex-1 h-full bg-black border-r border-white/10" />
+            <div className="hero-curtain-panel flex-1 h-full bg-black border-r border-white/10" />
+            <div className="hero-curtain-panel flex-1 h-full bg-black" />
           </div>
 
           {/* Constellation Particle Layer */}

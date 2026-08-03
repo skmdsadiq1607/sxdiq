@@ -164,15 +164,15 @@ const TerminalConsole = () => {
   return (
     <div
       onClick={focusInput}
-      className="w-full max-w-lg bg-zinc-950 border border-zinc-800 text-zinc-300 font-mono text-xs overflow-hidden flex flex-col cursor-text select-text"
+      className="w-full max-w-lg bg-black border border-border text-foreground/90 font-mono text-xs overflow-hidden flex flex-col cursor-text select-text"
       style={{ height: "350px", borderRadius: "0px" }}
     >
       {/* Title bar */}
-      <div className="bg-zinc-900 border-b border-zinc-800 px-4 py-2 flex items-center gap-2 select-none">
-        <div className="w-2.5 h-2.5 rounded-full border border-zinc-700 bg-zinc-800" />
-        <div className="w-2.5 h-2.5 rounded-full border border-zinc-700 bg-zinc-800" />
-        <div className="w-2.5 h-2.5 rounded-full border border-zinc-700 bg-zinc-800" />
-        <span className="text-[10px] text-zinc-500 font-medium ml-2 tracking-wide uppercase">sadiq_shell.sh</span>
+      <div className="bg-background border-b border-border px-4 py-2 flex items-center gap-2 select-none">
+        <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+        <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+        <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+        <span className="text-[10px] text-foreground/50 font-medium ml-2 tracking-wide uppercase">sadiq_shell.sh</span>
       </div>
 
       {/* Screen */}
@@ -181,17 +181,17 @@ const TerminalConsole = () => {
           <div key={idx} className="leading-relaxed">
             {entry.type === "input" ? (
               <div className="flex">
-                <span className="text-zinc-500 mr-2">sadiq@portfolio:~$</span>
-                <span className="text-white font-bold">{entry.text}</span>
+                <span className="text-foreground/50 mr-2">sadiq@portfolio:~$</span>
+                <span className="text-foreground font-bold">{entry.text}</span>
               </div>
             ) : (
-              <div className="text-zinc-400 whitespace-pre-wrap">{entry.text}</div>
+              <div className="text-foreground/75 whitespace-pre-wrap">{entry.text}</div>
             )}
           </div>
         ))}
         <div className="flex items-center">
-          <span className="text-zinc-500 mr-2">sadiq@portfolio:~$</span>
-          <span className="text-white">{inputValue}</span>
+          <span className="text-foreground/50 mr-2">sadiq@portfolio:~$</span>
+          <span className="text-foreground">{inputValue}</span>
           <span className="terminal-cursor" />
         </div>
         <div ref={terminalEndRef} />

@@ -16,31 +16,31 @@
     --primary: 0 0% 0%;                /* Pure Black */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;             /* Light Grey */
+    --secondary: 0 0% 100%;             /* Pure White */
     --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 93%;
-    --muted-foreground: 0 0% 40%;      /* Mid Grey */
+    --muted: 0 0% 100%;
+    --muted-foreground: 0 0% 25%;      /* Stark Dark Charcoal */
 
     --accent: 0 0% 0%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 88%;                /* Subtle grey border */
-    --input: 0 0% 88%;
+    --border: 0 0% 0%;                  /* Stark Black Border */
+    --input: 0 0% 0%;
     --ring: 0 0% 0%;
     --radius: 0px;                     /* Sharp brutalist corners */
 
     --section-hero-bg: #ffffff;
-    --section-about-bg: #fafafa;
+    --section-about-bg: #ffffff;
     --section-skills-bg: #ffffff;
-    --section-projects-bg: #fafafa;
+    --section-projects-bg: #ffffff;
     --section-education-bg: #ffffff;
-    --section-leadership-bg: #fafafa;
+    --section-leadership-bg: #ffffff;
     --section-hackathons-bg: #ffffff;
-    --section-certs-bg: #fafafa;
+    --section-certs-bg: #ffffff;
     --section-langs-bg: #ffffff;
-    --section-contact-bg: #fafafa;
+    --section-contact-bg: #ffffff;
     --section-footer-bg: #000000;
 
     --glass-bg: rgba(255, 255, 255, 1);
@@ -58,30 +58,30 @@
     --primary: 0 0% 100%;              /* Pure White */
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 8%;               /* Very Dark Grey */
+    --secondary: 0 0% 0%;               /* Pure Black */
     --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 64%;      /* Muted Silver */
+    --muted: 0 0% 0%;
+    --muted-foreground: 0 0% 75%;      /* Stark Light Silver */
 
     --accent: 0 0% 100%;
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 0 0% 0%;
-    --border: 0 0% 15%;                /* Sharp dark border */
-    --input: 0 0% 15%;
+    --border: 0 0% 100%;               /* Stark White Border */
+    --input: 0 0% 100%;
     --ring: 0 0% 100%;
 
     --section-hero-bg: #000000;
-    --section-about-bg: #050505;
+    --section-about-bg: #000000;
     --section-skills-bg: #000000;
-    --section-projects-bg: #050505;
+    --section-projects-bg: #000000;
     --section-education-bg: #000000;
-    --section-leadership-bg: #050505;
+    --section-leadership-bg: #000000;
     --section-hackathons-bg: #000000;
-    --section-certs-bg: #050505;
+    --section-certs-bg: #000000;
     --section-langs-bg: #000000;
-    --section-contact-bg: #050505;
+    --section-contact-bg: #000000;
     --section-footer-bg: #000000;
 
     --glass-bg: rgba(0, 0, 0, 1);

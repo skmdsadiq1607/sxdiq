@@ -59,7 +59,7 @@ const CinematicLoader = ({ onComplete }) => {
               y: "-100%",
               transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 0.1 } 
             }}
-            className="absolute top-0 left-0 right-0 h-1/2 bg-black border-b border-zinc-900"
+            className="absolute top-0 left-0 right-0 h-1/2 bg-black border-b border-white/10"
           />
 
           {/* Bottom Panel Curtain */}
@@ -69,7 +69,7 @@ const CinematicLoader = ({ onComplete }) => {
               y: "100%",
               transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 0.1 } 
             }}
-            className="absolute bottom-0 left-0 right-0 h-1/2 bg-black border-t border-zinc-900"
+            className="absolute bottom-0 left-0 right-0 h-1/2 bg-black border-t border-white/10"
           />
 
           {/* Core Comet Canvas */}
@@ -132,7 +132,7 @@ const CinematicLoader = ({ onComplete }) => {
               initial={{ opacity: 0 }}
               animate={cometsConverged ? { opacity: 0.5 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-zinc-500 text-[9px] tracking-[0.2em] uppercase mt-2"
+              className="text-white/50 text-[9px] tracking-[0.2em] uppercase mt-2"
             >
               INITIALIZING ENGINE
             </motion.div>
