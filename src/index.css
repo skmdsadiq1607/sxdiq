@@ -284,8 +284,8 @@
 }
 
 .font-times {
-  font-family: "Playfair Display", "Times New Roman", Times, serif !important;
-  letter-spacing: 0.005em !important;
+  font-family: 'Outfit', sans-serif !important;
+  letter-spacing: -0.015em !important;
 }
 
 .leading-hero {
