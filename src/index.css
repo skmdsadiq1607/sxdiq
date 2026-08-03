@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -281,5 +281,23 @@
 .text-stroke {
   -webkit-text-stroke: 1.5px hsl(var(--foreground));
   color: transparent;
+}
+
+.font-times {
+  font-family: "Playfair Display", "Times New Roman", Times, serif !important;
+  letter-spacing: 0.005em !important;
+}
+
+.leading-hero {
+  line-height: 0.85 !important;
+}
+
+.marquee-container {
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.marquee-text-item {
+  color: #ffffff; /* Must be solid white */
 }
 
