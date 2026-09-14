@@ -1,73 +1,61 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Globe2 } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 const langs = [
-  { name: "English", level: "Professional Working Proficiency", tag: "Fluent (90%)", percent: 90 },
-  { name: "Hindi", level: "Native & Bilingual Fluency", tag: "Native (100%)", percent: 100 },
-  { name: "Telugu", level: "Native & Mother Tongue", tag: "Native (100%)", percent: 100 },
+  { name: "English", level: "Fluent", emoji: "🇬🇧", percent: 90 },
+  { name: "Hindi", level: "Native", emoji: "🇮🇳", percent: 100 },
+  { name: "Telugu", level: "Native", emoji: "🗣️", percent: 100 },
 ];
 
 const LanguagesSection = () => (
-  <section id="languages" className="py-20 px-6 md:px-16 lg:px-24 relative overflow-hidden bg-black text-white">
-    <div className="max-w-7xl mx-auto relative z-10">
-      
-      {/* Section Heading */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+  <section className="min-h-screen w-[700px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-16 border-r border-border">
+    <div className="container mx-auto relative z-10 pt-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="section-heading"
       >
-        <span className="subtitle">
-          <Globe2 size={12} className="text-white animate-spin-slow" />
-          06 // COMMUNICATION
-        </span>
-        <h2>LANGUAGES &amp; DIALECTS</h2>
+        <span className="subtitle">Communication</span>
+        <h2>Languages</h2>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-4">
         {langs.map((l, i) => (
           <motion.div
             key={l.name}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            className="glass-card p-8 flex flex-col justify-between group hover:border-white/50 transition-all duration-300"
+            transition={{ delay: i * 0.08, duration: 0.5 }}
+            className="border border-border p-6 flex flex-col items-center gap-4 group transition-all duration-300 hover:border-foreground hover:bg-secondary/40 text-center"
+            style={{ borderRadius: "0px" }}
           >
-            <div className="flex items-center justify-between mb-6">
-              <div className="w-10 h-10 rounded-xl border border-white/15 bg-white/[0.04] flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all">
-                <MessageCircle size={18} />
+            <div className="relative z-10 flex flex-col items-center gap-4 w-full">
+              <span className="text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300">{l.emoji}</span>
+              <div>
+                <span className="font-bold uppercase tracking-wide text-foreground text-base block">{l.name}</span>
+                <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest block mt-1">{l.level}</span>
               </div>
-              <span className="px-3 py-1 rounded-full border border-white/15 bg-white/[0.03] text-[10px] font-mono text-white/70 uppercase tracking-widest">
-                {l.tag}
-              </span>
-            </div>
-
-            <div>
-              <h3 className="font-syne font-bold text-2xl uppercase tracking-tight text-white mb-1">
-                {l.name}
-              </h3>
-              <p className="text-xs font-mono text-white/50 uppercase tracking-wider mb-6">
-                {l.level}
-              </p>
-
-              {/* Progress Line */}
-              <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+              
+              {/* Progress bar */}
+              <div className="w-full h-1 border border-border bg-secondary overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${l.percent}%` }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.1, duration: 0.9, ease: "easeOut" }}
-                  className="h-full bg-white rounded-full"
+                  transition={{ delay: 0.2 + i * 0.05, duration: 0.8, ease: "easeOut" }}
+                  className="h-full bg-foreground"
                 />
+              </div>
+              <div className="w-6 h-6 border border-border flex items-center justify-center text-foreground mt-2">
+                <MessageCircle size={10} />
               </div>
             </div>
           </motion.div>
         ))}
       </div>
-
     </div>
   </section>
 );

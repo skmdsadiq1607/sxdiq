@@ -1,16 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import { Terminal, Copy, Check } from "lucide-react";
 
 const TerminalConsole = () => {
   const [history, setHistory] = useState([
-    { type: "output", text: "SYSTEM BOOT // SADIQ_OS v2.5 [ONLINE]" },
-    { type: "output", text: "Shaik Kemple Mohammed Sadiq - Full Stack Software Engineer" },
-    { type: "output", text: "Type 'help' to inspect commands or press TAB for auto-complete." },
+    { type: "output", text: "Welcome to Sadiq's Shell (v1.0.0)" },
+    { type: "output", text: "Type 'help' to view available commands, or press TAB for auto-complete hints." },
+    { type: "output", text: "" }
   ]);
   const [inputValue, setInputValue] = useState("");
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyPointer, setHistoryPointer] = useState(-1);
-  const [copied, setCopied] = useState(false);
   const terminalEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -19,6 +17,10 @@ const TerminalConsole = () => {
       inputRef.current.focus();
     }
   };
+
+  useEffect(() => {
+    focusInput();
+  }, []);
 
   useEffect(() => {
     if (terminalEndRef.current) {
@@ -33,6 +35,7 @@ const TerminalConsole = () => {
     const newHistory = [...history, { type: "input", text: trimmed }];
     const cleanCmd = trimmed.toLowerCase();
 
+    // Add to history list
     const updatedCmdHistory = [...commandHistory, trimmed];
     setCommandHistory(updatedCmdHistory);
     setHistoryPointer(updatedCmdHistory.length);
@@ -42,63 +45,85 @@ const TerminalConsole = () => {
     switch (cleanCmd) {
       case "help":
         response = [
-          { type: "output", text: "AVAILABLE COMMANDS:" },
-          { type: "output", text: "  about       - Overview of background & education" },
-          { type: "output", text: "  skills      - Full stack technologies & proficiencies" },
-          { type: "output", text: "  projects    - Production platforms & live demos" },
-          { type: "output", text: "  contact     - Direct channels & email" },
-          { type: "output", text: "  matrix      - Stream animated telemetry stream" },
-          { type: "output", text: "  clear       - Purge terminal console screen" },
+          { type: "output", text: "Available commands:" },
+          { type: "output", text: "  about       - Who is Shaik Sadiq?" },
+          { type: "output", text: "  skills      - Core technical skills & tools" },
+          { type: "output", text: "  projects    - Key projects built by Sadiq" },
+          { type: "output", text: "  education   - Timeline of academic milestones" },
+          { type: "output", text: "  experience  - Student leadership & activities" },
+          { type: "output", text: "  contact     - Contact information and links" },
+          { type: "output", text: "  clear       - Clear screen history" },
+          { type: "output", text: "  sudo hack   - ??? [Easter Egg]" }
         ];
         break;
       case "about":
         response = [
-          { type: "output", text: "IDENTITY: Shaik Kemple Mohammed Sadiq" },
-          { type: "output", text: "DEGREE:   B.Tech (Information Technology) - CGPA: 9.25" },
-          { type: "output", text: "INST:     Anurag University, Hyderabad (2024-2028)" },
-          { type: "output", text: "FOCUS:    Full Stack Web Architectures, MERN, Cloud, Algorithms" },
+          { type: "output", text: "Shaik Kemple Mohammed Sadiq | Full Stack Developer" },
+          { type: "output", text: "IT student at Anurag University, Hyderabad (CGPA: 9.25)." },
+          { type: "output", text: "Passionate about building highly interactive web apps using the MERN stack." }
         ];
         break;
       case "skills":
         response = [
-          { type: "output", text: "CORE TECH STACK:" },
-          { type: "output", text: "  [Frontend] React.js, Vite, Tailwind CSS, Framer Motion, HTML5, CSS3, JS" },
-          { type: "output", text: "  [Backend]  Node.js, Express.js, REST APIs, Python, Java" },
-          { type: "output", text: "  [Database] MongoDB, SQL, DBMS" },
-          { type: "output", text: "  [Core]     Data Structures & Algorithms, OOP, OS, Git" },
+          { type: "output", text: "Web Technologies:" },
+          { type: "output", text: "  React, Vite, Express, Node.js, MongoDB, SQL, Tailwind CSS, Bootstrap, REST APIs" },
+          { type: "output", text: "Programming Languages & Algorithms:" },
+          { type: "output", text: "  Java, C, Python, JavaScript, Data Structures & Algorithms" },
+          { type: "output", text: "Developer Tools:" },
+          { type: "output", text: "  Git, GitHub, Vercel, Netlify, VS Code" }
         ];
         break;
       case "projects":
         response = [
-          { type: "output", text: "FEATURED ARCHITECTURES:" },
-          { type: "output", text: "  1. KRUSHI MITRA - AI Farming Assistant Platform (Vercel Live)" },
-          { type: "output", text: "  2. IGNITEXT - Multi-College Student Collaboration Community" },
-          { type: "output", text: "  3. PORTFOLIO - High-Performance Monochromatic Portfolio" },
+          { type: "output", text: "1. Krushi Mitra (AI-Powered Farming Assistant)" },
+          { type: "output", text: "   Multi-language scheme recommendations, soil analysis, and disease detection." },
+          { type: "output", text: "   Live: https://krushi-mitra-unquadtrium.vercel.app/" },
+          { type: "output", text: "2. IgniteXT (Student Community Platform)" },
+          { type: "output", text: "   Shared study notes, circulars, department events, supporting multiple colleges." },
+          { type: "output", text: "   Live: https://ignitext2026.vercel.app/" },
+          { type: "output", text: "3. Developer Portfolio (This site!)" },
+          { type: "output", text: "   Minimalist high-contrast layout, flat structural panels, interactive shell." }
+        ];
+        break;
+      case "education":
+        response = [
+          { type: "output", text: "- B.Tech (Information Technology) @ Anurag University | 2024 - 2028 (CGPA: 9.25)" },
+          { type: "output", text: "- Intermediate (MPC) @ Sri Chaitanya Junior College | 2022 - 2024 (94.6%)" },
+          { type: "output", text: "- SSC (Class X) @ Sri Chaitanya School | 2022 (GPA: 9.7)" }
+        ];
+        break;
+      case "experience":
+        response = [
+          { type: "output", text: "Student Leadership & Contributions:" },
+          { type: "output", text: "- CSI Student Branch: Technical Team Member (Monitored AI100K event)" },
+          { type: "output", text: "- IgniteXT: Technical Team Member (Curating resources & study files)" },
+          { type: "output", text: "- Coding Club: Content Writer & Workshop Organizer" }
         ];
         break;
       case "contact":
         response = [
-          { type: "output", text: "DIRECT DISPATCH:" },
-          { type: "output", text: "  EMAIL:    skmdsadiq1607@gmail.com" },
-          { type: "output", text: "  PHONE:    +91 9441921812" },
-          { type: "output", text: "  GITHUB:   https://github.com/skmdsadiq1607" },
-          { type: "output", text: "  LINKEDIN: https://www.linkedin.com/in/shaik-sadiq-b1650a377" },
-        ];
-        break;
-      case "matrix":
-        response = [
-          { type: "output", text: "01010011 01000001 01000100 01001001 01010001" },
-          { type: "output", text: "INITIALIZING QUANTUM ENCRYPTION TUNNEL..." },
-          { type: "output", text: ">> SYSTEM INTEGRITY 100% // READY FOR DEPLOYMENT" },
+          { type: "output", text: "Get in touch:" },
+          { type: "output", text: "  Email:    skmdsadiq1607@gmail.com" },
+          { type: "output", text: "  Phone:    +91 9441921812" },
+          { type: "output", text: "  LinkedIn: linkedin.com/in/shaik-sadiq-b1650a377" },
+          { type: "output", text: "  GitHub:   github.com/skmdsadiq1607" }
         ];
         break;
       case "clear":
         setHistory([]);
         setInputValue("");
         return;
+      case "sudo hack":
+        response = [
+          { type: "output", text: "ACCESS GRANTED... INITIATING MATRIX EMULATION..." },
+          { type: "output", text: "01001000 01000001 01000011 01001011 01000101 01000100" },
+          { type: "output", text: "System overrides loaded. Sadiq's portfolio is now under your control." },
+          { type: "output", text: "Try checking out Sadiq's certificates!" }
+        ];
+        break;
       default:
         response = [
-          { type: "output", text: `Command not recognized: '${trimmed}'. Type 'help' for options.` }
+          { type: "output", text: `Command not found: '${trimmed}'. Type 'help' for options.` }
         ];
     }
 
@@ -128,7 +153,7 @@ const TerminalConsole = () => {
       }
     } else if (e.key === "Tab") {
       e.preventDefault();
-      const commands = ["help", "about", "skills", "projects", "contact", "matrix", "clear"];
+      const commands = ["help", "about", "skills", "projects", "education", "experience", "contact", "clear", "sudo hack"];
       const matches = commands.filter(c => c.startsWith(inputValue.toLowerCase()));
       if (matches.length === 1) {
         setInputValue(matches[0]);
@@ -136,68 +161,43 @@ const TerminalConsole = () => {
     }
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("skmdsadiq1607@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <div
       onClick={focusInput}
-      className="w-full rounded-2xl bg-black/80 backdrop-blur-2xl border border-white/15 text-white/90 font-mono text-xs overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative group cursor-text"
-      style={{ height: "360px" }}
+      className="w-full max-w-lg bg-black border border-border text-foreground/90 font-mono text-xs overflow-hidden flex flex-col cursor-text select-text"
+      style={{ height: "350px", borderRadius: "0px" }}
     >
-      {/* Laser scanner overlay */}
-      <div className="laser-scanner opacity-40" />
-
-      {/* Terminal Title Bar */}
-      <div className="bg-white/[0.04] border-b border-white/10 px-4 py-3 flex items-center justify-between select-none">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-white/20 border border-white/30" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/20 border border-white/30" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white/20 border border-white/30" />
-          <span className="text-[10px] text-white/50 font-bold ml-2 tracking-widest uppercase flex items-center gap-1.5">
-            <Terminal size={12} className="text-white/70" /> sadiq_shell.sh
-          </span>
-        </div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleCopyEmail();
-          }}
-          className="flex items-center gap-1 text-[10px] font-mono text-white/40 hover:text-white transition-colors"
-          title="Copy Email"
-        >
-          {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
-          <span>{copied ? "COPIED" : "COPY EMAIL"}</span>
-        </button>
+      {/* Title bar */}
+      <div className="bg-background border-b border-border px-4 py-2 flex items-center gap-2 select-none">
+        <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+        <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+        <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
+        <span className="text-[10px] text-foreground/50 font-medium ml-2 tracking-wide uppercase">sadiq_shell.sh</span>
       </div>
 
-      {/* Terminal Screen Body */}
-      <div className="flex-1 p-5 overflow-y-auto space-y-2 scrollbar-thin text-[11px] leading-relaxed select-text">
+      {/* Screen */}
+      <div className="flex-1 p-4 overflow-y-auto space-y-1.5 scrollbar-thin">
         {history.map((entry, idx) => (
-          <div key={idx}>
+          <div key={idx} className="leading-relaxed">
             {entry.type === "input" ? (
-              <div className="flex items-center text-white/50">
-                <span className="text-white/40 mr-2 font-bold">visitor@sadiq:~$</span>
-                <span className="text-white font-semibold">{entry.text}</span>
+              <div className="flex">
+                <span className="text-foreground/50 mr-2">sadiq@portfolio:~$</span>
+                <span className="text-foreground font-bold">{entry.text}</span>
               </div>
             ) : (
-              <div className="text-white/75 whitespace-pre-wrap font-light">{entry.text}</div>
+              <div className="text-foreground/75 whitespace-pre-wrap">{entry.text}</div>
             )}
           </div>
         ))}
-
-        <div className="flex items-center text-white/50 pt-1">
-          <span className="text-white/40 mr-2 font-bold">visitor@sadiq:~$</span>
-          <span className="text-white font-semibold">{inputValue}</span>
+        <div className="flex items-center">
+          <span className="text-foreground/50 mr-2">sadiq@portfolio:~$</span>
+          <span className="text-foreground">{inputValue}</span>
           <span className="terminal-cursor" />
         </div>
         <div ref={terminalEndRef} />
       </div>
 
-      {/* Hidden input to capture keystrokes */}
+      {/* Hidden input */}
       <input
         ref={inputRef}
         type="text"

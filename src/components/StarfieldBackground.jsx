@@ -10,31 +10,55 @@ const StarfieldBackground = () => {
     const ctx = canvas.getContext("2d");
     let animationFrameId;
 
+    // Track state sizes
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Particle constellation configuration
-    const particleCount = Math.min(Math.floor(window.innerWidth / 16), 90);
-    const particles = [];
-    const connectionDist = 130;
+    // Star configuration
+    const starCount = 80;
+    const stars = [];
+    const connectionDist = 120;
 
+    // Mouse coordinates
     let mouse = { x: -1000, y: -1000 };
 
-    const initParticles = () => {
-      particles.length = 0;
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
+    const initStars = () => {
+      stars.length = 0;
+      for (let i = 0; i < starCount; i++) {
+        stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          size: Math.random() * 1.8 + 0.6,
-          baseAlpha: Math.random() * 0.4 + 0.2,
+          baseX: 0,
+          baseY: 0,
+          size: Math.random() * 1.5 + 0.5,
+          speed: Math.random() * 0.05 + 0.01,
+          angle: Math.random() * Math.PI * 2,
+          driftSpeed: Math.random() * 0.2 + 0.05
+        });
+      }
+      stars.forEach(s => {
+        s.baseX = s.x;
+        s.baseY = s.y;
+      });
+    };
+
+    // Shooting stars
+    const meteors = [];
+    const spawnMeteor = () => {
+      if (meteors.length < 2 && Math.random() < 0.015) {
+        meteors.push({
+          x: Math.random() * width * 0.8,
+          y: 0,
+          length: Math.random() * 80 + 40,
+          speed: Math.random() * 8 + 4,
+          dx: 1.5,
+          dy: 1,
+          opacity: 1
         });
       }
     };
 
-    initParticles();
+    initStars();
 
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
@@ -49,88 +73,115 @@ const StarfieldBackground = () => {
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      initParticles();
+      initStars();
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("resize", handleResize);
 
-    const render = () => {
+    const draw = () => {
+      // Clear with very slight transparency to leave star trails
       ctx.clearRect(0, 0, width, height);
 
-      // Deep obsidian void base
-      ctx.fillStyle = "#000000";
-      ctx.fillRect(0, 0, width, height);
-
-      // Dynamic cursor spotlight
-      if (mouse.x > 0 && mouse.y > 0) {
-        const spotlight = ctx.createRadialGradient(
-          mouse.x, mouse.y, 0,
-          mouse.x, mouse.y, 450
+      // Draw faint nebula-like background layers in dark mode
+      const isDarkMode = document.documentElement.classList.contains("dark");
+      if (isDarkMode) {
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        ctx.fillRect(0, 0, width, height);
+        
+        // Faint glowing mesh spots
+        const radial = ctx.createRadialGradient(
+          width / 2, height / 2, 10,
+          width / 2, height / 2, width * 0.8
         );
-        spotlight.addColorStop(0, "rgba(255, 255, 255, 0.05)");
-        spotlight.addColorStop(0.5, "rgba(255, 255, 255, 0.015)");
-        spotlight.addColorStop(1, "rgba(0, 0, 0, 0)");
-        ctx.fillStyle = spotlight;
+        radial.addColorStop(0, "rgba(25, 25, 25, 0.1)");
+        radial.addColorStop(1, "rgba(0, 0, 0, 0)");
+        ctx.fillStyle = radial;
+        ctx.fillRect(0, 0, width, height);
+      } else {
+        ctx.fillStyle = "rgba(255, 255, 255, 1)";
         ctx.fillRect(0, 0, width, height);
       }
 
-      // Constellation connectors
+      // Draw constellation grid paths
+      ctx.strokeStyle = isDarkMode ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.02)";
       ctx.lineWidth = 0.5;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x;
+          const dy = stars[i].y - stars[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDist) {
-            const alpha = (1 - dist / connectionDist) * 0.15;
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.moveTo(stars[i].x, stars[i].y);
+            ctx.lineTo(stars[j].x, stars[j].y);
             ctx.stroke();
           }
         }
       }
 
-      // Draw and update particles
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
+      // Render & update stars
+      ctx.fillStyle = isDarkMode ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 0, 0, 0.3)";
+      stars.forEach((s) => {
+        // Star drift (sine wave coordinates)
+        s.angle += s.speed;
+        const driftX = Math.sin(s.angle) * 4;
+        const driftY = Math.cos(s.angle) * 4;
 
-        // Wrap edges smoothly
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
+        let targetX = s.baseX + driftX;
+        let targetY = s.baseY + driftY;
 
-        // Mouse interaction
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
+        // Mouse repulsion physics
+        const dx = mouse.x - targetX;
+        const dy = mouse.y - targetY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        let currentSize = p.size;
-        let currentAlpha = p.baseAlpha;
-
-        if (dist < 140) {
-          const force = (140 - dist) / 140;
-          p.x -= (dx / dist) * force * 3;
-          p.y -= (dy / dist) * force * 3;
-          currentSize = p.size * (1 + force * 1.5);
-          currentAlpha = Math.min(1, p.baseAlpha + force * 0.5);
+        
+        if (dist < 120) {
+          const force = (120 - dist) / 120;
+          const pushX = (dx / dist) * force * -24;
+          const pushY = (dy / dist) * force * -24;
+          s.x += (targetX + pushX - s.x) * 0.1;
+          s.y += (targetY + pushY - s.y) * 0.1;
+        } else {
+          s.x += (targetX - s.x) * 0.05;
+          s.y += (targetY - s.y) * 0.05;
         }
 
-        ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha})`;
+        // Draw star dot
         ctx.beginPath();
-        ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      animationFrameId = requestAnimationFrame(render);
+      // Render & update meteors
+      spawnMeteor();
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        m.x += m.speed * m.dx;
+        m.y += m.speed * m.dy;
+        m.opacity -= 0.015;
+
+        if (m.opacity <= 0 || m.x > width || m.y > height) {
+          meteors.splice(i, 1);
+          continue;
+        }
+
+        ctx.strokeStyle = isDarkMode 
+          ? `rgba(255, 255, 255, ${m.opacity * 0.3})` 
+          : `rgba(0, 0, 0, ${m.opacity * 0.2})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(m.x - m.length * m.dx, m.y - m.length * m.dy);
+        ctx.stroke();
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
     };
 
-    render();
+    draw();
 
     return () => {
       cancelAnimationFrame(animationFrameId);

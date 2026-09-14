@@ -1,30 +1,19 @@
 import { motion, useInView } from "framer-motion";
-import { Code, Database, Brain, Rocket, Zap, Users, Award, Sparkles, ArrowRight } from "lucide-react";
+import { Code, Database, Brain, Rocket, ArrowUpRight, Zap, Users, Coffee } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
-const stats = [
-  { value: 9.25, label: "Academic CGPA", suffix: "", decimals: 2, icon: Zap, detail: "Information Technology @ Anurag University" },
-  { value: 3, label: "Hackathons", suffix: "+", decimals: 0, icon: Users, detail: "Competitive AI & Engineering sprints" },
-  { value: 15, label: "Credentials & Courses", suffix: "+", decimals: 0, icon: Award, detail: "Infosys, NPTEL IIT, and specialized modules" },
-  { value: 100, label: "Code Dedication", suffix: "%", decimals: 0, icon: Rocket, detail: "Obsessed with algorithmic problem solving" },
+const cards = [
+  { icon: Code, title: "Web Development", desc: "Crafting responsive, interactive web apps with modern frameworks and clean architecture." },
+  { icon: Database, title: "MERN Stack", desc: "Building full-stack applications with MongoDB, Express, React, and Node.js." },
+  { icon: Brain, title: "DSA & Problem Solving", desc: "Sharpening algorithmic thinking through competitive programming and daily practice." },
+  { icon: Rocket, title: "Real-World Solutions", desc: "Turning ideas into impactful applications that solve genuine problems." },
 ];
 
-const pillars = [
-  {
-    icon: Code,
-    title: "Full Stack Web Systems",
-    desc: "Architecting modern web applications with React, Vite, Node, and Express with ultra-responsive UX.",
-  },
-  {
-    icon: Database,
-    title: "MERN Stack Specialist",
-    desc: "Robust state pipelines, scalable MongoDB database modeling, and performant RESTful APIs.",
-  },
-  {
-    icon: Brain,
-    title: "DSA & Problem Solving",
-    desc: "Continuous competitive programming practice in C and Java, strengthening algorithmic efficiency.",
-  },
+const stats = [
+  { value: 9.25, label: "CGPA", suffix: "", decimals: 2, icon: Zap },
+  { value: 2, label: "Projects Built", suffix: "+", decimals: 0, icon: Code },
+  { value: 3, label: "Hackathons Participated", suffix: "+", decimals: 0, icon: Users },
+  { value: 5, label: "Certifications", suffix: "+", decimals: 0, icon: Coffee },
 ];
 
 const AnimatedCounter = ({ value, decimals, suffix }) => {
@@ -34,11 +23,11 @@ const AnimatedCounter = ({ value, decimals, suffix }) => {
 
   useEffect(() => {
     if (!inView) return;
-    const duration = 1600;
+    const duration = 1800;
     const start = performance.now();
     const animate = (now) => {
       const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
+      const eased = 1 - Math.pow(1 - progress, 4); // Quartic ease-out
       setDisplay((value * eased).toFixed(decimals));
       if (progress < 1) requestAnimationFrame(animate);
     };
@@ -48,180 +37,86 @@ const AnimatedCounter = ({ value, decimals, suffix }) => {
   return <span ref={ref}>{display}{suffix}</span>;
 };
 
-// 3D Tilt Card Component
-const TiltCard = ({ children, className = "" }) => {
-  const cardRef = useRef(null);
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
-  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
+const About = () => (
+  <section id="about" className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border">
+    <div className="container mx-auto relative z-10 pt-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true }} 
+        transition={{ duration: 0.6 }}
+        className="section-heading"
+      >
+        <span className="subtitle">Get to know me</span>
+        <h2>About Me</h2>
+      </motion.div>
 
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = ((y - centerY) / centerY) * -10;
-    const rotateY = ((x - centerX) / centerX) * 10;
-
-    setRotate({ x: rotateX, y: rotateY });
-    setGlare({
-      x: (x / rect.width) * 100,
-      y: (y / rect.height) * 100,
-      opacity: 0.15,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setRotate({ x: 0, y: 0 });
-    setGlare((prev) => ({ ...prev, opacity: 0 }));
-  };
-
-  return (
-    <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{
-        rotateX: rotate.x,
-        rotateY: rotate.y,
-      }}
-      transition={{ type: "spring", damping: 20, stiffness: 200, mass: 0.4 }}
-      style={{ transformStyle: "preserve-3d" }}
-      className={`relative overflow-hidden ${className}`}
-    >
-      {/* Specular glare sheen */}
-      <div
-        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
-        style={{
-          opacity: glare.opacity,
-          background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,0.4), transparent 60%)`,
-        }}
-      />
-      {children}
-    </motion.div>
-  );
-};
-
-const About = () => {
-  return (
-    <section id="about" className="section-padding relative overflow-hidden bg-black text-white">
-      <div className="max-w-7xl mx-auto relative z-10">
+      {/* Two-column layout */}
+      <div className="grid lg:grid-cols-12 gap-12 items-center">
         
-        {/* Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="section-heading"
+        {/* Left Column (Bio & Skills) */}
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }} 
+          whileInView={{ opacity: 1, x: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          className="lg:col-span-6"
         >
-          <span className="subtitle">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            01 // BACKGROUND & PHILOSOPHY
-          </span>
-          <h2>ENGINEERING EXPERIENCES WITH PURPOSE</h2>
+          <h3 className="text-2xl md:text-3xl font-extrabold uppercase mb-6 leading-tight">
+            A passionate developer turning ideas into reality.
+          </h3>
+          <p className="text-foreground/60 text-sm sm:text-base leading-relaxed mb-6 font-light">
+            I'm a B.Tech Information Technology student at Anurag University, Hyderabad, deeply passionate about web development and problem-solving. I enjoy building modern, user-centric applications using the MERN stack.
+          </p>
+          <p className="text-foreground/60 text-sm sm:text-base leading-relaxed mb-8 font-light">
+            Beyond coding, I actively participate in hackathons, contribute to student communities, and continuously sharpen my skills in Data Structures and Algorithms. My goal is to create impactful tech solutions that make a difference.
+          </p>
+          
+          <div className="flex flex-wrap gap-2">
+            {["MongoDB", "Express.js", "React.js", "Node.js", "Java", "C"].map((tech) => (
+              <span
+                key={tech}
+                className="px-4 py-2 border border-border bg-secondary font-mono text-[10px] uppercase tracking-wider text-foreground/60"
+                style={{ borderRadius: "0px" }}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Top Story & Pillars Layout */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start mb-16">
-          
-          {/* Narrative Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 flex flex-col justify-between"
-          >
-            <h3 className="font-syne font-bold text-2xl sm:text-3xl uppercase tracking-tight text-white mb-6 leading-tight">
-              A developer bridging clean engineering, algorithms, and immersive design.
-            </h3>
-            <p className="text-white/65 text-base sm:text-lg leading-relaxed mb-6 font-light">
-              I am an Information Technology scholar at Anurag University, Hyderabad, driven by a fascination with high-throughput systems, modern web frameworks, and creative digital interactivity.
-            </p>
-            <p className="text-white/65 text-base sm:text-lg leading-relaxed mb-8 font-light">
-              Beyond standard syntax, I actively engineer real-world applications (such as Krushi Mitra and IgniteXT), compete in 24-hour hackathons, and contribute to student tech communities. My goal is to build web platforms that feel intuitive, lightning-fast, and unforgettable.
-            </p>
-
-            {/* Core Tech Pills */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {["React.js", "Node.js", "Express.js", "MongoDB", "Java", "C (DSA)", "Tailwind CSS", "Three.js"].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 rounded-full border border-white/15 bg-white/[0.03] hover:bg-white hover:text-black font-mono text-xs uppercase tracking-wider text-white/80 transition-all duration-300"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Pillars List Column */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 flex flex-col gap-4"
-          >
-            {pillars.map((pillar, i) => (
-              <div
-                key={pillar.title}
-                className="p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.05] transition-all duration-300 flex items-start gap-4 group"
-              >
-                <div className="w-10 h-10 rounded-xl border border-white/20 bg-white/[0.05] flex items-center justify-center text-white shrink-0 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-300">
-                  <pillar.icon size={18} />
-                </div>
-                <div>
-                  <h4 className="font-syne font-bold text-lg uppercase tracking-tight text-white mb-1 group-hover:text-white transition-colors">
-                    {pillar.title}
-                  </h4>
-                  <p className="text-white/60 text-sm font-light leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-        </div>
-
-        {/* 3D Tilt Metrics Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Right Column (Stats Grid & Focus area list) */}
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }} 
+          whileInView={{ opacity: 1, x: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }} 
+          className="lg:col-span-6 grid grid-cols-2 gap-4"
+        >
           {stats.map((stat, i) => (
-            <TiltCard
+            <div
               key={stat.label}
-              className="p-6 rounded-2xl border border-white/15 bg-white/[0.03] backdrop-blur-xl flex flex-col justify-between h-48 group hover:border-white/40 transition-colors"
+              className="border border-border p-6 flex flex-col justify-between h-36 group transition-colors duration-300 hover:border-foreground"
+              style={{ borderRadius: "0px" }}
             >
-              <div className="flex justify-between items-center">
-                <div className="p-2 rounded-lg border border-white/15 bg-white/[0.04] text-white group-hover:bg-white group-hover:text-black transition-all">
-                  <stat.icon size={16} />
+              <div className="flex justify-between items-start">
+                <div className="p-1.5 border border-border group-hover:border-foreground transition-colors duration-300" style={{ borderRadius: "0px" }}>
+                  <stat.icon size={14} className="text-foreground" />
                 </div>
-                <span className="font-mono text-[9px] text-white/30 tracking-widest uppercase">
-                  METRIC // 0{i + 1}
-                </span>
               </div>
-
               <div>
-                <p className="text-4xl sm:text-5xl font-syne font-black tracking-tight text-white leading-none mb-2">
+                <p className="text-3xl font-extrabold font-mono tracking-tight text-foreground leading-none">
                   <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
                 </p>
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-white/90">
-                  {stat.label}
-                </p>
-                <p className="text-[10px] font-mono text-white/40 mt-1 truncate">
-                  {stat.detail}
-                </p>
+                <p className="text-[9px] text-foreground/60 font-mono uppercase tracking-widest mt-1.5">{stat.label}</p>
               </div>
-            </TiltCard>
+            </div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;

@@ -16,11 +16,12 @@ export default {
     },
     extend: {
       fontFamily: {
+        outfit: ['Outfit', 'sans-serif'],
         syne: ['Syne', 'sans-serif'],
         space: ['"Space Grotesk"', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['Syne', 'sans-serif'],
+        display: ['Outfit', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
