@@ -5,15 +5,6 @@ import gsap from "gsap";
 const HeroInner = ({ isDarkLayer }) => {
   return (
     <div className="w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24">
-      {/* Header */}
-      <div className="w-full flex justify-between items-center opacity-90">
-        <span className="font-mono text-xs uppercase tracking-[0.25em]">
-          Shaik Kemple Mohammed Sadiq
-        </span>
-        <span className="font-times italic text-xs tracking-wide opacity-50">
-          creative portfolio v2.0
-        </span>
-      </div>
 
       {/* Center Center Text (Kinetic Typography style) */}
       <div className="flex-1 flex flex-col justify-center items-center my-auto">
@@ -180,11 +171,6 @@ const Hero = () => {
         className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none z-20"
         style={{ mixBlendMode: "difference" }}
       >
-        {/* Invisible Header Spacer */}
-        <div className="w-full flex justify-between items-center invisible" aria-hidden="true">
-          <span className="font-mono text-xs uppercase tracking-[0.25em]">Shaik Kemple Mohammed Sadiq</span>
-          <span className="font-times italic text-xs tracking-wide">creative portfolio v2.0</span>
-        </div>
 
         {/* Invisible Center Spacer */}
         <div className="flex-1 flex flex-col justify-center items-center my-auto invisible" aria-hidden="true">
