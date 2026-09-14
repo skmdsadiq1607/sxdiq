@@ -164,8 +164,8 @@ const TerminalConsole = () => {
   return (
     <div
       onClick={focusInput}
-      className="w-full max-w-lg bg-black border border-border text-foreground/90 font-mono text-xs overflow-hidden flex flex-col cursor-text select-text"
-      style={{ height: "350px", borderRadius: "0px" }}
+      className="w-full max-w-lg bg-black border border-border text-foreground/90 font-mono text-xs overflow-hidden flex flex-col cursor-text select-text rounded-2xl shadow-2xl"
+      style={{ height: "350px" }}
     >
       {/* Title bar */}
       <div className="bg-background border-b border-border px-4 py-2 flex items-center gap-2 select-none">

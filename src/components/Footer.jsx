@@ -14,7 +14,7 @@ const socials = [
 ];
 
 const Footer = () => (
-  <footer className="min-h-screen w-[500px] shrink-0 flex items-center bg-black text-white/80 py-12 px-12 md:px-16 relative">
+  <footer className="min-h-screen w-full lg:w-[500px] shrink-0 flex items-center bg-black text-white/80 py-12 px-6 md:px-16 relative border-t lg:border-t-0 border-white/10">
     <div className="container mx-auto flex flex-col justify-between h-[75vh]">
       
       {/* Top row */}
@@ -47,9 +47,8 @@ const Footer = () => (
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="w-8 h-8 border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-colors"
+              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white hover:bg-white/10 transition-all hover:scale-105"
               aria-label={link.label}
-              style={{ borderRadius: "0px" }}
             >
               <link.icon size={14} />
             </a>
@@ -71,8 +70,7 @@ const Footer = () => (
 
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="w-8 h-8 border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-colors"
-          style={{ borderRadius: "0px" }}
+          className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white hover:bg-white/10 transition-all hover:scale-105"
           aria-label="Scroll to top"
         >
           <ArrowUp size={14} />

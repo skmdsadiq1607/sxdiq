@@ -48,13 +48,29 @@ const categories = [
 const SkillCard = ({ skill, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.85, y: 20 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.02, duration: 0.4 }}
-      className="p-3.5 sm:p-4 border border-foreground/15 hover:border-foreground transition-all duration-300 flex flex-col items-center gap-2.5 group cursor-default bg-background/50 hover:bg-foreground hover:text-background"
+      transition={{ 
+        type: "spring", 
+        stiffness: 260, 
+        damping: 18, 
+        delay: index * 0.035 
+      }}
+      whileHover={{ 
+        y: -8, 
+        scale: 1.06,
+        transition: { type: "spring", stiffness: 400, damping: 15 }
+      }}
+      className="p-4 sm:p-5 rounded-2xl border border-foreground/15 hover:border-foreground transition-all duration-300 flex flex-col items-center justify-center gap-3 group cursor-pointer bg-foreground/[0.02] hover:bg-foreground hover:text-background shadow-sm hover:shadow-xl relative overflow-hidden"
     >
-      <skill.icon size={22} className="text-foreground/80 group-hover:text-background transition-colors duration-300" />
+      <motion.div 
+        whileHover={{ rotate: [0, -8, 8, 0], scale: 1.15 }}
+        transition={{ duration: 0.4 }}
+        className="relative flex items-center justify-center"
+      >
+        <skill.icon size={26} className="text-foreground/80 group-hover:text-background transition-colors duration-300" />
+      </motion.div>
       <span className="text-[10px] font-mono font-medium tracking-wider uppercase text-center">{skill.name}</span>
     </motion.div>
   );

@@ -1,59 +1,116 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import { Mic, Volume2 } from "lucide-react";
 
 const langs = [
-  { name: "English", level: "Fluent", emoji: "🇬🇧", percent: 90 },
-  { name: "Hindi", level: "Native", emoji: "🇮🇳", percent: 100 },
-  { name: "Telugu", level: "Native", emoji: "🗣️", percent: 100 },
+  { name: "English", level: "Fluent", emoji: "🇬🇧", fluency: "Professional" },
+  { name: "Hindi", level: "Native", emoji: "🇮🇳", fluency: "Bilingual / Native" },
+  { name: "Telugu", level: "Native", emoji: "🗣️", fluency: "Bilingual / Native" },
 ];
 
+const AudioWaveform = ({ isHovered, barCount = 7 }) => {
+  return (
+    <div className="flex items-center justify-center gap-1 h-9 px-3 py-1.5 rounded-full bg-secondary/50 border border-border/70 w-full max-w-[140px]">
+      {[...Array(barCount)].map((_, idx) => {
+        const patterns = [
+          ["30%", "85%", "40%", "100%", "30%"],
+          ["50%", "100%", "35%", "80%", "50%"],
+          ["70%", "35%", "90%", "50%", "95%"],
+          ["90%", "55%", "100%", "35%", "75%"],
+          ["60%", "90%", "40%", "95%", "45%"],
+          ["40%", "75%", "55%", "85%", "35%"],
+          ["25%", "65%", "40%", "80%", "30%"],
+        ];
+        const heights = patterns[idx % patterns.length];
+
+        return (
+          <motion.div
+            key={idx}
+            animate={{
+              height: isHovered 
+                ? heights 
+                : heights.map(h => `${Math.max(25, parseInt(h) * 0.5)}%`),
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: isHovered ? 0.7 + idx * 0.08 : 1.4 + idx * 0.12,
+              ease: "easeInOut",
+              repeatType: "reverse",
+            }}
+            className="w-1 rounded-full bg-foreground transition-all duration-300"
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+const LanguageCard = ({ lang, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="border border-border/80 bg-card/90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center gap-5 group transition-all duration-300 hover:border-foreground/50 hover:shadow-xl text-center relative overflow-hidden"
+    >
+      {/* Gentle background glow on hover */}
+      <div className="absolute inset-0 bg-gradient-to-b from-foreground/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+      {/* Floating Flag Avatar */}
+      <motion.div
+        animate={{ y: [0, -5, 0] }}
+        transition={{ repeat: Infinity, duration: 3.2 + index * 0.4, ease: "easeInOut" }}
+        className="w-16 h-16 rounded-full border border-border/80 bg-secondary/40 flex items-center justify-center text-3xl shadow-inner group-hover:scale-105 transition-transform"
+      >
+        <span className="filter grayscale group-hover:grayscale-0 transition-all duration-300">
+          {lang.emoji}
+        </span>
+      </motion.div>
+
+      <div className="space-y-1">
+        <h3 className="font-times italic font-normal text-xl text-foreground block">
+          {lang.name}
+        </h3>
+        <span className="inline-block text-[10px] font-mono px-3 py-1 rounded-full border border-border/80 bg-secondary/60 text-foreground/80 tracking-wider uppercase font-semibold">
+          {lang.level}
+        </span>
+      </div>
+
+      {/* Live Audio Frequency Equalizer Waveform */}
+      <div className="flex flex-col items-center gap-1.5 w-full pt-1">
+        <AudioWaveform isHovered={isHovered} />
+        <div className="flex items-center gap-1 text-[9px] font-mono text-muted-foreground uppercase tracking-widest mt-1">
+          <Volume2 size={11} className="text-foreground/60" />
+          <span>{lang.fluency}</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const LanguagesSection = () => (
-  <section className="min-h-screen w-[700px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-16 border-r border-border">
+  <section className="min-h-screen w-full lg:w-[750px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-6 md:px-16 border-r border-border">
     <div className="container mx-auto relative z-10 pt-16">
       <motion.div 
         initial={{ opacity: 0, y: 30 }} 
         whileInView={{ opacity: 1, y: 0 }} 
-        viewport={{ once: true }}
+        viewport={{ once: true }} 
         transition={{ duration: 0.6 }}
-        className="section-heading"
+        className="section-heading mb-12"
       >
         <span className="subtitle">Communication</span>
-        <h2>Languages</h2>
+        <h2 className="font-times italic font-normal text-4xl md:text-5xl">Languages</h2>
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {langs.map((l, i) => (
-          <motion.div
-            key={l.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08, duration: 0.5 }}
-            className="border border-border p-6 flex flex-col items-center gap-4 group transition-all duration-300 hover:border-foreground hover:bg-secondary/40 text-center"
-            style={{ borderRadius: "0px" }}
-          >
-            <div className="relative z-10 flex flex-col items-center gap-4 w-full">
-              <span className="text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300">{l.emoji}</span>
-              <div>
-                <span className="font-bold uppercase tracking-wide text-foreground text-base block">{l.name}</span>
-                <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest block mt-1">{l.level}</span>
-              </div>
-              
-              {/* Progress bar */}
-              <div className="w-full h-1 border border-border bg-secondary overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${l.percent}%` }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.05, duration: 0.8, ease: "easeOut" }}
-                  className="h-full bg-foreground"
-                />
-              </div>
-              <div className="w-6 h-6 border border-border flex items-center justify-center text-foreground mt-2">
-                <MessageCircle size={10} />
-              </div>
-            </div>
-          </motion.div>
+          <LanguageCard key={l.name} lang={l} index={i} />
         ))}
       </div>
     </div>

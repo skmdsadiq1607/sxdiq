@@ -52,15 +52,24 @@ const TimelineSection = () => {
           </div>
           <div className="flex flex-col gap-4">
             {educationItems.map((item, idx) => (
-              <div key={idx} className="border border-border p-6" style={{ borderRadius: "0px" }}>
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 relative overflow-hidden group hover:border-foreground/40 transition-colors shadow-sm"
+              >
+                {/* Traveling laser accent */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/40 to-transparent" />
                 <span className="font-mono text-[10px] text-muted-foreground block mb-2">{item.year}</span>
                 <h3 className="font-bold uppercase text-base mb-1">{item.institution}</h3>
                 <p className="text-xs text-muted-foreground font-light mb-4">{item.degree}</p>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-border">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/80 bg-secondary/50">
                   <Award size={12} />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider">{item.score}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -73,21 +82,28 @@ const TimelineSection = () => {
           </div>
           <div className="flex flex-col gap-4">
             {activityItems.map((item, idx) => (
-              <div key={idx} className="border border-border p-6" style={{ borderRadius: "0px" }}>
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-8 h-8 border border-border flex items-center justify-center">
-                    <item.icon size={12} />
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 relative overflow-hidden group hover:border-foreground/40 transition-colors shadow-sm"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground">
+                    <item.icon size={14} />
                   </div>
                   <span className="text-[10px] font-mono font-semibold uppercase text-muted-foreground">{item.role}</span>
                 </div>
                 <h3 className="font-bold uppercase text-base mb-2">{item.org}</h3>
-                <span className="text-[9px] font-mono text-foreground/60 block mb-3">{item.period}</span>
-                <ul className="space-y-1">
+                <span className="text-[10px] font-mono text-foreground/60 block mb-3">{item.period}</span>
+                <ul className="space-y-1.5">
                   {item.points.map((p, pIdx) => (
-                    <li key={pIdx} className="text-[11px] text-muted-foreground font-light">- {p}</li>
+                    <li key={pIdx} className="text-[11px] text-muted-foreground font-light leading-relaxed">- {p}</li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -100,17 +116,26 @@ const TimelineSection = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {hackathonItems.map((item, idx) => (
-              <div key={idx} className="border border-border bg-card flex flex-col justify-between" style={{ borderRadius: "0px" }}>
-                <div className="relative h-44 overflow-hidden border-b border-border cursor-pointer" onClick={() => setSelectedImage(item.image)}>
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08, duration: 0.5 }}
+                className="border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-foreground/40 transition-all duration-300 shadow-sm"
+              >
+                <div className="relative h-44 overflow-hidden border-b border-border/60 cursor-pointer" onClick={() => setSelectedImage(item.image)}>
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
+                  {/* Holographic shimmer */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
-                <div className="p-4">
-                  <span className="text-[9px] font-mono text-foreground/60 block mb-1">{item.date}</span>
-                  <h3 className="font-bold uppercase text-xs mb-1">{item.title}</h3>
-                  <p className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest mb-3">{item.org}</p>
-                  <p className="text-[10px] text-muted-foreground font-light">{item.desc}</p>
+                <div className="p-5">
+                  <span className="text-[10px] font-mono text-foreground/60 block mb-1">{item.date}</span>
+                  <h3 className="font-bold uppercase text-sm mb-1">{item.title}</h3>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-3">{item.org}</p>
+                  <p className="text-xs text-muted-foreground font-light leading-relaxed">{item.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -122,13 +147,24 @@ const TimelineSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-md p-6"
               onClick={() => setSelectedImage(null)}
             >
-              <div className="relative border border-white/20 bg-black p-2" onClick={(e) => e.stopPropagation()}>
-                <button className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-white/60" onClick={() => setSelectedImage(null)}>[Close]</button>
-                <img src={selectedImage} alt="Certificate" className="max-w-full max-h-[80vh] object-contain" />
-              </div>
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative rounded-2xl border border-white/20 bg-black/95 p-3 max-w-3xl w-full shadow-2xl overflow-hidden" 
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  className="absolute top-4 right-4 z-20 text-white font-mono text-xs uppercase tracking-widest bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors" 
+                  onClick={() => setSelectedImage(null)}
+                >
+                  Close
+                </button>
+                <img src={selectedImage} alt="Certificate" className="w-full max-h-[80vh] object-contain rounded-xl" />
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -138,7 +174,7 @@ const TimelineSection = () => {
 
   // Desktop horizontal layout
   return (
-    <section id="leadership" className="min-h-screen flex items-center bg-background text-foreground noise-overlay select-none shrink-0 py-12 px-12 md:px-24 border-r border-border animate-grid-entry" style={{ width: "3200px" }}>
+    <section id="leadership" className="min-h-screen flex items-center bg-background text-foreground noise-overlay select-none shrink-0 py-12 px-12 md:px-24 border-r border-border" style={{ width: "3200px" }}>
       
       {/* Education Panel */}
       <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[85vh]">
@@ -150,14 +186,18 @@ const TimelineSection = () => {
 
         <div className="grid grid-cols-3 gap-6">
           {educationItems.map((item, idx) => (
-            <div 
-              key={idx} 
-              className="border border-border p-6 flex flex-col justify-between h-[45vh] transition-all duration-300 hover:border-foreground"
-              style={{ borderRadius: "0px" }}
+            <motion.div 
+              key={idx}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 350, damping: 22 }}
+              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-between h-[45vh] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
             >
+              {/* Illuminated laser-bead track sweep on hover */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+
               <div>
                 <div className="flex items-center gap-2 mb-4 font-mono text-[10px] text-muted-foreground">
-                  <Calendar size={10} />
+                  <Calendar size={11} />
                   <span>{item.year}</span>
                 </div>
                 <h3 className="font-bold uppercase text-base leading-tight mb-2">{item.institution}</h3>
@@ -166,15 +206,15 @@ const TimelineSection = () => {
 
               <div>
                 <div className="flex items-center gap-1.5 text-xs text-foreground/50 font-mono mb-4">
-                  <MapPin size={10} />
+                  <MapPin size={11} />
                   <span>{item.location}</span>
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-border">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/80 bg-secondary/50">
                   <Award size={12} />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider">{item.score}</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -189,21 +229,25 @@ const TimelineSection = () => {
 
         <div className="grid grid-cols-3 gap-6">
           {activityItems.map((item, idx) => (
-            <div 
-              key={idx} 
-              className="border border-border p-6 flex flex-col justify-between h-[45vh] transition-all duration-300 hover:border-foreground"
-              style={{ borderRadius: "0px" }}
+            <motion.div 
+              key={idx}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 350, damping: 22 }}
+              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-between h-[45vh] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
             >
+              {/* Laser-bead track */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+
               <div>
-                <div className="w-8 h-8 border border-border flex items-center justify-center text-foreground mb-4">
-                  <item.icon size={14} />
+                <div className="w-9 h-9 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground mb-4 group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
+                  <item.icon size={15} />
                 </div>
                 <h3 className="font-bold uppercase text-base leading-tight mb-2">{item.org}</h3>
                 <p className="text-[10px] font-mono font-semibold uppercase text-muted-foreground tracking-wider mb-4">{item.role}</p>
               </div>
 
               <div className="space-y-2 mt-auto">
-                <span className="text-[9px] font-mono text-foreground/60 block">{item.period}</span>
+                <span className="text-[10px] font-mono text-foreground/60 block">{item.period}</span>
                 <ul className="space-y-1.5">
                   {item.points.map((p, pIdx) => (
                     <li key={pIdx} className="text-[11px] text-muted-foreground font-light leading-relaxed">
@@ -212,7 +256,7 @@ const TimelineSection = () => {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -227,13 +271,14 @@ const TimelineSection = () => {
 
         <div className="grid grid-cols-5 gap-4">
           {hackathonItems.map((item, idx) => (
-            <div 
-              key={idx} 
-              className="border border-border bg-card flex flex-col justify-between h-[45vh] group transition-all duration-300 hover:border-foreground"
-              style={{ borderRadius: "0px" }}
+            <motion.div 
+              key={idx}
+              whileHover={{ y: -6, scale: 1.025 }}
+              transition={{ type: "spring", stiffness: 350, damping: 22 }}
+              className="border border-border/80 bg-card/95 backdrop-blur-sm rounded-2xl flex flex-col justify-between h-[45vh] group transition-all duration-300 hover:border-foreground/50 hover:shadow-xl overflow-hidden"
             >
               <div 
-                className="relative h-28 overflow-hidden cursor-pointer border-b border-border"
+                className="relative h-28 overflow-hidden cursor-pointer border-b border-border/70"
                 onClick={() => setSelectedImage(item.image)}
               >
                 <img 
@@ -241,8 +286,10 @@ const TimelineSection = () => {
                   alt={item.title} 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" 
                 />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-                <div className="absolute top-2 right-2 w-6 h-6 border border-border bg-background flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                {/* Holographic foil glare sweep */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+                <div className="absolute top-2 right-2 w-6 h-6 rounded-full border border-border/80 bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
                   <ExternalLink size={10} />
                 </div>
               </div>
@@ -257,7 +304,7 @@ const TimelineSection = () => {
                 </div>
                 <p className="text-[10px] text-muted-foreground font-light leading-relaxed mt-auto">{item.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -269,22 +316,28 @@ const TimelineSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6"
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-md p-6"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative border border-white/20 bg-black p-2" onClick={(e) => e.stopPropagation()}>
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative rounded-2xl border border-white/20 bg-black/95 p-3 max-w-3xl w-full shadow-2xl overflow-hidden" 
+              onClick={(e) => e.stopPropagation()}
+            >
               <button 
-                className="absolute -top-10 right-0 text-white font-mono text-xs uppercase tracking-widest hover:text-white/60"
+                className="absolute top-4 right-4 z-20 text-white font-mono text-xs uppercase tracking-widest bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors"
                 onClick={() => setSelectedImage(null)}
               >
-                [Close]
+                Close
               </button>
               <img
                 src={selectedImage}
                 alt="Certificate"
-                className="max-w-full max-h-[80vh] object-contain"
+                className="w-full max-h-[80vh] object-contain rounded-xl"
               />
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

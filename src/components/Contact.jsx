@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Mail, Phone, Linkedin, Send, MapPin, ArrowUpRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -14,13 +14,23 @@ const Contact = () => {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll();
 
   // Scroll range: Contact section is active near the end of the scrolltrack
   const swingProgress = useTransform(scrollYProgress, [0.82, 0.96], [0, 1]);
 
-  // Swing animations for double-door reveal
+  // Swing animations for double-door reveal on desktop
   const rotateLeftY = useTransform(swingProgress, [0, 1], [-35, 0]);
   const translateLeftX = useTransform(swingProgress, [0, 1], [-120, 0]);
   const opacityLeft = useTransform(swingProgress, [0, 1], [0.3, 1]);
@@ -41,91 +51,117 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen w-[900px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-16 border-r border-border overflow-visible" style={{ perspective: 1200 }}>
-      <div className="container mx-auto px-6 md:px-16 relative z-10 pt-16 overflow-visible">
+    <section id="contact" className="min-h-screen w-full lg:w-[950px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-6 md:px-16 border-r border-border overflow-visible" style={{ perspective: 1200 }}>
+      <div className="container mx-auto px-4 md:px-12 relative z-10 pt-16 overflow-visible w-full">
+        
+        {/* Radar beacon status badge */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border/80 bg-secondary/50 text-[10px] font-mono text-foreground/90 mb-4 shadow-sm"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
+          </span>
+          <span className="tracking-widest">AVAILABLE FOR WORK & COLLABORATION</span>
+        </motion.div>
+
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.6 }}
-          className="section-heading"
+          className="section-heading mb-10"
         >
           <span className="subtitle">Get in touch</span>
-          <h2>Let's build together</h2>
+          <h2 className="font-times italic font-normal text-4xl md:text-5xl">Let's build together</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start overflow-visible">
           
-          {/* Left Column (Swings from left) */}
+          {/* Left Column (Contact list) */}
           <motion.div 
-            style={{
+            style={isMobile ? {} : {
               rotateY: rotateLeftY,
               x: translateLeftX,
               opacity: opacityLeft,
               transformOrigin: "left center"
             }}
+            initial={isMobile ? { opacity: 0, y: 20 } : false}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : false}
+            viewport={{ once: true }}
             className="lg:col-span-5 space-y-3"
           >
-            <p className="text-foreground/60 leading-relaxed mb-4 text-xs font-light">
+            <p className="text-muted-foreground leading-relaxed mb-4 text-xs font-light">
               Whether it's a project idea, a collaboration opportunity, or just a friendly hello — my inbox is always open.
             </p>
 
-            <div className="space-y-2">
-              {contactInfo.map((item, i) => (
-                <a
+            <div className="space-y-2.5">
+              {contactInfo.map((item) => (
+                <motion.a
                   key={item.label}
+                  whileHover={{ x: 6, scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
                   href={item.href || undefined}
                   target={item.href?.startsWith('http') ? '_blank' : undefined}
                   rel={item.href?.startsWith('http') ? 'noreferrer' : undefined}
-                  className="flex items-center gap-3 p-3 border border-border bg-card hover:border-foreground transition-all duration-300"
-                  style={{ borderRadius: "0px" }}
+                  className="flex items-center gap-3.5 p-3.5 rounded-2xl border border-border/80 bg-card/90 backdrop-blur-sm hover:border-foreground/50 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="w-8 h-8 border border-border flex items-center justify-center text-foreground">
-                    <item.icon size={12} />
+                  <div className="w-9 h-9 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
+                    <item.icon size={14} />
                   </div>
                   <div className="flex-1">
                     <p className="text-[9px] text-foreground/60 font-mono uppercase tracking-widest">{item.label}</p>
-                    <p className="text-[10px] font-mono font-semibold uppercase">{item.value}</p>
+                    <p className="text-[11px] font-mono font-semibold uppercase text-foreground">{item.value}</p>
                   </div>
                   {item.href && (
-                    <ArrowUpRight size={12} className="text-foreground/60" />
+                    <div className="w-7 h-7 rounded-full border border-border/70 flex items-center justify-center text-foreground/60 group-hover:text-foreground group-hover:border-foreground/40 transition-colors">
+                      <ArrowUpRight size={12} />
+                    </div>
                   )}
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Code Editor Form Column (Swings from right) */}
+          {/* Code Editor Form Column */}
           <motion.form
-            style={{
+            style={isMobile ? {} : {
               rotateY: rotateRightY,
               x: translateRightX,
               opacity: opacityRight,
               transformOrigin: "right center",
-              borderRadius: "0px"
             }}
+            initial={isMobile ? { opacity: 0, y: 20 } : false}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : false}
+            viewport={{ once: true }}
             onSubmit={handleSubmit}
-            className="lg:col-span-7 border border-border bg-black text-white/90 font-mono text-[10px] overflow-hidden flex flex-col relative"
+            className="lg:col-span-7 border border-border/80 bg-black text-white/90 font-mono text-[10px] overflow-hidden flex flex-col relative rounded-2xl shadow-2xl"
           >
             {/* Scanner laser overlay effect inside editor */}
             <div className="laser-scanner text-white/5" />
 
             {/* Editor Top Bar */}
-            <div className="bg-background border-b border-border px-4 py-2 flex items-center justify-between select-none">
+            <div className="bg-zinc-950 border-b border-white/10 px-5 py-3 flex items-center justify-between select-none">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
-                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
-                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
-                <span className="text-[9px] text-foreground/50 font-semibold ml-2 tracking-wide">message.json</span>
+                <div className="w-2.5 h-2.5 rounded-full border border-white/30 bg-white/10" />
+                <div className="w-2.5 h-2.5 rounded-full border border-white/30 bg-white/10" />
+                <div className="w-2.5 h-2.5 rounded-full border border-white/30 bg-white/10" />
+                <span className="text-[10px] text-white/50 font-semibold ml-2 tracking-wide font-mono">message.json</span>
               </div>
-              <span className="text-[9px] text-foreground/40 font-semibold">UTF-8</span>
+              <div className="flex items-center gap-2 text-[9px] text-white/40 font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span>READY</span>
+              </div>
             </div>
 
             {/* Editor Body */}
-            <div className="p-4 flex leading-relaxed relative bg-black">
+            <div className="p-5 flex leading-relaxed relative bg-black">
               
               {/* Line numbers */}
-              <div className="text-white/30 text-right pr-4 select-none border-r border-white/10 w-10 shrink-0">
+              <div className="text-white/30 text-right pr-4 select-none border-r border-white/10 w-10 shrink-0 space-y-1">
                 <div>1</div>
                 <div>2</div>
                 <div>3</div>
@@ -141,7 +177,7 @@ const Contact = () => {
               </div>
 
               {/* Code lines */}
-              <div className="flex-1 pl-4 space-y-1 text-white/70">
+              <div className="flex-1 pl-4 space-y-1.5 text-white/70">
                 <div>
                   <span className="text-white/50">{`{`}</span>
                 </div>
@@ -159,7 +195,7 @@ const Contact = () => {
                     placeholder="Enter your name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-44 transition-colors px-1"
+                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-48 transition-colors px-1 py-0.5"
                   />
                   <span className="text-white/40">"</span>,
                 </div>
@@ -173,7 +209,7 @@ const Contact = () => {
                     placeholder="Enter your email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-44 transition-colors px-1"
+                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-48 transition-colors px-1 py-0.5"
                   />
                   <span className="text-white/40">"</span>
                 </div>
@@ -191,7 +227,7 @@ const Contact = () => {
                     placeholder="Type your message..."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-full transition-colors px-1 resize-none h-12 leading-relaxed"
+                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-full transition-colors px-1 py-0.5 resize-none h-14 leading-relaxed"
                   />
                   <span className="text-white/40 shrink-0">"</span>
                 </div>
@@ -203,24 +239,31 @@ const Contact = () => {
             </div>
 
             {/* Editor Action Bar */}
-            <div className="bg-background border-t border-border px-4 py-3 flex items-center justify-between">
-              <span className="text-[9px] text-foreground/50 font-mono">Run: node send.js</span>
-              <button
+            <div className="bg-zinc-950 border-t border-white/10 px-5 py-3.5 flex items-center justify-between">
+              <span className="text-[9px] text-white/50 font-mono">Run: node send.js</span>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
                 type="submit"
                 disabled={sending}
-                className="px-4 py-2 bg-foreground text-background hover:opacity-90 transition-opacity uppercase font-mono text-[9px] tracking-widest font-bold flex items-center gap-1.5 select-none"
-                style={{ borderRadius: "0px" }}
+                className="px-6 py-2.5 bg-white text-black hover:bg-white/90 rounded-full transition-all uppercase font-mono text-[10px] tracking-widest font-bold flex items-center gap-2 select-none shadow-lg"
               >
                 {sending ? (
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-3 h-3 border-2 border-background/30 border-t-background rounded-full"
-                  />
+                  <>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-3 h-3 border-2 border-black/30 border-t-black rounded-full"
+                    />
+                    <span>TRANSMITTING...</span>
+                  </>
                 ) : (
-                  <>Send Message <Send size={10} /></>
+                  <>
+                    <span>Send Message</span>
+                    <Send size={11} />
+                  </>
                 )}
-              </button>
+              </motion.button>
             </div>
           </motion.form>
 

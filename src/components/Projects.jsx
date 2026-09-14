@@ -52,36 +52,109 @@ const projects = [
   },
 ];
 
-const ProjectCardMobile = ({ project }) => {
+const ProjectCardMobile = ({ project, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="border border-border bg-card flex flex-col justify-between w-full" style={{ borderRadius: "0px" }}>
-      <div className="relative h-48 overflow-hidden border-b border-border">
-        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+    <motion.div 
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col justify-between w-full shadow-lg transition-all duration-300 hover:border-foreground/40 hover:shadow-xl"
+    >
+      <div className="relative h-48 overflow-hidden border-b border-border/60 group">
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" 
+        />
+        {/* Luminous scanline sweep */}
+        <motion.div
+          animate={isHovered ? { y: ["-100%", "200%"] } : { y: "-100%" }}
+          transition={{ repeat: Infinity, duration: 2.4, ease: "linear" }}
+          className="absolute inset-x-0 h-16 bg-gradient-to-b from-transparent via-white/15 to-transparent pointer-events-none"
+        />
         {project.featured && (
-          <div className="absolute top-3 left-3 bg-foreground text-background text-[9px] font-mono font-bold tracking-widest uppercase py-1 px-2.5">
-            ★ Featured
+          <div className="absolute top-3 left-3 bg-foreground text-background text-[10px] font-mono font-bold tracking-widest uppercase py-1 px-3 rounded-full flex items-center gap-1.5 shadow-md">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-background opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-background"></span>
+            </span>
+            Featured
           </div>
         )}
       </div>
-      <div className="p-6">
-        <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest mb-1 block">{project.tagline}</span>
-        <h3 className="text-2xl font-times font-normal italic mb-2 text-foreground">{project.title}</h3>
-        <p className="text-muted-foreground text-xs leading-relaxed mb-4 font-light">{project.description}</p>
-        <div className="flex flex-wrap gap-1 mb-6">
-          {project.tech.map((t) => (
-            <span key={t} className="text-[9px] font-mono px-2 py-1 border border-border bg-secondary text-muted-foreground">{t}</span>
-          ))}
+      <div className="p-6 flex-1 flex flex-col justify-between">
+        <div>
+          <span className="text-[10px] font-mono text-foreground/60 uppercase tracking-widest mb-1.5 block">{project.tagline}</span>
+          <h3 className="text-2xl font-times font-normal italic mb-2 text-foreground">{project.title}</h3>
+          <p className="text-muted-foreground text-xs leading-relaxed mb-4 font-light">{project.description}</p>
+          
+          {project.features.length > 0 && (
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              {project.features.map((f, idx) => (
+                <div key={idx} className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono">
+                  <div className="w-5 h-5 rounded-md border border-border/70 flex items-center justify-center text-foreground bg-secondary/40">
+                    <f.icon size={10} />
+                  </div>
+                  <span>{f.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-1.5 mb-6">
+            {project.tech.map((t) => (
+              <span key={t} className="text-[10px] font-mono px-2.5 py-1 rounded-full border border-border/80 bg-secondary/50 text-muted-foreground">{t}</span>
+            ))}
+          </div>
         </div>
         <div className="flex gap-3">
-          <a href={project.demo} target="_blank" rel="noreferrer" className="solid-btn-inverted py-2.5 px-4 text-[10px]">Demo</a>
-          <a href={project.github} target="_blank" rel="noreferrer" className="solid-btn py-2.5 px-4 text-[10px]">Source</a>
+          <motion.a 
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            href={project.demo} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="solid-btn-inverted py-2.5 px-5 text-[11px] rounded-full flex items-center gap-1.5"
+          >
+            Demo <ExternalLink size={11} />
+          </motion.a>
+          <motion.a 
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            href={project.github} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="solid-btn py-2.5 px-5 text-[11px] rounded-full flex items-center gap-1.5"
+          >
+            Source <Github size={11} />
+          </motion.a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const ProjectCard = ({ project, i, scrollYProgress }) => {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ x: 0, y: 0 });
+  };
+
   const centerPoint = 0.32 + i * 0.08;
   const offset = useTransform(
     scrollYProgress, 
@@ -106,77 +179,116 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
         rotateZ,
         opacity,
         perspective: 1200,
-        borderRadius: "0px"
       }}
-      className="w-[420px] shrink-0 border border-border bg-card flex flex-col justify-between h-[65vh] group transition-colors duration-300 hover:border-foreground"
+      className="w-[430px] shrink-0 h-[68vh] flex flex-col justify-between"
     >
-      {/* Card Image */}
-      <div className="relative h-44 overflow-hidden border-b border-border">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
-        />
-        {project.featured && (
-          <div className="absolute top-3 left-3 bg-foreground text-background text-[9px] font-mono font-bold tracking-widest uppercase py-1 px-2.5">
-            ★ Featured
-          </div>
+      <motion.div
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        animate={{
+          rotateX: isHovered ? -tilt.y * 14 : 0,
+          rotateY: isHovered ? tilt.x * 14 : 0,
+          scale: isHovered ? 1.025 : 1,
+        }}
+        transition={{ type: "spring", stiffness: 350, damping: 24 }}
+        style={{ transformStyle: "preserve-3d" }}
+        className="relative w-full h-full border border-border/80 bg-card/95 backdrop-blur-md rounded-2xl overflow-hidden flex flex-col justify-between group shadow-xl transition-colors duration-300 hover:border-foreground/50"
+      >
+        {/* Specular light follower */}
+        {isHovered && (
+          <div 
+            className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(circle 280px at ${(tilt.x + 0.5) * 100}% ${(tilt.y + 0.5) * 100}%, rgba(255, 255, 255, 0.08), transparent 70%)`
+            }}
+          />
         )}
-      </div>
 
-      {/* Card Body */}
-      <div className="p-6 flex-1 flex flex-col justify-between">
-        <div>
-          <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest mb-1.5 block">{project.tagline}</span>
-          <h3 className="text-2xl font-times font-normal italic mb-2 text-foreground leading-tight">{project.title}</h3>
-          <p className="text-muted-foreground text-xs leading-relaxed font-light mb-4">{project.description}</p>
-          
-          {project.features.length > 0 && (
-            <div className="grid grid-cols-2 gap-2 mb-4">
-              {project.features.map((f, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono">
-                  <div className="w-5 h-5 border border-border flex items-center justify-center text-foreground">
-                    <f.icon size={9} />
-                  </div>
-                  <span>{f.label}</span>
-                </div>
-              ))}
+        {/* Card Image */}
+        <div className="relative h-44 overflow-hidden border-b border-border/70 shrink-0">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+          />
+
+          {/* Interactive Scanline Sweep */}
+          <motion.div
+            animate={isHovered ? { y: ["-100%", "200%"] } : { y: "-100%" }}
+            transition={{ repeat: Infinity, duration: 2.2, ease: "linear" }}
+            className="absolute inset-x-0 h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent pointer-events-none"
+          />
+
+          {project.featured && (
+            <div className="absolute top-3 left-3 bg-foreground text-background text-[9px] font-mono font-bold tracking-widest uppercase py-1 px-3 rounded-full flex items-center gap-1.5 shadow-md">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-background opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-background"></span>
+              </span>
+              Featured
             </div>
           )}
         </div>
 
-        <div>
-          <div className="flex flex-wrap gap-1 mb-4">
-            {project.tech.map((t) => (
-              <span 
-                key={t} 
-                className="text-[9px] font-mono px-2 py-1 border border-border bg-secondary text-muted-foreground"
-              >
-                {t}
-              </span>
-            ))}
+        {/* Card Body */}
+        <div className="p-6 flex-1 flex flex-col justify-between relative z-10">
+          <div>
+            <span className="text-[10px] font-mono text-foreground/60 uppercase tracking-widest mb-1.5 block">{project.tagline}</span>
+            <h3 className="text-2xl font-times font-normal italic mb-2 text-foreground leading-tight">{project.title}</h3>
+            <p className="text-muted-foreground text-xs leading-relaxed font-light mb-4">{project.description}</p>
+            
+            {project.features.length > 0 && (
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                {project.features.map((f, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono">
+                    <div className="w-5 h-5 rounded-md border border-border/70 flex items-center justify-center text-foreground bg-secondary/40">
+                      <f.icon size={10} />
+                    </div>
+                    <span>{f.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          
-          <div className="flex gap-3">
-            <a 
-              href={project.demo} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="solid-btn-inverted shimmer-btn py-2.5 px-5 text-[10px]"
-            >
-              Demo <ExternalLink size={10} className="ml-1.5 inline" />
-            </a>
-            <a 
-              href={project.github} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="solid-btn shimmer-btn py-2.5 px-5 text-[10px]"
-            >
-              Source <Github size={10} className="ml-1.5 inline" />
-            </a>
+
+          <div>
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {project.tech.map((t) => (
+                <span 
+                  key={t} 
+                  className="text-[10px] font-mono px-2.5 py-1 rounded-full border border-border/80 bg-secondary/50 text-muted-foreground transition-colors group-hover:border-foreground/30"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+            
+            <div className="flex gap-3">
+              <motion.a 
+                whileHover={{ scale: 1.04, y: -1 }}
+                whileTap={{ scale: 0.97 }}
+                href={project.demo} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="solid-btn-inverted shimmer-btn py-2.5 px-5 text-[11px] rounded-full flex items-center gap-1.5"
+              >
+                Demo <ExternalLink size={11} />
+              </motion.a>
+              <motion.a 
+                whileHover={{ scale: 1.04, y: -1 }}
+                whileTap={{ scale: 0.97 }}
+                href={project.github} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="solid-btn shimmer-btn py-2.5 px-5 text-[11px] rounded-full flex items-center gap-1.5"
+              >
+                Source <Github size={11} />
+              </motion.a>
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -203,7 +315,7 @@ const Projects = () => {
         </div>
         <div className="flex flex-col gap-6">
           {projects.map((project, i) => (
-            <ProjectCardMobile key={i} project={project} />
+            <ProjectCardMobile key={i} project={project} index={i} />
           ))}
         </div>
       </section>

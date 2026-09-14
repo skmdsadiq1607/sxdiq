@@ -30,16 +30,29 @@ const AnimatedCounter = ({ value, decimals, suffix }) => {
   return <span ref={ref}>{display}{suffix}</span>;
 };
 
+const TechBadge = ({ tech, index }) => (
+  <motion.span
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: 0.1 + index * 0.05, duration: 0.4 }}
+    whileHover={{ y: -3, scale: 1.05 }}
+    className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-foreground/20 hover:border-foreground bg-foreground/5 hover:bg-foreground hover:text-background text-xs font-mono uppercase tracking-wider transition-colors duration-200 cursor-default"
+  >
+    {tech}
+  </motion.span>
+);
+
 const About = () => (
   <section id="about" className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-16 px-8 sm:px-12 md:px-24 border-r border-border">
     <div className="container mx-auto relative z-10 pt-12 md:pt-16 max-w-7xl">
       
-      {/* Header with Times New Roman */}
+      {/* Header with Times New Roman & Blur Stagger */}
       <motion.div 
-        initial={{ opacity: 0, y: 30 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
+        initial={{ opacity: 0, y: 30, filter: "blur(6px)" }} 
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
         viewport={{ once: true }} 
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="mb-12 md:mb-16 text-left border-b border-foreground/15 pb-6"
       >
         <span className="font-mono text-xs mb-3 tracking-[0.3em] uppercase block text-foreground/50">
@@ -53,75 +66,93 @@ const About = () => (
       {/* Two-column editorial layout */}
       <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
-        {/* Left Column (Bio & Skills) */}
+        {/* Left Column (Bio & Skills with Blur-to-Sharpness text reveal) */}
         <motion.div 
-          initial={{ opacity: 0, x: -30 }} 
-          whileInView={{ opacity: 1, x: 0 }} 
+          initial={{ opacity: 0, x: -30, filter: "blur(4px)" }} 
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
           viewport={{ once: true }} 
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           className="lg:col-span-6 flex flex-col justify-between"
         >
           <div>
-            <h3 className="font-times text-2xl sm:text-3xl md:text-4xl font-normal italic text-foreground leading-snug mb-6">
+            <motion.h3 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-times text-2xl sm:text-3xl md:text-4xl font-normal italic text-foreground leading-snug mb-6"
+            >
               A passionate developer turning ideas into reality.
-            </h3>
-            <p className="text-foreground/75 text-base sm:text-lg leading-relaxed mb-6 font-light font-sans">
+            </motion.h3>
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-foreground/75 text-base sm:text-lg leading-relaxed mb-6 font-light font-sans"
+            >
               I'm a B.Tech Information Technology student at Anurag University, Hyderabad, deeply passionate about web development and problem-solving. I enjoy building modern, user-centric applications using the MERN stack.
-            </p>
-            <p className="text-foreground/75 text-base sm:text-lg leading-relaxed mb-8 font-light font-sans">
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-foreground/75 text-base sm:text-lg leading-relaxed mb-8 font-light font-sans"
+            >
               Beyond coding, I actively participate in hackathons, contribute to student communities, and continuously sharpen my skills in Data Structures and Algorithms. My goal is to create impactful tech solutions that make a difference.
-            </p>
+            </motion.p>
           </div>
           
-          {/* Core Technologies - Clean typographic slash list, NO BOXES */}
+          {/* Core Technologies - Floating pills with hover levitation */}
           <div className="pt-6 border-t border-foreground/15">
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/45 block mb-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/45 block mb-4">
               Core Tech Stack
             </span>
-            <div className="flex flex-wrap items-center gap-y-2 text-sm font-mono text-foreground/80">
-              {["MongoDB", "Express.js", "React.js", "Node.js", "Java", "C"].map((tech, i, arr) => (
-                <span key={tech} className="flex items-center">
-                  <span className="hover:text-foreground transition-colors cursor-default tracking-wider">
-                    {tech}
-                  </span>
-                  {i < arr.length - 1 && (
-                    <span className="mx-3.5 text-foreground/25">/</span>
-                  )}
-                </span>
+            <div className="flex flex-wrap gap-2.5">
+              {["MongoDB", "Express.js", "React.js", "Node.js", "Java", "C"].map((tech, i) => (
+                <TechBadge key={tech} tech={tech} index={i} />
               ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Right Column (Minimalist Open Stats List - ZERO BOXES) */}
+        {/* Right Column (Minimalist Open Stats List with Magnetic Row Hover) */}
         <motion.div 
-          initial={{ opacity: 0, x: 30 }} 
-          whileInView={{ opacity: 1, x: 0 }} 
+          initial={{ opacity: 0, x: 30, filter: "blur(4px)" }} 
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
           viewport={{ once: true }} 
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }} 
+          transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }} 
           className="lg:col-span-6 flex flex-col divide-y divide-foreground/15 border-t lg:border-t-0 border-b border-foreground/15"
         >
-          {stats.map((stat) => (
-            <div
+          {stats.map((stat, idx) => (
+            <motion.div
               key={stat.label}
-              className="py-6 sm:py-7 flex items-end justify-between group transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 + idx * 0.1, duration: 0.5 }}
+              whileHover={{ x: 8 }}
+              className="py-6 sm:py-7 flex items-end justify-between group transition-all duration-300 cursor-default"
             >
               <div>
-                <span className="font-mono text-[10px] sm:text-xs text-foreground/50 uppercase tracking-[0.25em] block mb-2">
+                <span className="font-mono text-[10px] sm:text-xs text-foreground/50 uppercase tracking-[0.25em] block mb-2 group-hover:text-foreground/80 transition-colors">
                   {stat.label}
                 </span>
-                <p className="text-5xl sm:text-6xl md:text-7xl font-times font-normal italic tracking-tight text-foreground leading-none">
+                <p className="text-5xl sm:text-6xl md:text-7xl font-times font-normal italic tracking-tight text-foreground leading-none group-hover:scale-[1.02] origin-left transition-transform duration-300">
                   <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
                 </p>
               </div>
 
               <div className="text-right flex flex-col items-end pb-1">
-                <stat.icon size={20} className="text-foreground/35 group-hover:text-foreground transition-colors duration-300 mb-2" />
-                <span className="font-mono text-[10px] text-foreground/45 tracking-wider">
+                <motion.div whileHover={{ rotate: 15, scale: 1.2 }}>
+                  <stat.icon size={20} className="text-foreground/35 group-hover:text-foreground transition-colors duration-300 mb-2" />
+                </motion.div>
+                <span className="font-mono text-[10px] text-foreground/45 tracking-wider group-hover:text-foreground/75 transition-colors">
                   {stat.detail}
                 </span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
