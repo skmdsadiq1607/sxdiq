@@ -23,8 +23,8 @@ const Navbar = ({ isDark, toggleTheme }) => {
 
   return (
     <nav
-      className={`global-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 opacity-0 -translate-y-full ${
-        scrolled ? "bg-background/95 border-b border-border py-3 backdrop-blur-md" : "bg-transparent py-6"
+      className={`global-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-background/95 border-b border-border py-3 backdrop-blur-md" : "bg-transparent py-5"
       }`}
     >
       {/* Scroll Progress Bar */}

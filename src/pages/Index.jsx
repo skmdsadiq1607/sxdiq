@@ -89,7 +89,7 @@ const Index = () => {
 
       {isMobile ? (
         /* Standard vertical scrolling layout for mobile & tablet */
-        <div className="min-h-screen pt-20 flex flex-col gap-1 z-10 relative">
+        <div className="min-h-screen flex flex-col z-10 relative">
           <Hero />
           <About />
           <Skills />
