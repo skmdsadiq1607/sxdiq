@@ -34,7 +34,7 @@ const projects = [
       { icon: Calendar, label: "Live Events" },
       { icon: School, label: "Multi-College" },
     ],
-    tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+    tech: ["React", "JavaScript", "Tailwind CSS", "Vercel"],
     demo: "https://ignitext2026.vercel.app/",
     github: "https://github.com/skmdsadiq1607/IgniteXT-StudentCommunity",
     featured: true,
@@ -42,10 +42,10 @@ const projects = [
   {
     title: "Developer Portfolio",
     tagline: "Personal Website",
-    description: "My personal developer portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion — featuring smooth animations, dark mode, and a modern glassmorphism design.",
+    description: "My personal developer portfolio website built with React, JavaScript, Tailwind CSS, and Framer Motion — featuring smooth animations, dark mode, and editorial typography.",
     image: smartCityImg,
     features: [],
-    tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+    tech: ["React", "JavaScript", "Tailwind CSS", "Framer Motion", "Vite"],
     demo: "https://sxdiq.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     featured: false,
@@ -65,7 +65,7 @@ const ProjectCardMobile = ({ project }) => {
       </div>
       <div className="p-6">
         <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest mb-1 block">{project.tagline}</span>
-        <h3 className="text-xl font-extrabold uppercase mb-2 text-foreground">{project.title}</h3>
+        <h3 className="text-2xl font-times font-normal italic mb-2 text-foreground">{project.title}</h3>
         <p className="text-muted-foreground text-xs leading-relaxed mb-4 font-light">{project.description}</p>
         <div className="flex flex-wrap gap-1 mb-6">
           {project.tech.map((t) => (
@@ -128,7 +128,7 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
       <div className="p-6 flex-1 flex flex-col justify-between">
         <div>
           <span className="text-[9px] font-mono text-foreground/60 uppercase tracking-widest mb-1.5 block">{project.tagline}</span>
-          <h3 className="text-xl font-extrabold uppercase mb-2 text-foreground leading-tight">{project.title}</h3>
+          <h3 className="text-2xl font-times font-normal italic mb-2 text-foreground leading-tight">{project.title}</h3>
           <p className="text-muted-foreground text-xs leading-relaxed font-light mb-4">{project.description}</p>
           
           {project.features.length > 0 && (

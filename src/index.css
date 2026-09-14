@@ -125,7 +125,8 @@
   }
 
   .section-heading h2 {
-    @apply text-5xl md:text-7xl font-bold uppercase tracking-tight leading-none text-foreground;
+    font-family: "Times New Roman", Times, "Playfair Display", serif;
+    @apply text-5xl md:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground;
   }
 
   /* Inversion hovers */
@@ -284,8 +285,8 @@
 }
 
 .font-times {
-  font-family: 'Outfit', sans-serif !important;
-  letter-spacing: -0.015em !important;
+  font-family: "Times New Roman", Times, "Playfair Display", serif !important;
+  letter-spacing: 0.005em !important;
 }
 
 .leading-hero {

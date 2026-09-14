@@ -52,13 +52,10 @@ const SkillCard = ({ skill, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.02, duration: 0.4 }}
-      className="border border-border p-4 flex flex-col items-center gap-3 group cursor-default transition-all duration-300 hover:bg-foreground hover:text-background"
-      style={{ borderRadius: "0px" }}
+      className="p-3.5 sm:p-4 border border-foreground/15 hover:border-foreground transition-all duration-300 flex flex-col items-center gap-2.5 group cursor-default bg-background/50 hover:bg-foreground hover:text-background"
     >
-      <div className="w-10 h-10 border border-border group-hover:border-background flex items-center justify-center transition-colors duration-300" style={{ borderRadius: "0px" }}>
-        <skill.icon size={18} className="text-foreground group-hover:text-background transition-colors duration-300" />
-      </div>
-      <span className="text-[10px] font-mono font-medium tracking-wide uppercase text-center">{skill.name}</span>
+      <skill.icon size={22} className="text-foreground/80 group-hover:text-background transition-colors duration-300" />
+      <span className="text-[10px] font-mono font-medium tracking-wider uppercase text-center">{skill.name}</span>
     </motion.div>
   );
 };
@@ -73,11 +70,11 @@ const Skills = () => (
         transition={{ duration: 0.6 }}
         className="section-heading"
       >
-        <span className="subtitle">What I work with</span>
+        <span className="subtitle">// 02 — Technical Proficiencies</span>
         <h2>Skills &amp; Tech</h2>
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {categories.map((cat, ci) => (
           <motion.div 
             key={cat.title} 
@@ -87,9 +84,9 @@ const Skills = () => (
             transition={{ duration: 0.6 }}
             className="flex flex-col"
           >
-            <div className="border-b border-border pb-4 mb-6">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-foreground/60 block mb-1">{cat.emoji} Category</span>
-              <h3 className="font-bold text-base uppercase tracking-tight">{cat.title}</h3>
+            <div className="border-b border-foreground/15 pb-4 mb-6">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-foreground/50 block mb-1">{cat.emoji} Category</span>
+              <h3 className="font-times text-xl md:text-2xl font-normal italic text-foreground tracking-tight">{cat.title}</h3>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
