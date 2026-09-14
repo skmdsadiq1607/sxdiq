@@ -90,23 +90,22 @@
 }
 
 @layer base {
-  * {
+  *, *::before, *::after {
     @apply border-border;
+    font-family: "Times New Roman", Times, serif !important;
   }
-  body {
+  body, html {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: "Times New Roman", Times, serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Times New Roman", Times, "Playfair Display", serif;
-    font-weight: 400;
-    letter-spacing: -0.015em;
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, div, label, code, pre {
+    font-family: "Times New Roman", Times, serif !important;
   }
-  .font-mono {
-    font-family: 'JetBrains Mono', monospace !important;
+  .font-mono, .font-sans, .font-serif, .font-times {
+    font-family: "Times New Roman", Times, serif !important;
   }
 }
 
@@ -281,8 +280,8 @@
   color: transparent;
 }
 
-.font-times {
-  font-family: "Times New Roman", Times, "Playfair Display", serif !important;
+.font-times, .font-mono, .font-sans, .font-serif {
+  font-family: "Times New Roman", Times, serif !important;
   letter-spacing: 0.005em !important;
 }
 

@@ -77,7 +77,7 @@ const SkillCard = ({ skill, index }) => {
 };
 
 const Skills = () => (
-  <section id="skills" className="min-h-screen w-screen shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border relative overflow-hidden select-none">
+  <section id="skills" className="min-h-screen w-screen shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 sm:px-12 md:px-20 border-r border-border relative overflow-hidden select-none">
     
     {/* 🪐 Gravitational Celestial Orbit Rings */}
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-40">
@@ -98,19 +98,19 @@ const Skills = () => (
       />
     </div>
 
-    <div className="container mx-auto relative z-10 pt-16">
+    <div className="container mx-auto relative z-10 max-w-7xl pt-16 lg:pt-6">
       <motion.div 
-        initial={{ opacity: 0, y: 30 }} 
+        initial={{ opacity: 0, y: 20 }} 
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="section-heading mb-12"
+        className="section-heading mb-6 lg:mb-8"
       >
         <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 02 — Technical Proficiencies</span>
-        <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">Skills &amp; Tech</h2>
+        <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground">Skills &amp; Tech</h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         {categories.map((cat, ci) => (
           <motion.div 
             key={cat.title} 
@@ -118,9 +118,9 @@ const Skills = () => (
             whileInView={{ opacity: 1, y: 0 }} 
             viewport={{ once: true }} 
             transition={{ duration: 0.6, delay: ci * 0.1 }}
-            className="flex flex-col bg-card/60 backdrop-blur-xl rounded-3xl p-6 sm:p-7 border border-border/70 hover:border-foreground/40 transition-colors shadow-lg"
+            className="flex flex-col bg-card/60 backdrop-blur-xl rounded-3xl p-5 sm:p-6 border border-border/70 hover:border-foreground/40 transition-colors shadow-lg"
           >
-            <div className="border-b border-foreground/15 pb-4 mb-6">
+            <div className="border-b border-foreground/15 pb-3 mb-4">
               <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/50 block mb-1">{cat.emoji} Category</span>
               <h3 className="font-times text-2xl font-normal italic text-foreground tracking-tight">{cat.title}</h3>
             </div>

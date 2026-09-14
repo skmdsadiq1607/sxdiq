@@ -16,14 +16,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        times: ['"Times New Roman"', 'Times', '"Playfair Display"', 'serif'],
-        serif: ['"Times New Roman"', 'Times', '"Playfair Display"', 'serif'],
-        outfit: ['Outfit', 'sans-serif'],
-        syne: ['Syne', 'sans-serif'],
-        space: ['"Space Grotesk"', 'sans-serif'],
-        sans: ['Inter', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"Times New Roman"', 'Times', '"Playfair Display"', 'serif'],
+        times: ['"Times New Roman"', 'Times', 'serif'],
+        serif: ['"Times New Roman"', 'Times', 'serif'],
+        outfit: ['"Times New Roman"', 'Times', 'serif'],
+        syne: ['"Times New Roman"', 'Times', 'serif'],
+        space: ['"Times New Roman"', 'Times', 'serif'],
+        sans: ['"Times New Roman"', 'Times', 'serif'],
+        mono: ['"Times New Roman"', 'Times', 'serif'],
+        display: ['"Times New Roman"', 'Times', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

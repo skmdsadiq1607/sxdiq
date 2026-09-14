@@ -180,7 +180,7 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
         opacity,
         perspective: 1200,
       }}
-      className="w-[430px] shrink-0 h-[68vh] flex flex-col justify-between"
+      className="w-[420px] shrink-0 h-[64vh] min-h-[440px] max-h-[530px] flex flex-col justify-between"
     >
       <motion.div
         onMouseMove={handleMouseMove}
@@ -206,7 +206,7 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
         )}
 
         {/* Card Image */}
-        <div className="relative h-44 overflow-hidden border-b border-border/70 shrink-0">
+        <div className="relative h-36 sm:h-40 overflow-hidden border-b border-border/70 shrink-0">
           <img
             src={project.image}
             alt={project.title}
@@ -232,7 +232,7 @@ const ProjectCard = ({ project, i, scrollYProgress }) => {
         </div>
 
         {/* Card Body */}
-        <div className="p-6 flex-1 flex flex-col justify-between relative z-10">
+        <div className="p-5 flex-1 flex flex-col justify-between relative z-10">
           <div>
             <span className="text-[10px] font-mono text-foreground/60 uppercase tracking-widest mb-1.5 block">{project.tagline}</span>
             <h3 className="text-2xl font-times font-normal italic mb-2 text-foreground leading-tight">{project.title}</h3>
@@ -332,10 +332,10 @@ const Projects = () => {
       />
 
       {/* Left Info Panel */}
-      <div className="w-[380px] shrink-0 pr-16 h-[85vh] flex flex-col justify-center relative z-10">
-        <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-3">// 03 — Production Software</span>
-        <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-6 text-foreground">Selected Work</h2>
-        <p className="text-sm text-muted-foreground font-light leading-relaxed mb-8">
+      <div className="w-[380px] shrink-0 pr-16 h-[72vh] max-h-[530px] flex flex-col justify-center relative z-10 pt-12 lg:pt-0">
+        <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 03 — Production Software</span>
+        <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-4 text-foreground">Selected Work</h2>
+        <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6">
           A curated selection of applications built with modern web technologies, focusing on clean engineering, real-time data, and responsive human interfaces.
         </p>
         <div className="flex items-center gap-2 font-mono text-[10px] text-foreground/50 uppercase tracking-widest">

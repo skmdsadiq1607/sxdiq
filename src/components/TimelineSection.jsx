@@ -177,10 +177,10 @@ const TimelineSection = () => {
 
   // Desktop horizontal layout
   return (
-    <section id="leadership" className="min-h-screen flex items-center bg-black text-foreground noise-overlay select-none shrink-0 py-12 px-12 md:px-24 border-r border-border relative overflow-hidden" style={{ width: "3300px" }}>
+    <section id="leadership" className="min-h-screen flex items-center bg-black text-foreground noise-overlay select-none shrink-0 py-8 px-8 sm:px-12 md:px-20 border-r border-border relative overflow-hidden" style={{ width: "3300px" }}>
       
       {/* ⚡ Quantum Laser Conduit running across all 3300px */}
-      <div className="absolute top-12 left-16 right-16 h-[2px] bg-white/10 z-20 pointer-events-none hidden lg:block overflow-visible">
+      <div className="absolute top-20 left-16 right-16 h-[2px] bg-white/10 z-20 pointer-events-none hidden lg:block overflow-visible">
         <motion.div 
           style={{ left: laserLeft }}
           className="absolute -top-1 w-36 h-1 bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_20px_#ffffff] -translate-x-1/2"
@@ -190,10 +190,10 @@ const TimelineSection = () => {
       </div>
 
       {/* Education Panel */}
-      <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[85vh] relative z-10">
-        <div className="mb-10">
+      <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[72vh] max-h-[540px] relative z-10 pt-10 lg:pt-0">
+        <div className="mb-6 lg:mb-8">
           <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 04 — Academic Foundation</span>
-          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-4 text-foreground">Education</h2>
+          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-3 text-foreground">Education</h2>
           <p className="text-sm text-muted-foreground font-light">Academic background and competitive milestones</p>
         </div>
 
@@ -203,7 +203,7 @@ const TimelineSection = () => {
               key={idx}
               whileHover={{ y: -6, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 350, damping: 22 }}
-              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-between h-[45vh] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
+              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-5 flex flex-col justify-between h-[38vh] min-h-[250px] max-h-[320px] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
             >
               {/* Illuminated laser-bead track sweep on hover */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
@@ -233,10 +233,10 @@ const TimelineSection = () => {
       </div>
 
       {/* Experience & Activities Panel */}
-      <div className="w-[850px] flex flex-col justify-center px-16 border-r border-border h-[85vh] relative z-10">
-        <div className="mb-10">
+      <div className="w-[850px] flex flex-col justify-center px-16 border-r border-border h-[72vh] max-h-[540px] relative z-10 pt-10 lg:pt-0">
+        <div className="mb-6 lg:mb-8">
           <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 05 — Student Leadership</span>
-          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-4 text-foreground">Experience</h2>
+          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-3 text-foreground">Experience</h2>
           <p className="text-sm text-muted-foreground font-light">Leadership roles and technical community initiatives</p>
         </div>
 
@@ -246,24 +246,24 @@ const TimelineSection = () => {
               key={idx}
               whileHover={{ y: -6, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 350, damping: 22 }}
-              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-between h-[45vh] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
+              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-5 flex flex-col justify-between h-[38vh] min-h-[250px] max-h-[320px] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
             >
               {/* Laser-bead track */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
 
               <div>
-                <div className="w-9 h-9 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground mb-4 group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
-                  <item.icon size={15} />
+                <div className="w-8 h-8 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground mb-3 group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
+                  <item.icon size={14} />
                 </div>
-                <h3 className="font-bold uppercase text-base leading-tight mb-2">{item.org}</h3>
-                <p className="text-[10px] font-mono font-semibold uppercase text-muted-foreground tracking-wider mb-4">{item.role}</p>
+                <h3 className="font-bold uppercase text-sm leading-tight mb-1.5">{item.org}</h3>
+                <p className="text-[10px] font-mono font-semibold uppercase text-muted-foreground tracking-wider mb-3">{item.role}</p>
               </div>
 
-              <div className="space-y-2 mt-auto">
+              <div className="space-y-1.5 mt-auto">
                 <span className="text-[10px] font-mono text-foreground/60 block">{item.period}</span>
-                <ul className="space-y-1.5">
+                <ul className="space-y-1">
                   {item.points.map((p, pIdx) => (
-                    <li key={pIdx} className="text-[11px] text-muted-foreground font-light leading-relaxed">
+                    <li key={pIdx} className="text-[10px] text-muted-foreground font-light leading-relaxed">
                       - {p}
                     </li>
                   ))}
@@ -275,10 +275,10 @@ const TimelineSection = () => {
       </div>
 
       {/* Hackathons Panel */}
-      <div className="w-[1250px] flex flex-col justify-center pl-16 h-[85vh] relative z-10">
-        <div className="mb-10">
+      <div className="w-[1250px] flex flex-col justify-center pl-16 h-[72vh] max-h-[540px] relative z-10 pt-10 lg:pt-0">
+        <div className="mb-6 lg:mb-8">
           <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 06 — Competitions</span>
-          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-4 text-foreground">Hackathons</h2>
+          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-3 text-foreground">Hackathons</h2>
           <p className="text-sm text-muted-foreground font-light">Hackathons, coding sprints, and credentials</p>
         </div>
 
@@ -288,7 +288,7 @@ const TimelineSection = () => {
               key={idx}
               whileHover={{ y: -6, scale: 1.025 }}
               transition={{ type: "spring", stiffness: 350, damping: 22 }}
-              className="border border-border/80 bg-card/95 backdrop-blur-sm rounded-2xl flex flex-col justify-between h-[45vh] group transition-all duration-300 hover:border-foreground/50 hover:shadow-xl overflow-hidden"
+              className="border border-border/80 bg-card/95 backdrop-blur-sm rounded-2xl flex flex-col justify-between h-[38vh] min-h-[250px] max-h-[320px] group transition-all duration-300 hover:border-foreground/50 hover:shadow-xl overflow-hidden"
             >
               <div 
                 className="relative h-28 overflow-hidden cursor-pointer border-b border-border/70"

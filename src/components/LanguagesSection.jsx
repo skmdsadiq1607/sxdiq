@@ -95,7 +95,7 @@ const LanguageCard = ({ lang, index }) => {
 };
 
 const LanguagesSection = () => (
-  <section id="languages" className="min-h-screen w-full lg:w-[800px] shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-6 md:px-16 border-r border-border relative overflow-hidden select-none">
+  <section id="languages" className="min-h-screen w-full lg:w-[800px] shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 md:px-16 border-r border-border relative overflow-hidden select-none">
     
     {/* 〰️ Acoustic Soundwave Resonance Ripples */}
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-25">
@@ -106,16 +106,16 @@ const LanguagesSection = () => (
       </svg>
     </div>
 
-    <div className="container mx-auto relative z-10 pt-16">
+    <div className="container mx-auto relative z-10 pt-16 lg:pt-6">
       <motion.div 
-        initial={{ opacity: 0, y: 30 }} 
+        initial={{ opacity: 0, y: 20 }} 
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }} 
         transition={{ duration: 0.6 }}
-        className="section-heading mb-12"
+        className="section-heading mb-6 lg:mb-8"
       >
         <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 08 — Verbal Fluency</span>
-        <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">Languages</h2>
+        <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground">Languages</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">

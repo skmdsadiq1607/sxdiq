@@ -76,7 +76,7 @@ const CertCard = ({ c, i, onOpenBundle }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => c.isBundle && onOpenBundle()}
-        className={`border border-border/80 bg-card/90 backdrop-blur-md rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-foreground/50 hover:shadow-2xl h-80 relative overflow-hidden ${
+        className={`border border-border/80 bg-card/90 backdrop-blur-md rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:border-foreground/50 hover:shadow-2xl h-72 sm:h-76 relative overflow-hidden ${
           c.isBundle ? "cursor-pointer" : ""
         }`}
       >
@@ -137,7 +137,7 @@ const Certifications = () => {
   );
 
   return (
-    <section id="certifications" className="min-h-screen w-full lg:w-screen shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-6 md:px-24 border-r border-border relative overflow-hidden select-none">
+    <section id="certifications" className="min-h-screen w-full lg:w-screen shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 sm:px-12 md:px-20 border-r border-border relative overflow-hidden select-none">
       
       {/* 🔮 Concentric Holographic Lens Rings */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-30">
@@ -146,19 +146,19 @@ const Certifications = () => {
         <div className="w-[1100px] h-[1100px] rounded-full border border-white/[0.03]" />
       </div>
 
-      <div className="container mx-auto px-6 md:px-16 relative z-10 pt-16">
+      <div className="container mx-auto px-6 md:px-16 relative z-10 max-w-6xl pt-16 lg:pt-6">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
+          initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="section-heading mb-12"
+          className="section-heading mb-6 lg:mb-8"
         >
           <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 07 — Validated Expertise</span>
-          <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">Certifications</h2>
+          <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground">Certifications</h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {certs.map((c, i) => (
             <CertCard 
               key={c.title} 

@@ -51,17 +51,17 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen w-full lg:w-[1000px] shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-6 md:px-16 border-r border-border relative overflow-hidden select-none" style={{ perspective: 1200 }}>
+    <section id="contact" className="min-h-screen w-full lg:w-[1000px] shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 md:px-16 border-r border-border relative overflow-hidden select-none" style={{ perspective: 1200 }}>
       
 
-      <div className="container mx-auto px-4 md:px-12 relative z-10 pt-16 overflow-visible w-full">
+      <div className="container mx-auto px-4 md:px-12 relative z-10 pt-16 lg:pt-6 overflow-visible w-full">
         
         {/* Radar beacon status badge */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border/80 bg-secondary/50 text-[10px] font-mono text-foreground/90 mb-4 shadow-sm"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border/80 bg-secondary/50 text-[10px] font-mono text-foreground/90 mb-3 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75"></span>
@@ -71,14 +71,14 @@ const Contact = () => {
         </motion.div>
 
         <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
+          initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.6 }}
-          className="section-heading mb-10"
+          className="section-heading mb-6 lg:mb-8"
         >
           <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 09 — Direct Transmission</span>
-          <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">Let's build together</h2>
+          <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground">Let's build together</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start overflow-visible">

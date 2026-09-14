@@ -15,11 +15,11 @@ const socials = [
 
 const Footer = () => (
   <footer className="min-h-screen w-full lg:w-[500px] shrink-0 flex items-center bg-black text-white/80 py-12 px-6 md:px-16 relative border-t lg:border-t-0 border-white/10">
-    <div className="container mx-auto flex flex-col justify-between h-[75vh]">
+    <div className="container mx-auto flex flex-col justify-between h-[70vh] max-h-[520px] pt-12 lg:pt-0">
       
       {/* Top row */}
       <div>
-        <a href="#" className="text-2xl font-bold uppercase tracking-widest font-mono text-white inline-block mb-4">Sadiq.</a>
+        <a href="#" className="text-2xl font-normal font-times italic tracking-wide text-white inline-block mb-4">Sadiq.</a>
         <p className="text-xs text-white/50 leading-relaxed font-light mb-6">
           Passionate developer building modern web applications. Always learning, always creating.
         </p>
