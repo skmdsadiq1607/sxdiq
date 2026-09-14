@@ -4,69 +4,65 @@ import {
   SiHtml5, SiCss, SiJavascript, SiExpress, SiMongodb, SiPython, 
   SiBootstrap, SiTailwindcss, SiReact, SiGit, SiGithub 
 } from "react-icons/si";
-import { FaJava, FaDatabase, FaCogs, FaServer, FaCode, FaDesktop, FaLayerGroup, FaTerminal } from "react-icons/fa";
-import { Compass, Cpu, Activity, ShieldCheck, Sparkles } from "lucide-react";
+import { FaJava, FaDatabase, FaCogs, FaServer, FaCode, FaDesktop } from "react-icons/fa";
 
-const allSkills = [
-  // Web Technologies
-  { name: "React.js", category: "Web Architecture", icon: SiReact, level: "Advanced", pct: 92, role: "Component Architecture, Virtual DOM & Hooks", projects: "IgniteXT, Portfolio" },
-  { name: "JavaScript", category: "Programming", icon: SiJavascript, level: "Advanced", pct: 90, role: "ES6+, Async/Await, DOM Engine & APIs", projects: "All Projects" },
-  { name: "Node.js & Express", category: "Web Architecture", icon: SiExpress, level: "Proficient", pct: 88, role: "RESTful APIs, Middleware & Routing", projects: "Backend APIs" },
-  { name: "MongoDB", category: "Web Architecture", icon: SiMongodb, level: "Proficient", pct: 85, role: "NoSQL Schemas, Aggregations & Atlas", projects: "IgniteXT, MERN Apps" },
-  { name: "Tailwind CSS", category: "Web Architecture", icon: SiTailwindcss, level: "Expert", pct: 95, role: "Utility-First Responsive UI & Custom Design Systems", projects: "All Projects" },
-  { name: "HTML5 & CSS3", category: "Web Architecture", icon: SiHtml5, level: "Expert", pct: 96, role: "Semantic Layouts, Flexbox, Grid & Keyframes", projects: "All Projects" },
-  { name: "REST APIs", category: "Web Architecture", icon: FaServer, level: "Proficient", pct: 88, role: "HTTP Protocols, JSON Payloads & Client Handshakes", projects: "Krushi Mitra" },
-  { name: "SQL & Databases", category: "CS Foundations", icon: FaDatabase, level: "Proficient", pct: 84, role: "Relational Queries, Normalization & ACID Transactions", projects: "Infosys Certs" },
-  { name: "Git & GitHub", category: "Web Architecture", icon: SiGithub, level: "Advanced", pct: 90, role: "Branch Workflows, Versioning & Open Source", projects: "skmdsadiq1607" },
-  
-  // Programming Languages
-  { name: "Java", category: "Programming", icon: FaJava, level: "Advanced", pct: 92, role: "OOPs, Collections Framework & Multithreading", projects: "NPTEL Silver" },
-  { name: "C (DSA)", category: "Programming", icon: FaCode, level: "Proficient", pct: 86, role: "Memory Management, Pointers & Algorithms", projects: "Academic Core" },
-  { name: "Python", category: "Programming", icon: SiPython, level: "Proficient", pct: 82, role: "Scripting, Logic Automation & Data Analysis", projects: "Infosys Certs" },
-
-  // CS Fundamentals
-  { name: "Object-Oriented Programming", category: "CS Foundations", icon: FaCogs, level: "Advanced", pct: 94, role: "Inheritance, Polymorphism & Encapsulation Patterns", projects: "Core Curriculum" },
-  { name: "DBMS", category: "CS Foundations", icon: FaDatabase, level: "Proficient", pct: 88, role: "Query Execution, Indexing & Entity Relations", projects: "Core Curriculum" },
-  { name: "Operating Systems", category: "CS Foundations", icon: FaDesktop, level: "Proficient", pct: 85, role: "Process Scheduling, Threading & Memory Paging", projects: "Core Curriculum" },
+const skillCategories = [
+  {
+    category: "Web Architecture",
+    tagline: "High-Performance Modern Web Stacks",
+    skills: [
+      { name: "React.js", icon: SiReact, level: "Advanced", detail: "Component Architecture & Hooks" },
+      { name: "Node.js", icon: FaServer, level: "Proficient", detail: "Server Runtimes & REST APIs" },
+      { name: "Express.js", icon: SiExpress, level: "Proficient", detail: "Middleware & Route Handlers" },
+      { name: "MongoDB", icon: SiMongodb, level: "Proficient", detail: "NoSQL Schemas & Atlas Aggregations" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, level: "Expert", detail: "Custom Design Systems & Utility Layouts" },
+      { name: "HTML5 & CSS3", icon: SiHtml5, level: "Expert", detail: "Semantic Web & Responsive Layouts" },
+      { name: "Git & GitHub", icon: SiGithub, level: "Advanced", detail: "Version Control & Branching Workflows" },
+    ]
+  },
+  {
+    category: "Programming Languages",
+    tagline: "Algorithmic Logic & Memory Management",
+    skills: [
+      { name: "Java", icon: FaJava, level: "Advanced", detail: "OOPs, Collections & Multithreading" },
+      { name: "JavaScript", icon: SiJavascript, level: "Advanced", detail: "ES6+, Async/Await & Event Loop" },
+      { name: "C (DSA)", icon: FaCode, level: "Proficient", detail: "Data Structures & Computational Complexity" },
+      { name: "Python", icon: SiPython, level: "Proficient", detail: "Automation, Scripting & Data Logic" },
+    ]
+  },
+  {
+    category: "CS Foundations",
+    tagline: "Core Computational Systems",
+    skills: [
+      { name: "OOP Architecture", icon: FaCogs, level: "Advanced", detail: "Inheritance, Polymorphism & Design Patterns" },
+      { name: "DBMS & SQL", icon: FaDatabase, level: "Proficient", detail: "Relational Queries & ACID Transactions" },
+      { name: "Operating Systems", icon: FaDesktop, level: "Proficient", detail: "Processes, Threads & Memory Paging" },
+    ]
+  }
 ];
 
-const categories = ["ALL", "Web Architecture", "Programming", "CS Foundations"];
+const tabs = ["ALL", "Web Architecture", "Programming Languages", "CS Foundations"];
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState("ALL");
-  const [inspectedSkill, setInspectedSkill] = useState(allSkills[0]);
+  const [activeTab, setActiveTab] = useState("ALL");
 
-  const filteredSkills = activeCategory === "ALL" 
-    ? allSkills 
-    : allSkills.filter(s => s.category === activeCategory);
+  const filteredCategories = activeTab === "ALL"
+    ? skillCategories
+    : skillCategories.filter(c => c.category === activeTab);
 
   return (
-    <section id="skills" className="min-h-screen w-full flex items-center justify-center bg-black text-white noise-overlay py-28 px-6 sm:px-12 md:px-20 border-b border-white/15 relative overflow-hidden select-none">
+    <section id="skills" className="min-h-screen w-full flex items-center justify-center bg-[#000000] text-[#FFFFFF] py-28 px-6 sm:px-12 md:px-20 border-b border-white/15 relative overflow-hidden select-none">
       
-      {/* 🪐 CELESTIAL GYROSCOPIC RADAR RINGS */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-30">
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 90, ease: "linear" }}
-          className="w-[700px] h-[700px] rounded-full border border-white/10 border-dashed relative"
-        >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-[8px] text-white/30 tracking-widest">000° NORTH</div>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 font-mono text-[8px] text-white/30 tracking-widest">180° SOUTH</div>
-        </motion.div>
-        <motion.div 
-          animate={{ rotate: -360 }}
-          transition={{ repeat: Infinity, duration: 65, ease: "linear" }}
-          className="w-[980px] h-[980px] rounded-full border border-white/5 relative"
-        >
-          <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 font-mono text-[8px] text-white/20 tracking-widest">090° EAST</div>
-          <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 font-mono text-[8px] text-white/20 tracking-widest">270° WEST</div>
-        </motion.div>
+      {/* 🪐 Subtle Ambient Orbit Rings in Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-25">
+        <div className="w-[650px] h-[650px] rounded-full border border-white/10 border-dashed" />
+        <div className="w-[950px] h-[950px] rounded-full border border-white/5" />
       </div>
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Section Heading & Category Commander */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 border-b border-white/15 pb-6">
+        {/* Section Heading & Category Tabs */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 border-b border-white/15 pb-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -81,169 +77,84 @@ const Skills = () => {
             </h2>
           </motion.div>
 
-          {/* Interactive Category Commander Bar */}
-          <div className="flex flex-wrap gap-2 p-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl w-fit">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat;
+          {/* Minimalist Filter Tabs */}
+          <div className="flex flex-wrap gap-2 p-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl w-fit">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab;
               return (
                 <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
                   className={`relative px-4 py-2 rounded-full font-mono text-[10px] uppercase tracking-wider transition-colors duration-300 select-none ${
                     isActive ? "text-black font-bold" : "text-white/70 hover:text-white"
                   }`}
                 >
                   {isActive && (
                     <motion.div
-                      layoutId="activeSkillTab"
+                      layoutId="activeSkillTabClean"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                       className="absolute inset-0 bg-white rounded-full z-0"
                     />
                   )}
-                  <span className="relative z-10">{cat}</span>
+                  <span className="relative z-10">{tab}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Main Grid: Holographic Inspector HUD + Interactive Skill Matrix */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
-          
-          {/* LEFT: Live Holographic Inspector HUD */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-5 bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-2xl rounded-3xl p-7 border border-white/20 shadow-2xl relative overflow-hidden flex flex-col justify-between"
-          >
-            {/* Corner Crosshairs */}
-            <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.25em] text-white/40 pb-3 mb-6 border-b border-white/15">
-              <span className="flex items-center gap-1.5">
-                <Cpu size={12} /> HOLOGRAPHIC INSPECTOR
-              </span>
-              <span className="inline-flex items-center gap-1 text-white">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> LIVE TELEMETRY
-              </span>
-            </div>
-
-            {/* Inspected Skill Feature Presentation */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={inspectedSkill.name}
-                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6"
-              >
-                {/* Large Wireframe Icon Avatar */}
-                <div className="flex items-center gap-5">
-                  <div className="w-20 h-20 rounded-3xl border border-white/25 bg-white/10 flex items-center justify-center text-4xl text-white shadow-[0_0_40px_rgba(255,255,255,0.15)] shrink-0">
-                    <inspectedSkill.icon />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/50 block mb-1">
-                      {inspectedSkill.category}
-                    </span>
-                    <h3 className="font-times italic text-3xl sm:text-4xl text-white font-normal leading-tight">
-                      {inspectedSkill.name}
-                    </h3>
-                  </div>
+        {/* Skill Stacks */}
+        <div className="space-y-12">
+          {filteredCategories.map((group, gi) => (
+            <motion.div 
+              key={group.category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: gi * 0.1, duration: 0.6 }}
+            >
+              <div className="flex items-center justify-between mb-6 pb-2 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-xs text-white/40 uppercase tracking-widest">// 02.{gi + 1}</span>
+                  <h3 className="font-times italic text-2xl sm:text-3xl text-white font-normal">
+                    {group.category}
+                  </h3>
                 </div>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-white/40 hidden sm:inline-block">
+                  {group.tagline}
+                </span>
+              </div>
 
-                {/* Architecture Role Description */}
-                <div className="p-4 rounded-2xl border border-white/10 bg-black/40">
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-white/40 block mb-1">
-                    // Architectural Application
-                  </span>
-                  <p className="text-sm font-times text-white/80 leading-relaxed font-light">
-                    {inspectedSkill.role}
-                  </p>
-                </div>
-
-                {/* Proficiency Gauge */}
-                <div>
-                  <div className="flex justify-between items-center text-[10px] font-mono uppercase tracking-wider mb-2">
-                    <span className="text-white/60">System Proficiency</span>
-                    <span className="text-white font-bold">{inspectedSkill.pct}% &bull; {inspectedSkill.level}</span>
-                  </div>
-                  <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden p-0.5 border border-white/15">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${inspectedSkill.pct}%` }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="h-full bg-gradient-to-r from-white/70 via-white to-white rounded-full shadow-[0_0_12px_#ffffff]"
-                    />
-                  </div>
-                </div>
-
-                {/* Production Context */}
-                <div className="flex items-center justify-between text-[10px] font-mono pt-3 border-t border-white/10 text-white/50">
-                  <span>PROVEN IN:</span>
-                  <span className="text-white uppercase font-bold tracking-wider">{inspectedSkill.projects}</span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[8px] font-mono uppercase tracking-widest text-white/35">
-              <span>HOVER ANY PILL TO INSPECT</span>
-              <span>INDEX: {allSkills.findIndex(s => s.name === inspectedSkill.name) + 1} OF {allSkills.length}</span>
-            </div>
-          </motion.div>
-
-          {/* RIGHT: Anti-Gravity Interactive Skill Pill Grid */}
-          <motion.div 
-            layout
-            className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3.5"
-          >
-            <AnimatePresence>
-              {filteredSkills.map((skill, index) => {
-                const isSelected = inspectedSkill.name === skill.name;
-                return (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                {group.skills.map((skill, si) => (
                   <motion.div
-                    layout
                     key={skill.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 25, delay: index * 0.02 }}
-                    onMouseEnter={() => setInspectedSkill(skill)}
-                    whileHover={{ 
-                      y: -6, 
-                      scale: 1.04,
-                      transition: { type: "spring", stiffness: 450, damping: 18 }
-                    }}
-                    className={`p-4 rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center gap-2.5 cursor-pointer relative overflow-hidden group select-none ${
-                      isSelected 
-                        ? "bg-white text-black border-white shadow-[0_0_25px_rgba(255,255,255,0.3)] scale-[1.02]" 
-                        : "bg-white/[0.03] text-white border-white/15 hover:border-white/60 hover:bg-white/10"
-                    }`}
+                    whileHover={{ y: -6, scale: 1.03 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className="p-6 rounded-3xl border border-white/15 bg-gradient-to-b from-white/[0.05] to-black/80 backdrop-blur-xl hover:border-white/50 hover:bg-white/[0.08] transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-default"
                   >
-                    <motion.div 
-                      whileHover={{ rotate: [0, -12, 12, 0], scale: 1.2 }}
-                      transition={{ duration: 0.4 }}
-                      className="text-2xl"
-                    >
-                      <skill.icon />
-                    </motion.div>
-                    
-                    <span className="text-[11px] font-mono font-bold tracking-wider uppercase text-center truncate max-w-full">
-                      {skill.name}
-                    </span>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <div className="w-12 h-12 rounded-2xl border border-white/20 bg-white/10 flex items-center justify-center text-2xl text-white group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-300 shadow-md">
+                        <skill.icon />
+                      </div>
+                      <span className="text-[9px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full border border-white/20 bg-white/5 text-white/60">
+                        {skill.level}
+                      </span>
+                    </div>
 
-                    <span className={`text-[8px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full border ${
-                      isSelected ? "border-black/20 text-black/70" : "border-white/15 text-white/40 group-hover:text-white/70"
-                    }`}>
-                      {skill.level}
-                    </span>
+                    <div>
+                      <h4 className="font-times italic text-xl sm:text-2xl text-white mb-1 leading-tight">
+                        {skill.name}
+                      </h4>
+                      <p className="text-xs text-white/50 font-light font-times leading-relaxed">
+                        {skill.detail}
+                      </p>
+                    </div>
                   </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </motion.div>
-
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>

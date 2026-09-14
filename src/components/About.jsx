@@ -1,5 +1,5 @@
-import { motion, useInView, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { Zap, Code, Users, Award, Terminal, Compass } from "lucide-react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { Zap, Code, Users, Award, ArrowUpRight } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
 const stats = [
@@ -30,75 +30,6 @@ const AnimatedCounter = ({ value, decimals, suffix }) => {
   return <span ref={ref}>{display}{suffix}</span>;
 };
 
-const StatMonolith = ({ stat, idx }) => {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTilt({ x: 0, y: 0 });
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.1 + idx * 0.08, duration: 0.5 }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      animate={{
-        rotateX: isHovered ? -tilt.y * 14 : 0,
-        rotateY: isHovered ? tilt.x * 14 : 0,
-        scale: isHovered ? 1.03 : 1,
-      }}
-      style={{ transformStyle: "preserve-3d" }}
-      className="p-5 rounded-3xl border border-white/10 hover:border-white/50 bg-black/60 backdrop-blur-2xl transition-all duration-300 group flex flex-col justify-between relative overflow-hidden shadow-xl"
-    >
-      {/* Dynamic specular light reflection */}
-      {isHovered && (
-        <div 
-          className="absolute inset-0 pointer-events-none z-20 transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(circle 200px at ${(tilt.x + 0.5) * 100}% ${(tilt.y + 0.5) * 100}%, rgba(255, 255, 255, 0.12), transparent 70%)`
-          }}
-        />
-      )}
-
-      {/* Cybernetic corner crosshairs */}
-      <div className="absolute top-2.5 right-2.5 text-[8px] font-mono text-white/20 group-hover:text-white/60 transition-colors">
-        +
-      </div>
-
-      <div className="flex items-center justify-between gap-2 mb-3 relative z-10">
-        <span className="font-mono text-[9px] text-white/50 uppercase tracking-widest block group-hover:text-white/80 transition-colors truncate">
-          {stat.label}
-        </span>
-        <motion.div whileHover={{ rotate: 20, scale: 1.2 }}>
-          <stat.icon size={16} className="text-white/40 group-hover:text-white transition-colors shrink-0" />
-        </motion.div>
-      </div>
-
-      <div className="relative z-10">
-        <p className="text-4xl sm:text-5xl font-times font-normal italic tracking-tight text-white leading-none mb-2">
-          <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
-        </p>
-        <span className="font-mono text-[9px] text-white/40 tracking-wider block group-hover:text-white/70 transition-colors">
-          {stat.detail}
-        </span>
-      </div>
-    </motion.div>
-  );
-};
-
 const About = () => {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -106,154 +37,82 @@ const About = () => {
     offset: ["start end", "end start"],
   });
 
-  // Parallax watermark drifting across the background
-  const watermarkX = useTransform(scrollYProgress, [0, 1], ["10%", "-25%"]);
-
-  // Interactive Inverted Aperture Cursor tracking
-  const mouseX = useMotionValue(-1000);
-  const mouseY = useMotionValue(-1000);
-  const springX = useSpring(mouseX, { stiffness: 300, damping: 28 });
-  const springY = useSpring(mouseY, { stiffness: 300, damping: 28 });
-  const [isInside, setIsInside] = useState(false);
-
-  const handlePointerMove = (e) => {
-    const rect = sectionRef.current?.getBoundingClientRect();
-    if (rect) {
-      mouseX.set(e.clientX - rect.left);
-      mouseY.set(e.clientY - rect.top);
-    }
-  };
+  const watermarkX = useTransform(scrollYProgress, [0, 1], ["5%", "-20%"]);
 
   return (
     <section 
       ref={sectionRef}
       id="about" 
-      onMouseMove={handlePointerMove}
-      onMouseEnter={() => setIsInside(true)}
-      onMouseLeave={() => setIsInside(false)}
-      className="min-h-screen w-full flex items-center justify-center bg-black text-white noise-overlay py-28 px-6 sm:px-12 md:px-20 border-b border-white/15 relative select-none overflow-hidden"
+      className="min-h-screen w-full flex items-center justify-center bg-[#FFFFFF] text-[#000000] py-28 px-6 sm:px-12 md:px-20 border-b border-black/15 relative select-none overflow-hidden transition-colors duration-500"
     >
-      {/* 🌊 GIANT KINETIC PARALLAX WATERMARK */}
+      {/* 🌊 Giant Editorial Parallax Watermark in Pure Black Ink */}
       <motion.div 
         style={{ x: watermarkX }}
-        className="absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none whitespace-nowrap z-0 select-none opacity-[0.035] text-[18vw] font-times italic tracking-tight text-white leading-none"
+        className="absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none whitespace-nowrap z-0 select-none opacity-[0.035] text-[18vw] font-times italic tracking-tight text-black leading-none"
       >
-        SHAIK SADIQ // FULL STACK ARCHITECT // PROBLEM SOLVER
+        SHAIK SADIQ // B.TECH INFORMATION TECHNOLOGY // HYDERABAD
       </motion.div>
 
-      {/* 🔦 INTERACTIVE INVERSION LENS (Aperture that follows cursor) */}
-      {isInside && (
-        <motion.div 
-          style={{
-            left: springX,
-            top: springY,
-            x: "-50%",
-            y: "-50%",
-          }}
-          className="absolute w-[360px] h-[360px] rounded-full pointer-events-none z-10 hidden lg:block overflow-hidden"
-        >
-          {/* Inverted blueprint illumination ring */}
-          <div 
-            className="w-full h-full rounded-full border border-white/40 shadow-[0_0_80px_rgba(255,255,255,0.12)]"
-            style={{
-              background: "radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%)",
-            }}
-          />
-        </motion.div>
-      )}
-
-      {/* Blueprint Coordinate Crosshairs in corners */}
-      <div className="absolute top-8 left-8 font-mono text-[9px] uppercase tracking-widest text-white/30 hidden sm:flex items-center gap-2 pointer-events-none">
-        <Compass size={12} className="animate-spin" style={{ animationDuration: "16s" }} />
-        <span>SYS.LOC // 17.3850° N, 78.4867° E</span>
-      </div>
-      <div className="absolute top-8 right-8 font-mono text-[9px] uppercase tracking-widest text-white/30 hidden sm:flex items-center gap-2 pointer-events-none">
-        <Terminal size={12} />
-        <span>IDENTITY // PERSPECTIVE MATRIX</span>
-      </div>
-
-      <div className="container mx-auto relative z-20 max-w-7xl">
+      <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Section Heading with Staggered Entrance */}
+        {/* Section Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} 
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
+          initial={{ opacity: 0, y: 24 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12 lg:mb-16 border-b border-white/15 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
+          transition={{ duration: 0.7 }}
+          className="mb-14 border-b border-black/15 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
         >
           <div>
-            <span className="font-mono text-xs mb-2 tracking-[0.3em] uppercase block text-white/50">
+            <span className="font-mono text-xs mb-2 tracking-[0.3em] uppercase block text-black/50">
               // 01 — Background &amp; Identity
             </span>
-            <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-white">
+            <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-black">
               About Me
             </h2>
           </div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-white/40 pb-1">
-            <span className="inline-block w-2 h-2 rounded-full bg-white animate-ping mr-2" />
-            Active Pursuit &bull; Information Technology
+          <div className="font-mono text-[10px] uppercase tracking-widest text-black/50 pb-1 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-black animate-ping" />
+            <span>Academic Distinction &bull; Hyderabad, India</span>
           </div>
         </motion.div>
 
-        {/* Two-column layout */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        {/* Two-Column Editorial Broadsheet Layout */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column (Bio with Editorial Highlight) */}
+          {/* Left Column: Narrative Bio */}
           <motion.div 
-            initial={{ opacity: 0, x: -30, filter: "blur(4px)" }} 
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
+            initial={{ opacity: 0, x: -30 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
             viewport={{ once: true }} 
-            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.8 }}
             className="lg:col-span-6 flex flex-col justify-between"
           >
             <div>
-              <motion.h3 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="font-times text-3xl sm:text-4xl font-normal italic text-white leading-snug mb-6"
-              >
+              <h3 className="font-times text-3xl sm:text-4xl lg:text-5xl font-normal italic text-black leading-[1.15] mb-6">
                 A passionate developer turning ideas into reality.
-              </motion.h3>
+              </h3>
 
-              <motion.p 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-white/80 text-base sm:text-lg leading-relaxed mb-4 font-light font-times"
-              >
-                I'm a B.Tech Information Technology student at <span className="text-white font-normal underline underline-offset-4 decoration-white/40">Anurag University, Hyderabad</span>, deeply passionate about modern web engineering and analytical problem-solving. I build high-performance, user-centric applications using the MERN stack.
-              </motion.p>
+              <p className="text-black/80 text-base sm:text-lg leading-relaxed mb-4 font-light font-times">
+                I am a B.Tech Information Technology student at <strong className="font-semibold text-black underline underline-offset-4 decoration-black/30">Anurag University, Hyderabad</strong>, driven by a deep obsession with full-stack web engineering and algorithmic problem-solving.
+              </p>
 
-              <motion.p 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 font-light font-times"
-              >
-                Beyond coding, I actively build solutions at competitive hackathons, lead technical initiatives in student communities, and continually master algorithmic data structures. My mission is building software that solves genuine human problems.
-              </motion.p>
+              <p className="text-black/70 text-sm sm:text-base leading-relaxed mb-8 font-light font-times">
+                I specialize in crafting responsive, resilient web systems utilizing the MERN stack. Beyond continuous coding, I compete in hackathons, contribute actively to student developer clubs, and continuously refine my computational foundations in Data Structures and Algorithms.
+              </p>
             </div>
             
-            {/* Core Technologies - Interactive floating pills */}
-            <div className="pt-6 border-t border-white/15">
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/50 block mb-3.5">
-                // Core Engineering Foundations
+            {/* Core Tech Stack Badges */}
+            <div className="pt-6 border-t border-black/15">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-black/50 block mb-3.5">
+                // Engineering Stack
               </span>
               <div className="flex flex-wrap gap-2.5">
-                {["MongoDB", "Express.js", "React.js", "Node.js", "Java (DSA)", "Tailwind CSS", "C / C++"].map((tech, i) => (
+                {["React.js", "Node.js", "Express.js", "MongoDB", "Java (DSA)", "Tailwind CSS", "C / C++"].map((tech, i) => (
                   <motion.span
                     key={tech}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
-                    whileHover={{ y: -4, scale: 1.06 }}
-                    className="inline-flex items-center px-4 py-2 rounded-full border border-white/20 hover:border-white bg-white/5 hover:bg-white hover:text-black text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-default shadow-sm"
+                    whileHover={{ y: -3, scale: 1.05 }}
+                    className="inline-flex items-center px-4 py-2 rounded-full border border-black/20 hover:border-black bg-black/5 hover:bg-black hover:text-white text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-default"
                   >
                     {tech}
                   </motion.span>
@@ -262,38 +121,59 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Column (3D Gyroscopic Glass Monoliths) */}
+          {/* Right Column: High-Fashion Clean Metric Monoliths */}
           <motion.div 
-            initial={{ opacity: 0, x: 30, filter: "blur(4px)" }} 
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
+            initial={{ opacity: 0, x: 30 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
             viewport={{ once: true }} 
-            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }} 
-            className="lg:col-span-6 bg-gradient-to-b from-white/[0.06] to-transparent backdrop-blur-2xl rounded-3xl p-7 sm:p-8 border border-white/20 shadow-2xl flex flex-col justify-between relative overflow-hidden"
+            transition={{ duration: 0.8 }} 
+            className="lg:col-span-6 bg-black/[0.02] border border-black/15 rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col justify-between"
           >
-            {/* Holographic background ambient flare */}
-            <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none" />
-
-            {/* Header Telemetry */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/15">
-              <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-white/60">
-                // Verified Academic &amp; Production Telemetry
+            {/* Header */}
+            <div className="flex items-center justify-between pb-4 mb-6 border-b border-black/15">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-black/60">
+                // Academic &amp; Production Telemetry
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/20 bg-white/10 text-[9px] font-mono text-white">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" /> Real-time Metrics
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-black/20 bg-black/5 text-[9px] font-mono text-black font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" /> Verified
               </span>
             </div>
 
-            {/* 2x2 Monolith Matrix with Individual 3D Gyroscopic Tilt */}
+            {/* 2x2 Grid of Clean Typographic Stat Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {stats.map((stat, idx) => (
-                <StatMonolith key={stat.label} stat={stat} idx={idx} />
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 + idx * 0.08, duration: 0.5 }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="p-6 rounded-2xl border border-black/10 bg-white hover:border-black/40 transition-all duration-300 shadow-sm flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="font-mono text-[10px] text-black/50 uppercase tracking-wider">
+                      {stat.label}
+                    </span>
+                    <stat.icon size={16} className="text-black/40" />
+                  </div>
+
+                  <div>
+                    <p className="text-4xl sm:text-5xl font-times font-normal italic tracking-tight text-black leading-none mb-1.5">
+                      <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
+                    </p>
+                    <span className="font-mono text-[9px] text-black/50 tracking-wider block">
+                      {stat.detail}
+                    </span>
+                  </div>
+                </motion.div>
               ))}
             </div>
 
-            {/* Bottom Status Banner */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[9px] font-mono uppercase tracking-widest text-white/40">
-              <span>STATUS: ACADEMICALLY DISTINGUISHED</span>
-              <span>VERIFIED // 2026</span>
+            {/* Footer */}
+            <div className="mt-6 pt-4 border-t border-black/10 flex items-center justify-between text-[9px] font-mono uppercase tracking-widest text-black/45">
+              <span>ACTIVE STATUS: B.TECH IT 2024–2028</span>
+              <span>ANURAG UNIVERSITY</span>
             </div>
           </motion.div>
 
