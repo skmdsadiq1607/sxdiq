@@ -95,7 +95,22 @@ const LanguageCard = ({ lang, index }) => {
 };
 
 const LanguagesSection = () => (
-  <section className="min-h-screen w-full lg:w-[750px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-6 md:px-16 border-r border-border">
+  <section id="languages" className="min-h-screen w-full lg:w-[800px] shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-6 md:px-16 border-r border-border relative overflow-hidden select-none">
+    
+    {/* 〰️ Acoustic Soundwave Resonance Ripples */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-25">
+      <svg className="w-full h-64" viewBox="0 0 1000 200" preserveAspectRatio="none">
+        <path d="M 0,100 Q 250,20 500,100 T 1000,100" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeDasharray="8 6" />
+        <path d="M 0,100 Q 250,180 500,100 T 1000,100" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+        <path d="M 0,100 Q 250,60 500,100 T 1000,100" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="4 4" />
+      </svg>
+    </div>
+
+    {/* Massive Outlined Watermark Typography */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(8rem,16vw,18rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
+      VOICE
+    </div>
+
     <div className="container mx-auto relative z-10 pt-16">
       <motion.div 
         initial={{ opacity: 0, y: 30 }} 
@@ -104,8 +119,8 @@ const LanguagesSection = () => (
         transition={{ duration: 0.6 }}
         className="section-heading mb-12"
       >
-        <span className="subtitle">Communication</span>
-        <h2 className="font-times italic font-normal text-4xl md:text-5xl">Languages</h2>
+        <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 08 — Verbal Fluency</span>
+        <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">Languages</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">

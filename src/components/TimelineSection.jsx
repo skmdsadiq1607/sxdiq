@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { GraduationCap, Trophy, Zap, Code, Users, BookOpen, Calendar, MapPin, Award, ExternalLink } from "lucide-react";
 
 import agentxImg from "@/assets/certs/agentx.jpg";
@@ -172,16 +172,34 @@ const TimelineSection = () => {
     );
   }
 
+  const { scrollYProgress } = useScroll();
+  const laserLeft = useTransform(scrollYProgress, [0.55, 0.82], ["0%", "100%"]);
+
   // Desktop horizontal layout
   return (
-    <section id="leadership" className="min-h-screen flex items-center bg-background text-foreground noise-overlay select-none shrink-0 py-12 px-12 md:px-24 border-r border-border" style={{ width: "3200px" }}>
+    <section id="leadership" className="min-h-screen flex items-center bg-black text-foreground noise-overlay select-none shrink-0 py-12 px-12 md:px-24 border-r border-border relative overflow-hidden" style={{ width: "3300px" }}>
       
+      {/* ⚡ Quantum Laser Conduit running across all 3300px */}
+      <div className="absolute top-12 left-16 right-16 h-[2px] bg-white/10 z-20 pointer-events-none hidden lg:block overflow-visible">
+        <motion.div 
+          style={{ left: laserLeft }}
+          className="absolute -top-1 w-36 h-1 bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_20px_#ffffff] -translate-x-1/2"
+        >
+          <div className="absolute left-1/2 -top-1 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_16px_#ffffff]" />
+        </motion.div>
+      </div>
+
+      {/* Massive Outlined Watermark Typography */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(9rem,18vw,22rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
+        CHRONOLOGY
+      </div>
+
       {/* Education Panel */}
-      <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[85vh]">
+      <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[85vh] relative z-10">
         <div className="mb-10">
-          <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 01</span>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">EDUCATION</h2>
-          <p className="text-sm text-muted-foreground font-light">My academic background and milestones</p>
+          <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 04 — Academic Foundation</span>
+          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-4 text-foreground">Education</h2>
+          <p className="text-sm text-muted-foreground font-light">Academic background and competitive milestones</p>
         </div>
 
         <div className="grid grid-cols-3 gap-6">
@@ -220,11 +238,11 @@ const TimelineSection = () => {
       </div>
 
       {/* Experience & Activities Panel */}
-      <div className="w-[850px] flex flex-col justify-center px-16 border-r border-border h-[85vh]">
+      <div className="w-[850px] flex flex-col justify-center px-16 border-r border-border h-[85vh] relative z-10">
         <div className="mb-10">
-          <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 02</span>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">EXPERIENCE</h2>
-          <p className="text-sm text-muted-foreground font-light">Leadership roles and student community work</p>
+          <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 05 — Student Leadership</span>
+          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-4 text-foreground">Experience</h2>
+          <p className="text-sm text-muted-foreground font-light">Leadership roles and technical community initiatives</p>
         </div>
 
         <div className="grid grid-cols-3 gap-6">
@@ -262,11 +280,11 @@ const TimelineSection = () => {
       </div>
 
       {/* Hackathons Panel */}
-      <div className="w-[1250px] flex flex-col justify-center pl-16 h-[85vh]">
+      <div className="w-[1250px] flex flex-col justify-center pl-16 h-[85vh] relative z-10">
         <div className="mb-10">
-          <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 03</span>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">HACKATHONS</h2>
-          <p className="text-sm text-muted-foreground font-light">Competitions, hackathons, and credentials</p>
+          <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 06 — Competitions</span>
+          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-4 text-foreground">Hackathons</h2>
+          <p className="text-sm text-muted-foreground font-light">Hackathons, coding sprints, and credentials</p>
         </div>
 
         <div className="grid grid-cols-5 gap-4">

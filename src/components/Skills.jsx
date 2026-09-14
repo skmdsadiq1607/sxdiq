@@ -77,32 +77,57 @@ const SkillCard = ({ skill, index }) => {
 };
 
 const Skills = () => (
-  <section id="skills" className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border">
+  <section id="skills" className="min-h-screen w-screen shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border relative overflow-hidden select-none">
+    
+    {/* 🪐 Gravitational Celestial Orbit Rings */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-40">
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 80, ease: "linear" }}
+        className="w-[650px] h-[650px] rounded-full border border-white/10 border-dashed"
+      />
+      <motion.div 
+        animate={{ rotate: -360 }}
+        transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+        className="w-[900px] h-[900px] rounded-full border border-white/5"
+      />
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 110, ease: "linear" }}
+        className="w-[1200px] h-[1200px] rounded-full border border-white/[0.03] border-dotted"
+      />
+    </div>
+
+    {/* Massive Outlined Watermark Typography */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(8rem,19vw,22rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.04)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
+      ARSENAL
+    </div>
+
     <div className="container mx-auto relative z-10 pt-16">
       <motion.div 
         initial={{ opacity: 0, y: 30 }} 
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="section-heading"
+        className="section-heading mb-12"
       >
-        <span className="subtitle">// 02 — Technical Proficiencies</span>
-        <h2>Skills &amp; Tech</h2>
+        <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 02 — Technical Proficiencies</span>
+        <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">Skills &amp; Tech</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {categories.map((cat, ci) => (
           <motion.div 
             key={cat.title} 
-            initial={{ opacity: 0 }} 
-            whileInView={{ opacity: 1 }} 
+            initial={{ opacity: 0, y: 24 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
             viewport={{ once: true }} 
-            transition={{ duration: 0.6 }}
-            className="flex flex-col"
+            transition={{ duration: 0.6, delay: ci * 0.1 }}
+            className="flex flex-col bg-card/60 backdrop-blur-xl rounded-3xl p-6 sm:p-7 border border-border/70 hover:border-foreground/40 transition-colors shadow-lg"
           >
             <div className="border-b border-foreground/15 pb-4 mb-6">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-foreground/50 block mb-1">{cat.emoji} Category</span>
-              <h3 className="font-times text-xl md:text-2xl font-normal italic text-foreground tracking-tight">{cat.title}</h3>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/50 block mb-1">{cat.emoji} Category</span>
+              <h3 className="font-times text-2xl font-normal italic text-foreground tracking-tight">{cat.title}</h3>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">

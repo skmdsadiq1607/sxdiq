@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Mail, Download, ArrowRight } from "lucide-react";
 import gsap from "gsap";
 
@@ -113,6 +114,8 @@ const Hero = () => {
   const heroRef = useRef(null);
   const overlayRef = useRef(null);
   const dividerRef = useRef(null);
+  const { scrollYProgress } = useScroll();
+  const dividerAngle = useTransform(scrollYProgress, [0, 0.12], [0, -14]);
 
   // GSAP Entrance Transition
   useEffect(() => {
@@ -199,10 +202,11 @@ const Hero = () => {
         <div className="w-full h-14 invisible pointer-events-none select-none" aria-hidden="true" />
       </div>
 
-      {/* Center 1px Divider Line */}
-      <div 
+      {/* Center 1px Divider Line with Dynamic Diagonal Exit Angle */}
+      <motion.div 
         ref={dividerRef}
-        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-neutral-500/30 z-30 pointer-events-none origin-top" 
+        style={{ rotate: dividerAngle }}
+        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-neutral-500/30 z-30 pointer-events-none origin-center" 
       />
 
       {/* Ambient Purple Glow */}

@@ -137,7 +137,20 @@ const Certifications = () => {
   );
 
   return (
-    <section className="min-h-screen w-full lg:w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-6 md:px-24 border-r border-border">
+    <section id="certifications" className="min-h-screen w-full lg:w-screen shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-6 md:px-24 border-r border-border relative overflow-hidden select-none">
+      
+      {/* 🔮 Concentric Holographic Lens Rings */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-30">
+        <div className="w-[500px] h-[500px] rounded-full border border-white/10" />
+        <div className="w-[800px] h-[800px] rounded-full border border-white/5 border-dashed" />
+        <div className="w-[1100px] h-[1100px] rounded-full border border-white/[0.03]" />
+      </div>
+
+      {/* Massive Outlined Watermark Typography */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(8rem,18vw,22rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
+        CREDENTIALS
+      </div>
+
       <div className="container mx-auto px-6 md:px-16 relative z-10 pt-16">
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
@@ -146,8 +159,8 @@ const Certifications = () => {
           transition={{ duration: 0.6 }}
           className="section-heading mb-12"
         >
-          <span className="subtitle">Credentials</span>
-          <h2 className="font-times italic font-normal text-4xl md:text-5xl">Certifications</h2>
+          <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 07 — Validated Expertise</span>
+          <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">Certifications</h2>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">

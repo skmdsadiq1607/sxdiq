@@ -323,19 +323,34 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="min-h-screen flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border shrink-0" style={{ width: "1750px" }}>
+    <section id="projects" className="min-h-screen flex items-center bg-black text-foreground noise-overlay py-12 px-12 md:px-24 border-r border-border shrink-0 relative overflow-hidden select-none" style={{ width: "1850px" }}>
       
+      {/* 📐 Cyber Perspective Blueprint Floor Grid */}
+      <div 
+        className="absolute inset-x-0 bottom-0 h-48 pointer-events-none opacity-20 [background-image:linear-gradient(to_right,rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.15)_1px,transparent_1px)] [background-size:40px_40px]"
+        style={{ transform: "perspective(400px) rotateX(65deg)", transformOrigin: "bottom center" }}
+      />
+
+      {/* Massive Outlined Watermark Typography */}
+      <div className="absolute top-1/2 left-2/3 -translate-x-1/2 -translate-y-1/2 text-[clamp(10rem,22vw,26rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
+        PORTFOLIO
+      </div>
+
       {/* Left Info Panel */}
-      <div className="w-[350px] shrink-0 pr-16 h-[85vh] flex flex-col justify-center">
-        <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-2">// 04</span>
-        <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none mb-4">SELECTED WORK</h2>
-        <p className="text-sm text-muted-foreground font-light leading-relaxed">
-          A curated selection of applications built with modern web technologies, focusing on clean engineering and responsive UI.
+      <div className="w-[380px] shrink-0 pr-16 h-[85vh] flex flex-col justify-center relative z-10">
+        <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-3">// 03 — Production Software</span>
+        <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-6 text-foreground">Selected Work</h2>
+        <p className="text-sm text-muted-foreground font-light leading-relaxed mb-8">
+          A curated selection of applications built with modern web technologies, focusing on clean engineering, real-time data, and responsive human interfaces.
         </p>
+        <div className="flex items-center gap-2 font-mono text-[10px] text-foreground/50 uppercase tracking-widest">
+          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          <span>SCROLL TO EXPLORE 3D ARCHIVES</span>
+        </div>
       </div>
 
       {/* Horizontal Projects Carousel Track with 3D coverflow geometry */}
-      <div className="flex-1 flex gap-6 items-center overflow-visible" style={{ perspective: 1200 }}>
+      <div className="flex-1 flex gap-8 items-center overflow-visible relative z-10" style={{ perspective: 1600 }}>
         {projects.map((project, i) => (
           <ProjectCard 
             key={project.title} 
