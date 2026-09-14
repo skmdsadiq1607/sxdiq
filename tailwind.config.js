@@ -1,10 +1,9 @@
-import type { Config } from "tailwindcss";
-
+/** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx}",
   ],
   prefix: "",
   theme: {
@@ -17,10 +16,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Source Serif 4"', '"Tiempos Text"', 'Georgia', 'serif'],
+        syne: ['Syne', 'sans-serif'],
+        space: ['"Space Grotesk"', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"Source Serif 4"', '"Copernicus"', 'Georgia', 'serif'],
-        serif: ['"Source Serif 4"', '"Copernicus"', 'Georgia', 'serif'],
+        display: ['Syne', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -94,4 +94,4 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};

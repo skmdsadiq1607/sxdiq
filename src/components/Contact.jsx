@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Mail, Phone, Linkedin, Send, MapPin, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Phone, Linkedin, Send, MapPin, ArrowUpRight, Copy, Check, Terminal } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
@@ -14,211 +14,224 @@ const Contact = () => {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const { scrollYProgress } = useScroll();
-
-  // Scroll range: Contact section is active near the end of the scrolltrack
-  const swingProgress = useTransform(scrollYProgress, [0.82, 0.96], [0, 1]);
-
-  // Swing animations for double-door reveal
-  const rotateLeftY = useTransform(swingProgress, [0, 1], [-35, 0]);
-  const translateLeftX = useTransform(swingProgress, [0, 1], [-120, 0]);
-  const opacityLeft = useTransform(swingProgress, [0, 1], [0.3, 1]);
-
-  const rotateRightY = useTransform(swingProgress, [0, 1], [35, 0]);
-  const translateRightX = useTransform(swingProgress, [0, 1], [120, 0]);
-  const opacityRight = useTransform(swingProgress, [0, 1], [0.3, 1]);
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("skmdsadiq1607@gmail.com");
+    setCopiedEmail(true);
+    toast({
+      title: "Email Copied! 📋",
+      description: "skmdsadiq1607@gmail.com copied to your clipboard.",
+    });
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
     setSending(true);
+
     setTimeout(() => {
-      toast({ title: "Message sent! ✉️", description: "Thank you for reaching out. I'll get back to you soon." });
+      toast({
+        title: "Transmission Successful! ✉️",
+        description: "Thank you for reaching out, " + form.name + ". I will respond promptly.",
+      });
       setForm({ name: "", email: "", message: "" });
       setSending(false);
     }, 1200);
   };
 
   return (
-    <section id="contact" className="min-h-screen w-[900px] shrink-0 flex items-center bg-background text-foreground noise-overlay py-12 px-12 md:px-16 border-r border-border overflow-visible" style={{ perspective: 1200 }}>
-      <div className="container mx-auto px-6 md:px-16 relative z-10 pt-16 overflow-visible">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
+    <section id="contact" className="section-padding relative overflow-hidden bg-black text-white">
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="section-heading"
         >
-          <span className="subtitle">Get in touch</span>
-          <h2>Let's build together</h2>
+          <span className="subtitle">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            07 // COMMUNICATION PROTOCOL
+          </span>
+          <h2>LET&apos;S BUILD THE FUTURE</h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start overflow-visible">
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column (Swings from left) */}
-          <motion.div 
-            style={{
-              rotateY: rotateLeftY,
-              x: translateLeftX,
-              opacity: opacityLeft,
-              transformOrigin: "left center"
-            }}
-            className="lg:col-span-5 space-y-3"
-          >
-            <p className="text-foreground/60 leading-relaxed mb-4 text-xs font-light">
-              Whether it's a project idea, a collaboration opportunity, or just a friendly hello — my inbox is always open.
-            </p>
+          {/* Left Column: Direct channels & Quick dispatch */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+            <div>
+              <h3 className="font-syne font-bold text-2xl uppercase tracking-tight text-white mb-3">
+                Have an ambitious idea or full-time opportunity?
+              </h3>
+              <p className="text-white/60 text-sm sm:text-base leading-relaxed font-light mb-6">
+                Whether you're looking to develop a cutting-edge web platform, discuss software architecture, or explore roles — my inbox and terminal are always accessible.
+              </p>
+            </div>
 
-            <div className="space-y-2">
-              {contactInfo.map((item, i) => (
+            {/* Quick Copy Email Card */}
+            <div
+              onClick={handleCopyEmail}
+              className="glass-card p-5 cursor-pointer group hover:border-white/40 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl border border-white/20 bg-white/[0.05] flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all">
+                  <Mail size={18} />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-white/50 uppercase tracking-widest block">Direct Channel</span>
+                  <span className="font-mono text-xs font-semibold text-white">skmdsadiq1607@gmail.com</span>
+                </div>
+              </div>
+              <button className="flex items-center gap-1.5 text-xs font-mono text-white/50 group-hover:text-white transition-colors">
+                {copiedEmail ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                <span>{copiedEmail ? "COPIED" : "CLICK TO COPY"}</span>
+              </button>
+            </div>
+
+            {/* Channels List */}
+            <div className="space-y-3">
+              {contactInfo.map((item) => (
                 <a
                   key={item.label}
                   href={item.href || undefined}
-                  target={item.href?.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href?.startsWith('http') ? 'noreferrer' : undefined}
-                  className="flex items-center gap-3 p-3 border border-border bg-card hover:border-foreground transition-all duration-300"
-                  style={{ borderRadius: "0px" }}
+                  target={item.href?.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href?.startsWith("http") ? "noreferrer" : undefined}
+                  className="glass-card p-4 flex items-center justify-between group hover:border-white/40 transition-all"
                 >
-                  <div className="w-8 h-8 border border-border flex items-center justify-center text-foreground">
-                    <item.icon size={12} />
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg border border-white/15 bg-white/[0.04] flex items-center justify-center text-white/80 group-hover:text-white transition-colors">
+                      <item.icon size={14} />
+                    </div>
+                    <div>
+                      <p className="text-[9px] text-white/40 font-mono uppercase tracking-widest">{item.label}</p>
+                      <p className="text-xs font-mono font-semibold text-white">{item.value}</p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <p className="text-[9px] text-foreground/60 font-mono uppercase tracking-widest">{item.label}</p>
-                    <p className="text-[10px] font-mono font-semibold uppercase">{item.value}</p>
-                  </div>
-                  {item.href && (
-                    <ArrowUpRight size={12} className="text-foreground/60" />
-                  )}
+                  {item.href && <ArrowUpRight size={14} className="text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />}
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Code Editor Form Column (Swings from right) */}
+          {/* Right Column: Interactive IDE Editor Form */}
           <motion.form
-            style={{
-              rotateY: rotateRightY,
-              x: translateRightX,
-              opacity: opacityRight,
-              transformOrigin: "right center",
-              borderRadius: "0px"
-            }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             onSubmit={handleSubmit}
-            className="lg:col-span-7 border border-border bg-black text-white/90 font-mono text-[10px] overflow-hidden flex flex-col relative"
+            className="lg:col-span-7 rounded-2xl border border-white/20 bg-black/90 backdrop-blur-2xl shadow-2xl overflow-hidden flex flex-col relative"
           >
-            {/* Scanner laser overlay effect inside editor */}
-            <div className="laser-scanner text-white/5" />
+            {/* Scanner laser overlay */}
+            <div className="laser-scanner opacity-40" />
 
-            {/* Editor Top Bar */}
-            <div className="bg-background border-b border-border px-4 py-2 flex items-center justify-between select-none">
+            {/* IDE Top Bar */}
+            <div className="bg-white/[0.04] border-b border-white/10 px-5 py-3 flex items-center justify-between select-none">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
-                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
-                <div className="w-2.5 h-2.5 rounded-full border border-foreground/30 bg-transparent" />
-                <span className="text-[9px] text-foreground/50 font-semibold ml-2 tracking-wide">message.json</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20 border border-white/30" />
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20 border border-white/30" />
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20 border border-white/30" />
+                <span className="text-[10px] text-white/60 font-mono font-bold ml-2 tracking-wide uppercase flex items-center gap-1.5">
+                  <Terminal size={12} /> dispatch_message.json
+                </span>
               </div>
-              <span className="text-[9px] text-foreground/40 font-semibold">UTF-8</span>
+              <span className="text-[9px] font-mono text-white/40 uppercase tracking-widest">UTF-8 // JSON SCHEMA</span>
             </div>
 
-            {/* Editor Body */}
-            <div className="p-4 flex leading-relaxed relative bg-black">
-              
-              {/* Line numbers */}
-              <div className="text-white/30 text-right pr-4 select-none border-r border-white/10 w-10 shrink-0">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
-                <div>7</div>
-                <div>8</div>
-                <div>9</div>
-                <div>10</div>
-                <div>11</div>
-                <div>12</div>
+            {/* IDE Editor Body */}
+            <div className="p-6 flex leading-relaxed font-mono text-xs">
+              {/* Line Numbers */}
+              <div className="text-white/20 text-right pr-5 select-none border-r border-white/10 w-10 shrink-0 space-y-2">
+                <div>01</div>
+                <div>02</div>
+                <div>03</div>
+                <div>04</div>
+                <div>05</div>
+                <div>06</div>
+                <div>07</div>
+                <div>08</div>
               </div>
 
-              {/* Code lines */}
-              <div className="flex-1 pl-4 space-y-1 text-white/70">
+              {/* Code Fields */}
+              <div className="flex-1 pl-5 space-y-2 text-white/80">
                 <div>
-                  <span className="text-white/50">{`{`}</span>
+                  <span className="text-white/40">{`{`}</span>
                 </div>
-                
-                <div className="pl-4">
-                  <span className="text-white/50">"sender"</span>: <span className="text-white/50">{`{`}</span>
-                </div>
-                
-                {/* Name line */}
-                <div className="pl-8 flex items-center flex-wrap gap-1">
-                  <span className="text-white/50">"name"</span>: <span className="text-white/40">"</span>
+
+                <div className="pl-4 flex items-center flex-wrap gap-2">
+                  <span className="text-white/50">&quot;sender_name&quot;:</span>
+                  <span className="text-white/40">&quot;</span>
                   <input
                     type="text"
                     required
                     placeholder="Enter your name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-44 transition-colors px-1"
+                    className="bg-transparent border-b border-white/20 hover:border-white/50 focus:border-white text-white outline-none w-56 font-mono text-xs transition-colors px-1 py-0.5"
                   />
-                  <span className="text-white/40">"</span>,
+                  <span className="text-white/40">&quot;,</span>
                 </div>
-                
-                {/* Email line */}
-                <div className="pl-8 flex items-center flex-wrap gap-1">
-                  <span className="text-white/50">"email"</span>: <span className="text-white/40">"</span>
+
+                <div className="pl-4 flex items-center flex-wrap gap-2">
+                  <span className="text-white/50">&quot;sender_email&quot;:</span>
+                  <span className="text-white/40">&quot;</span>
                   <input
                     type="email"
                     required
-                    placeholder="Enter your email"
+                    placeholder="name@company.com"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-44 transition-colors px-1"
+                    className="bg-transparent border-b border-white/20 hover:border-white/50 focus:border-white text-white outline-none w-56 font-mono text-xs transition-colors px-1 py-0.5"
                   />
-                  <span className="text-white/40">"</span>
-                </div>
-                
-                <div className="pl-4">
-                  <span className="text-white/50">{`},`}</span>
+                  <span className="text-white/40">&quot;,</span>
                 </div>
 
-                {/* Message line */}
-                <div className="pl-4 flex items-start gap-1">
-                  <span className="text-white/50 shrink-0">"message"</span>: <span className="text-white/40 shrink-0">"</span>
+                <div className="pl-4 flex items-start gap-2 pt-1">
+                  <span className="text-white/50 shrink-0">&quot;message&quot;:</span>
+                  <span className="text-white/40 shrink-0">&quot;</span>
                   <textarea
                     required
-                    rows={2}
-                    placeholder="Type your message..."
+                    rows={3}
+                    placeholder="Tell me about your project or opportunity..."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-full transition-colors px-1 resize-none h-12 leading-relaxed"
+                    className="bg-transparent border-b border-white/20 hover:border-white/50 focus:border-white text-white outline-none w-full font-mono text-xs transition-colors px-1 resize-none h-20 leading-relaxed"
                   />
-                  <span className="text-white/40 shrink-0">"</span>
+                  <span className="text-white/40 shrink-0">&quot;</span>
                 </div>
-                
+
                 <div>
-                  <span className="text-white/50">{`}`}</span>
+                  <span className="text-white/40">{`}`}</span>
                 </div>
               </div>
             </div>
 
-            {/* Editor Action Bar */}
-            <div className="bg-background border-t border-border px-4 py-3 flex items-center justify-between">
-              <span className="text-[9px] text-foreground/50 font-mono">Run: node send.js</span>
+            {/* Action Bar */}
+            <div className="bg-white/[0.03] border-t border-white/10 px-6 py-4 flex items-center justify-between">
+              <span className="text-[10px] font-mono text-white/40 tracking-wider">
+                NODE_ENV: PRODUCTION // READY
+              </span>
               <button
                 type="submit"
                 disabled={sending}
-                className="px-4 py-2 bg-foreground text-background hover:opacity-90 transition-opacity uppercase font-mono text-[9px] tracking-widest font-bold flex items-center gap-1.5 select-none"
-                style={{ borderRadius: "0px" }}
+                className="btn-primary py-2.5 px-6 text-xs flex items-center gap-2"
               >
                 {sending ? (
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-3 h-3 border-2 border-background/30 border-t-background rounded-full"
+                    className="w-3.5 h-3.5 border-2 border-black/30 border-t-black rounded-full"
                   />
                 ) : (
-                  <>Send Message <Send size={10} /></>
+                  <>
+                    <span>Transmit Message</span>
+                    <Send size={12} />
+                  </>
                 )}
               </button>
             </div>
