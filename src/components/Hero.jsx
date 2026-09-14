@@ -33,20 +33,15 @@ const HeroInner = ({ isDarkLayer }) => {
         </div>
       </div>
 
-      {/* Marquees */}
-      <div className="marquee-container-wrapper w-full my-auto flex flex-col gap-2.5 py-4 border-y border-current/15">
+      {/* Marquee Placeholder (maintains identical flex layout height in base & overlay layers) */}
+      <div className="w-full my-auto flex flex-col gap-2.5 py-4 border-y border-transparent invisible pointer-events-none select-none" aria-hidden="true">
         <div className="w-full overflow-hidden flex">
-          <div className="animate-marquee flex whitespace-nowrap gap-12 font-times font-normal uppercase text-lg sm:text-2xl md:text-3xl tracking-[0.2em]">
-            <span>SHAIK SADIQ // DESIGNER & DEVELOPER // PROBLEM SOLVER // CREATIVE WEB ENGINEERING //&nbsp;</span>
+          <div className="flex whitespace-nowrap gap-12 font-times font-normal uppercase text-lg sm:text-2xl md:text-3xl tracking-[0.2em]">
             <span>SHAIK SADIQ // DESIGNER & DEVELOPER // PROBLEM SOLVER // CREATIVE WEB ENGINEERING //&nbsp;</span>
           </div>
         </div>
         <div className="w-full overflow-hidden flex">
-          <div 
-            className="animate-marquee flex whitespace-nowrap gap-12 font-mono font-bold uppercase text-xs sm:text-sm tracking-[0.35em]" 
-            style={{ animationDirection: "reverse" }}
-          >
-            <span>REACT NODE EXPRESS MONGODB NEXTJS GSAP THREEJS DSA ALGORITHMS CLEAN CODE //&nbsp;</span>
+          <div className="flex whitespace-nowrap gap-12 font-mono font-bold uppercase text-xs sm:text-sm tracking-[0.35em]">
             <span>REACT NODE EXPRESS MONGODB NEXTJS GSAP THREEJS DSA ALGORITHMS CLEAN CODE //&nbsp;</span>
           </div>
         </div>
@@ -174,16 +169,74 @@ const Hero = () => {
       {/* 🌓 OVERLAY LAYER: Solid White Background, Pure Black Content */}
       <div 
         ref={overlayRef}
-        className="absolute inset-0 w-full h-full bg-[#FAF9F5] text-[#000000] z-10 overflow-hidden"
+        className="absolute inset-0 w-full h-full bg-[#FFFFFF] text-[#000000] z-10 overflow-hidden"
         style={{ clipPath: "polygon(50% 0, 100% 0, 100% 100%, 50% 100%)" }}
       >
         <HeroInner isDarkLayer={false} />
       </div>
 
+      {/* 🌓 UNIFIED SINGLE MARQUEE LAYER (mix-blend-mode: difference creates single continuous text flow) */}
+      <div 
+        className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none z-20"
+        style={{ mixBlendMode: "difference" }}
+      >
+        {/* Invisible Header Spacer */}
+        <div className="w-full flex justify-between items-center invisible" aria-hidden="true">
+          <span className="font-mono text-xs uppercase tracking-[0.25em]">Shaik Kemple Mohammed Sadiq</span>
+          <span className="font-times italic text-xs tracking-wide">creative portfolio v2.0</span>
+        </div>
+
+        {/* Invisible Center Spacer */}
+        <div className="flex-1 flex flex-col justify-center items-center my-auto invisible" aria-hidden="true">
+          <div className="kinetic-center my-3 sm:my-5">
+            <h1 className="font-times font-normal text-[clamp(2.5rem,5.5vw,6.5rem)] leading-[0.96] tracking-tight whitespace-nowrap">
+              <span className="block md:hidden">Shaik Kemple</span>
+              <span className="block md:hidden mt-1 sm:mt-2">Mohammed Sadiq</span>
+              <span className="hidden md:inline">Shaik Kemple Mohammed Sadiq</span>
+            </h1>
+          </div>
+          <div className="kinetic-line-2 mt-2 sm:mt-4">
+            <h2 className="font-times font-normal italic text-[clamp(1.15rem,2.5vw,2.25rem)]">Full Stack Developer</h2>
+          </div>
+        </div>
+
+        {/* The Single Unified Marquee */}
+        <div className="marquee-container-wrapper pointer-events-auto w-full my-auto flex flex-col gap-2.5 py-4 border-y border-white/20 select-none text-white">
+          <div className="w-full overflow-hidden flex">
+            <div className="animate-marquee flex whitespace-nowrap gap-12 font-times font-normal uppercase text-lg sm:text-2xl md:text-3xl tracking-[0.2em]">
+              <span>SHAIK SADIQ // DESIGNER & DEVELOPER // PROBLEM SOLVER // CREATIVE WEB ENGINEERING //&nbsp;</span>
+              <span>SHAIK SADIQ // DESIGNER & DEVELOPER // PROBLEM SOLVER // CREATIVE WEB ENGINEERING //&nbsp;</span>
+            </div>
+          </div>
+          <div className="w-full overflow-hidden flex">
+            <div 
+              className="animate-marquee flex whitespace-nowrap gap-12 font-mono font-bold uppercase text-xs sm:text-sm tracking-[0.35em]" 
+              style={{ animationDirection: "reverse" }}
+            >
+              <span>REACT NODE EXPRESS MONGODB NEXTJS GSAP THREEJS DSA ALGORITHMS CLEAN CODE //&nbsp;</span>
+              <span>REACT NODE EXPRESS MONGODB NEXTJS GSAP THREEJS DSA ALGORITHMS CLEAN CODE //&nbsp;</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Invisible Footer Spacer */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 items-end invisible" aria-hidden="true">
+          <div className="flex flex-col gap-2 font-mono text-[10px] uppercase">
+            <div className="flex gap-4 items-center"><span>GitHub</span></div>
+            <span>// hyderabad, india</span>
+          </div>
+          <div className="flex flex-col gap-2.5 items-end">
+            <div className="flex gap-2.5">
+              <span className="px-4 py-2 text-[9px]">Selected Projects</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Center 1px Divider Line */}
       <div 
         ref={dividerRef}
-        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-neutral-500/30 z-20 pointer-events-none origin-top" 
+        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-neutral-500/30 z-30 pointer-events-none origin-top" 
       />
 
       {/* Ambient Purple Glow */}
