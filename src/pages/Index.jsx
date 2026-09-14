@@ -13,15 +13,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("theme");
-      if (stored) return stored === "dark";
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    return true;
-  });
-
   const [isMobile, setIsMobile] = useState(false);
 
   const containerRef = useRef(null);
@@ -29,16 +20,10 @@ const Index = () => {
   const { scrollYProgress } = useScroll({ target: containerRef });
   const [scrollRange, setScrollRange] = useState(0);
 
+  // Permanently lock to pure dark mode
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      root.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [isDark]);
+    document.documentElement.classList.add("dark");
+  }, []);
 
   // Reset scroll and disable scroll restoration to prevent horizontal offset shifts
   useEffect(() => {
@@ -85,7 +70,7 @@ const Index = () => {
       {/* Constellation Particle Layer */}
       <StarfieldBackground />
 
-      <Navbar isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
+      <Navbar />
 
       {isMobile ? (
         /* Standard vertical scrolling layout for mobile & tablet */

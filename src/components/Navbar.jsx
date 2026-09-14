@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const Navbar = ({ isDark, toggleTheme }) => {
+const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -48,26 +48,13 @@ const Navbar = ({ isDark, toggleTheme }) => {
               {link.label}
             </a>
           ))}
-          <button
-            onClick={toggleTheme}
-            className="ml-3 p-2.5 rounded-full border border-border/60 hover:border-foreground transition-colors duration-200"
-            aria-label="Toggle Theme"
-          >
-            {isDark ? <Sun size={14} className="text-foreground" /> : <Moon size={14} className="text-foreground" />}
-          </button>
         </div>
 
         <div className="flex md:hidden items-center gap-3">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full border border-border/60"
-            aria-label="Toggle Theme"
-          >
-            {isDark ? <Sun size={14} className="text-foreground" /> : <Moon size={14} className="text-foreground" />}
-          </button>
           <button 
             onClick={() => setMobileOpen(!mobileOpen)} 
             className="text-foreground p-2 rounded-full border border-border/60"
+            aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
