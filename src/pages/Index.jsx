@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useVelocity, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import StarfieldBackground from "@/components/StarfieldBackground";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -19,11 +19,6 @@ const Index = () => {
   const trackRef = useRef(null);
   const { scrollYProgress } = useScroll(isMobile ? {} : { target: containerRef });
   const [scrollRange, setScrollRange] = useState(0);
-
-  // Dynamic Scroll Velocity Physics
-  const scrollVelocity = useVelocity(scrollYProgress);
-  const smoothVelocity = useSpring(scrollVelocity, { damping: 45, stiffness: 320 });
-  const skewX = useTransform(smoothVelocity, [-1.8, 0, 1.8], [-4.5, 0, 4.5]);
 
   // Permanently lock to pure dark mode
   useEffect(() => {
@@ -91,13 +86,13 @@ const Index = () => {
           <Footer />
         </div>
       ) : (
-        /* Sticky horizontal scrolling layout for desktop with Momentum Skew Physics */
-        <div ref={containerRef} className="relative overflow-x-clip" style={{ height: "650vh" }}>
-          <div className="sticky top-0 h-screen overflow-hidden flex items-center z-10">
+        /* Sticky horizontal scrolling layout for desktop */
+        <div ref={containerRef} className="relative w-full" style={{ height: "650vh" }}>
+          <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center z-10">
             <motion.div 
               ref={trackRef} 
-              style={{ x, skewX }} 
-              className="flex h-screen origin-center will-change-transform"
+              style={{ x }} 
+              className="flex h-screen items-center will-change-transform"
             >
               <Hero />
               <About />

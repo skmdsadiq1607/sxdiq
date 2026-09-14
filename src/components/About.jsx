@@ -45,7 +45,7 @@ const TechBadge = ({ tech, index }) => (
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen w-screen shrink-0 flex items-center justify-center bg-background text-foreground noise-overlay py-8 px-6 sm:px-12 md:px-20 border-r border-border relative select-none">
+    <section id="about" className="h-screen w-screen shrink-0 flex items-center justify-center bg-background text-foreground noise-overlay px-6 sm:px-12 md:px-20 border-r border-border relative select-none overflow-hidden">
       <div className="container mx-auto relative z-10 max-w-7xl pt-16 lg:pt-6">
         
         {/* Header with Times New Roman & Blur Stagger */}

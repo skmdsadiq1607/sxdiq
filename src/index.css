@@ -99,7 +99,6 @@
     font-family: "Times New Roman", Times, serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, div, label, code, pre {
     font-family: "Times New Roman", Times, serif !important;
