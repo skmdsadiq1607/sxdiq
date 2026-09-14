@@ -62,7 +62,7 @@ const Footer = () => (
       <div className="border-t border-white/10 pt-6 space-y-3">
         <div>
           <p className="text-[9px] text-white/50 flex items-center gap-1 font-mono uppercase tracking-wider">
-            © 2026 Built with <Heart size={8} className="text-white" /> by Shaik Kemple Mohamed Sadiq
+            © 2026 Built with <Heart size={8} className="text-white" /> by Shaik Kemple Mohammed Sadiq
           </p>
           <p className="text-[9px] text-white/30 mt-1 flex items-center gap-1 font-mono">
             <Code size={10} /> React, JavaScript &amp; Tailwind

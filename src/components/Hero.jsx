@@ -8,7 +8,7 @@ const HeroInner = ({ isDarkLayer }) => {
       {/* Header */}
       <div className="w-full flex justify-between items-center opacity-90">
         <span className="font-mono text-xs uppercase tracking-[0.25em]">
-          Shaik Kemple Mohamed Sadiq
+          Shaik Kemple Mohammed Sadiq
         </span>
         <span className="font-times italic text-xs tracking-wide opacity-50">
           creative portfolio v2.0
@@ -18,20 +18,17 @@ const HeroInner = ({ isDarkLayer }) => {
       {/* Center Center Text (Kinetic Typography style) */}
       <div className="flex-1 flex flex-col justify-center items-center my-auto">
         <div className="text-center flex flex-col items-center">
-          <div className="kinetic-line-1">
-            <h2 className="font-times font-normal italic text-[clamp(1.3rem,4vw,3.75rem)] leading-none tracking-tight whitespace-nowrap text-foreground/90">
-              shaik kemple mohamed
-            </h2>
-          </div>
-          <div className="kinetic-center my-2 sm:my-3">
-            <h1 className="font-times font-normal uppercase text-[clamp(4rem,14vw,11rem)] leading-hero tracking-tight whitespace-nowrap">
-              SADIQ
+          <div className="kinetic-center my-3 sm:my-5">
+            <h1 className="font-times font-normal text-[clamp(2.5rem,5.5vw,6.5rem)] leading-[0.96] tracking-tight whitespace-nowrap">
+              <span className="block md:hidden">Shaik Kemple</span>
+              <span className="block md:hidden mt-1 sm:mt-2">Mohammed Sadiq</span>
+              <span className="hidden md:inline">Shaik Kemple Mohammed Sadiq</span>
             </h1>
           </div>
-          <div className="kinetic-line-2">
-            <h3 className="font-times font-normal italic text-[clamp(1.3rem,4vw,3.75rem)] leading-none tracking-tight whitespace-nowrap text-foreground/90">
-              full stack developer
-            </h3>
+          <div className="kinetic-line-2 mt-2 sm:mt-4">
+            <h2 className="font-times font-normal italic text-[clamp(1.15rem,2.5vw,2.25rem)] tracking-wide text-foreground/75 whitespace-nowrap">
+              Full Stack Developer
+            </h2>
           </div>
         </div>
       </div>
@@ -157,9 +154,8 @@ const Hero = () => {
       }
 
       // Staggered reveal for typography
-      tl.from(".kinetic-line-1", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.4);
-      tl.from(".kinetic-center", { scale: 0.96, opacity: 0, duration: 1.0, ease: "power3.out" }, 0.5);
-      tl.from(".kinetic-line-2", { y: -30, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.6);
+      tl.from(".kinetic-center", { scale: 0.96, opacity: 0, duration: 1.0, ease: "power3.out" }, 0.4);
+      tl.from(".kinetic-line-2", { y: -20, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.6);
       tl.from(".marquee-container-wrapper", { opacity: 0, duration: 0.8, ease: "power2.out" }, 0.7);
       tl.from(".hero-action-panel-left", { x: -20, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.9);
       tl.from(".hero-action-panel-right", { x: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.9);
