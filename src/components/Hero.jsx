@@ -9,11 +9,10 @@ const HeroInner = ({ isDarkLayer }) => {
       {/* Center Center Text (Kinetic Typography style) */}
       <div className="flex-1 flex flex-col justify-center items-center my-auto">
         <div className="text-center flex flex-col items-center">
-          <div className="kinetic-center my-3 sm:my-5">
-            <h1 className="font-times font-normal text-[clamp(2.5rem,5.5vw,6.5rem)] leading-[0.96] tracking-tight whitespace-nowrap">
-              <span className="block md:hidden">Shaik Kemple</span>
-              <span className="block md:hidden mt-1 sm:mt-2">Mohammed Sadiq</span>
-              <span className="hidden md:inline">Shaik Kemple Mohammed Sadiq</span>
+          <div className="kinetic-center my-2 sm:my-4">
+            <h1 className="font-times font-normal text-[clamp(3rem,8.5vw,10rem)] leading-[0.92] tracking-tight text-center">
+              <span className="block">Shaik Kemple</span>
+              <span className="block mt-1 sm:mt-2">Mohammed Sadiq</span>
             </h1>
           </div>
           <div className="kinetic-line-2 mt-2 sm:mt-4">
@@ -174,11 +173,10 @@ const Hero = () => {
 
         {/* Invisible Center Spacer */}
         <div className="flex-1 flex flex-col justify-center items-center my-auto invisible" aria-hidden="true">
-          <div className="kinetic-center my-3 sm:my-5">
-            <h1 className="font-times font-normal text-[clamp(2.5rem,5.5vw,6.5rem)] leading-[0.96] tracking-tight whitespace-nowrap">
-              <span className="block md:hidden">Shaik Kemple</span>
-              <span className="block md:hidden mt-1 sm:mt-2">Mohammed Sadiq</span>
-              <span className="hidden md:inline">Shaik Kemple Mohammed Sadiq</span>
+          <div className="kinetic-center my-2 sm:my-4">
+            <h1 className="font-times font-normal text-[clamp(3rem,8.5vw,10rem)] leading-[0.92] tracking-tight text-center">
+              <span className="block">Shaik Kemple</span>
+              <span className="block mt-1 sm:mt-2">Mohammed Sadiq</span>
             </h1>
           </div>
           <div className="kinetic-line-2 mt-2 sm:mt-4">
