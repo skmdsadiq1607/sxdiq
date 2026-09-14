@@ -40,13 +40,13 @@ const HeroInner = ({ isDarkLayer }) => {
       {/* Footer Actions */}
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
         {/* Left: GitHub, LinkedIn, location */}
-        <div className="hero-action-panel-left flex flex-col gap-2 justify-end items-start font-mono text-[10px] uppercase tracking-widest">
+        <div className="hero-action-panel-left flex flex-col gap-2 justify-end items-start font-mono text-[10px] uppercase tracking-widest text-white">
           <div className="flex gap-4 items-center">
             <a 
               href="https://github.com/skmdsadiq1607" 
               target="_blank" 
               rel="noreferrer" 
-              className="hover:underline flex items-center gap-1.5 transition-opacity hover:opacity-80"
+              className="hover:underline flex items-center gap-1.5 transition-opacity hover:opacity-80 text-white"
             >
               GitHub <ArrowRight size={10} className="-rotate-45" />
             </a>
@@ -54,12 +54,12 @@ const HeroInner = ({ isDarkLayer }) => {
               href="https://www.linkedin.com/in/shaik-sadiq-b1650a377/" 
               target="_blank" 
               rel="noreferrer" 
-              className="hover:underline flex items-center gap-1.5 transition-opacity hover:opacity-80"
+              className="hover:underline flex items-center gap-1.5 transition-opacity hover:opacity-80 text-white"
             >
               LinkedIn <ArrowRight size={10} className="-rotate-45" />
             </a>
           </div>
-          <span className="opacity-40">// hyderabad, india</span>
+          <span className="opacity-40 text-white">// hyderabad, india</span>
         </div>
 
         {/* Right: Selected Projects, Contact, Resume */}
@@ -166,13 +166,16 @@ const Hero = () => {
       </div>
 
       {/* 🌓 UNIFIED SINGLE MARQUEE LAYER */}
-      <div className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none z-20">
+      <div 
+        className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none"
+        style={{ isolation: "auto" }}
+      >
         {/* Invisible Center Spacer */}
         <div className="flex-1 my-auto invisible pointer-events-none select-none" aria-hidden="true" />
 
-        {/* The Single Unified Marquee (mix-blend-mode: difference confined exclusively to marquee) */}
+        {/* The Single Unified Marquee (mix-blend-mode: difference in section stacking context) */}
         <div 
-          className="marquee-container-wrapper pointer-events-auto w-full my-auto flex flex-col gap-2.5 py-4 border-y border-white/20 select-none text-white"
+          className="marquee-container-wrapper relative z-20 pointer-events-auto w-full my-auto flex flex-col gap-2.5 py-4 border-y border-white/20 select-none text-white"
           style={{ mixBlendMode: "difference" }}
         >
           <div className="w-full overflow-hidden flex">
