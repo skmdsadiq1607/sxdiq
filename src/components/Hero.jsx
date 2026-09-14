@@ -8,7 +8,7 @@ const HeroInner = ({ isDarkLayer }) => {
       {/* Header */}
       <div className="w-full flex justify-between items-center opacity-90">
         <span className="font-mono text-xs uppercase tracking-[0.25em]">
-          Shaik Kemple Mohammed Sadiq
+          Shaik Kemple Mohamed Sadiq
         </span>
         <span className="font-times italic text-xs tracking-wide opacity-50">
           creative portfolio v2.0
@@ -20,7 +20,7 @@ const HeroInner = ({ isDarkLayer }) => {
         <div className="text-center flex flex-col items-center">
           <div className="kinetic-line-1">
             <h2 className="font-times font-semibold text-[clamp(1.2rem,4vw,3.75rem)] leading-none tracking-tight whitespace-nowrap">
-              shaik kemple mohammed
+              shaik kemple mohamed
             </h2>
           </div>
           <div className="kinetic-center my-2 sm:my-4">
@@ -104,7 +104,7 @@ const HeroInner = ({ isDarkLayer }) => {
               Contact <Mail size={10} />
             </a>
             <a 
-              href="/ShaikKempleMohammedSadiqResume.pdf" 
+              href="/ShaikKempleMohamedSadiqResume.pdf" 
               download 
               target="_blank" 
               rel="noreferrer" 

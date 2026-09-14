@@ -58,7 +58,7 @@ const TerminalConsole = () => {
         break;
       case "about":
         response = [
-          { type: "output", text: "Shaik Kemple Mohammed Sadiq | Full Stack Developer" },
+          { type: "output", text: "Shaik Kemple Mohamed Sadiq | Full Stack Developer" },
           { type: "output", text: "IT student at Anurag University, Hyderabad (CGPA: 9.25)." },
           { type: "output", text: "Passionate about building highly interactive web apps using the MERN stack." }
         ];
