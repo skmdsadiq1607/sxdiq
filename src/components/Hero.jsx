@@ -165,27 +165,16 @@ const Hero = () => {
         <HeroInner isDarkLayer={false} />
       </div>
 
-      {/* 🌓 UNIFIED SINGLE MARQUEE LAYER (mix-blend-mode: difference creates single continuous text flow) */}
-      <div 
-        className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none z-20"
-        style={{ mixBlendMode: "difference" }}
-      >
-
+      {/* 🌓 UNIFIED SINGLE MARQUEE LAYER */}
+      <div className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none z-20">
         {/* Invisible Center Spacer */}
-        <div className="flex-1 flex flex-col justify-center items-center my-auto invisible" aria-hidden="true">
-          <div className="kinetic-center my-2 sm:my-4">
-            <h1 className="font-times font-normal text-[clamp(3rem,8.5vw,10rem)] leading-[0.92] tracking-tight text-center">
-              <span className="block">Shaik Kemple</span>
-              <span className="block mt-1 sm:mt-2">Mohammed Sadiq</span>
-            </h1>
-          </div>
-          <div className="kinetic-line-2 mt-2 sm:mt-4">
-            <h2 className="font-times font-normal italic text-[clamp(1.15rem,2.5vw,2.25rem)]">Full Stack Developer</h2>
-          </div>
-        </div>
+        <div className="flex-1 my-auto invisible pointer-events-none select-none" aria-hidden="true" />
 
-        {/* The Single Unified Marquee */}
-        <div className="marquee-container-wrapper pointer-events-auto w-full my-auto flex flex-col gap-2.5 py-4 border-y border-white/20 select-none text-white">
+        {/* The Single Unified Marquee (mix-blend-mode: difference confined exclusively to marquee) */}
+        <div 
+          className="marquee-container-wrapper pointer-events-auto w-full my-auto flex flex-col gap-2.5 py-4 border-y border-white/20 select-none text-white"
+          style={{ mixBlendMode: "difference" }}
+        >
           <div className="w-full overflow-hidden flex">
             <div className="animate-marquee flex whitespace-nowrap gap-12 font-times font-normal uppercase text-lg sm:text-2xl md:text-3xl tracking-[0.2em]">
               <span>SHAIK SADIQ // DESIGNER & DEVELOPER // PROBLEM SOLVER // CREATIVE WEB ENGINEERING //&nbsp;</span>
@@ -203,18 +192,8 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Invisible Footer Spacer */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 items-end invisible" aria-hidden="true">
-          <div className="flex flex-col gap-2 font-mono text-[10px] uppercase">
-            <div className="flex gap-4 items-center"><span>GitHub</span></div>
-            <span>// hyderabad, india</span>
-          </div>
-          <div className="flex flex-col gap-2.5 items-end">
-            <div className="flex gap-2.5">
-              <span className="px-4 py-2 text-[9px]">Selected Projects</span>
-            </div>
-          </div>
-        </div>
+        {/* Invisible Footer Spacer (empty layout placeholder, no text) */}
+        <div className="w-full h-14 invisible pointer-events-none select-none" aria-hidden="true" />
       </div>
 
       {/* Center 1px Divider Line */}
