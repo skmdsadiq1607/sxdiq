@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useVelocity, useSpring } from "framer-motion";
 import StarfieldBackground from "@/components/StarfieldBackground";
 import Navbar from "@/components/Navbar";
-import ScrollTelemetryHUD from "@/components/ScrollTelemetryHUD";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -77,12 +76,6 @@ const Index = () => {
       <StarfieldBackground />
 
       <Navbar />
-
-      {/* Persistent Cybernetic Scroll Telemetry HUD */}
-      <ScrollTelemetryHUD 
-        scrollYProgress={scrollYProgress} 
-        scrollVelocity={scrollVelocity} 
-      />
 
       {isMobile ? (
         /* Standard vertical scrolling layout for mobile & tablet */

@@ -331,11 +331,6 @@ const Projects = () => {
         style={{ transform: "perspective(400px) rotateX(65deg)", transformOrigin: "bottom center" }}
       />
 
-      {/* Massive Outlined Watermark Typography */}
-      <div className="absolute top-1/2 left-2/3 -translate-x-1/2 -translate-y-1/2 text-[clamp(10rem,22vw,26rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
-        PORTFOLIO
-      </div>
-
       {/* Left Info Panel */}
       <div className="w-[380px] shrink-0 pr-16 h-[85vh] flex flex-col justify-center relative z-10">
         <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-3">// 03 — Production Software</span>

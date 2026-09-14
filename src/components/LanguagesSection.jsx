@@ -106,11 +106,6 @@ const LanguagesSection = () => (
       </svg>
     </div>
 
-    {/* Massive Outlined Watermark Typography */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(8rem,16vw,18rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
-      VOICE
-    </div>
-
     <div className="container mx-auto relative z-10 pt-16">
       <motion.div 
         initial={{ opacity: 0, y: 30 }} 

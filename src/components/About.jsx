@@ -45,27 +45,7 @@ const TechBadge = ({ tech, index }) => (
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen w-screen shrink-0 flex items-center bg-black text-foreground noise-overlay py-16 px-8 sm:px-12 md:px-24 border-r border-border relative overflow-hidden select-none">
-      
-      {/* 🌓 The Yin-Yang Diagonal Razor Slash Layer */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-[#FFFFFF] pointer-events-none z-0 hidden lg:block"
-        style={{ clipPath: "polygon(68% 0, 100% 0, 100% 100%, 46% 100%)" }}
-      >
-        {/* Subtle grid pattern inside the white wing */}
-        <div className="w-full h-full opacity-10 bg-[radial-gradient(#000000_1.5px,transparent_1.5px)] [background-size:24px_24px]" />
-      </div>
-
-      {/* Diagonal Razor Hairline */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 hidden lg:block" preserveAspectRatio="none" viewBox="0 0 100 100">
-        <line x1="68" y1="0" x2="46" y2="100" stroke="rgba(255,255,255,0.4)" strokeWidth="0.2" strokeDasharray="1.5 1" />
-      </svg>
-
-      {/* Giant Parallax Watermark Numeral */}
-      <div className="absolute -top-12 -left-8 text-[clamp(14rem,26vw,30rem)] font-times italic font-bold text-white/[0.03] select-none pointer-events-none z-0 leading-none">
-        01
-      </div>
-
+    <section id="about" className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-16 px-8 sm:px-12 md:px-24 border-r border-border relative select-none">
       <div className="container mx-auto relative z-10 pt-12 md:pt-16 max-w-7xl">
         
         {/* Header with Times New Roman & Blur Stagger */}

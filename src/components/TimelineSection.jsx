@@ -189,11 +189,6 @@ const TimelineSection = () => {
         </motion.div>
       </div>
 
-      {/* Massive Outlined Watermark Typography */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(9rem,18vw,22rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
-        CHRONOLOGY
-      </div>
-
       {/* Education Panel */}
       <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[85vh] relative z-10">
         <div className="mb-10">

@@ -53,10 +53,6 @@ const Contact = () => {
   return (
     <section id="contact" className="min-h-screen w-full lg:w-[1000px] shrink-0 flex items-center bg-black text-foreground noise-overlay py-12 px-6 md:px-16 border-r border-border relative overflow-hidden select-none" style={{ perspective: 1200 }}>
       
-      {/* Massive Outlined Watermark Typography */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(6rem,14vw,17rem)] font-times italic font-black text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] select-none pointer-events-none z-0 whitespace-nowrap leading-none">
-        TRANSMISSION
-      </div>
 
       <div className="container mx-auto px-4 md:px-12 relative z-10 pt-16 overflow-visible w-full">
         
