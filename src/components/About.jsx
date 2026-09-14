@@ -45,29 +45,29 @@ const TechBadge = ({ tech, index }) => (
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen w-screen shrink-0 flex items-center bg-background text-foreground noise-overlay py-16 px-8 sm:px-12 md:px-24 border-r border-border relative select-none">
-      <div className="container mx-auto relative z-10 pt-12 md:pt-16 max-w-7xl">
+    <section id="about" className="min-h-screen w-screen shrink-0 flex items-center justify-center bg-background text-foreground noise-overlay py-8 px-6 sm:px-12 md:px-20 border-r border-border relative select-none">
+      <div className="container mx-auto relative z-10 max-w-7xl pt-16 lg:pt-6">
         
         {/* Header with Times New Roman & Blur Stagger */}
         <motion.div 
-          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }} 
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }} 
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12 md:mb-16 text-left border-b border-foreground/15 pb-6 relative"
+          className="mb-8 lg:mb-10 text-left border-b border-foreground/15 pb-4 relative"
         >
-          <span className="font-mono text-xs mb-3 tracking-[0.3em] uppercase block text-foreground/50">
+          <span className="font-mono text-xs mb-2 tracking-[0.3em] uppercase block text-foreground/50">
             // 01 — Background &amp; Identity
           </span>
-          <h2 className="font-times text-6xl sm:text-7xl lg:text-8xl font-normal italic tracking-tight leading-none text-foreground">
+          <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground">
             About Me
           </h2>
         </motion.div>
 
         {/* Two-column editorial layout */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column (Bio & Skills in Black Half) */}
+          {/* Left Column (Bio & Skills) */}
           <motion.div 
             initial={{ opacity: 0, x: -30, filter: "blur(4px)" }} 
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
@@ -81,7 +81,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="font-times text-2xl sm:text-3xl md:text-4xl font-normal italic text-foreground leading-snug mb-6"
+                className="font-times text-2xl sm:text-3xl font-normal italic text-foreground leading-snug mb-4"
               >
                 A passionate developer turning ideas into reality.
               </motion.h3>
@@ -90,7 +90,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-foreground/75 text-base sm:text-lg leading-relaxed mb-6 font-light font-sans"
+                className="text-foreground/75 text-sm sm:text-base leading-relaxed mb-3.5 font-light font-sans"
               >
                 I'm a B.Tech Information Technology student at Anurag University, Hyderabad, deeply passionate about web development and problem-solving. I enjoy building modern, user-centric applications using the MERN stack.
               </motion.p>
@@ -99,18 +99,18 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-foreground/75 text-base sm:text-lg leading-relaxed mb-8 font-light font-sans"
+                className="text-foreground/75 text-sm sm:text-base leading-relaxed mb-6 font-light font-sans"
               >
                 Beyond coding, I actively participate in hackathons, contribute to student communities, and continuously sharpen my skills in Data Structures and Algorithms. My goal is to create impactful tech solutions that make a difference.
               </motion.p>
             </div>
             
             {/* Core Technologies - Floating pills with hover levitation */}
-            <div className="pt-6 border-t border-foreground/15">
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/45 block mb-4">
+            <div className="pt-4 border-t border-foreground/15">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/45 block mb-3">
                 Core Tech Stack
               </span>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 {["MongoDB", "Express.js", "React.js", "Node.js", "Java", "C"].map((tech, i) => (
                   <TechBadge key={tech} tech={tech} index={i} />
                 ))}
@@ -118,43 +118,56 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Column (Floating High-Contrast Stats Card hovering near Diagonal Cut) */}
+          {/* Right Column (2x2 Balanced Stats Matrix) */}
           <motion.div 
             initial={{ opacity: 0, x: 30, filter: "blur(4px)" }} 
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
             viewport={{ once: true }} 
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }} 
-            className="lg:col-span-6 bg-card/90 backdrop-blur-2xl rounded-3xl p-8 sm:p-10 border border-border/90 shadow-2xl flex flex-col divide-y divide-foreground/15"
+            className="lg:col-span-6 bg-card/90 backdrop-blur-2xl rounded-3xl p-6 sm:p-7 border border-border/90 shadow-2xl flex flex-col justify-between"
           >
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 + idx * 0.1, duration: 0.5 }}
-                whileHover={{ x: 8 }}
-                className="py-6 sm:py-7 first:pt-0 last:pb-0 flex items-end justify-between group transition-all duration-300 cursor-default"
-              >
-                <div>
-                  <span className="font-mono text-[10px] sm:text-xs text-foreground/50 uppercase tracking-[0.25em] block mb-2 group-hover:text-foreground/80 transition-colors">
-                    {stat.label}
-                  </span>
-                  <p className="text-5xl sm:text-6xl md:text-7xl font-times font-normal italic tracking-tight text-foreground leading-none group-hover:scale-[1.02] origin-left transition-transform duration-300">
-                    <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
-                  </p>
-                </div>
+            {/* Card Header Subtitle */}
+            <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-foreground/15">
+              <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-foreground/50">
+                // Verified Academic &amp; Production Metrics
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-foreground/15 bg-foreground/5 text-[9px] font-mono text-foreground/70">
+                <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" /> Live Stats
+              </span>
+            </div>
 
-                <div className="text-right flex flex-col items-end pb-1">
-                  <motion.div whileHover={{ rotate: 15, scale: 1.2 }}>
-                    <stat.icon size={20} className="text-foreground/35 group-hover:text-foreground transition-colors duration-300 mb-2" />
-                  </motion.div>
-                  <span className="font-mono text-[10px] text-foreground/45 tracking-wider group-hover:text-foreground/75 transition-colors">
-                    {stat.detail}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+            {/* 2x2 Quadrant Grid of Stats */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 + idx * 0.08, duration: 0.45 }}
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  className="p-4 rounded-2xl border border-foreground/10 hover:border-foreground/40 bg-foreground/[0.02] hover:bg-foreground/[0.05] transition-all duration-300 group flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="font-mono text-[9px] sm:text-[10px] text-foreground/50 uppercase tracking-widest block group-hover:text-foreground/80 transition-colors truncate">
+                      {stat.label}
+                    </span>
+                    <motion.div whileHover={{ rotate: 15, scale: 1.2 }}>
+                      <stat.icon size={15} className="text-foreground/35 group-hover:text-foreground transition-colors shrink-0" />
+                    </motion.div>
+                  </div>
+
+                  <div>
+                    <p className="text-4xl sm:text-5xl font-times font-normal italic tracking-tight text-foreground leading-none mb-1.5">
+                      <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
+                    </p>
+                    <span className="font-mono text-[9px] sm:text-[10px] text-foreground/45 tracking-wider block group-hover:text-foreground/75 transition-colors">
+                      {stat.detail}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
         </div>
