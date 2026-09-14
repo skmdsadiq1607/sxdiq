@@ -16,7 +16,7 @@ const HeroInner = ({ isDarkLayer }) => {
             </h1>
           </div>
           <div className="kinetic-line-2 mt-2 sm:mt-4">
-            <h2 className="font-times font-normal italic text-[clamp(1.15rem,2.5vw,2.25rem)] tracking-wide text-foreground/75 whitespace-nowrap">
+            <h2 className="font-times font-normal italic text-[clamp(1.15rem,2.5vw,2.25rem)] tracking-wide opacity-80 whitespace-nowrap">
               Full Stack Developer
             </h2>
           </div>
