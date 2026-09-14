@@ -26,10 +26,10 @@
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 0%;                  /* Stark Black Border */
-    --input: 0 0% 0%;
+    --border: 0 0% 88%;                  /* Soft Elegant Border */
+    --input: 0 0% 88%;
     --ring: 0 0% 0%;
-    --radius: 0px;                     /* Sharp brutalist corners */
+    --radius: 0.5rem;                   /* Refined rounded corners */
 
     --section-hero-bg: #ffffff;
     --section-about-bg: #ffffff;
@@ -68,8 +68,8 @@
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 0 0% 0%;
-    --border: 0 0% 100%;               /* Stark White Border */
-    --input: 0 0% 100%;
+    --border: 0 0% 22%;               /* Subtle Elegant Dark Border */
+    --input: 0 0% 22%;
     --ring: 0 0% 100%;
 
     --section-hero-bg: #000000;
@@ -101,9 +101,9 @@
     overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-family: "Times New Roman", Times, "Playfair Display", serif;
+    font-weight: 400;
+    letter-spacing: -0.015em;
   }
   .font-mono {
     font-family: 'JetBrains Mono', monospace !important;
@@ -131,8 +131,7 @@
 
   /* Inversion hovers */
   .solid-btn {
-    @apply inline-flex items-center justify-center border border-foreground bg-background text-foreground font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-300 py-4 px-8 cursor-pointer relative overflow-hidden select-none;
-    border-radius: 0px;
+    @apply inline-flex items-center justify-center border border-foreground/30 hover:border-foreground bg-background text-foreground font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-300 py-3.5 px-7 cursor-pointer relative overflow-hidden select-none rounded-full;
   }
 
   .solid-btn:hover {
@@ -140,8 +139,7 @@
   }
 
   .solid-btn-inverted {
-    @apply inline-flex items-center justify-center border border-background bg-foreground text-background font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-300 py-4 px-8 cursor-pointer relative overflow-hidden select-none;
-    border-radius: 0px;
+    @apply inline-flex items-center justify-center border border-foreground bg-foreground text-background font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-300 py-3.5 px-7 cursor-pointer relative overflow-hidden select-none rounded-full;
   }
 
   .solid-btn-inverted:hover {
@@ -149,12 +147,11 @@
   }
 
   .solid-card {
-    @apply bg-background border border-border relative overflow-hidden transition-all duration-300;
-    border-radius: 0px;
+    @apply bg-card/60 backdrop-blur-sm border border-border relative overflow-hidden transition-all duration-300 rounded-2xl;
   }
 
   .solid-card:hover {
-    @apply border-foreground;
+    @apply border-foreground/40;
   }
 
   .text-reveal {

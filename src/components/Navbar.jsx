@@ -34,7 +34,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
       />
 
       <div className="container mx-auto flex items-center justify-between px-6 md:px-16">
-        <a href="#" className="text-xl font-bold uppercase tracking-widest font-mono text-foreground">
+        <a href="#" className="text-2xl font-normal font-times italic tracking-wide text-foreground">
           Sadiq.
         </a>
         
@@ -50,8 +50,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
           ))}
           <button
             onClick={toggleTheme}
-            className="ml-3 p-2.5 border border-border hover:border-foreground transition-colors duration-200"
-            style={{ borderRadius: "0px" }}
+            className="ml-3 p-2.5 rounded-full border border-border/60 hover:border-foreground transition-colors duration-200"
             aria-label="Toggle Theme"
           >
             {isDark ? <Sun size={14} className="text-foreground" /> : <Moon size={14} className="text-foreground" />}
@@ -61,16 +60,14 @@ const Navbar = ({ isDark, toggleTheme }) => {
         <div className="flex md:hidden items-center gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 border border-border"
-            style={{ borderRadius: "0px" }}
+            className="p-2 rounded-full border border-border/60"
             aria-label="Toggle Theme"
           >
             {isDark ? <Sun size={14} className="text-foreground" /> : <Moon size={14} className="text-foreground" />}
           </button>
           <button 
             onClick={() => setMobileOpen(!mobileOpen)} 
-            className="text-foreground p-2 border border-border"
-            style={{ borderRadius: "0px" }}
+            className="text-foreground p-2 rounded-full border border-border/60"
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>

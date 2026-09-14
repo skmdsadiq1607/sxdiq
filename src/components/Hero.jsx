@@ -19,17 +19,17 @@ const HeroInner = ({ isDarkLayer }) => {
       <div className="flex-1 flex flex-col justify-center items-center my-auto">
         <div className="text-center flex flex-col items-center">
           <div className="kinetic-line-1">
-            <h2 className="font-times font-semibold text-[clamp(1.2rem,4vw,3.75rem)] leading-none tracking-tight whitespace-nowrap">
+            <h2 className="font-times font-normal italic text-[clamp(1.3rem,4vw,3.75rem)] leading-none tracking-tight whitespace-nowrap text-foreground/90">
               shaik kemple mohamed
             </h2>
           </div>
-          <div className="kinetic-center my-2 sm:my-4">
-            <h1 className="font-extrabold uppercase text-[clamp(3.5rem,13.5vw,10.5rem)] leading-hero tracking-tight whitespace-nowrap">
+          <div className="kinetic-center my-2 sm:my-3">
+            <h1 className="font-times font-normal uppercase text-[clamp(4rem,14vw,11rem)] leading-hero tracking-tight whitespace-nowrap">
               SADIQ
             </h1>
           </div>
           <div className="kinetic-line-2">
-            <h3 className="font-times font-semibold text-[clamp(1.2rem,4vw,3.75rem)] leading-none tracking-tight whitespace-nowrap">
+            <h3 className="font-times font-normal italic text-[clamp(1.3rem,4vw,3.75rem)] leading-none tracking-tight whitespace-nowrap text-foreground/90">
               full stack developer
             </h3>
           </div>
@@ -85,20 +85,20 @@ const HeroInner = ({ isDarkLayer }) => {
           <div className="flex flex-wrap gap-2.5 sm:gap-3 items-center">
             <a 
               href="#projects" 
-              className={`px-3.5 py-1.5 sm:px-4 sm:py-2 border transition-all font-mono text-[9px] uppercase tracking-widest font-bold ${
+              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold ${
                 isDarkLayer 
-                  ? "border-white text-white hover:bg-white hover:text-black" 
-                  : "border-black text-black hover:bg-black hover:text-white"
+                  ? "border-white/40 text-white hover:bg-white hover:text-black hover:border-white" 
+                  : "border-black/30 text-black hover:bg-black hover:text-white hover:border-black"
               }`}
             >
               Selected Projects
             </a>
             <a 
               href="#contact" 
-              className={`px-3.5 py-1.5 sm:px-4 sm:py-2 border transition-all font-mono text-[9px] uppercase tracking-widest font-bold flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold flex items-center gap-1.5 ${
                 isDarkLayer 
-                  ? "border-white text-white hover:bg-white hover:text-black" 
-                  : "border-black text-black hover:bg-black hover:text-white"
+                  ? "border-white/40 text-white hover:bg-white hover:text-black hover:border-white" 
+                  : "border-black/30 text-black hover:bg-black hover:text-white hover:border-black"
               }`}
             >
               Contact <Mail size={10} />
@@ -108,7 +108,7 @@ const HeroInner = ({ isDarkLayer }) => {
               download 
               target="_blank" 
               rel="noreferrer" 
-              className={`px-3.5 py-1.5 sm:px-4 sm:py-2 border transition-all font-mono text-[9px] uppercase tracking-widest font-bold flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold flex items-center gap-1.5 ${
                 isDarkLayer 
                   ? "bg-white text-black border-white hover:bg-transparent hover:text-white" 
                   : "bg-black text-white border-black hover:bg-transparent hover:text-black"
