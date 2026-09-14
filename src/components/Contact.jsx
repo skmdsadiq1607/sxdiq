@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Mail, Phone, Linkedin, Send, MapPin, ArrowUpRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -14,30 +14,6 @@ const Contact = () => {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const { scrollYProgress } = useScroll();
-
-  // Scroll range: Contact section is active near the end of the scrolltrack
-  const swingProgress = useTransform(scrollYProgress, [0.82, 0.96], [0, 1]);
-
-  // Swing animations for double-door reveal on desktop
-  const rotateLeftY = useTransform(swingProgress, [0, 1], [-35, 0]);
-  const translateLeftX = useTransform(swingProgress, [0, 1], [-120, 0]);
-  const opacityLeft = useTransform(swingProgress, [0, 1], [0.3, 1]);
-
-  const rotateRightY = useTransform(swingProgress, [0, 1], [35, 0]);
-  const translateRightX = useTransform(swingProgress, [0, 1], [120, 0]);
-  const opacityRight = useTransform(swingProgress, [0, 1], [0.3, 1]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,23 +27,22 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen w-full lg:w-[1000px] shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 md:px-16 border-r border-border relative overflow-hidden select-none" style={{ perspective: 1200 }}>
+    <section id="contact" className="min-h-screen w-full flex items-center justify-center bg-black text-foreground noise-overlay py-24 px-6 sm:px-12 md:px-20 border-b border-border relative select-none">
       
-
-      <div className="container mx-auto px-4 md:px-12 relative z-10 pt-16 lg:pt-6 overflow-visible w-full">
+      <div className="container mx-auto relative z-10 max-w-7xl">
         
         {/* Radar beacon status badge */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border/80 bg-secondary/50 text-[10px] font-mono text-foreground/90 mb-3 shadow-sm"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-border/80 bg-secondary/50 text-[10px] font-mono text-foreground/90 mb-4 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
           </span>
-          <span className="tracking-widest">AVAILABLE FOR WORK & COLLABORATION</span>
+          <span className="tracking-widest">AVAILABLE FOR WORK &amp; COLLABORATION</span>
         </motion.div>
 
         <motion.div 
@@ -75,32 +50,34 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.6 }}
-          className="section-heading mb-6 lg:mb-8"
+          className="section-heading mb-10 lg:mb-12 border-b border-foreground/15 pb-4"
         >
-          <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">// 09 — Direct Transmission</span>
-          <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground">Let's build together</h2>
+          <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">
+            // 05 — Direct Transmission
+          </span>
+          <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground mb-3">
+            Let's build together
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-light max-w-2xl font-times leading-relaxed">
+            Whether it's a project idea, a collaboration opportunity, or just a friendly hello — my transmission channel is always active.
+          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start overflow-visible">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Left Column (Contact list) */}
           <motion.div 
-            style={isMobile ? {} : {
-              rotateY: rotateLeftY,
-              x: translateLeftX,
-              opacity: opacityLeft,
-              transformOrigin: "left center"
-            }}
-            initial={isMobile ? { opacity: 0, y: 20 } : false}
-            whileInView={isMobile ? { opacity: 1, y: 0 } : false}
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="lg:col-span-5 space-y-3"
           >
-            <p className="text-muted-foreground leading-relaxed mb-4 text-xs font-light">
-              Whether it's a project idea, a collaboration opportunity, or just a friendly hello — my inbox is always open.
+            <p className="text-muted-foreground leading-relaxed mb-6 text-sm font-light font-times">
+              I am always excited to discuss software engineering challenges, open-source projects, and new technology ventures. Feel free to connect directly through any platform below.
             </p>
 
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               {contactInfo.map((item) => (
                 <motion.a
                   key={item.label}
@@ -109,18 +86,18 @@ const Contact = () => {
                   href={item.href || undefined}
                   target={item.href?.startsWith('http') ? '_blank' : undefined}
                   rel={item.href?.startsWith('http') ? 'noreferrer' : undefined}
-                  className="flex items-center gap-3.5 p-3.5 rounded-2xl border border-border/80 bg-card/90 backdrop-blur-sm hover:border-foreground/50 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-4 p-4 rounded-3xl border border-border/80 bg-card/90 backdrop-blur-md hover:border-foreground/50 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="w-9 h-9 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
-                    <item.icon size={14} />
+                  <div className="w-10 h-10 rounded-2xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground group-hover:bg-foreground group-hover:text-background transition-colors duration-300 shrink-0">
+                    <item.icon size={16} />
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <p className="text-[9px] text-foreground/60 font-mono uppercase tracking-widest">{item.label}</p>
-                    <p className="text-[11px] font-mono font-semibold uppercase text-foreground">{item.value}</p>
+                    <p className="text-xs sm:text-sm font-mono font-semibold uppercase text-foreground truncate">{item.value}</p>
                   </div>
                   {item.href && (
-                    <div className="w-7 h-7 rounded-full border border-border/70 flex items-center justify-center text-foreground/60 group-hover:text-foreground group-hover:border-foreground/40 transition-colors">
-                      <ArrowUpRight size={12} />
+                    <div className="w-8 h-8 rounded-full border border-border/70 flex items-center justify-center text-foreground/60 group-hover:text-foreground group-hover:border-foreground/40 transition-colors shrink-0">
+                      <ArrowUpRight size={13} />
                     </div>
                   )}
                 </motion.a>
@@ -130,23 +107,18 @@ const Contact = () => {
 
           {/* Code Editor Form Column */}
           <motion.form
-            style={isMobile ? {} : {
-              rotateY: rotateRightY,
-              x: translateRightX,
-              opacity: opacityRight,
-              transformOrigin: "right center",
-            }}
-            initial={isMobile ? { opacity: 0, y: 20 } : false}
-            whileInView={isMobile ? { opacity: 1, y: 0 } : false}
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             onSubmit={handleSubmit}
-            className="lg:col-span-7 border border-border/80 bg-black text-white/90 font-mono text-[10px] overflow-hidden flex flex-col relative rounded-2xl shadow-2xl"
+            className="lg:col-span-7 border border-border/80 bg-black text-white/90 font-mono text-[10px] overflow-hidden flex flex-col relative rounded-3xl shadow-2xl"
           >
             {/* Scanner laser overlay effect inside editor */}
             <div className="laser-scanner text-white/5" />
 
             {/* Editor Top Bar */}
-            <div className="bg-zinc-950 border-b border-white/10 px-5 py-3 flex items-center justify-between select-none">
+            <div className="bg-zinc-950 border-b border-white/10 px-5 py-3.5 flex items-center justify-between select-none">
               <div className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-full border border-white/30 bg-white/10" />
                 <div className="w-2.5 h-2.5 rounded-full border border-white/30 bg-white/10" />
@@ -163,7 +135,7 @@ const Contact = () => {
             <div className="p-5 flex leading-relaxed relative bg-black">
               
               {/* Line numbers */}
-              <div className="text-white/30 text-right pr-4 select-none border-r border-white/10 w-10 shrink-0 space-y-1">
+              <div className="text-white/30 text-right pr-4 select-none border-r border-white/10 w-10 shrink-0 space-y-1 font-mono">
                 <div>1</div>
                 <div>2</div>
                 <div>3</div>
@@ -179,7 +151,7 @@ const Contact = () => {
               </div>
 
               {/* Code lines */}
-              <div className="flex-1 pl-4 space-y-1.5 text-white/70">
+              <div className="flex-1 pl-4 space-y-1.5 text-white/70 font-mono">
                 <div>
                   <span className="text-white/50">{`{`}</span>
                 </div>
@@ -188,52 +160,57 @@ const Contact = () => {
                   <span className="text-white/50">"sender"</span>: <span className="text-white/50">{`{`}</span>
                 </div>
                 
-                {/* Name line */}
-                <div className="pl-8 flex items-center flex-wrap gap-1">
-                  <span className="text-white/50">"name"</span>: <span className="text-white/40">"</span>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Enter your name"
+                <div className="pl-8 flex items-center gap-2">
+                  <span className="text-white/50">"name"</span>: 
+                  <span className="text-white/40">"</span>
+                  <input 
+                    type="text" 
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-48 transition-colors px-1 py-0.5"
-                  />
-                  <span className="text-white/40">"</span>,
-                </div>
-                
-                {/* Email line */}
-                <div className="pl-8 flex items-center flex-wrap gap-1">
-                  <span className="text-white/50">"email"</span>: <span className="text-white/40">"</span>
-                  <input
-                    type="email"
+                    placeholder="Your Name"
                     required
-                    placeholder="Enter your email"
+                    className="bg-transparent text-white border-b border-white/20 focus:border-white focus:outline-none px-1 py-0.5 w-48 text-[11px] placeholder:text-white/20"
+                  />
+                  <span className="text-white/40">",</span>
+                </div>
+
+                <div className="pl-8 flex items-center gap-2">
+                  <span className="text-white/50">"email"</span>: 
+                  <span className="text-white/40">"</span>
+                  <input 
+                    type="email" 
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-48 transition-colors px-1 py-0.5"
+                    placeholder="your@email.com"
+                    required
+                    className="bg-transparent text-white border-b border-white/20 focus:border-white focus:outline-none px-1 py-0.5 w-48 text-[11px] placeholder:text-white/20"
                   />
                   <span className="text-white/40">"</span>
                 </div>
-                
+
                 <div className="pl-4">
-                  <span className="text-white/50">{`},`}</span>
+                  <span className="text-white/50">{`}`},</span>
                 </div>
 
-                {/* Message line */}
-                <div className="pl-4 flex items-start gap-1">
-                  <span className="text-white/50 shrink-0">"message"</span>: <span className="text-white/40 shrink-0">"</span>
-                  <textarea
-                    required
-                    rows={2}
-                    placeholder="Type your message..."
+                <div className="pl-4">
+                  <span className="text-white/50">"message"</span>: <span className="text-white/40">`</span>
+                </div>
+
+                <div className="pl-8">
+                  <textarea 
+                    rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="bg-transparent border-b border-white/20 hover:border-white/40 focus:border-white text-white outline-none w-full transition-colors px-1 py-0.5 resize-none h-14 leading-relaxed"
+                    placeholder="Write your transmission message here..."
+                    required
+                    className="w-full bg-zinc-900/40 text-white border border-white/15 rounded-xl p-3 focus:border-white focus:outline-none text-[11px] placeholder:text-white/20 resize-none font-mono"
                   />
-                  <span className="text-white/40 shrink-0">"</span>
                 </div>
-                
+
+                <div className="pl-4">
+                  <span className="text-white/40">`</span>
+                </div>
+
                 <div>
                   <span className="text-white/50">{`}`}</span>
                 </div>
@@ -241,7 +218,7 @@ const Contact = () => {
             </div>
 
             {/* Editor Action Bar */}
-            <div className="bg-zinc-950 border-t border-white/10 px-5 py-3.5 flex items-center justify-between">
+            <div className="bg-zinc-950 border-t border-white/10 px-5 py-4 flex items-center justify-between">
               <span className="text-[9px] text-white/50 font-mono">Run: node send.js</span>
               <motion.button
                 whileHover={{ scale: 1.04 }}

@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Mail, Download, ArrowRight } from "lucide-react";
+import { Mail, Download, ArrowRight, ArrowDown } from "lucide-react";
 import gsap from "gsap";
 
 const HeroInner = ({ isDarkLayer }) => {
@@ -101,8 +101,8 @@ const HeroInner = ({ isDarkLayer }) => {
             </a>
           </div>
           <div className="hidden sm:flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest opacity-50">
-            <span>Scroll to Enter</span>
-            <ArrowRight size={12} className="animate-pulse" />
+            <span>Scroll to Explore</span>
+            <ArrowDown size={12} className="animate-bounce" />
           </div>
         </div>
       </div>
@@ -153,7 +153,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={heroRef} className="min-h-screen h-screen w-full lg:w-screen shrink-0 relative overflow-hidden select-none">
+    <section ref={heroRef} className="min-h-screen h-screen w-full relative overflow-hidden select-none border-b border-border">
       {/* 🌓 BASE LAYER: Solid Black Background, Pure White Content */}
       <div className="absolute inset-0 w-full h-full bg-[#000000] text-[#FFFFFF] z-0 overflow-hidden">
         <HeroInner isDarkLayer={true} />

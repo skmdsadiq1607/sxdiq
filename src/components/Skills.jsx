@@ -77,7 +77,7 @@ const SkillCard = ({ skill, index }) => {
 };
 
 const Skills = () => (
-  <section id="skills" className="min-h-screen w-screen shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 sm:px-12 md:px-20 border-r border-border relative overflow-hidden select-none">
+  <section id="skills" className="min-h-screen w-full flex items-center justify-center bg-black text-foreground noise-overlay py-24 px-6 sm:px-12 md:px-20 border-b border-border relative overflow-hidden select-none">
     
     {/* 🪐 Gravitational Celestial Orbit Rings */}
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-40">
@@ -98,7 +98,7 @@ const Skills = () => (
       />
     </div>
 
-    <div className="container mx-auto relative z-10 max-w-7xl pt-16 lg:pt-6">
+    <div className="container mx-auto relative z-10 max-w-7xl">
       <motion.div 
         initial={{ opacity: 0, y: 20 }} 
         whileInView={{ opacity: 1, y: 0 }} 

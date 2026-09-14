@@ -95,7 +95,7 @@ const LanguageCard = ({ lang, index }) => {
 };
 
 const LanguagesSection = () => (
-  <section id="languages" className="min-h-screen w-full lg:w-[800px] shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 md:px-16 border-r border-border relative overflow-hidden select-none">
+  <section id="languages" className="min-h-screen w-full flex items-center justify-center bg-black text-foreground noise-overlay py-24 px-6 sm:px-12 md:px-20 border-b border-border relative overflow-hidden select-none">
     
     {/* 〰️ Acoustic Soundwave Resonance Ripples */}
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-25">
@@ -106,7 +106,7 @@ const LanguagesSection = () => (
       </svg>
     </div>
 
-    <div className="container mx-auto relative z-10 pt-16 lg:pt-6">
+    <div className="container mx-auto relative z-10 max-w-5xl">
       <motion.div 
         initial={{ opacity: 0, y: 20 }} 
         whileInView={{ opacity: 1, y: 0 }} 

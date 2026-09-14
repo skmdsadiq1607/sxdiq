@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { GraduationCap, Trophy, Zap, Code, Users, BookOpen, Calendar, MapPin, Award, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { GraduationCap, Trophy, Zap, Code, Users, BookOpen, Calendar, MapPin, Award, ExternalLink, X } from "lucide-react";
 
 import agentxImg from "@/assets/certs/agentx.jpg";
 import dataDynamoImg from "@/assets/certs/data-dynamo.jpg";
@@ -15,9 +15,27 @@ const educationItems = [
 ];
 
 const activityItems = [
-  { icon: Users, org: "Computer Society of India (CSI SB)", role: "Technical Team Member", period: "Jul 2025 – Present", points: ["Monitored registrations for CSI AI100K initiative", "Helped organize technical workshops"] },
-  { icon: BookOpen, org: "IgniteXT – Student Community", role: "Technical Team Member", period: "Nov 2025 – Present", points: ["Managed academic resources", "Shared notes and campus updates"] },
-  { icon: Code, org: "Coding Club", role: "Content Writer", period: "Jul 2025 – Present", points: ["Conducted workshops on coding fundamentals"] },
+  { 
+    icon: Users, 
+    org: "Computer Society of India (CSI SB)", 
+    role: "Technical Team Member", 
+    period: "Jul 2025 – Present", 
+    points: ["Monitored registrations for CSI AI100K initiative", "Helped organize technical workshops"] 
+  },
+  { 
+    icon: BookOpen, 
+    org: "IgniteXT – Student Community", 
+    role: "Technical Team Member", 
+    period: "Nov 2025 – Present", 
+    points: ["Managed academic resources", "Shared notes and campus updates"] 
+  },
+  { 
+    icon: Code, 
+    org: "Coding Club", 
+    role: "Content Writer", 
+    period: "Jul 2025 – Present", 
+    points: ["Conducted workshops on coding fundamentals"] 
+  },
 ];
 
 const hackathonItems = [
@@ -30,27 +48,44 @@ const hackathonItems = [
 
 const TimelineSection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  return (
+    <section id="leadership" className="min-h-screen w-full flex items-center justify-center bg-black text-foreground noise-overlay py-24 px-6 sm:px-12 md:px-20 border-b border-border relative select-none">
+      
+      {/* ⚡ Subtle ambient glow behind milestones */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
-  if (isMobile) {
-    return (
-      <section id="leadership" className="py-20 px-6 bg-background text-foreground noise-overlay w-full">
-        {/* Education Stack */}
+      <div className="container mx-auto relative z-10 max-w-7xl">
+        
+        {/* Main Section Heading */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="section-heading mb-16 border-b border-foreground/15 pb-4"
+        >
+          <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-foreground/50 mb-2">
+            // 04 — Academic Foundation &amp; Experience
+          </span>
+          <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-foreground mb-3">
+            Milestones &amp; Trajectory
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-light max-w-2xl font-times leading-relaxed">
+            A comprehensive record of my academic pursuit, community leadership, and competitive hackathon challenges.
+          </p>
+        </motion.div>
+
+        {/* 1. Academic Foundation (Education) */}
         <div className="mb-16">
-          <div className="mb-6">
-            <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-1">// 01</span>
-            <h2 className="text-3xl font-black uppercase tracking-tight">EDUCATION</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono text-xs text-foreground/50 uppercase tracking-widest">// 04.1</span>
+            <h3 className="font-times italic text-2xl sm:text-3xl font-normal text-foreground">
+              Education
+            </h3>
           </div>
-          <div className="flex flex-col gap-4">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {educationItems.map((item, idx) => (
               <motion.div 
                 key={idx}
@@ -58,29 +93,54 @@ const TimelineSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 relative overflow-hidden group hover:border-foreground/40 transition-colors shadow-sm"
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="border border-border/80 bg-card/90 backdrop-blur-md rounded-3xl p-6 relative overflow-hidden group hover:border-foreground/40 transition-all shadow-lg flex flex-col justify-between"
               >
                 {/* Traveling laser accent */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/40 to-transparent" />
-                <span className="font-mono text-[10px] text-muted-foreground block mb-2">{item.year}</span>
-                <h3 className="font-bold uppercase text-base mb-1">{item.institution}</h3>
-                <p className="text-xs text-muted-foreground font-light mb-4">{item.degree}</p>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/80 bg-secondary/50">
-                  <Award size={12} />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider">{item.score}</span>
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="font-mono text-[10px] text-muted-foreground flex items-center gap-1.5">
+                      <Calendar size={11} /> {item.year}
+                    </span>
+                    {item.current && (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-foreground/20 bg-foreground/5 text-[9px] font-mono text-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" /> Pursuing
+                      </span>
+                    )}
+                  </div>
+                  <h4 className="font-times italic text-xl font-normal text-foreground mb-1 leading-snug">
+                    {item.institution}
+                  </h4>
+                  <p className="text-xs text-muted-foreground font-light mb-4 font-times">
+                    {item.degree}
+                  </p>
+                </div>
+
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/80 bg-secondary/50">
+                    <Award size={12} className="text-foreground" />
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-foreground">
+                      {item.score}
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Experience Stack */}
+        {/* 2. Experience & Leadership */}
         <div className="mb-16">
-          <div className="mb-6">
-            <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-1">// 02</span>
-            <h2 className="text-3xl font-black uppercase tracking-tight">EXPERIENCE</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono text-xs text-foreground/50 uppercase tracking-widest">// 04.2</span>
+            <h3 className="font-times italic text-2xl sm:text-3xl font-normal text-foreground">
+              Experience &amp; Leadership
+            </h3>
           </div>
-          <div className="flex flex-col gap-4">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {activityItems.map((item, idx) => (
               <motion.div 
                 key={idx}
@@ -88,33 +148,57 @@ const TimelineSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-6 relative overflow-hidden group hover:border-foreground/40 transition-colors shadow-sm"
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="border border-border/80 bg-card/90 backdrop-blur-md rounded-3xl p-6 relative overflow-hidden group hover:border-foreground/40 transition-all shadow-lg flex flex-col justify-between"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground">
-                    <item.icon size={14} />
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-2xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground group-hover:bg-foreground group-hover:text-background transition-colors duration-300 shrink-0">
+                      <item.icon size={16} />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-muted-foreground block">
+                        {item.role}
+                      </span>
+                      <span className="text-[9px] font-mono text-foreground/45">
+                        {item.period}
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-[10px] font-mono font-semibold uppercase text-muted-foreground">{item.role}</span>
+
+                  <h4 className="font-times italic text-xl font-normal text-foreground mb-3 leading-snug">
+                    {item.org}
+                  </h4>
+
+                  <ul className="space-y-1.5">
+                    {item.points.map((pt, i) => (
+                      <li key={i} className="text-xs text-muted-foreground font-light leading-relaxed flex items-start gap-2 font-times">
+                        <span className="text-foreground/40 mt-1">•</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="font-bold uppercase text-base mb-2">{item.org}</h3>
-                <span className="text-[10px] font-mono text-foreground/60 block mb-3">{item.period}</span>
-                <ul className="space-y-1.5">
-                  {item.points.map((p, pIdx) => (
-                    <li key={pIdx} className="text-[11px] text-muted-foreground font-light leading-relaxed">- {p}</li>
-                  ))}
-                </ul>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Hackathons Stack */}
+        {/* 3. Hackathons & Competitions */}
         <div>
-          <div className="mb-6">
-            <span className="font-mono text-xs text-foreground/60 uppercase tracking-widest block mb-1">// 03</span>
-            <h2 className="text-3xl font-black uppercase tracking-tight">HACKATHONS</h2>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs text-foreground/50 uppercase tracking-widest">// 04.3</span>
+              <h3 className="font-times italic text-2xl sm:text-3xl font-normal text-foreground">
+                Hackathons &amp; Competitions
+              </h3>
+            </div>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 hidden sm:inline-block">
+              Click card to inspect certificate
+            </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {hackathonItems.map((item, idx) => (
               <motion.div 
                 key={idx}
@@ -122,204 +206,43 @@ const TimelineSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08, duration: 0.5 }}
-                className="border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-foreground/40 transition-all duration-300 shadow-sm"
+                whileHover={{ y: -6, scale: 1.02 }}
+                onClick={() => setSelectedImage(item.image)}
+                className="border border-border/80 bg-card/90 backdrop-blur-md rounded-3xl overflow-hidden group hover:border-foreground/50 transition-all duration-300 cursor-pointer shadow-lg flex flex-col justify-between"
               >
-                <div className="relative h-44 overflow-hidden border-b border-border/60 cursor-pointer" onClick={() => setSelectedImage(item.image)}>
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
-                  {/* Holographic shimmer */}
+                <div className="relative h-32 overflow-hidden border-b border-border/60 bg-muted/20">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" 
+                  />
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  <div className="absolute top-2.5 right-2.5 bg-black/70 backdrop-blur-sm rounded-full px-2.5 py-0.5 text-[9px] font-mono text-white/80 border border-white/10">
+                    Inspect
+                  </div>
                 </div>
-                <div className="p-5">
-                  <span className="text-[10px] font-mono text-foreground/60 block mb-1">{item.date}</span>
-                  <h3 className="font-bold uppercase text-sm mb-1">{item.title}</h3>
-                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-3">{item.org}</p>
-                  <p className="text-xs text-muted-foreground font-light leading-relaxed">{item.desc}</p>
+
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-mono text-foreground/60 block mb-1">
+                      {item.date}
+                    </span>
+                    <h4 className="font-times italic text-base font-normal text-foreground mb-1 leading-tight">
+                      {item.title}
+                    </h4>
+                    <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2 truncate">
+                      {item.org}
+                    </p>
+                    <p className="text-xs text-muted-foreground font-light leading-relaxed line-clamp-2 font-times">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Lightbox for certificates */}
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-md p-6"
-              onClick={() => setSelectedImage(null)}
-            >
-              <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="relative rounded-2xl border border-white/20 bg-black/95 p-3 max-w-3xl w-full shadow-2xl overflow-hidden" 
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button 
-                  className="absolute top-4 right-4 z-20 text-white font-mono text-xs uppercase tracking-widest bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors" 
-                  onClick={() => setSelectedImage(null)}
-                >
-                  Close
-                </button>
-                <img src={selectedImage} alt="Certificate" className="w-full max-h-[80vh] object-contain rounded-xl" />
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
-    );
-  }
-
-  const { scrollYProgress } = useScroll();
-  const laserLeft = useTransform(scrollYProgress, [0.55, 0.82], ["0%", "100%"]);
-
-  // Desktop horizontal layout
-  return (
-    <section id="leadership" className="min-h-screen flex items-center bg-black text-foreground noise-overlay select-none shrink-0 py-8 px-8 sm:px-12 md:px-20 border-r border-border relative overflow-hidden" style={{ width: "3300px" }}>
-      
-      {/* ⚡ Quantum Laser Conduit running across all 3300px */}
-      <div className="absolute top-20 left-16 right-16 h-[2px] bg-white/10 z-20 pointer-events-none hidden lg:block overflow-visible">
-        <motion.div 
-          style={{ left: laserLeft }}
-          className="absolute -top-1 w-36 h-1 bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_20px_#ffffff] -translate-x-1/2"
-        >
-          <div className="absolute left-1/2 -top-1 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_16px_#ffffff]" />
-        </motion.div>
-      </div>
-
-      {/* Education Panel */}
-      <div className="w-[850px] flex flex-col justify-center pr-16 border-r border-border h-[72vh] max-h-[540px] relative z-10 pt-10 lg:pt-0">
-        <div className="mb-6 lg:mb-8">
-          <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 04 — Academic Foundation</span>
-          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-3 text-foreground">Education</h2>
-          <p className="text-sm text-muted-foreground font-light">Academic background and competitive milestones</p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-6">
-          {educationItems.map((item, idx) => (
-            <motion.div 
-              key={idx}
-              whileHover={{ y: -6, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 350, damping: 22 }}
-              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-5 flex flex-col justify-between h-[38vh] min-h-[250px] max-h-[320px] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
-            >
-              {/* Illuminated laser-bead track sweep on hover */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-
-              <div>
-                <div className="flex items-center gap-2 mb-4 font-mono text-[10px] text-muted-foreground">
-                  <Calendar size={11} />
-                  <span>{item.year}</span>
-                </div>
-                <h3 className="font-bold uppercase text-base leading-tight mb-2">{item.institution}</h3>
-                <p className="text-xs text-muted-foreground font-light mb-4">{item.degree}</p>
-              </div>
-
-              <div>
-                <div className="flex items-center gap-1.5 text-xs text-foreground/50 font-mono mb-4">
-                  <MapPin size={11} />
-                  <span>{item.location}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/80 bg-secondary/50">
-                  <Award size={12} />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider">{item.score}</span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Experience & Activities Panel */}
-      <div className="w-[850px] flex flex-col justify-center px-16 border-r border-border h-[72vh] max-h-[540px] relative z-10 pt-10 lg:pt-0">
-        <div className="mb-6 lg:mb-8">
-          <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 05 — Student Leadership</span>
-          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-3 text-foreground">Experience</h2>
-          <p className="text-sm text-muted-foreground font-light">Leadership roles and technical community initiatives</p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-6">
-          {activityItems.map((item, idx) => (
-            <motion.div 
-              key={idx}
-              whileHover={{ y: -6, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 350, damping: 22 }}
-              className="relative border border-border/80 bg-card/90 backdrop-blur-sm rounded-2xl p-5 flex flex-col justify-between h-[38vh] min-h-[250px] max-h-[320px] transition-all duration-300 hover:border-foreground/50 hover:shadow-xl group overflow-hidden"
-            >
-              {/* Laser-bead track */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-foreground/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-
-              <div>
-                <div className="w-8 h-8 rounded-xl border border-border/80 bg-secondary/50 flex items-center justify-center text-foreground mb-3 group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
-                  <item.icon size={14} />
-                </div>
-                <h3 className="font-bold uppercase text-sm leading-tight mb-1.5">{item.org}</h3>
-                <p className="text-[10px] font-mono font-semibold uppercase text-muted-foreground tracking-wider mb-3">{item.role}</p>
-              </div>
-
-              <div className="space-y-1.5 mt-auto">
-                <span className="text-[10px] font-mono text-foreground/60 block">{item.period}</span>
-                <ul className="space-y-1">
-                  {item.points.map((p, pIdx) => (
-                    <li key={pIdx} className="text-[10px] text-muted-foreground font-light leading-relaxed">
-                      - {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Hackathons Panel */}
-      <div className="w-[1250px] flex flex-col justify-center pl-16 h-[72vh] max-h-[540px] relative z-10 pt-10 lg:pt-0">
-        <div className="mb-6 lg:mb-8">
-          <span className="font-mono text-xs text-foreground/60 uppercase tracking-[0.3em] block mb-2">// 06 — Competitions</span>
-          <h2 className="font-times text-5xl md:text-6xl font-normal italic tracking-tight leading-none mb-3 text-foreground">Hackathons</h2>
-          <p className="text-sm text-muted-foreground font-light">Hackathons, coding sprints, and credentials</p>
-        </div>
-
-        <div className="grid grid-cols-5 gap-4">
-          {hackathonItems.map((item, idx) => (
-            <motion.div 
-              key={idx}
-              whileHover={{ y: -6, scale: 1.025 }}
-              transition={{ type: "spring", stiffness: 350, damping: 22 }}
-              className="border border-border/80 bg-card/95 backdrop-blur-sm rounded-2xl flex flex-col justify-between h-[38vh] min-h-[250px] max-h-[320px] group transition-all duration-300 hover:border-foreground/50 hover:shadow-xl overflow-hidden"
-            >
-              <div 
-                className="relative h-28 overflow-hidden cursor-pointer border-b border-border/70"
-                onClick={() => setSelectedImage(item.image)}
-              >
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" 
-                />
-                {/* Holographic foil glare sweep */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
-
-                <div className="absolute top-2 right-2 w-6 h-6 rounded-full border border-border/80 bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ExternalLink size={10} />
-                </div>
-              </div>
-
-              <div className="p-4 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[9px] font-mono text-foreground/60">{item.date}</span>
-                  </div>
-                  <h3 className="font-bold uppercase text-xs leading-snug mb-1 tracking-wide">{item.title}</h3>
-                  <p className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest leading-none mb-2">{item.org}</p>
-                </div>
-                <p className="text-[10px] text-muted-foreground font-light leading-relaxed mt-auto">{item.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
 
       {/* Lightbox for certificates */}
@@ -336,20 +259,16 @@ const TimelineSection = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative rounded-2xl border border-white/20 bg-black/95 p-3 max-w-3xl w-full shadow-2xl overflow-hidden" 
+              className="relative rounded-3xl border border-white/20 bg-black/95 p-4 max-w-3xl w-full shadow-2xl overflow-hidden" 
               onClick={(e) => e.stopPropagation()}
             >
               <button 
-                className="absolute top-4 right-4 z-20 text-white font-mono text-xs uppercase tracking-widest bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors"
+                className="absolute top-6 right-6 z-20 text-white font-mono text-xs uppercase tracking-widest bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors flex items-center gap-1.5" 
                 onClick={() => setSelectedImage(null)}
               >
-                Close
+                Close <X size={14} />
               </button>
-              <img
-                src={selectedImage}
-                alt="Certificate"
-                className="w-full max-h-[80vh] object-contain rounded-xl"
-              />
+              <img src={selectedImage} alt="Certificate" className="w-full max-h-[80vh] object-contain rounded-2xl" />
             </motion.div>
           </motion.div>
         )}

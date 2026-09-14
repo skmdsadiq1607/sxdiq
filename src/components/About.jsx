@@ -45,8 +45,8 @@ const TechBadge = ({ tech, index }) => (
 
 const About = () => {
   return (
-    <section id="about" className="h-screen w-screen shrink-0 flex items-center justify-center bg-background text-foreground noise-overlay px-6 sm:px-12 md:px-20 border-r border-border relative select-none overflow-hidden">
-      <div className="container mx-auto relative z-10 max-w-7xl pt-16 lg:pt-6">
+    <section id="about" className="min-h-screen w-full flex items-center justify-center bg-background text-foreground noise-overlay py-24 px-6 sm:px-12 md:px-20 border-b border-border relative select-none">
+      <div className="container mx-auto relative z-10 max-w-7xl">
         
         {/* Header with Times New Roman & Blur Stagger */}
         <motion.div 
@@ -90,7 +90,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-foreground/75 text-sm sm:text-base leading-relaxed mb-3.5 font-light font-sans"
+                className="text-foreground/75 text-sm sm:text-base leading-relaxed mb-3.5 font-light font-times"
               >
                 I'm a B.Tech Information Technology student at Anurag University, Hyderabad, deeply passionate about web development and problem-solving. I enjoy building modern, user-centric applications using the MERN stack.
               </motion.p>
@@ -99,7 +99,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-foreground/75 text-sm sm:text-base leading-relaxed mb-6 font-light font-sans"
+                className="text-foreground/75 text-sm sm:text-base leading-relaxed mb-6 font-light font-times"
               >
                 Beyond coding, I actively participate in hackathons, contribute to student communities, and continuously sharpen my skills in Data Structures and Algorithms. My goal is to create impactful tech solutions that make a difference.
               </motion.p>

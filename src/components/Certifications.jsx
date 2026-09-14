@@ -76,7 +76,7 @@ const CertCard = ({ c, i, onOpenBundle }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => c.isBundle && onOpenBundle()}
-        className={`border border-border/80 bg-card/90 backdrop-blur-md rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:border-foreground/50 hover:shadow-2xl h-72 sm:h-76 relative overflow-hidden ${
+        className={`border border-border/80 bg-card/90 backdrop-blur-md rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 hover:border-foreground/50 hover:shadow-2xl min-h-[300px] relative overflow-hidden ${
           c.isBundle ? "cursor-pointer" : ""
         }`}
       >
@@ -137,7 +137,7 @@ const Certifications = () => {
   );
 
   return (
-    <section id="certifications" className="min-h-screen w-full lg:w-screen shrink-0 flex items-center justify-center bg-black text-foreground noise-overlay py-8 px-6 sm:px-12 md:px-20 border-r border-border relative overflow-hidden select-none">
+    <section id="certifications" className="min-h-screen w-full flex items-center justify-center bg-black text-foreground noise-overlay py-24 px-6 sm:px-12 md:px-20 border-b border-border relative select-none">
       
       {/* 🔮 Concentric Holographic Lens Rings */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-30">
@@ -146,7 +146,7 @@ const Certifications = () => {
         <div className="w-[1100px] h-[1100px] rounded-full border border-white/[0.03]" />
       </div>
 
-      <div className="container mx-auto px-6 md:px-16 relative z-10 max-w-6xl pt-16 lg:pt-6">
+      <div className="container mx-auto relative z-10 max-w-7xl">
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
