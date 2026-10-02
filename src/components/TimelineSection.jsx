@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { GraduationCap, Trophy, Zap, Code, Users, BookOpen, Calendar, MapPin, Award, ExternalLink, X, Sparkles } from "lucide-react";
+import SectionHeaderEditorial from "@/components/SectionHeaderEditorial";
 
 import agentxImg from "@/assets/certs/agentx.jpg";
 import dataDynamoImg from "@/assets/certs/data-dynamo.jpg";
@@ -129,23 +130,17 @@ const TimelineSection = () => {
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Section Heading & Tab Switcher */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 border-b border-white/15 pb-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-white/50 mb-2">
-              // 04 — Academic Foundation &amp; Trajectory
-            </span>
-            <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-white">
-              Milestones &amp; Experience
-            </h2>
-          </motion.div>
+        {/* Editorial Broadsheet Section Header */}
+        <SectionHeaderEditorial
+          number="04"
+          tag="// 04 — Academic Foundation & Trajectory"
+          headline="Academic milestones and competitive leadership trajectory"
+          badge="ACADEMIC & COMMUNITY ARCHIVE"
+          isWhiteBg={false}
+        />
 
-          {/* Interactive Trajectory Filter Tabs */}
+        {/* Interactive Trajectory Filter Tabs */}
+        <div className="flex justify-end -mt-4 mb-14">
           <div className="flex flex-wrap gap-2 p-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl w-fit">
             {tabs.map((tab) => {
               const isActive = activeTab === tab;

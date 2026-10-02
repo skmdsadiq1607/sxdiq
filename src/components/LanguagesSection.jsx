@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Volume2, Sparkles, Globe } from "lucide-react";
+import SectionHeaderEditorial from "@/components/SectionHeaderEditorial";
 
 const langs = [
   { 
@@ -61,29 +62,15 @@ const LanguagesSection = () => {
       
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Section Heading */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.6 }}
-          className="section-heading mb-16 border-b border-white/15 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
-        >
-          <div>
-            <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-white/50 mb-2">
-              // 06 — Verbal Fluency &amp; Communication
-            </span>
-            <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-white mb-3">
-              Languages &amp; Articulation
-            </h2>
-            <p className="text-sm sm:text-base text-white/70 font-light max-w-2xl font-times leading-relaxed">
-              Trilingual communication capability facilitating international client discussions, team leadership, and technical writing.
-            </p>
-          </div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-white/40 pb-1">
-            <span>TRILINGUAL ARTICULATION</span>
-          </div>
-        </motion.div>
+        {/* Editorial Broadsheet Section Header */}
+        <SectionHeaderEditorial
+          number="06"
+          tag="// 06 — Verbal Fluency & Communication"
+          headline="Trilingual communication and technical articulation"
+          badge="TRILINGUAL ARTICULATION"
+          isWhiteBg={false}
+          className="mb-14"
+        />
 
         {/* 3 Refined Typographic Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

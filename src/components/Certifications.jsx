@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, Star, ExternalLink, Layers, X, Search, Sparkles, CheckCircle2, ShieldCheck } from "lucide-react";
 import { useState } from "react";
+import SectionHeaderEditorial from "@/components/SectionHeaderEditorial";
 import oopsJavaImg from "@/assets/certs/oops-java.jpg";
 import javaBeginnersImg from "@/assets/certs/java-beginners.jpg";
 import basicsPythonImg from "@/assets/certs/basics-python.jpg";
@@ -178,29 +179,15 @@ const Certifications = () => {
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Section Heading */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="section-heading mb-14 border-b border-white/15 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
-        >
-          <div>
-            <span className="subtitle font-mono text-xs tracking-[0.3em] uppercase block text-white/50 mb-2">
-              // 05 — Validated Expertise
-            </span>
-            <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-white mb-3">
-              Certifications &amp; Accreditations
-            </h2>
-            <p className="text-sm sm:text-base text-white/70 font-light max-w-2xl font-times leading-relaxed">
-              Official academic certifications from IIT Kharagpur, Infosys Springboard, and established industry learning institutions.
-            </p>
-          </div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-white/40 pb-1">
-            <span>ARCHIVE // 14 ACCREDITATIONS</span>
-          </div>
-        </motion.div>
+        {/* Editorial Broadsheet Section Header */}
+        <SectionHeaderEditorial
+          number="05"
+          tag="// 05 — Validated Expertise & Accreditations"
+          headline="Validated technical credentials and university accreditations"
+          badge="ARCHIVE // 14 ACCREDITATIONS"
+          isWhiteBg={false}
+          className="mb-14"
+        />
 
         {/* Main 3D Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">

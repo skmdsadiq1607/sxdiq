@@ -33,6 +33,7 @@ import {
   FaNetworkWired,
   FaTerminal
 } from 'react-icons/fa';
+import SectionHeaderEditorial from '@/components/SectionHeaderEditorial';
 
 // 32 Comprehensive Technologies with Authentic Original Brand Colors
 const SKILLS_DATA = [
@@ -258,23 +259,17 @@ const Skills = () => {
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Section Heading & Category Filter Pills */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 border-b border-white/15 pb-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="font-mono text-xs tracking-[0.3em] uppercase block text-white/50 mb-2">
-              // 02 &mdash; Technical Proficiencies
-            </span>
-            <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-white">
-              Skills &amp; Technologies
-            </h2>
-          </motion.div>
+        {/* Editorial Broadsheet Section Header */}
+        <SectionHeaderEditorial
+          number="02"
+          tag="// 02 — Technical Proficiencies"
+          headline="Engineering scalable architectures and algorithmic systems"
+          badge="32 CORE TECHNOLOGIES"
+          isWhiteBg={false}
+        />
 
-          {/* Minimal Category Tabs */}
+        {/* Minimal Category Tabs Filter */}
+        <div className="flex justify-end -mt-4 mb-10">
           <div className="flex flex-wrap gap-2 p-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl w-fit">
             {categories.map((cat) => {
               const isActive = activeCategory === cat;

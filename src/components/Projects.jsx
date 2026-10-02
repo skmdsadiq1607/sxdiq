@@ -4,6 +4,7 @@ import { ExternalLink, Github, ChevronDown, CheckCircle2 } from 'lucide-react';
 import krushiImg from "@/assets/krushi-mitra.png";
 import smartCityImg from "@/assets/portfolio-preview.png"; 
 import ignitextImg from "@/assets/ignitext.png";
+import SectionHeaderEditorial from "@/components/SectionHeaderEditorial";
 
 const projectsData = [
   {
@@ -198,10 +199,14 @@ const Projects = () => {
   return (
     <section id="projects" className="w-full bg-black text-white relative noise-overlay py-32 font-times">
       <div className="max-w-screen-2xl mx-auto flex flex-col">
-        <div className="px-6 lg:px-12 mb-24">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter">
-            Selected<br />Works
-          </h1>
+        <div className="px-6 lg:px-12 mb-16">
+          <SectionHeaderEditorial
+            number="03"
+            tag="// 03 — Production Software"
+            headline="Selected software systems built with computational rigor"
+            badge="03 PRODUCTION SYSTEMS"
+            isWhiteBg={false}
+          />
         </div>
         
         <div className="flex flex-col">

@@ -47,20 +47,33 @@ const Contact = () => {
 
       {/* Left Half: White BG, Black Text */}
       <motion.div 
-        className="w-full md:w-1/2 bg-[#FFFFFF] text-[#000000] p-8 md:p-16 lg:p-24 flex flex-col justify-center"
+        className="w-full md:w-1/2 bg-[#FFFFFF] text-[#000000] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden"
         initial={{ x: "-100%" }}
         animate={isInView ? { x: 0 } : { x: "-100%" }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="max-w-xl mx-auto md:ml-auto md:mr-12 w-full">
+        {/* Giant Parallax Watermark Number */}
+        <div className="absolute top-2 right-6 pointer-events-none select-none z-0">
+          <h1 className="text-[30vw] md:text-[20vw] leading-none text-black/5 font-times tracking-tighter">
+            07
+          </h1>
+        </div>
+
+        <div className="max-w-xl mx-auto md:ml-auto md:mr-12 w-full relative z-10">
+          <span className="font-mono text-xs tracking-[0.3em] uppercase block text-black/50 mb-3">
+            // 07 &mdash; Direct Transmission
+          </span>
           <motion.h2 
-            className="text-5xl md:text-7xl lg:text-8xl italic font-light tracking-tight leading-none mb-16"
+            className="text-5xl md:text-7xl lg:text-8xl italic font-light tracking-tight leading-none mb-6"
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             Let's build<br />together.
           </motion.h2>
+
+          {/* Clean Editorial Rule */}
+          <div className="w-full h-[1px] bg-black/15 mb-12" />
 
           <div className="space-y-8 flex flex-col">
             {contactInfo.map((info, index) => (
