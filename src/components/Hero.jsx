@@ -1,56 +1,26 @@
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Mail, Download, ArrowRight, ArrowDown } from "lucide-react";
 import gsap from "gsap";
 
-const renderChars = (text, className) => {
-  return text.split('').map((char, i) => (
-    <span 
-      key={i} 
-      className={`char-reveal inline-block ${className}`}
-      style={{ opacity: 0, transform: 'translateY(40px)' }}
-    >
-      {char === ' ' ? '\u00A0' : char}
-    </span>
-  ));
-};
-
-const HeroInner = ({ isDarkLayer, mouseX, mouseY }) => {
-  // Parallax offsets
-  const slowX = mouseX * -20;
-  const slowY = mouseY * -20;
-  
-  const medX = mouseX * -40;
-  const medY = mouseY * -40;
-  
-  const fastX = mouseX * -60;
-  const fastY = mouseY * -60;
-
+const HeroInner = ({ isDarkLayer }) => {
   return (
     <div className="w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24">
 
       {/* Center Center Text (Kinetic Typography style) */}
       <div className="flex-1 flex flex-col justify-center items-center my-auto">
         <div className="text-center flex flex-col items-center">
-          <motion.div 
-            className="kinetic-center my-2 sm:my-4"
-            animate={{ x: slowX, y: slowY }}
-            transition={{ type: "spring", damping: 30, stiffness: 100 }}
-          >
+          <div className="kinetic-center my-2 sm:my-4">
             <h1 className="font-times font-normal text-[clamp(3rem,8.5vw,10rem)] leading-[0.92] tracking-tight text-center">
-              <span className="block overflow-hidden pb-2">{renderChars("Shaik Kemple", "")}</span>
-              <span className="block mt-1 sm:mt-2 overflow-hidden pb-2">{renderChars("Mohammed Sadiq", "")}</span>
+              <span className="block">Shaik Kemple</span>
+              <span className="block mt-1 sm:mt-2">Mohammed Sadiq</span>
             </h1>
-          </motion.div>
-          <motion.div 
-            className="kinetic-line-2 mt-2 sm:mt-4"
-            animate={{ x: medX, y: medY }}
-            transition={{ type: "spring", damping: 30, stiffness: 100 }}
-          >
+          </div>
+          <div className="kinetic-line-2 mt-2 sm:mt-4">
             <h2 className="font-times font-normal italic text-[clamp(1.15rem,2.5vw,2.25rem)] tracking-wide opacity-80 whitespace-nowrap">
               Full Stack Developer
             </h2>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -69,13 +39,9 @@ const HeroInner = ({ isDarkLayer, mouseX, mouseY }) => {
       </div>
 
       {/* Footer Actions */}
-      <motion.div 
-        className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 items-end"
-        animate={{ x: fastX, y: fastY }}
-        transition={{ type: "spring", damping: 30, stiffness: 100 }}
-      >
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
         {/* Left: GitHub, LinkedIn, location */}
-        <div className="hero-action-panel-left flex flex-col gap-2 justify-end items-start font-mono text-[10px] uppercase tracking-widest">
+        <div className="hero-action-panel-left flex flex-col gap-2 justify-end items-start font-mono text-[10px] uppercase tracking-widest text-white">
           <div className="flex gap-4 items-center">
             <a 
               href="https://github.com/skmdsadiq1607" 
@@ -139,7 +105,7 @@ const HeroInner = ({ isDarkLayer, mouseX, mouseY }) => {
             <ArrowDown size={12} className="animate-bounce" />
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -151,24 +117,12 @@ const Hero = () => {
   const { scrollYProgress } = useScroll();
   const dividerAngle = useTransform(scrollYProgress, [0, 0.12], [0, -14]);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0, rawY: 0 });
-
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const x = (clientX / window.innerWidth) - 0.5;
-    const y = (clientY / window.innerHeight) - 0.5;
-    setMousePos({ x, y, rawY: clientY });
-  };
-
-  // Smooth peel away for scroll exit
-  const clipLeft = useTransform(scrollYProgress, [0, 0.25], [50, 100]);
-  const dynamicClipPath = useMotionTemplate`polygon(${clipLeft}% 0, 100% 0, 100% 100%, ${clipLeft}% 100%)`;
-
   // GSAP Entrance Transition
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.1 });
 
+      // Animate split overlay reveal
       if (overlayRef.current) {
         tl.fromTo(
           overlayRef.current,
@@ -187,59 +141,45 @@ const Hero = () => {
         );
       }
 
-      // Character-by-character reveal
-      tl.to(".char-reveal", { 
-        y: 0, 
-        opacity: 1, 
-        duration: 0.8, 
-        stagger: 0.03, 
-        ease: "power4.out" 
-      }, 0.5);
-
-      tl.from(".kinetic-line-2", { y: 20, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.8);
-      tl.from(".marquee-container-wrapper", { opacity: 0, duration: 0.8, ease: "power2.out" }, 1.0);
-      tl.from(".hero-action-panel-left", { x: -20, opacity: 0, duration: 0.6, ease: "power3.out" }, 1.2);
-      tl.from(".hero-action-panel-right", { x: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, 1.2);
+      // Staggered reveal for typography
+      tl.from(".kinetic-center", { scale: 0.96, opacity: 0, duration: 1.0, ease: "power3.out" }, 0.4);
+      tl.from(".kinetic-line-2", { y: -20, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.6);
+      tl.from(".marquee-container-wrapper", { opacity: 0, duration: 0.8, ease: "power2.out" }, 0.7);
+      tl.from(".hero-action-panel-left", { x: -20, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.9);
+      tl.from(".hero-action-panel-right", { x: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.9);
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Enhanced Divider curve based on mouse Y
-  const curveX = 50 + (mousePos.x * 20); 
-  const curveY = (mousePos.rawY / (typeof window !== "undefined" ? window.innerHeight : 1000)) * 100;
-  const dividerPath = `M 50 0 Q ${curveX} ${curveY} 50 100`;
-
   return (
-    <section 
-      ref={heroRef} 
-      onMouseMove={handleMouseMove}
-      className="min-h-screen h-screen w-full relative overflow-hidden select-none border-b border-white/10"
-    >
+    <section ref={heroRef} className="min-h-screen h-screen w-full relative overflow-hidden select-none border-b border-white/10">
       {/* 🌓 BASE LAYER: Solid Black Background, Pure White Content */}
       <div className="absolute inset-0 w-full h-full bg-[#000000] text-[#FFFFFF] z-0 overflow-hidden">
-        <HeroInner isDarkLayer={true} mouseX={mousePos.x} mouseY={mousePos.y} />
+        <HeroInner isDarkLayer={true} />
       </div>
 
       {/* 🌓 OVERLAY LAYER: Solid White Background, Pure Black Content */}
-      <motion.div 
+      <div 
         ref={overlayRef}
         className="absolute inset-0 w-full h-full bg-[#FFFFFF] text-[#000000] z-10 overflow-hidden"
-        style={{ clipPath: dynamicClipPath }}
+        style={{ clipPath: "polygon(50% 0, 100% 0, 100% 100%, 50% 100%)" }}
       >
-        <HeroInner isDarkLayer={false} mouseX={mousePos.x} mouseY={mousePos.y} />
-      </motion.div>
+        <HeroInner isDarkLayer={false} />
+      </div>
 
       {/* 🌓 UNIFIED SINGLE MARQUEE LAYER */}
       <div 
-        className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none z-20"
+        className="absolute inset-0 w-full h-full flex flex-col justify-between pt-20 pb-8 px-6 sm:px-12 md:px-24 pointer-events-none"
+        style={{ isolation: "auto" }}
       >
         {/* Invisible Center Spacer */}
         <div className="flex-1 my-auto invisible pointer-events-none select-none" aria-hidden="true" />
 
         {/* The Single Unified Marquee (mix-blend-mode: difference in section stacking context) */}
         <div 
-          className="marquee-container-wrapper relative z-20 pointer-events-auto w-full my-auto flex flex-col gap-2.5 py-4 border-y border-white/20 select-none text-white mix-blend-difference"
+          className="marquee-container-wrapper relative z-20 pointer-events-auto w-full my-auto flex flex-col gap-2.5 py-4 border-y border-white/20 select-none text-white"
+          style={{ mixBlendMode: "difference" }}
         >
           <div className="w-full overflow-hidden flex">
             <div className="animate-marquee flex whitespace-nowrap gap-12 font-times font-normal uppercase text-lg sm:text-2xl md:text-3xl tracking-[0.2em]">
@@ -262,42 +202,15 @@ const Hero = () => {
         <div className="w-full h-14 invisible pointer-events-none select-none" aria-hidden="true" />
       </div>
 
-      {/* Enhanced SVG Divider with Pulsing Glow and Dynamic Curve */}
+      {/* Center 1px Divider Line with Dynamic Diagonal Exit Angle */}
       <motion.div 
         ref={dividerRef}
         style={{ rotate: dividerAngle }}
-        className="absolute inset-0 w-full h-full pointer-events-none z-30 origin-center"
-      >
-        <svg 
-          className="w-full h-full" 
-          preserveAspectRatio="none" 
-          viewBox="0 0 100 100"
-        >
-          {/* Pulsing Glow Layers */}
-          <motion.path 
-            d={dividerPath} 
-            fill="transparent" 
-            stroke="rgba(255,255,255,0.4)" 
-            strokeWidth="0.8" 
-            className="animate-pulse blur-md"
-          />
-          <motion.path 
-            d={dividerPath} 
-            fill="transparent" 
-            stroke="rgba(255,255,255,0.6)" 
-            strokeWidth="0.4" 
-            className="animate-pulse blur-sm"
-          />
-          {/* Main Divider Line */}
-          <motion.path 
-            d={dividerPath} 
-            fill="transparent" 
-            stroke="rgba(255,255,255,0.3)" 
-            strokeWidth="0.1" 
-            className="mix-blend-difference"
-          />
-        </svg>
-      </motion.div>
+        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-neutral-500/30 z-30 pointer-events-none origin-center" 
+      />
+
+      {/* Subtle Monochrome Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/[0.03] blur-[150px] pointer-events-none z-0" />
     </section>
   );
 };
