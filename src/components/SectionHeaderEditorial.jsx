@@ -71,7 +71,7 @@ const SectionHeaderEditorial = ({
 
         {/* Scroll-Driven Word Reveal Headline */}
         <div ref={containerRef} className="max-w-4xl">
-          <h2 className={`text-4xl sm:text-6xl lg:text-7xl font-times font-normal italic leading-tight tracking-tight flex flex-wrap ${textColor}`}>
+          <h2 className={`text-4xl sm:text-6xl lg:text-8xl font-times font-normal not-italic leading-tight tracking-tight flex flex-wrap ${textColor}`}>
             {words.map((word, i) => {
               const start = i / words.length;
               const end = start + (1 / words.length);

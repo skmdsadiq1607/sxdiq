@@ -24,10 +24,10 @@ const Footer = () => {
       {/* Part 1: Full-Screen CTA */}
       <div className="relative min-h-screen flex flex-col items-center justify-center px-4 text-center z-10">
         <motion.div style={{ y: textY }} className="flex flex-col items-center justify-center">
-          <h2 className="text-[clamp(3rem,10vw,12rem)] italic leading-none tracking-tight mb-6">
+          <h2 className="text-[clamp(3rem,10vw,12rem)] font-normal not-italic leading-none tracking-tight mb-6">
             Ready to collaborate?
           </h2>
-          <p className="text-2xl md:text-4xl italic text-white/70 mb-16">
+          <p className="text-2xl md:text-4xl font-normal not-italic text-white/70 mb-16">
             Let's create something extraordinary together.
           </p>
           

@@ -64,7 +64,7 @@ const Contact = () => {
             // 07 &mdash; Direct Transmission
           </span>
           <motion.h2 
-            className="text-5xl md:text-7xl lg:text-8xl italic font-light tracking-tight leading-none mb-6"
+            className="text-5xl md:text-7xl lg:text-8xl font-normal not-italic tracking-tight leading-none mb-6"
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}

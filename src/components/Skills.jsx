@@ -295,7 +295,7 @@ const Skills = () => {
                 height: sphereRadius < 160 ? 100 : 130,
               }}
             >
-              <span className="font-times italic text-2xl sm:text-3xl font-normal text-white tracking-wide leading-none">
+              <span className="font-times not-italic text-2xl sm:text-3xl font-normal text-white tracking-wide leading-none">
                 Skills
               </span>
               <span className="font-mono text-[8px] uppercase tracking-[0.28em] text-white/50 mt-1.5">
@@ -406,7 +406,7 @@ const Skills = () => {
         {/* 📋 COMPREHENSIVE TECHNOLOGY CATALOG DIRECTORY */}
         <div className="mt-8 pt-8 border-t border-white/10">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="font-times italic text-2xl sm:text-3xl text-white font-normal">
+            <h3 className="font-times not-italic text-2xl sm:text-3xl text-white font-normal">
               Technology Directory ({filteredSkills.length})
             </h3>
             <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">
@@ -439,7 +439,7 @@ const Skills = () => {
                   </div>
 
                   <div>
-                    <h4 className="font-times italic text-lg text-white leading-tight mb-1">
+                    <h4 className="font-times not-italic text-lg text-white leading-tight mb-1">
                       {skill.name}
                     </h4>
                     <p className="font-mono text-[9px] text-white/40 uppercase tracking-wider mb-2">
