@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   SiReact,
-  SiNextdotjs,
   SiExpress,
   SiMongodb,
   SiPython,
@@ -13,15 +12,8 @@ import {
   SiGithub,
   SiGit,
   SiJavascript,
-  SiTypescript,
-  SiPostgresql,
-  SiVite,
   SiVercel,
-  SiNetlify,
-  SiPostman,
-  SiRedux,
-  SiLinux,
-  SiCplusplus
+  SiRender
 } from 'react-icons/si';
 import {
   FaJava,
@@ -30,53 +22,40 @@ import {
   FaServer,
   FaCode,
   FaDesktop,
-  FaNetworkWired,
-  FaTerminal
+  FaNetworkWired
 } from 'react-icons/fa';
 import SectionHeaderEditorial from '@/components/SectionHeaderEditorial';
 
-// 32 Comprehensive Technologies with Authentic Original Brand Colors
+// Official Curated Skills Catalog with Authentic Brand Colors
 const SKILLS_DATA = [
-  // Web Architecture & Frontend
-  { name: 'React.js', icon: SiReact, category: 'Web Architecture', color: '#61DAFB', level: 'Advanced', detail: 'Component Lifecycle, Hooks & Virtual DOM' },
-  { name: 'Next.js', icon: SiNextdotjs, category: 'Web Architecture', color: '#FFFFFF', level: 'Proficient', detail: 'SSR, SSG & Full-Stack App Routing' },
-  { name: 'JavaScript', icon: SiJavascript, category: 'Programming Languages', color: '#F7DF1E', level: 'Advanced', detail: 'ES6+, Async/Await & Event Loop' },
-  { name: 'TypeScript', icon: SiTypescript, category: 'Programming Languages', color: '#3178C6', level: 'Proficient', detail: 'Static Type Systems & Generics' },
-  { name: 'Tailwind CSS', icon: SiTailwindcss, category: 'Web Architecture', color: '#38BDF8', level: 'Expert', detail: 'Utility-First Modern Design Systems' },
-  { name: 'HTML5', icon: SiHtml5, category: 'Web Architecture', color: '#E34F26', level: 'Expert', detail: 'Semantic Markup & Web Standards' },
-  { name: 'CSS3', icon: SiCss, category: 'Web Architecture', color: '#1572B6', level: 'Expert', detail: 'Responsive Layouts, Flexbox & Grid' },
-  { name: 'Redux', icon: SiRedux, category: 'Web Architecture', color: '#764ABC', level: 'Proficient', detail: 'Predictable Global State Architecture' },
-  { name: 'Bootstrap', icon: SiBootstrap, category: 'Web Architecture', color: '#7952B3', level: 'Advanced', detail: 'Rapid Prototyping & Grid Framework' },
-  { name: 'Vite.js', icon: SiVite, category: 'Developer Tools', color: '#646CFF', level: 'Expert', detail: 'High-Speed HMR & ESM Bundling' },
+  // 1. Web Technologies
+  { name: 'HTML5', icon: SiHtml5, category: 'Web Technologies', color: '#E34F26', level: 'Expert', detail: 'Semantic Elements & Web Accessibility Standards' },
+  { name: 'CSS3', icon: SiCss, category: 'Web Technologies', color: '#1572B6', level: 'Expert', detail: 'Modern Layouts, Flexbox, Grid & Keyframe Motion' },
+  { name: 'JavaScript', icon: SiJavascript, category: 'Web Technologies', color: '#F7DF1E', level: 'Advanced', detail: 'ES6+, Asynchronous Pipelines & Event Loop' },
+  { name: 'React.js', icon: SiReact, category: 'Web Technologies', color: '#61DAFB', level: 'Advanced', detail: 'Hooks, Virtual DOM & Component Architecture' },
+  { name: 'Express.js', icon: SiExpress, category: 'Web Technologies', color: '#E2E8F0', level: 'Proficient', detail: 'Server Middleware & REST Routing' },
+  { name: 'REST APIs', icon: FaServer, category: 'Web Technologies', color: '#38BDF8', level: 'Advanced', detail: 'Stateless HTTP Services & JSON Contracts' },
+  { name: 'Bootstrap', icon: SiBootstrap, category: 'Web Technologies', color: '#7952B3', level: 'Advanced', detail: 'Responsive Components & Utility Styling' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, category: 'Web Technologies', color: '#38BDF8', level: 'Expert', detail: 'Utility-First Scalable Design Systems' },
+  { name: 'SQL', icon: FaDatabase, category: 'Web Technologies', color: '#00758F', level: 'Proficient', detail: 'Relational Queries, Joins, Constraints & Indexing' },
+  { name: 'MongoDB', icon: SiMongodb, category: 'Web Technologies', color: '#47A248', level: 'Proficient', detail: 'Document Collections, Schemas & Aggregations' },
 
-  // Backend & Cloud
-  { name: 'Node.js', icon: FaServer, category: 'Web Architecture', color: '#68A063', level: 'Proficient', detail: 'Asynchronous V8 Server Runtimes' },
-  { name: 'Express.js', icon: SiExpress, category: 'Web Architecture', color: '#E2E8F0', level: 'Proficient', detail: 'RESTful Middleware & API Routing' },
-  { name: 'MongoDB', icon: SiMongodb, category: 'Databases', color: '#47A248', level: 'Proficient', detail: 'NoSQL Schemas, Indexing & Aggregations' },
-  { name: 'PostgreSQL', icon: SiPostgresql, category: 'Databases', color: '#4169E1', level: 'Proficient', detail: 'Relational ACID Transactions & Queries' },
-  { name: 'REST APIs', icon: FaServer, category: 'Web Architecture', color: '#38BDF8', level: 'Advanced', detail: 'Stateless HTTP Endpoints & Webhooks' },
-  { name: 'Postman', icon: SiPostman, category: 'Developer Tools', color: '#FF6C37', level: 'Proficient', detail: 'API Integration Testing & Collections' },
-  { name: 'Vercel', icon: SiVercel, category: 'Developer Tools', color: '#FFFFFF', level: 'Expert', detail: 'CI/CD Automated Serverless Deployments' },
-  { name: 'Netlify', icon: SiNetlify, category: 'Developer Tools', color: '#00C7B7', level: 'Proficient', detail: 'Edge CDN Hosting & Build Webhooks' },
-
-  // Programming Languages
+  // 2. Programming Languages
+  { name: 'C (DSA)', icon: FaCode, category: 'Programming Languages', color: '#00599C', level: 'Proficient', detail: 'Pointers, Dynamic Memory & Algorithmic Complexity' },
   { name: 'Java', icon: FaJava, category: 'Programming Languages', color: '#ED8B00', level: 'Advanced', detail: 'OOPs, Collections, Multithreading & JVM' },
-  { name: 'Python', icon: SiPython, category: 'Programming Languages', color: '#387EB8', level: 'Proficient', detail: 'Scripting, Automation & AI Model APIs' },
-  { name: 'C Language', icon: FaCode, category: 'Programming Languages', color: '#A8B9CC', level: 'Proficient', detail: 'Pointers, Memory Allocations & Low-Level' },
-  { name: 'C++', icon: SiCplusplus, category: 'Programming Languages', color: '#00599C', level: 'Proficient', detail: 'STL Containers, Iterators & Speed' },
+  { name: 'Python', icon: SiPython, category: 'Programming Languages', color: '#387EB8', level: 'Proficient', detail: 'Scripting, Automation & Computational Logic' },
 
-  // CS Foundations
-  { name: 'DSA', icon: FaCode, category: 'CS Foundations', color: '#34D399', level: 'Advanced', detail: 'Trees, Graphs, DP & Time Complexity' },
-  { name: 'OOP Concepts', icon: FaCogs, category: 'CS Foundations', color: '#A78BFA', level: 'Advanced', detail: 'Polymorphism, Inheritance & SOLID' },
-  { name: 'DBMS & SQL', icon: FaDatabase, category: 'CS Foundations', color: '#00758F', level: 'Proficient', detail: 'Normalization, Joins & Index Tuning' },
-  { name: 'Operating Systems', icon: FaDesktop, category: 'CS Foundations', color: '#60A5FA', level: 'Proficient', detail: 'Threads, Synchronization & Paging' },
-  { name: 'Computer Networks', icon: FaNetworkWired, category: 'CS Foundations', color: '#F472B6', level: 'Proficient', detail: 'TCP/IP Stack, OSI Model & DNS' },
+  // 3. Computer Science Fundamentals
+  { name: 'Object-Oriented Programming (OOP)', icon: FaCogs, category: 'Computer Science Fundamentals', color: '#A78BFA', level: 'Advanced', detail: 'Encapsulation, Inheritance, Polymorphism & Abstraction' },
+  { name: 'DBMS', icon: FaDatabase, category: 'Computer Science Fundamentals', color: '#00758F', level: 'Proficient', detail: 'ACID Properties, Transactions, Normalization & ER' },
+  { name: 'OS', icon: FaDesktop, category: 'Computer Science Fundamentals', color: '#60A5FA', level: 'Proficient', detail: 'Process Scheduling, Threads, Memory Paging & Deadlocks' },
+  { name: 'CN', icon: FaNetworkWired, category: 'Computer Science Fundamentals', color: '#F472B6', level: 'Proficient', detail: 'TCP/IP Protocols, OSI Model, Sockets & Routing' },
 
-  // Tools & Workflows
-  { name: 'Git', icon: SiGit, category: 'Developer Tools', color: '#F05032', level: 'Advanced', detail: 'Branching, Rebase & Version Control' },
-  { name: 'GitHub', icon: SiGithub, category: 'Developer Tools', color: '#FFFFFF', level: 'Advanced', detail: 'Pull Requests, Code Review & Actions' },
-  { name: 'Linux / Shell', icon: SiLinux, category: 'Developer Tools', color: '#FCC624', level: 'Proficient', detail: 'Bash Scripting & Terminal Workflows' },
-  { name: 'Command Line', icon: FaTerminal, category: 'Developer Tools', color: '#94A3B8', level: 'Advanced', detail: 'CLI Automation & System Administration' },
+  // 4. Tools & Platforms
+  { name: 'Git', icon: SiGit, category: 'Tools & Platforms', color: '#F05032', level: 'Advanced', detail: 'Branching Models, Merge Strategies & Version Control' },
+  { name: 'GitHub', icon: SiGithub, category: 'Tools & Platforms', color: '#FFFFFF', level: 'Advanced', detail: 'Collaborative PRs, Code Reviews & Actions' },
+  { name: 'Vercel', icon: SiVercel, category: 'Tools & Platforms', color: '#FFFFFF', level: 'Expert', detail: 'Global Edge Deployment, Serverless Functions & CDN' },
+  { name: 'Render', icon: SiRender, category: 'Tools & Platforms', color: '#46E3B7', level: 'Proficient', detail: 'Cloud Hosting, Web Services & Managed Databases' },
 ];
 
 const Skills = () => {
@@ -85,16 +64,16 @@ const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [sphereRadius, setSphereRadius] = useState(230);
 
-  // Responsive radius calculation for dense 3D orb
+  // Responsive radius calculation
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== "undefined") {
         if (window.innerWidth < 640) {
-          setSphereRadius(150);
+          setSphereRadius(145);
         } else if (window.innerWidth < 1024) {
-          setSphereRadius(190);
+          setSphereRadius(185);
         } else {
-          setSphereRadius(240);
+          setSphereRadius(230);
         }
       }
     };
@@ -107,14 +86,14 @@ const Skills = () => {
   const [points, setPoints] = useState([]);
   const rotationRef = useRef({
     y: 0,
-    x: 0.2, // Fixed downward tilt for 3D perspective
+    x: 0.22, // Perspective downward tilt
     targetSpeedY: -0.0055, // Flipped rotation direction (counter-clockwise)
     speedY: -0.0055,
     isDragging: false,
     lastMouseX: 0,
   });
 
-  // Initialize spherical distribution for all 32 skills using Fibonacci Golden Spiral
+  // Initialize spherical distribution using Fibonacci Golden Spiral
   useEffect(() => {
     const count = SKILLS_DATA.length;
     const offset = 2 / count;
@@ -163,7 +142,7 @@ const Skills = () => {
       const sinY = Math.sin(rot.y);
       const cosX = Math.cos(rot.x);
       const sinX = Math.sin(rot.x);
-      const cameraDist = 620;
+      const cameraDist = 600;
 
       setPoints(prevPoints =>
         prevPoints.map(p => {
@@ -185,9 +164,9 @@ const Skills = () => {
           const projY = curY * perspective;
 
           // Scale & depth fading (front = large & full color, back = distinct & glowing)
-          const scale = Math.max(0.65, Math.min(1.22, perspective * 0.9));
+          const scale = Math.max(0.68, Math.min(1.24, perspective * 0.92));
           const depthProgress = (curZ + sphereRadius) / (2 * sphereRadius); // 0 (back) to 1 (front)
-          const opacity = Math.max(0.4, Math.min(1, depthProgress * 0.6 + 0.4));
+          const opacity = Math.max(0.38, Math.min(1, depthProgress * 0.62 + 0.38));
           const zIndex = Math.round((curZ + sphereRadius) * 10);
 
           return {
@@ -226,7 +205,14 @@ const Skills = () => {
     rotationRef.current.isDragging = false;
   };
 
-  const categories = ["ALL", "Web Architecture", "Programming Languages", "CS Foundations", "Databases", "Developer Tools"];
+  const categories = [
+    "ALL", 
+    "Web Technologies", 
+    "Programming Languages", 
+    "Computer Science Fundamentals", 
+    "Tools & Platforms"
+  ];
+
   const filteredSkills = activeCategory === "ALL" 
     ? SKILLS_DATA 
     : SKILLS_DATA.filter(s => s.category === activeCategory);
@@ -248,11 +234,11 @@ const Skills = () => {
         
         {/* Faint Latitude Rings echoing sphere perspective */}
         <div 
-          className="absolute w-[560px] h-[560px] rounded-full border border-white/[0.05] border-dashed"
+          className="absolute w-[540px] h-[540px] rounded-full border border-white/[0.05] border-dashed"
           style={{ transform: "rotateX(75deg)" }}
         />
         <div 
-          className="absolute w-[760px] h-[760px] rounded-full border border-white/[0.03]"
+          className="absolute w-[720px] h-[720px] rounded-full border border-white/[0.03]"
           style={{ transform: "rotateX(75deg)" }}
         />
       </div>
@@ -264,7 +250,7 @@ const Skills = () => {
           number="02"
           tag="// 02 — Technical Proficiencies"
           headline="Engineering scalable architectures and algorithmic systems"
-          badge="32 CORE TECHNOLOGIES"
+          badge={`${SKILLS_DATA.length} CORE TECHNOLOGIES`}
           isWhiteBg={false}
         />
 
@@ -290,20 +276,20 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* 🪐 DENSE 3D ROTATING SPHERE (32 Vibrant Technologies) */}
-        <div className="relative w-full flex items-center justify-center my-6 min-h-[560px] sm:min-h-[620px]">
+        {/* 🪐 DENSE 3D ROTATING SPHERE */}
+        <div className="relative w-full flex items-center justify-center my-6 min-h-[540px] sm:min-h-[600px]">
           
           {/* Sphere Center Container */}
           <div 
             className="relative flex items-center justify-center"
             style={{
-              width: sphereRadius * 2 + 120,
-              height: sphereRadius * 2 + 120,
+              width: sphereRadius * 2 + 110,
+              height: sphereRadius * 2 + 110,
             }}
           >
             {/* 🌟 CENTER NODE: "Skills" (Fixed at exact (0,0,0) center of sphere) */}
             <div 
-              className="absolute z-[2400] flex flex-col items-center justify-center rounded-full bg-gradient-to-b from-zinc-900 to-black border border-white/25 shadow-[0_0_50px_rgba(255,255,255,0.15)] transition-transform duration-300 pointer-events-none select-none"
+              className="absolute z-[2300] flex flex-col items-center justify-center rounded-full bg-gradient-to-b from-zinc-900 to-black border border-white/25 shadow-[0_0_50px_rgba(255,255,255,0.15)] transition-transform duration-300 pointer-events-none select-none"
               style={{
                 width: sphereRadius < 160 ? 100 : 130,
                 height: sphereRadius < 160 ? 100 : 130,
@@ -313,11 +299,11 @@ const Skills = () => {
                 Skills
               </span>
               <span className="font-mono text-[8px] uppercase tracking-[0.28em] text-white/50 mt-1.5">
-                32 Technologies
+                {SKILLS_DATA.length} Techs
               </span>
             </div>
 
-            {/* 🪐 32 3D ORBITING SKILL NODES (Passing in front and behind center) */}
+            {/* 🪐 3D ORBITING SKILL NODES (Passing in front and behind center) */}
             {points.map((skill) => {
               const isHighlighted = activeCategory === "ALL" || skill.category === activeCategory;
               const isHovered = hoveredSkill?.name === skill.name;
@@ -375,7 +361,7 @@ const Skills = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.9 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 min-w-[200px] p-4 rounded-2xl bg-zinc-950/95 border border-white/20 backdrop-blur-xl shadow-2xl pointer-events-none z-50 text-left"
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 min-w-[210px] p-4 rounded-2xl bg-zinc-950/95 border border-white/20 backdrop-blur-xl shadow-2xl pointer-events-none z-50 text-left"
                     >
                       <div className="flex items-center justify-between gap-2 mb-1.5">
                         <span className="font-times italic text-base font-normal text-white">
@@ -412,40 +398,40 @@ const Skills = () => {
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] font-mono uppercase tracking-widest text-white/40 mb-12">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>CELESTIAL TECH ORB &bull; {SKILLS_DATA.length} CORE TECHNOLOGIES &bull; ALL LOADED</span>
+            <span>CELESTIAL TECH ORB &bull; {SKILLS_DATA.length} OFFICIAL TECHNOLOGIES LOADED</span>
           </div>
           <span>CLICK &amp; DRAG TO SPIN SPHERE &bull; HOVER FOR BLUEPRINT</span>
         </div>
 
-        {/* 📋 COMPREHENSIVE TECHNOLOGY CATALOG MATRIX */}
+        {/* 📋 COMPREHENSIVE TECHNOLOGY CATALOG DIRECTORY */}
         <div className="mt-8 pt-8 border-t border-white/10">
           <div className="flex items-center justify-between mb-8">
             <h3 className="font-times italic text-2xl sm:text-3xl text-white font-normal">
-              Full Technology Directory ({filteredSkills.length})
+              Technology Directory ({filteredSkills.length})
             </h3>
             <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">
               CATEGORY: {activeCategory}
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {filteredSkills.map((skill) => {
               const Icon = skill.icon;
               return (
                 <motion.div
                   key={skill.name}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  className="p-4 rounded-2xl border border-white/15 bg-white/[0.03] hover:border-white/40 transition-all duration-300 flex flex-col justify-between group cursor-default"
+                  className="p-5 rounded-2xl border border-white/15 bg-white/[0.03] hover:border-white/40 transition-all duration-300 flex flex-col justify-between group cursor-default"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div 
-                      className="w-10 h-10 rounded-xl flex items-center justify-center bg-black/80 border border-white/10 group-hover:scale-110 transition-transform"
-                      style={{ boxShadow: `0 0 10px ${skill.color}22` }}
+                      className="w-11 h-11 rounded-xl flex items-center justify-center bg-black/80 border border-white/10 group-hover:scale-110 transition-transform"
+                      style={{ boxShadow: `0 0 12px ${skill.color}25` }}
                     >
-                      <Icon size={20} style={{ color: skill.color }} />
+                      <Icon size={22} style={{ color: skill.color }} />
                     </div>
                     <span 
-                      className="font-mono text-[8px] uppercase tracking-widest px-2 py-0.5 rounded-full border border-white/10"
+                      className="font-mono text-[8px] uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-white/10"
                       style={{ color: skill.color }}
                     >
                       {skill.level}
@@ -453,11 +439,14 @@ const Skills = () => {
                   </div>
 
                   <div>
-                    <h4 className="font-times italic text-base text-white leading-tight mb-1">
+                    <h4 className="font-times italic text-lg text-white leading-tight mb-1">
                       {skill.name}
                     </h4>
-                    <p className="font-mono text-[9px] text-white/40 uppercase tracking-wider line-clamp-1">
+                    <p className="font-mono text-[9px] text-white/40 uppercase tracking-wider mb-2">
                       {skill.category}
+                    </p>
+                    <p className="font-times text-xs text-white/60 leading-relaxed font-light">
+                      {skill.detail}
                     </p>
                   </div>
                 </motion.div>
