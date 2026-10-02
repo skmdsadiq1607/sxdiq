@@ -10,7 +10,13 @@ import Certifications from "@/components/Certifications";
 import LanguagesSection from "@/components/LanguagesSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import KineticRibbonTransition from "@/components/KineticRibbonTransition";
+import {
+  VenetianBlindsTransition,
+  InkBleedTransition,
+  DiagonalWipeTransition,
+  PixelGridTransition,
+  KineticRibbonTransition,
+} from "@/components/SectionTransitions";
 
 const Index = () => {
   // Permanently lock to pure dark mode
@@ -31,72 +37,57 @@ const Index = () => {
       {/* Constellation Particle Layer */}
       <StarfieldBackground />
 
-      {/* Floating Glass Navbar */}
+      {/* Floating Glass Navbar with Active Section Tracking */}
       <Navbar />
 
-      {/* Main Fluid Vertical Scrollytelling Sections with Angled Kinetic Marquee Transitions */}
+      {/* Main Fluid Vertical Scrollytelling Sections with 5 Unique Bespoke Transitions */}
       <main className="relative z-10 flex flex-col w-full">
-        {/* 🌓 00: HERO (50/50 Dual-Layer Split Screen) */}
+        {/* 🌓 00: HERO (50/50 Dual-Layer Split Screen + Character Stagger + Mouse Parallax) */}
         <Hero />
 
-        {/* 📰 01: ABOUT (High-Contrast Pure White Editorial Broadsheet) */}
+        {/* 📰 01: ABOUT (High-Contrast Pure White Editorial Broadsheet + Scroll Word Reveal) */}
         <About />
 
-        {/* ⚡ TRANSITION 01 -> 02: Angled Dual-Track Marquee Ribbon */}
-        <KineticRibbonTransition 
-          text1="FULL STACK ARCHITECTURE // DISTRIBUTED SYSTEMS // MERN & CLOUD // PROBLEM SOLVER //"
-          text2="REACT NODE EXPRESS MONGODB NEXTJS GSAP THREEJS DSA ALGORITHMS CLEAN CODE //"
-          rotate={-3}
-        />
+        {/* ⚡ TRANSITION 01 -> 02: Venetian Blinds (Horizontal flipping bars revealing dark realm) */}
+        <VenetianBlindsTransition />
 
-        {/* 🪐 02: SKILLS (High-Impact Monolith Matrix) */}
+        {/* 🪐 02: SKILLS (Interactive Orbital Ring Constellation Matrix) */}
         <Skills />
 
-        {/* ⚡ TRANSITION 02 -> 03: Angled Dual-Track Marquee Ribbon */}
+        {/* ⚡ TRANSITION 02 -> 03: Triple-Track Kinetic Ribbon Marquee */}
         <KineticRibbonTransition 
           text1="SELECTED WORK // PRODUCTION SOFTWARE SYSTEMS // HIGH-PERFORMANCE WEB APPS //"
           text2="KRUSHI MITRA // IGNITEXT // DEVELOPER PORTFOLIO // ARCHITECTURE & DEPLOYMENT //"
-          rotate={2.5}
-        />
-
-        {/* 🏛️ 03: PROJECTS (3D Monolith Perspective Runway) */}
-        <Projects />
-
-        {/* ⚡ TRANSITION 03 -> 04: Quantum Trajectory Ribbon */}
-        <KineticRibbonTransition 
-          text1="ACADEMIC MILESTONES // LEADERSHIP & STUDENT COMMUNITIES // HACKATHON ARENA //"
-          text2="ANURAG UNIVERSITY // CSI SB // IGNITEXT // SALESFORCE AGENTX // DATA DYNAMO //"
+          text3="FULL STACK WEB DEVELOPMENT // ALGORITHMIC OPTIMIZATION // SCALABLE CLOUD SYSTEMS //"
           rotate={-2.5}
         />
 
-        {/* ⚡ 04: TIMELINE & EXPERIENCE (Quantum Spacetime Conduit) */}
+        {/* 🏛️ 03: PROJECTS (Full-Width Runway with Scroll Parallax & Architectural Blueprints) */}
+        <Projects />
+
+        {/* ⚡ TRANSITION 03 -> 04: Pixel Grid Matrix (Staggered scaling grid squares) */}
+        <PixelGridTransition />
+
+        {/* ⚡ 04: TIMELINE & EXPERIENCE (Quantum Spacetime Conduit + Verified Credential Modals) */}
         <TimelineSection />
 
-        {/* ⚡ TRANSITION 04 -> 05: Credentials Ribbon */}
-        <KineticRibbonTransition 
-          text1="ACCREDITED EXPERTISE // IIT KHARAGPUR // INFOSYS SPRINGBOARD // 2026 //"
-          text2="NPTEL ELITE SILVER // JAVA FOUNDATION // 12 COURSE COMPLETION VAULT //"
-          rotate={3}
-        />
+        {/* ⚡ TRANSITION 04 -> 05: Ink Bleed Ripple (Concentric expanding circles into Holographic Lens) */}
+        <InkBleedTransition />
 
-        {/* 🔮 05: CERTIFICATIONS (3D Vault & Fan-Out Deck) */}
+        {/* 🔮 05: CERTIFICATIONS (3D Vault, Fan-Out Deck & 12-Course Modal Archive) */}
         <Certifications />
 
-        {/* 〰️ 06: LANGUAGES (Acoustic Phonetic Cards) */}
+        {/* 〰️ 06: LANGUAGES (Acoustic Phonetic Cards + Dynamic Audio Equalizers) */}
         <LanguagesSection />
 
-        {/* ⚡ TRANSITION 06 -> 07: Transmission Ribbon */}
-        <KineticRibbonTransition 
-          text1="AVAILABLE FOR FULL-TIME OPPORTUNITIES // OPEN TO COLLABORATION // DISPATCH //"
-          text2="FULL STACK WEB DEVELOPMENT // PROBLEM SOLVING // SOFTWARE ENGINEERING //"
-          rotate={-2}
-        />
+        {/* ⚡ TRANSITION 06 -> 07: Diagonal Angular Sweep (Dynamic angled wipe into Split Screen) */}
+        <DiagonalWipeTransition />
 
-        {/* 📡 07: CONTACT (Clean Editorial Transmission Canvas) */}
+        {/* 📡 07: CONTACT (50/50 Dual Contrast Split Screen: Pure White Left / Pure Black Right) */}
         <Contact />
       </main>
 
-      {/* Editorial Footer */}
+      {/* Full-Screen "Ready to Collaborate?" CTA + Minimalist Editorial Footer */}
       <Footer />
     </div>
   );

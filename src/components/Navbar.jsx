@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -12,86 +12,157 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  
   const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -79% 0px' }
+    );
+
+    navLinks.forEach(({ href }) => {
+      const section = document.querySelector(href);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const menuVars = {
+    initial: { scaleY: 0 },
+    animate: {
+      scaleY: 1,
+      transition: { duration: 0.5, ease: [0.12, 0, 0.39, 0] },
+    },
+    exit: {
+      scaleY: 0,
+      transition: { delay: 0.5, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
+  const linkVars = {
+    initial: { y: "30vh", transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] } },
+    open: { y: 0, transition: { ease: [0, 0.55, 0.45, 1], duration: 0.7 } },
+  };
+
+  const containerVars = {
+    initial: { transition: { staggerChildren: 0.09, staggerDirection: -1 } },
+    open: { transition: { delayChildren: 0.3, staggerChildren: 0.09, staggerDirection: 1 } },
+  };
+
   return (
-    <nav
-      className={`global-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 border-b border-border py-3 backdrop-blur-md" : "bg-transparent py-5"
-      }`}
-    >
-      {/* Scroll Progress Bar */}
+    <>
       <motion.div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-foreground origin-left"
-        style={{ scaleX: scrollYProgress }}
+        className="fixed top-0 left-0 right-0 h-1 bg-white origin-left z-50"
+        style={{ scaleX }}
       />
-
-      <div className="container mx-auto flex items-center justify-between px-6 md:px-16">
-        <a href="#" className="text-2xl font-normal font-times italic tracking-wide text-foreground">
-          Sadiq.
-        </a>
-        
-        <div className="hidden md:flex items-center gap-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="px-4 py-2 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors duration-200"
+      <header
+        className={`fixed top-1 left-0 right-0 z-40 transition-all duration-300 font-times ${
+          scrolled ? "backdrop-blur-xl bg-white/5 py-4" : "bg-transparent py-6"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <a href="#" className="relative group z-50">
+            <motion.h1 
+              className="text-white text-2xl font-bold tracking-normal group-hover:tracking-widest transition-all duration-300"
             >
-              {link.label}
-            </a>
-          ))}
-        </div>
+              Sadiq.
+            </motion.h1>
+          </a>
 
-        {/* Mobile Menu Button - High contrast solid black circle with bold white icon */}
-        <div className="flex md:hidden items-center">
-          <button 
-            onClick={() => setMobileOpen(!mobileOpen)} 
-            className="w-10 h-10 rounded-full flex items-center justify-center bg-black text-white border border-white/40 hover:border-white shadow-lg transition-all active:scale-95"
-            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="relative text-white/80 hover:text-white transition-colors py-2 text-sm"
+              >
+                {link.label}
+                {activeSection === link.href.substring(1) && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white rounded-full"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            ))}
+          </nav>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden z-50 text-white"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            {mobileOpen ? <X size={20} strokeWidth={2.2} /> : <Menu size={20} strokeWidth={2.2} />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Nav */}
       <AnimatePresence>
-        {mobileOpen && (
+        {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="md:hidden overflow-hidden bg-black/95 backdrop-blur-xl border-b border-white/15 shadow-2xl"
+            variants={menuVars}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="fixed inset-0 bg-black z-30 font-times origin-top"
           >
-            <div className="flex flex-col px-6 py-5 gap-1">
-              {navLinks.map((link, idx) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="py-3 font-times italic text-lg tracking-wide text-neutral-200 hover:text-white border-b border-white/10 last:border-0 transition-colors flex items-center justify-between"
-                >
-                  <span>{link.label}</span>
-                  <span className="font-mono text-xs uppercase tracking-widest text-neutral-500">
-                    0{idx + 1}
-                  </span>
-                </a>
-              ))}
+            <div className="flex h-full flex-col justify-center items-center">
+              <motion.div
+                variants={containerVars}
+                initial="initial"
+                animate="open"
+                exit="initial"
+                className="flex flex-col gap-8 items-center"
+              >
+                {navLinks.map((link) => (
+                  <div key={link.label} className="overflow-hidden">
+                    <motion.div variants={linkVars}>
+                      <a
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-white text-4xl hover:text-white/70 transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    </motion.div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 

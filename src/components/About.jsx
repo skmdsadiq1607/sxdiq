@@ -1,181 +1,155 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Zap, Code, Users, Award, ArrowUpRight } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const stats = [
-  { value: 9.25, label: "Cumulative CGPA", suffix: "", decimals: 2, icon: Zap, detail: "Anurag University, IT" },
-  { value: 2, label: "Production Apps Built", suffix: "+", decimals: 0, icon: Code, detail: "MERN & Full-Stack" },
-  { value: 3, label: "Hackathons Competed", suffix: "+", decimals: 0, icon: Users, detail: "Problem-Solving & Collab" },
-  { value: 5, label: "Certifications Earned", suffix: "+", decimals: 0, icon: Award, detail: "Java, DSA, Full-Stack" },
+  { value: "9.25", label: "CGPA", desc: "Computer Science" },
+  { value: "2+", label: "Production Apps", desc: "Deployed to real users" },
+  { value: "3+", label: "Hackathons", desc: "Podium finishes" },
+  { value: "5+", label: "Certifications", desc: "Industry standard" }
 ];
 
-const AnimatedCounter = ({ value, decimals, suffix }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const [display, setDisplay] = useState("0");
+const techStack = [
+  "React.js", "Node.js", "Express.js", "MongoDB", "Java (DSA)", "Tailwind CSS", "C/C++"
+];
 
-  useEffect(() => {
-    if (!inView) return;
-    const duration = 1800;
-    const start = performance.now();
-    const animate = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      setDisplay((value * eased).toFixed(decimals));
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-    requestAnimationFrame(animate);
-  }, [inView, value, decimals]);
-
-  return <span ref={ref}>{display}{suffix}</span>;
+const Word = ({ children, progress, range }) => {
+  const opacity = useTransform(progress, range, [0.15, 1]);
+  return (
+    <motion.span style={{ opacity }} className="mr-3 md:mr-5 inline-block">
+      {children}
+    </motion.span>
+  );
 };
 
 const About = () => {
-  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
+    target: containerRef,
+    offset: ["start 80%", "end 40%"]
   });
+  
+  const ruleRef = useRef(null);
+  const { scrollYProgress: ruleProgress } = useScroll({
+    target: ruleRef,
+    offset: ["start 90%", "end 60%"]
+  });
+  const ruleScaleX = useTransform(ruleProgress, [0, 1], [0, 1]);
 
-  const watermarkX = useTransform(scrollYProgress, [0, 1], ["5%", "-20%"]);
+  const bgRef = useRef(null);
+  const { scrollYProgress: bgProgress } = useScroll({
+    target: bgRef,
+    offset: ["start end", "end start"]
+  });
+  const bgY = useTransform(bgProgress, [0, 1], ["-20%", "20%"]);
+
+  const headline = "A passionate developer turning ideas into reality";
+  const words = headline.split(" ");
 
   return (
-    <section 
-      ref={sectionRef}
-      id="about" 
-      className="min-h-screen w-full flex items-center justify-center bg-[#FFFFFF] text-[#000000] py-28 px-6 sm:px-12 md:px-20 border-b border-black/15 relative select-none overflow-hidden transition-colors duration-500"
-    >
-      {/* 🌊 Giant Editorial Parallax Watermark in Pure Black Ink */}
+    <section ref={bgRef} id="about" className="relative w-full min-h-screen bg-[#FFFFFF] text-[#000000] font-times overflow-hidden py-24 sm:py-32">
+      {/* Giant Parallax Number */}
       <motion.div 
-        style={{ x: watermarkX }}
-        className="absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none whitespace-nowrap z-0 select-none opacity-[0.035] text-[18vw] font-times italic tracking-tight text-black leading-none"
+        style={{ y: bgY }}
+        className="absolute top-0 right-0 pointer-events-none z-0"
       >
-        SHAIK SADIQ // B.TECH INFORMATION TECHNOLOGY // HYDERABAD
+        <h1 className="text-[30vw] leading-none text-[#000000]/5 select-none tracking-tighter">
+          01
+        </h1>
       </motion.div>
 
-      <div className="container mx-auto relative z-10 max-w-7xl">
-        
-        {/* Section Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 24 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.7 }}
-          className="mb-14 border-b border-black/15 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
-        >
-          <div>
-            <span className="font-mono text-xs mb-2 tracking-[0.3em] uppercase block text-black/50">
-              // 01 — Background &amp; Identity
-            </span>
-            <h2 className="font-times text-5xl sm:text-6xl lg:text-7xl font-normal italic tracking-tight leading-none text-black">
-              About Me
-            </h2>
-          </div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-black/50 pb-1 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-black animate-ping" />
-            <span>Academic Distinction &bull; Hyderabad, India</span>
-          </div>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col gap-24">
+        {/* Scroll-Driven Headline */}
+        <div ref={containerRef} className="max-w-4xl">
+          <h2 className="text-4xl sm:text-6xl lg:text-8xl font-normal leading-tight tracking-tight flex flex-wrap">
+            {words.map((word, i) => {
+              const start = i / words.length;
+              const end = start + (1 / words.length);
+              return (
+                <Word key={i} progress={scrollYProgress} range={[start, end]}>
+                  {word}
+                </Word>
+              );
+            })}
+          </h2>
+        </div>
 
-        {/* Two-Column Editorial Broadsheet Layout */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Column: Narrative Bio */}
+        {/* Drawing Horizontal Rule */}
+        <div ref={ruleRef} className="w-full flex justify-end">
           <motion.div 
-            initial={{ opacity: 0, x: -30 }} 
-            whileInView={{ opacity: 1, x: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 flex flex-col justify-between"
-          >
-            <div>
-              <h3 className="font-times text-3xl sm:text-4xl lg:text-5xl font-normal italic text-black leading-[1.15] mb-6">
-                A passionate developer turning ideas into reality.
-              </h3>
+            style={{ scaleX: ruleScaleX, transformOrigin: "left" }}
+            className="w-full h-[1px] bg-[#000000]/15"
+          />
+        </div>
 
-              <p className="text-black/80 text-base sm:text-lg leading-relaxed mb-4 font-light font-times">
-                I am a B.Tech Information Technology student at <strong className="font-semibold text-black underline underline-offset-4 decoration-black/30">Anurag University, Hyderabad</strong>, driven by a deep obsession with full-stack web engineering and algorithmic problem-solving.
+        {/* Main Content Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          
+          {/* Left Column: Tech Stack & Description */}
+          <div className="flex flex-col gap-12">
+            <div className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-[#000000]/70 space-y-8">
+              <p>
+                I specialize in building robust backend systems and beautiful, responsive frontend interfaces. With a strong foundation in computer science and data structures, I approach software engineering as both an art and a science.
               </p>
-
-              <p className="text-black/70 text-sm sm:text-base leading-relaxed mb-8 font-light font-times">
-                I specialize in crafting responsive, resilient web systems utilizing the MERN stack. Beyond continuous coding, I compete in hackathons, contribute actively to student developer clubs, and continuously refine my computational foundations in Data Structures and Algorithms.
+              <p>
+                Whether it's optimizing database queries, orchestrating server deployments, or crafting pixel-perfect animations, I thrive in the space where logic meets design.
               </p>
             </div>
-            
-            {/* Core Tech Stack Badges */}
-            <div className="pt-6 border-t border-black/15">
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-black/50 block mb-3.5">
-                // Engineering Stack
-              </span>
-              <div className="flex flex-wrap gap-2.5">
-                {["React.js", "Node.js", "Express.js", "MongoDB", "Java (DSA)", "Tailwind CSS", "C / C++"].map((tech, i) => (
-                  <motion.span
+
+            <div className="space-y-6">
+              <h3 className="text-xl tracking-wide uppercase border-b border-[#000000]/10 pb-4">Core Technologies</h3>
+              <div className="flex flex-wrap gap-3">
+                {techStack.map((tech, i) => (
+                  <motion.div
                     key={tech}
-                    whileHover={{ y: -3, scale: 1.05 }}
-                    className="inline-flex items-center px-4 py-2 rounded-full border border-black/20 hover:border-black bg-black/5 hover:bg-black hover:text-white text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-default"
+                    animate={{ 
+                      y: [0, -5, 0],
+                      x: [0, i % 2 === 0 ? 3 : -3, 0]
+                    }}
+                    transition={{
+                      duration: 3 + (i % 3),
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: i * 0.2
+                    }}
+                    className="px-6 py-3 border border-[#000000]/15 rounded-full text-base tracking-wide bg-[#FFFFFF] shadow-sm hover:bg-[#000000] hover:text-[#FFFFFF] transition-colors duration-300"
                   >
                     {tech}
-                  </motion.span>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Column: High-Fashion Clean Metric Monoliths */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }} 
-            whileInView={{ opacity: 1, x: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.8 }} 
-            className="lg:col-span-6 bg-black/[0.02] border border-black/15 rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col justify-between"
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-black/15">
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-black/60">
-                // Academic &amp; Production Telemetry
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-black/20 bg-black/5 text-[9px] font-mono text-black font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" /> Verified
-              </span>
-            </div>
-
-            {/* 2x2 Grid of Clean Typographic Stat Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {stats.map((stat, idx) => (
+          {/* Right Column: Staggered Stat Cascade */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {stats.map((stat, i) => {
+              const direction = i % 2 === 0 ? -50 : 50;
+              return (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 + idx * 0.08, duration: 0.5 }}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="p-6 rounded-2xl border border-black/10 bg-white hover:border-black/40 transition-all duration-300 shadow-sm flex flex-col justify-between"
+                  initial={{ opacity: 0, x: direction, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.8,
+                    delay: i * 0.15,
+                    ease: [0.21, 0.47, 0.32, 0.98]
+                  }}
+                  className="p-8 border border-[#000000]/15 rounded-3xl bg-[#FFFFFF] flex flex-col justify-center gap-2 group hover:border-[#000000]/40 transition-colors"
                 >
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-mono text-[10px] text-black/50 uppercase tracking-wider">
-                      {stat.label}
-                    </span>
-                    <stat.icon size={16} className="text-black/40" />
+                  <div className="text-5xl lg:text-6xl tracking-tighter group-hover:scale-105 origin-left transition-transform duration-500">
+                    {stat.value}
                   </div>
-
-                  <div>
-                    <p className="text-4xl sm:text-5xl font-times font-normal italic tracking-tight text-black leading-none mb-1.5">
-                      <AnimatedCounter value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
-                    </p>
-                    <span className="font-mono text-[9px] text-black/50 tracking-wider block">
-                      {stat.detail}
-                    </span>
+                  <div className="text-lg font-bold tracking-tight uppercase border-t border-[#000000]/10 pt-4 mt-2">
+                    {stat.label}
+                  </div>
+                  <div className="text-sm text-[#000000]/60 italic">
+                    {stat.desc}
                   </div>
                 </motion.div>
-              ))}
-            </div>
-
-            {/* Footer */}
-            <div className="mt-6 pt-4 border-t border-black/10 flex items-center justify-between text-[9px] font-mono uppercase tracking-widest text-black/45">
-              <span>ACTIVE STATUS: B.TECH IT 2024–2028</span>
-              <span>ANURAG UNIVERSITY</span>
-            </div>
-          </motion.div>
+              );
+            })}
+          </div>
 
         </div>
       </div>
