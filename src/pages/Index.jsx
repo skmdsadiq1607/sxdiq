@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import StarfieldBackground from "@/components/StarfieldBackground";
+import StarCursorTrail from "@/components/StarCursorTrail";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -34,6 +35,9 @@ const Index = () => {
 
   return (
     <div className="relative bg-black text-white transition-colors duration-300 min-h-screen selection:bg-white selection:text-black overflow-x-hidden">
+      {/* Interactive Stardust Cursor Trail (Default cursor + trailing stars) */}
+      <StarCursorTrail />
+
       {/* Constellation Particle Layer */}
       <StarfieldBackground />
 
