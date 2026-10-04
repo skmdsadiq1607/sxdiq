@@ -17,7 +17,7 @@ const Footer = () => {
     <footer ref={containerRef} className="relative w-full bg-black text-white font-times flex flex-col">
       {/* Background glow for CTA section */}
       <motion.div 
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-white/10 rounded-full blur-[120px] pointer-events-none"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[65vw] h-[65vw] max-w-[650px] max-h-[650px] bg-gradient-to-tr from-[#0047AB]/25 via-[#0052FF]/10 to-transparent rounded-full blur-[140px] pointer-events-none"
         style={{ opacity: glowOpacity }}
       />
 
@@ -33,11 +33,11 @@ const Footer = () => {
           
           <a 
             href="#contact" 
-            className="group relative flex items-center justify-center w-48 h-48 rounded-full border border-white/20 bg-black text-white hover:bg-white hover:text-black transition-all duration-500 overflow-hidden"
+            className="group relative flex items-center justify-center w-48 h-48 rounded-full border border-white/20 bg-black text-white hover:bg-white hover:text-black hover:border-[#0052FF] hover:shadow-[0_0_50px_rgba(0,82,255,0.4)] transition-all duration-500 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-3 text-xl italic tracking-wide">
               Get in Touch
-              <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#0052FF] transition-all duration-300" />
             </span>
           </a>
         </motion.div>
@@ -46,7 +46,7 @@ const Footer = () => {
       {/* Decorative Line drawn on scroll */}
       <div className="w-full h-[1px] bg-white/5 relative z-10">
         <motion.div 
-          className="absolute left-0 top-0 h-full bg-white/40"
+          className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#0047AB] via-[#0052FF] to-white"
           style={{ width: lineWidth }}
         />
       </div>
@@ -55,18 +55,25 @@ const Footer = () => {
       <div className="relative z-10 w-full px-8 py-10 flex flex-col lg:flex-row items-center justify-between gap-8 bg-black text-base">
         {/* Brand */}
         <div className="text-2xl font-bold italic tracking-widest uppercase">
-          Sadiq.
+          Sadiq<span className="text-[#0052FF]">.</span>
         </div>
         
         {/* Nav Links */}
         <nav className="flex flex-wrap items-center justify-center gap-8 text-white/70">
-          {['About', 'Skills', 'Projects', 'Experience', 'Certifications', 'Contact'].map((item) => (
+          {[
+            { label: 'About', href: '#about' },
+            { label: 'Skills', href: '#skills' },
+            { label: 'Projects', href: '#projects' },
+            { label: 'Experience', href: '#leadership' },
+            { label: 'Certifications', href: '#certifications' },
+            { label: 'Contact', href: '#contact' },
+          ].map((item) => (
             <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`} 
+              key={item.label} 
+              href={item.href} 
               className="hover:text-white hover:italic transition-all duration-300"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </nav>

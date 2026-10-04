@@ -2,9 +2,10 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Word = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0.15, 1]);
+  const opacity = useTransform(progress, range, [0.22, 1]);
+  const y = useTransform(progress, range, [6, 0]);
   return (
-    <motion.span style={{ opacity }} className="mr-3 md:mr-5 inline-block">
+    <motion.span style={{ opacity, y }} className="mr-3 md:mr-5 inline-block will-change-transform">
       {children}
     </motion.span>
   );
@@ -27,7 +28,7 @@ const SectionHeaderEditorial = ({
   const ruleRef = useRef(null);
   const { scrollYProgress: ruleProgress } = useScroll({
     target: ruleRef,
-    offset: ["start 90%", "end 60%"]
+    offset: ["start 92%", "end 65%"]
   });
   const ruleScaleX = useTransform(ruleProgress, [0, 1], [0, 1]);
 
@@ -36,34 +37,38 @@ const SectionHeaderEditorial = ({
     target: bgRef,
     offset: ["start end", "end start"]
   });
-  const bgY = useTransform(bgProgress, [0, 1], ["-20%", "20%"]);
+  const bgY = useTransform(bgProgress, [0, 1], ["-12%", "12%"]);
 
   const words = headline.split(" ");
   const textColor = isWhiteBg ? "text-[#000000]" : "text-[#FFFFFF]";
-  const watermarkColor = isWhiteBg ? "text-[#000000]/5" : "text-[#FFFFFF]/5";
-  const ruleColor = isWhiteBg ? "bg-[#000000]/15" : "bg-[#FFFFFF]/15";
-  const tagColor = isWhiteBg ? "text-[#000000]/50" : "text-[#FFFFFF]/50";
+  const watermarkColor = isWhiteBg ? "text-black/[0.04]" : "text-white/[0.04]";
+  const tagColor = isWhiteBg ? "text-black/55" : "text-white/55";
+  const badgeBorder = isWhiteBg ? "border-black/20 text-black/60 bg-black/5" : "border-white/20 text-white/60 bg-white/5";
 
   return (
-    <div ref={bgRef} className={`relative w-full ${className}`}>
-      {/* Giant Parallax Number in Background */}
+    <div ref={bgRef} className={`relative w-full overflow-hidden ${className}`}>
+      {/* Giant Parallax Number Watermark — elegantly scaled & non-colliding */}
       <motion.div 
         style={{ y: bgY }}
-        className="absolute top-0 right-0 pointer-events-none z-0 select-none"
+        className="absolute -top-6 right-2 sm:right-6 pointer-events-none z-0 select-none"
+        aria-hidden="true"
       >
-        <h1 className={`text-[28vw] leading-none ${watermarkColor} font-times select-none tracking-tighter`}>
+        <span className={`text-[clamp(6rem,16vw,14rem)] leading-none ${watermarkColor} font-times font-normal select-none tracking-tighter block`}>
           {number}
-        </h1>
+        </span>
       </motion.div>
 
-      <div className="relative z-10 w-full flex flex-col gap-5 mb-10">
+      <div className="relative z-10 w-full flex flex-col gap-5 mb-8">
         {/* Section Tag & Badge */}
         <div className="flex items-center justify-between">
-          <span className={`font-mono text-xs tracking-[0.3em] uppercase block ${tagColor}`}>
-            {tag}
-          </span>
+          <div className="flex items-center gap-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF] shadow-[0_0_8px_rgba(0,82,255,0.85)]" />
+            <span className={`font-mono text-xs tracking-[0.28em] uppercase block ${tagColor}`}>
+              {tag}
+            </span>
+          </div>
           {badge && (
-            <span className={`font-mono text-[10px] uppercase tracking-widest ${tagColor}`}>
+            <span className={`font-mono text-[9px] uppercase tracking-widest px-3 py-1 rounded-full border transition-colors ${badgeBorder}`}>
               {badge}
             </span>
           )}
@@ -71,7 +76,7 @@ const SectionHeaderEditorial = ({
 
         {/* Scroll-Driven Word Reveal Headline */}
         <div ref={containerRef} className="max-w-4xl">
-          <h2 className={`text-4xl sm:text-6xl lg:text-8xl font-times font-normal not-italic leading-tight tracking-tight flex flex-wrap ${textColor}`}>
+          <h2 className={`text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-times font-normal not-italic leading-[1.08] tracking-tight flex flex-wrap ${textColor}`}>
             {words.map((word, i) => {
               const start = i / words.length;
               const end = start + (1 / words.length);
@@ -84,11 +89,15 @@ const SectionHeaderEditorial = ({
           </h2>
         </div>
 
-        {/* Self-Drawing Horizontal Rule */}
-        <div ref={ruleRef} className="w-full flex justify-end mt-2">
+        {/* Self-Drawing Horizontal Rule with Cobalt Accent */}
+        <div ref={ruleRef} className="w-full flex items-center justify-between mt-3">
           <motion.div 
             style={{ scaleX: ruleScaleX, transformOrigin: "left" }}
-            className={`w-full h-[1px] ${ruleColor}`}
+            className={`w-full h-[1px] ${
+              isWhiteBg 
+                ? "bg-gradient-to-r from-[#0047AB]/70 via-black/15 to-transparent" 
+                : "bg-gradient-to-r from-[#0052FF]/90 via-white/20 to-transparent"
+            }`}
           />
         </div>
       </div>

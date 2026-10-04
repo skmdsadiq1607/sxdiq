@@ -89,11 +89,11 @@ const Contact = () => {
                   <span className="text-sm uppercase tracking-widest text-[#000000]/50 mb-1">{info.label}</span>
                   <span className="text-xl md:text-2xl font-medium">{info.value}</span>
                 </div>
-                <div className="w-12 h-12 rounded-full border border-[#000000]/20 flex items-center justify-center group-hover:bg-[#000000] group-hover:text-[#FFFFFF] transition-colors duration-500">
+                <div className="w-12 h-12 rounded-full border border-[#000000]/20 flex items-center justify-center group-hover:bg-[#0052FF] group-hover:text-[#FFFFFF] group-hover:border-[#0052FF] group-hover:shadow-[0_0_15px_rgba(0,82,255,0.4)] transition-all duration-300">
                   <info.icon size={20} />
                 </div>
                 {/* Hover underline slide */}
-                <div className="absolute bottom-0 left-0 h-[1px] w-full bg-[#000000] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
+                <div className="absolute bottom-0 left-0 h-[1.5px] w-full bg-[#0052FF] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
               </motion.a>
             ))}
           </div>
@@ -138,7 +138,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder={field.placeholder}
-                  className="w-full bg-transparent border-b border-[#FFFFFF]/20 py-4 text-xl md:text-2xl text-[#FFFFFF] placeholder:text-[#FFFFFF]/20 focus:outline-none focus:border-[#FFFFFF] transition-colors duration-300"
+                  className="w-full bg-transparent border-b border-[#FFFFFF]/20 py-4 text-xl md:text-2xl text-[#FFFFFF] placeholder:text-[#FFFFFF]/20 focus:outline-none focus:border-[#0052FF] focus:shadow-[0_2px_15px_rgba(0,82,255,0.35)] transition-all duration-300"
                 />
               </motion.div>
             ))}
@@ -158,7 +158,7 @@ const Contact = () => {
                 required
                 rows={4}
                 placeholder="What are we building?"
-                className="w-full bg-transparent border-b border-[#FFFFFF]/20 py-4 text-xl md:text-2xl text-[#FFFFFF] placeholder:text-[#FFFFFF]/20 focus:outline-none focus:border-[#FFFFFF] transition-colors duration-300 resize-none"
+                className="w-full bg-transparent border-b border-[#FFFFFF]/20 py-4 text-xl md:text-2xl text-[#FFFFFF] placeholder:text-[#FFFFFF]/20 focus:outline-none focus:border-[#0052FF] focus:shadow-[0_2px_15px_rgba(0,82,255,0.35)] transition-all duration-300 resize-none"
               ></textarea>
             </motion.div>
 
@@ -171,7 +171,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative flex items-center justify-center gap-4 bg-[#FFFFFF] text-[#000000] px-8 py-5 rounded-full w-full overflow-hidden disabled:opacity-70 transition-transform active:scale-95"
+                className="group relative flex items-center justify-center gap-4 bg-[#FFFFFF] text-[#000000] px-8 py-5 rounded-full w-full overflow-hidden disabled:opacity-70 transition-all hover:shadow-[0_0_35px_rgba(0,82,255,0.35)] active:scale-95"
               >
                 <span className="relative z-10 text-lg uppercase tracking-widest font-medium">
                   {isSubmitting ? "Transmitting..." : "Send Message"}
@@ -179,9 +179,9 @@ const Contact = () => {
                 {isSubmitting ? (
                   <Loader2 className="relative z-10 animate-spin" size={20} />
                 ) : (
-                  <ArrowRight className="relative z-10 group-hover:translate-x-2 transition-transform" size={20} />
+                  <ArrowRight className="relative z-10 group-hover:translate-x-2 transition-transform text-[#0052FF]" size={20} />
                 )}
-                <div className="absolute inset-0 bg-[#000000]/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out rounded-full"></div>
+                <div className="absolute inset-0 bg-[#0047AB]/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out rounded-full"></div>
               </button>
             </motion.div>
           </form>

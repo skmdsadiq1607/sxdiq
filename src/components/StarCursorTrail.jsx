@@ -4,6 +4,11 @@ const StarCursorTrail = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    // Disable on touch devices to prevent clutter on taps
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -24,7 +29,7 @@ const StarCursorTrail = () => {
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     resize();
@@ -32,17 +37,16 @@ const StarCursorTrail = () => {
 
     // Particle pool
     const particles = [];
-    const maxParticles = 90;
+    const maxParticles = 60;
 
-    // Track mouse coordinates & velocity
     let prevMouse = { x: -100, y: -100 };
     let mouse = { x: -100, y: -100 };
 
     // Function to draw a 4-point sparkle star (✦)
-    const drawSparkle = (x, y, radius, innerRadius, rotation, opacity) => {
+    const drawSparkle = (x, y, radius, innerRadius, rotation, opacity, isCobalt = false) => {
       const spikes = 4;
       let rot = (Math.PI / 2) * 3 + rotation;
-      let step = Math.PI / spikes;
+      const step = Math.PI / spikes;
 
       ctx.save();
       ctx.beginPath();
@@ -65,29 +69,42 @@ const StarCursorTrail = () => {
       }
       ctx.closePath();
 
-      ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-      ctx.shadowColor = `rgba(255, 255, 255, ${opacity * 0.9})`;
-      ctx.shadowBlur = 8;
+      if (isCobalt) {
+        ctx.fillStyle = `rgba(0, 82, 255, ${opacity * 0.95})`;
+        ctx.shadowColor = `rgba(0, 82, 255, ${opacity * 0.9})`;
+        ctx.shadowBlur = 8;
+      } else {
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.9})`;
+        ctx.shadowColor = `rgba(255, 255, 255, ${opacity * 0.8})`;
+        ctx.shadowBlur = 6;
+      }
       ctx.fill();
 
       // Center glowing core dot
       ctx.beginPath();
-      ctx.arc(0, 0, radius * 0.25, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-      ctx.shadowBlur = 12;
+      ctx.arc(0, 0, radius * 0.22, 0, Math.PI * 2);
+      ctx.fillStyle = isCobalt ? `rgba(191, 219, 254, ${opacity})` : `rgba(255, 255, 255, ${opacity})`;
+      ctx.shadowBlur = isCobalt ? 10 : 8;
+      ctx.shadowColor = isCobalt ? `rgba(0, 71, 171, ${opacity})` : `rgba(255, 255, 255, ${opacity})`;
       ctx.fill();
 
       ctx.restore();
     };
 
-    // Function to draw a mini circular stardust particle
-    const drawDot = (x, y, radius, opacity) => {
+    // Mini circular stardust particle
+    const drawDot = (x, y, radius, opacity, isCobalt = false) => {
       ctx.save();
       ctx.beginPath();
       ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-      ctx.shadowColor = `rgba(255, 255, 255, ${opacity * 0.8})`;
-      ctx.shadowBlur = 6;
+      if (isCobalt) {
+        ctx.fillStyle = `rgba(0, 82, 255, ${opacity * 0.9})`;
+        ctx.shadowColor = `rgba(0, 71, 171, ${opacity * 0.85})`;
+        ctx.shadowBlur = 5;
+      } else {
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.85})`;
+        ctx.shadowColor = `rgba(255, 255, 255, ${opacity * 0.7})`;
+        ctx.shadowBlur = 4;
+      }
       ctx.fill();
       ctx.restore();
     };
@@ -98,26 +115,27 @@ const StarCursorTrail = () => {
         particles.shift();
       }
 
-      const isSparkle = Math.random() > 0.35; // 65% 4-point sparkle stars, 35% stardust dots
+      const isSparkle = Math.random() > 0.4;
+      const isCobalt = Math.random() < 0.35; // ~35% cobalt blue stars/sparks!
       const angle = Math.random() * Math.PI * 2;
-      const speed = (Math.random() * 1.8 + 0.4) * force;
+      const speed = (Math.random() * 1.4 + 0.3) * force;
 
       particles.push({
-        x: x + (Math.random() - 0.5) * 6,
-        y: y + (Math.random() - 0.5) * 6,
+        x: x + (Math.random() - 0.5) * 4,
+        y: y + (Math.random() - 0.5) * 4,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed + 0.25, // Gentle downward drift
-        size: isSparkle ? Math.random() * 7 + 4 : Math.random() * 2 + 1,
-        innerSizeRatio: Math.random() * 0.15 + 0.15,
+        vy: Math.sin(angle) * speed + 0.15,
+        size: isSparkle ? Math.random() * 4.5 + 2.5 : Math.random() * 1.5 + 0.8,
+        innerSizeRatio: Math.random() * 0.12 + 0.15,
         rotation: Math.random() * Math.PI,
-        rotationSpeed: (Math.random() - 0.5) * 0.12,
-        opacity: 1,
-        decay: Math.random() * 0.02 + 0.018, // Lifespan ~40-60 frames
+        rotationSpeed: (Math.random() - 0.5) * 0.1,
+        opacity: 0.95,
+        decay: Math.random() * 0.028 + 0.022, // Crisp lifespan ~30-45 frames
         isSparkle,
+        isCobalt,
       });
     };
 
-    // Start animation loop if not already running
     const startLoop = () => {
       if (!isRunning) {
         isRunning = true;
@@ -125,7 +143,6 @@ const StarCursorTrail = () => {
       }
     };
 
-    // Render & update particles
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
@@ -133,7 +150,7 @@ const StarCursorTrail = () => {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.015; // Gentle cosmic gravity
+        p.vy += 0.01;
         p.rotation += p.rotationSpeed;
         p.opacity -= p.decay;
 
@@ -142,8 +159,7 @@ const StarCursorTrail = () => {
           continue;
         }
 
-        // Scale down gracefully as it fades
-        const currentRadius = p.size * (0.3 + 0.7 * (p.opacity / 1));
+        const currentRadius = p.size * (0.35 + 0.65 * p.opacity);
 
         if (p.isSparkle) {
           drawSparkle(
@@ -152,14 +168,14 @@ const StarCursorTrail = () => {
             currentRadius,
             currentRadius * p.innerSizeRatio,
             p.rotation,
-            p.opacity
+            p.opacity,
+            p.isCobalt
           );
         } else {
-          drawDot(p.x, p.y, currentRadius, p.opacity);
+          drawDot(p.x, p.y, currentRadius, p.opacity, p.isCobalt);
         }
       }
 
-      // If particles still exist, keep rendering; otherwise sleep to save CPU/GPU
       if (particles.length > 0) {
         animId = requestAnimationFrame(render);
       } else {
@@ -167,7 +183,6 @@ const StarCursorTrail = () => {
       }
     };
 
-    // Interpolate between fast cursor movements so stars form a continuous trail
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -181,9 +196,8 @@ const StarCursorTrail = () => {
       const dy = mouse.y - prevMouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Spawn stars based on distance traveled
-      if (dist > 3) {
-        const steps = Math.min(Math.floor(dist / 6), 4);
+      if (dist > 5) {
+        const steps = Math.min(Math.floor(dist / 8), 3);
         for (let i = 0; i <= steps; i++) {
           const t = steps === 0 ? 1 : i / steps;
           const interpX = prevMouse.x + dx * t;
@@ -196,10 +210,9 @@ const StarCursorTrail = () => {
       }
     };
 
-    // Mini starburst on click
     const handleClick = (e) => {
-      for (let i = 0; i < 10; i++) {
-        addParticle(e.clientX, e.clientY, 2.2);
+      for (let i = 0; i < 8; i++) {
+        addParticle(e.clientX, e.clientY, 1.8);
       }
       startLoop();
     };
@@ -220,9 +233,6 @@ const StarCursorTrail = () => {
       ref={canvasRef}
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-[9999]"
-      style={{
-        mixBlendMode: "difference",
-      }}
     />
   );
 };

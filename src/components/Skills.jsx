@@ -265,7 +265,7 @@ const Skills = () => {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-3.5 py-1.5 rounded-full font-mono text-[10px] uppercase tracking-wider transition-all duration-300 ${
                     isActive 
-                      ? "bg-white text-black font-bold shadow-md" 
+                      ? "bg-[#0052FF] text-white font-bold shadow-[0_0_15px_rgba(0,82,255,0.5)]" 
                       : "text-white/60 hover:text-white"
                   }`}
                 >
@@ -279,6 +279,9 @@ const Skills = () => {
         {/* 🪐 DENSE 3D ROTATING SPHERE */}
         <div className="relative w-full flex items-center justify-center my-6 min-h-[540px] sm:min-h-[600px]">
           
+          {/* Subtle Celestial Cobalt Ambient Nebula */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#0047AB]/20 via-[#0052FF]/10 to-transparent blur-[140px] pointer-events-none z-0" />
+
           {/* Sphere Center Container */}
           <div 
             className="relative flex items-center justify-center"
@@ -289,7 +292,7 @@ const Skills = () => {
           >
             {/* 🌟 CENTER NODE: "Skills" (Fixed at exact (0,0,0) center of sphere) */}
             <div 
-              className="absolute z-[2300] flex flex-col items-center justify-center rounded-full bg-gradient-to-b from-zinc-900 to-black border border-white/25 shadow-[0_0_50px_rgba(255,255,255,0.15)] transition-transform duration-300 pointer-events-none select-none"
+              className="absolute z-[2300] flex flex-col items-center justify-center rounded-full bg-gradient-to-b from-zinc-900 to-black border border-white/30 shadow-[0_0_55px_rgba(0,71,171,0.55),0_0_20px_rgba(0,82,255,0.35)] transition-transform duration-300 pointer-events-none select-none"
               style={{
                 width: sphereRadius < 160 ? 100 : 130,
                 height: sphereRadius < 160 ? 100 : 130,
@@ -298,7 +301,8 @@ const Skills = () => {
               <span className="font-times not-italic text-2xl sm:text-3xl font-normal text-white tracking-wide leading-none">
                 Skills
               </span>
-              <span className="font-mono text-[8px] uppercase tracking-[0.28em] text-white/50 mt-1.5">
+              <span className="font-mono text-[8px] uppercase tracking-[0.28em] text-[#60A5FA] mt-1.5 flex items-center gap-1">
+                <span className="w-1 h-1 rounded-full bg-[#0052FF] animate-ping" />
                 {SKILLS_DATA.length} Techs
               </span>
             </div>
@@ -421,7 +425,7 @@ const Skills = () => {
                 <motion.div
                   key={skill.name}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  className="p-5 rounded-2xl border border-white/15 bg-white/[0.03] hover:border-white/40 transition-all duration-300 flex flex-col justify-between group cursor-default"
+                  className="p-5 rounded-2xl border border-white/15 bg-white/[0.03] hover:border-[#0052FF]/60 hover:shadow-[0_0_25px_rgba(0,82,255,0.18)] transition-all duration-300 flex flex-col justify-between group cursor-default"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div 

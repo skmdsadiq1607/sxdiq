@@ -47,7 +47,9 @@ const AudioBars = ({ active }) => {
             ease: "easeInOut",
             repeatType: "reverse",
           } : { duration: 0.3 }}
-          className="w-1 rounded-full bg-white transition-all duration-300"
+          className={`w-1 rounded-full transition-all duration-300 ${
+            active ? "bg-[#0052FF] shadow-[0_0_8px_#0052FF]" : "bg-white/40"
+          }`}
         />
       ))}
     </div>
@@ -86,7 +88,7 @@ const LanguagesSection = () => {
                 whileHover={{ y: -8, scale: 1.02 }}
                 onMouseEnter={() => setHoveredIdx(i)}
                 onMouseLeave={() => setHoveredIdx(null)}
-                className="border border-white/20 bg-gradient-to-b from-white/[0.06] to-black/80 backdrop-blur-2xl rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-white/60 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] group shadow-xl"
+                className="border border-white/20 bg-gradient-to-b from-white/[0.06] to-black/80 backdrop-blur-2xl rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-[#0052FF]/60 hover:shadow-[0_0_35px_rgba(0,82,255,0.2)] group shadow-xl"
               >
                 <div>
                   {/* Top Row: Avatar & Audio Equalizer Indicator */}
@@ -98,7 +100,7 @@ const LanguagesSection = () => {
                     </div>
 
                     <div className="flex flex-col items-end gap-1.5">
-                      <span className="px-3.5 py-1 rounded-full border border-white/20 bg-white/5 font-mono text-[10px] uppercase tracking-wider text-white">
+                      <span className="px-3.5 py-1 rounded-full border border-white/20 bg-white/5 font-mono text-[10px] uppercase tracking-wider text-white group-hover:border-[#0052FF]/50 transition-colors">
                         {l.level}
                       </span>
                       <AudioBars active={isHovered} />

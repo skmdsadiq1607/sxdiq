@@ -34,7 +34,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="relative bg-black text-white transition-colors duration-300 min-h-screen selection:bg-white selection:text-black overflow-x-hidden">
+    <div className="relative bg-black text-white transition-colors duration-300 min-h-screen selection:bg-[#0047AB] selection:text-white overflow-x-hidden">
       {/* Interactive Stardust Cursor Trail (Default cursor + trailing stars) */}
       <StarCursorTrail />
 

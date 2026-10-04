@@ -76,12 +76,12 @@ const Navbar = () => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-white origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0047AB] via-[#0052FF] to-[#60A5FA] shadow-[0_0_12px_rgba(0,82,255,0.8)] origin-left z-50"
         style={{ scaleX }}
       />
       <header
         className={`fixed top-1 left-0 right-0 z-40 transition-all duration-300 font-times ${
-          scrolled ? "backdrop-blur-xl bg-white/5 py-4" : "bg-transparent py-6"
+          scrolled ? "backdrop-blur-xl bg-black/40 border-b border-white/10 py-4" : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -89,7 +89,7 @@ const Navbar = () => {
             <motion.h1 
               className="text-white text-2xl font-bold tracking-normal group-hover:tracking-widest transition-all duration-300"
             >
-              Sadiq.
+              Sadiq<span className="text-[#0052FF]">.</span>
             </motion.h1>
           </a>
 
@@ -105,7 +105,7 @@ const Navbar = () => {
                 {activeSection === link.href.substring(1) && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#0052FF] shadow-[0_0_8px_rgba(0,82,255,0.8)] rounded-full"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

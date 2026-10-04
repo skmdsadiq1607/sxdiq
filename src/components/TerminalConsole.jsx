@@ -181,7 +181,7 @@ const TerminalConsole = () => {
           <div key={idx} className="leading-relaxed">
             {entry.type === "input" ? (
               <div className="flex">
-                <span className="text-foreground/50 mr-2">sadiq@portfolio:~$</span>
+                <span className="text-[#0052FF] font-semibold mr-2">sadiq@portfolio:~$</span>
                 <span className="text-foreground font-bold">{entry.text}</span>
               </div>
             ) : (
@@ -190,9 +190,9 @@ const TerminalConsole = () => {
           </div>
         ))}
         <div className="flex items-center">
-          <span className="text-foreground/50 mr-2">sadiq@portfolio:~$</span>
+          <span className="text-[#0052FF] font-semibold mr-2">sadiq@portfolio:~$</span>
           <span className="text-foreground">{inputValue}</span>
-          <span className="terminal-cursor" />
+          <span className="terminal-cursor !bg-[#0052FF] shadow-[0_0_8px_#0052FF]" />
         </div>
         <div ref={terminalEndRef} />
       </div>

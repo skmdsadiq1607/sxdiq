@@ -100,11 +100,20 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, div, label, code, pre {
+  h1, h2, h3, h4, h5, h6, p, span, a, button, div, label {
+    font-family: "Times New Roman", Times, serif;
+  }
+  input, textarea {
+    font-family: inherit;
+  }
+  code, pre, .font-mono {
+    font-family: "JetBrains Mono", "Courier New", monospace !important;
+  }
+  .font-times, .font-serif {
     font-family: "Times New Roman", Times, serif !important;
   }
-  .font-mono, .font-sans, .font-serif, .font-times {
-    font-family: "Times New Roman", Times, serif !important;
+  .font-sans {
+    font-family: "Inter", system-ui, sans-serif !important;
   }
 }
 
@@ -175,7 +184,7 @@
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  z-index: 2;
+  z-index: 1;
 }
 
 /* Blinking terminal cursor */
@@ -201,9 +210,16 @@
 }
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--foreground) / 0.2);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--foreground) / 0.4);
+  background: #0052FF;
+  box-shadow: 0 0 10px rgba(0, 82, 255, 0.6);
+}
+
+::selection {
+  background-color: #0047AB;
+  color: #FFFFFF;
 }
 
 /* Shimmer Sweep Animation */
@@ -279,7 +295,7 @@
   color: transparent;
 }
 
-.font-times, .font-mono, .font-sans, .font-serif {
+.font-times {
   font-family: "Times New Roman", Times, serif !important;
   letter-spacing: 0.005em !important;
 }

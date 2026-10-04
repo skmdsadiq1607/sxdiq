@@ -108,12 +108,18 @@ const PixelCell = ({ scrollYProgress, row, col, totalCols }) => {
   const offset = (index % 9) * 0.04;
   const cellScale = useTransform(scrollYProgress, [0 + offset, 0.5 + offset], [0, 1]);
   const cellOpacity = useTransform(scrollYProgress, [0 + offset, 0.5 + offset], [0, 1]);
+  const isCobalt = (row * 7 + col) % 6 === 0;
   const isWhite = (row + col) % 2 === 0;
+  const bgClass = isCobalt 
+    ? "bg-[#0052FF] shadow-[0_0_8px_#0052FF]" 
+    : isWhite 
+      ? "bg-[#FFFFFF]" 
+      : "bg-[#FFFFFF]/20";
 
   return (
     <motion.div
       style={{ scale: cellScale, opacity: cellOpacity }}
-      className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${isWhite ? 'bg-[#FFFFFF]' : 'bg-[#FFFFFF]/20'}`}
+      className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${bgClass}`}
     />
   );
 };
@@ -164,7 +170,7 @@ export const KineticRibbonTransition = ({
   const x3 = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
   const ribbonScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1.04, 0.96]);
 
-  const repeatText = (text) => Array(6).fill(text).join(" ");
+  const repeatText = (text) => Array(12).fill(text).join(" ");
 
   return (
     <div 
@@ -174,7 +180,7 @@ export const KineticRibbonTransition = ({
     >
       <motion.div 
         style={{ scale: ribbonScale }}
-        className="w-[120vw] -ml-[10vw] flex flex-col gap-2 origin-center"
+        className="w-[125vw] -ml-[12.5vw] flex flex-col gap-2 origin-center"
         data-rotate={rotate}
       >
         {/* Track 1: White bg, black text (italic Times) */}
@@ -197,7 +203,7 @@ export const KineticRibbonTransition = ({
         >
           <motion.div 
             style={{ x: x2 }} 
-            className="flex whitespace-nowrap gap-8 font-times font-bold uppercase text-[10px] sm:text-xs md:text-sm tracking-[0.3em]"
+            className="flex whitespace-nowrap gap-8 font-mono font-bold uppercase text-[10px] sm:text-xs md:text-sm tracking-[0.32em]"
           >
             <span>{repeatText(text2)}</span>
           </motion.div>

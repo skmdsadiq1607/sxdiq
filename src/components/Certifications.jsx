@@ -99,16 +99,16 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => c.isBundle && onOpenBundle()}
-        className={`border border-white/20 bg-gradient-to-b from-white/[0.06] to-black/80 backdrop-blur-2xl rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-white/60 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] min-h-[340px] relative overflow-hidden ${
+        className={`border border-white/20 bg-gradient-to-b from-white/[0.06] to-black/80 backdrop-blur-2xl rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-[#0052FF]/60 hover:shadow-[0_0_40px_rgba(0,82,255,0.22)] min-h-[340px] relative overflow-hidden ${
           c.isBundle ? "cursor-pointer" : ""
         }`}
       >
         {/* Subtle radial glow on hover */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl pointer-events-none group-hover:bg-white/10 transition-colors" />
+        <div className="absolute top-0 right-0 w-44 h-44 bg-[#0047AB]/10 rounded-full blur-3xl pointer-events-none group-hover:bg-[#0052FF]/20 transition-colors" />
 
         <div>
           <div className="flex items-center justify-between mb-6">
-            <div className="w-14 h-14 rounded-2xl border border-white/25 bg-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-colors duration-300 shadow-md">
+            <div className="w-14 h-14 rounded-2xl border border-white/25 bg-white/10 flex items-center justify-center text-white group-hover:bg-[#0052FF] group-hover:text-white group-hover:border-[#0052FF] group-hover:shadow-[0_0_20px_rgba(0,82,255,0.5)] transition-all duration-300 shadow-md">
               <c.icon size={24} />
             </div>
             <span className="font-mono text-[9px] uppercase tracking-widest text-white/40">
@@ -116,7 +116,7 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
             </span>
           </div>
 
-          <h3 className="font-times italic font-normal text-2xl sm:text-3xl text-white mb-2 tracking-wide leading-snug">
+          <h3 className="font-times not-italic font-normal text-2xl sm:text-3xl text-white mb-2 tracking-wide leading-snug">
             {c.title}
           </h3>
           <p className="text-xs font-mono text-white/60 uppercase tracking-wider mb-4">
@@ -135,14 +135,14 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
               href={c.pdfLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-black bg-white hover:bg-white/90 px-5 py-2.5 rounded-full shadow-lg transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 hover:shadow-[0_0_20px_rgba(0,82,255,0.35)] px-5 py-2.5 rounded-full shadow-lg transition-all"
             >
               Verify Credential <ExternalLink size={12} />
             </motion.a>
           )}
 
           {c.isBundle && (
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-black bg-white hover:bg-white/90 px-5 py-2.5 rounded-full shadow-lg transition-colors">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 hover:shadow-[0_0_20px_rgba(0,82,255,0.35)] px-5 py-2.5 rounded-full shadow-lg transition-all">
               Browse {bundleCerts.length} Programs <Layers size={13} />
             </div>
           )}

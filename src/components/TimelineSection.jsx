@@ -120,11 +120,11 @@ const TimelineSection = () => {
       <div className="absolute top-48 bottom-48 left-12 w-[1px] bg-white/10 hidden xl:block pointer-events-none">
         <motion.div 
           style={{ height: laserHeight }}
-          className="w-full bg-gradient-to-b from-transparent via-white to-white shadow-[0_0_15px_#ffffff] origin-top"
+          className="w-full bg-gradient-to-b from-transparent via-[#0052FF] to-[#60A5FA] shadow-[0_0_15px_#0052FF] origin-top"
         />
         <motion.div 
           style={{ top: laserHeight }}
-          className="absolute -left-1.5 w-4 h-4 rounded-full bg-white shadow-[0_0_20px_#ffffff] -translate-y-1/2"
+          className="absolute -left-1.5 w-4 h-4 rounded-full bg-[#0052FF] shadow-[0_0_20px_#0052FF] -translate-y-1/2"
         />
       </div>
 
@@ -149,14 +149,14 @@ const TimelineSection = () => {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`relative px-4 py-2 rounded-full font-mono text-[10px] uppercase tracking-wider transition-colors duration-300 select-none ${
-                    isActive ? "text-black font-bold" : "text-white/70 hover:text-white"
+                    isActive ? "text-white font-bold" : "text-white/70 hover:text-white"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeTimelineTab"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                      className="absolute inset-0 bg-white rounded-full z-0"
+                      className="absolute inset-0 bg-[#0052FF] shadow-[0_0_15px_rgba(0,82,255,0.5)] rounded-full z-0"
                     />
                   )}
                   <span className="relative z-10">{tab}</span>

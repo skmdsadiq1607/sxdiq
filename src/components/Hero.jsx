@@ -60,7 +60,10 @@ const HeroInner = ({ isDarkLayer }) => {
               LinkedIn <ArrowRight size={10} className="-rotate-45" />
             </a>
           </div>
-          <span className={`opacity-40 ${isDarkLayer ? "text-white" : "text-black"}`}>// hyderabad, india</span>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF] shadow-[0_0_8px_#0052FF] animate-pulse" />
+            <span className={`opacity-60 ${isDarkLayer ? "text-white" : "text-black"}`}>// hyderabad &bull; available for work</span>
+          </div>
         </div>
 
         {/* Right: Selected Projects, Contact, Resume */}
@@ -68,20 +71,20 @@ const HeroInner = ({ isDarkLayer }) => {
           <div className="flex flex-wrap gap-2.5 sm:gap-3 items-center">
             <a 
               href="#projects" 
-              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold ${
+              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold hover:border-[#0052FF] hover:shadow-[0_0_15px_rgba(0,82,255,0.25)] ${
                 isDarkLayer 
-                  ? "border-white/40 text-white hover:bg-white hover:text-black hover:border-white" 
-                  : "border-black/30 text-black hover:bg-black hover:text-white hover:border-black"
+                  ? "border-white/40 text-white hover:bg-white hover:text-black" 
+                  : "border-black/30 text-black hover:bg-black hover:text-white"
               }`}
             >
               Selected Projects
             </a>
             <a 
               href="#contact" 
-              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold flex items-center gap-1.5 hover:border-[#0052FF] hover:shadow-[0_0_15px_rgba(0,82,255,0.25)] ${
                 isDarkLayer 
-                  ? "border-white/40 text-white hover:bg-white hover:text-black hover:border-white" 
-                  : "border-black/30 text-black hover:bg-black hover:text-white hover:border-black"
+                  ? "border-white/40 text-white hover:bg-white hover:text-black" 
+                  : "border-black/30 text-black hover:bg-black hover:text-white"
               }`}
             >
               Contact <Mail size={10} />
@@ -91,10 +94,10 @@ const HeroInner = ({ isDarkLayer }) => {
               download 
               target="_blank" 
               rel="noreferrer" 
-              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-full border transition-all font-mono text-[9px] uppercase tracking-widest font-semibold flex items-center gap-1.5 hover:shadow-[0_0_20px_rgba(0,82,255,0.35)] ${
                 isDarkLayer 
-                  ? "bg-white text-black border-white hover:bg-transparent hover:text-white" 
-                  : "bg-black text-white border-black hover:bg-transparent hover:text-black"
+                  ? "bg-white text-black border-white hover:bg-transparent hover:text-white hover:border-[#0052FF]" 
+                  : "bg-black text-white border-black hover:bg-transparent hover:text-black hover:border-[#0052FF]"
               }`}
             >
               Resume <Download size={10} />
@@ -206,11 +209,11 @@ const Hero = () => {
       <motion.div 
         ref={dividerRef}
         style={{ rotate: dividerAngle }}
-        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-neutral-500/30 z-30 pointer-events-none origin-center" 
+        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-neutral-500/20 via-[#0052FF]/40 to-neutral-500/20 z-30 pointer-events-none origin-center" 
       />
 
-      {/* Subtle Monochrome Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/[0.03] blur-[150px] pointer-events-none z-0" />
+      {/* Subtle Ambient Cobalt & Monochrome Atmospheric Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full bg-gradient-to-tr from-[#0047AB]/10 via-[#0052FF]/5 to-transparent blur-[160px] pointer-events-none z-0" />
     </section>
   );
 };

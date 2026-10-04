@@ -1,154 +1,148 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Terminal as TerminalIcon, Sparkles, ChevronRight, X } from 'lucide-react';
+import SectionHeaderEditorial from '@/components/SectionHeaderEditorial';
+import TerminalConsole from '@/components/TerminalConsole';
 
 const stats = [
-  { value: "9.25", label: "CGPA", desc: "Computer Science" },
+  { value: "9.25", label: "CGPA", desc: "Computer Science & IT" },
   { value: "2+", label: "Production Apps", desc: "Deployed to real users" },
   { value: "3+", label: "Hackathons", desc: "Podium finishes" },
-  { value: "5+", label: "Certifications", desc: "Industry standard" }
+  { value: "5+", label: "Certifications", desc: "Industry accredited" }
 ];
 
 const techStack = [
-  "React.js", "Node.js", "Express.js", "MongoDB", "Java (DSA)", "Tailwind CSS", "C/C++"
+  "React.js", "Node.js", "Express.js", "MongoDB", "Java (DSA)", "Tailwind CSS", "C/C++", "Vite", "REST APIs"
 ];
 
-const Word = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0.15, 1]);
-  return (
-    <motion.span style={{ opacity }} className="mr-3 md:mr-5 inline-block">
-      {children}
-    </motion.span>
-  );
-};
-
 const About = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 80%", "end 40%"]
-  });
-  
-  const ruleRef = useRef(null);
-  const { scrollYProgress: ruleProgress } = useScroll({
-    target: ruleRef,
-    offset: ["start 90%", "end 60%"]
-  });
-  const ruleScaleX = useTransform(ruleProgress, [0, 1], [0, 1]);
-
-  const bgRef = useRef(null);
-  const { scrollYProgress: bgProgress } = useScroll({
-    target: bgRef,
-    offset: ["start end", "end start"]
-  });
-  const bgY = useTransform(bgProgress, [0, 1], ["-20%", "20%"]);
-
-  const headline = "A passionate developer turning ideas into reality";
-  const words = headline.split(" ");
+  const [showTerminal, setShowTerminal] = useState(false);
 
   return (
-    <section ref={bgRef} id="about" className="relative w-full min-h-screen bg-[#FFFFFF] text-[#000000] font-times overflow-hidden py-24 sm:py-32">
-      {/* Giant Parallax Number */}
-      <motion.div 
-        style={{ y: bgY }}
-        className="absolute top-0 right-0 pointer-events-none z-0"
-      >
-        <h1 className="text-[30vw] leading-none text-[#000000]/5 select-none tracking-tighter">
-          01
-        </h1>
-      </motion.div>
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col gap-24">
-        {/* Scroll-Driven Headline */}
-        <div ref={containerRef} className="max-w-4xl">
-          <h2 className="text-4xl sm:text-6xl lg:text-8xl font-normal leading-tight tracking-tight flex flex-wrap">
-            {words.map((word, i) => {
-              const start = i / words.length;
-              const end = start + (1 / words.length);
-              return (
-                <Word key={i} progress={scrollYProgress} range={[start, end]}>
-                  {word}
-                </Word>
-              );
-            })}
-          </h2>
-        </div>
-
-        {/* Drawing Horizontal Rule */}
-        <div ref={ruleRef} className="w-full flex justify-end">
-          <motion.div 
-            style={{ scaleX: ruleScaleX, transformOrigin: "left" }}
-            className="w-full h-[1px] bg-[#000000]/15"
-          />
-        </div>
+    <section id="about" className="relative w-full min-h-screen bg-[#FFFFFF] text-[#000000] font-times py-24 sm:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col gap-16">
+        
+        {/* Editorial Broadsheet Section Header */}
+        <SectionHeaderEditorial
+          number="01"
+          tag="// 01 — Philosophy & Core Foundation"
+          headline="A passionate developer turning ideas into reality"
+          badge="ENGINEERING PHILOSOPHY"
+          isWhiteBg={true}
+        />
 
         {/* Main Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           
           {/* Left Column: Tech Stack & Description */}
-          <div className="flex flex-col gap-12">
-            <div className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-[#000000]/70 space-y-8">
+          <div className="flex flex-col gap-10">
+            <div className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-[#000000]/75 space-y-6">
               <p>
-                I specialize in building robust backend systems and beautiful, responsive frontend interfaces. With a strong foundation in computer science and data structures, I approach software engineering as both an art and a science.
+                I specialize in building robust backend architectures and highly responsive frontend interfaces. With a strong foundation in computer science and data structures, I approach software engineering as both an art and a science.
               </p>
               <p>
-                Whether it's optimizing database queries, orchestrating server deployments, or crafting pixel-perfect animations, I thrive in the space where logic meets design.
+                Whether it's optimizing database queries, orchestrating server deployments, or crafting pixel-perfect micro-interactions, I thrive in the space where computational logic meets minimalist design.
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h3 className="text-xl tracking-wide uppercase border-b border-[#000000]/10 pb-4">Core Technologies</h3>
-              <div className="flex flex-wrap gap-3">
+            {/* Core Technologies */}
+            <div className="space-y-5">
+              <div className="flex items-center justify-between border-b border-[#000000]/10 pb-3">
+                <h3 className="text-lg tracking-wider uppercase font-mono text-xs font-semibold text-black/70">
+                  // Core Technologies &amp; Tooling
+                </h3>
+                <span className="font-mono text-[10px] text-black/40 uppercase">
+                  {techStack.length} Technologies
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
                 {techStack.map((tech, i) => (
                   <motion.div
                     key={tech}
-                    animate={{ 
-                      y: [0, -5, 0],
-                      x: [0, i % 2 === 0 ? 3 : -3, 0]
-                    }}
-                    transition={{
-                      duration: 3 + (i % 3),
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: i * 0.2
-                    }}
-                    className="px-6 py-3 border border-[#000000]/15 rounded-full text-base tracking-wide bg-[#FFFFFF] shadow-sm hover:bg-[#000000] hover:text-[#FFFFFF] transition-colors duration-300"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="px-5 py-2.5 border border-[#000000]/15 rounded-full text-sm font-times tracking-wide bg-[#FFFFFF] shadow-sm hover:bg-[#000000] hover:text-[#FFFFFF] hover:border-[#0047AB]/50 hover:shadow-[0_0_15px_rgba(0,71,171,0.2)] transition-all duration-200 cursor-default"
                   >
                     {tech}
                   </motion.div>
                 ))}
               </div>
             </div>
+
+            {/* Interactive Terminal Launcher CTA */}
+            <div className="pt-4 border-t border-[#000000]/10 flex items-center justify-between">
+              <button
+                onClick={() => setShowTerminal(!showTerminal)}
+                className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-black/25 bg-black text-white hover:bg-neutral-800 hover:border-[#0052FF] hover:shadow-[0_0_20px_rgba(0,82,255,0.3)] transition-all font-mono text-xs uppercase tracking-wider shadow-md active:scale-95"
+              >
+                <TerminalIcon size={14} className="group-hover:rotate-12 transition-transform text-[#60A5FA]" />
+                <span>{showTerminal ? "Hide Developer Shell" : "Launch Developer Shell (CLI)"}</span>
+                <ChevronRight size={13} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-black/40 hidden sm:inline-block">
+                sadiq_shell.sh v1.0
+              </span>
+            </div>
           </div>
 
-          {/* Right Column: Staggered Stat Cascade */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {stats.map((stat, i) => {
-              const direction = i % 2 === 0 ? -50 : 50;
-              return (
+          {/* Right Column: Staggered Stat Cascade & Terminal Display */}
+          <div className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {stats.map((stat, i) => {
+                const direction = i % 2 === 0 ? -30 : 30;
+                return (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, x: direction, y: 20 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{
+                      duration: 0.7,
+                      delay: i * 0.12,
+                      ease: [0.21, 0.47, 0.32, 0.98]
+                    }}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    className="p-7 border border-[#000000]/15 rounded-3xl bg-[#FFFFFF] flex flex-col justify-center gap-2 group hover:border-[#0052FF]/60 hover:shadow-[0_12px_35px_rgba(0,71,171,0.12)] transition-all shadow-sm"
+                  >
+                    <div className="text-5xl lg:text-6xl tracking-tighter group-hover:scale-105 origin-left transition-all duration-300 font-times group-hover:text-[#0047AB]">
+                      {stat.value}
+                    </div>
+                    <div className="text-base font-bold tracking-tight uppercase border-t border-[#000000]/10 pt-3 mt-1 font-mono text-xs">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs text-[#000000]/60 italic font-times">
+                      {stat.desc}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Embedded / Toggleable Developer Terminal Console */}
+            <AnimatePresence>
+              {showTerminal && (
                 <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, x: direction, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{
-                    duration: 0.8,
-                    delay: i * 0.15,
-                    ease: [0.21, 0.47, 0.32, 0.98]
-                  }}
-                  className="p-8 border border-[#000000]/15 rounded-3xl bg-[#FFFFFF] flex flex-col justify-center gap-2 group hover:border-[#000000]/40 transition-colors"
+                  initial={{ opacity: 0, height: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, height: "auto", scale: 1 }}
+                  exit={{ opacity: 0, height: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="overflow-hidden pt-2"
                 >
-                  <div className="text-5xl lg:text-6xl tracking-tighter group-hover:scale-105 origin-left transition-transform duration-500">
-                    {stat.value}
+                  <div className="flex items-center justify-between pb-2 px-1">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-black/50">
+                      // Interactive CLI &bull; Type &apos;help&apos; for commands
+                    </span>
+                    <button 
+                      onClick={() => setShowTerminal(false)}
+                      className="p-1 rounded-full hover:bg-black/5 text-black/60 transition-colors"
+                      aria-label="Close terminal"
+                    >
+                      <X size={14} />
+                    </button>
                   </div>
-                  <div className="text-lg font-bold tracking-tight uppercase border-t border-[#000000]/10 pt-4 mt-2">
-                    {stat.label}
-                  </div>
-                  <div className="text-sm text-[#000000]/60 italic">
-                    {stat.desc}
-                  </div>
+                  <TerminalConsole />
                 </motion.div>
-              );
-            })}
+              )}
+            </AnimatePresence>
           </div>
 
         </div>

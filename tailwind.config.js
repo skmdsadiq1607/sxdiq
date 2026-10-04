@@ -21,8 +21,8 @@ export default {
         outfit: ['"Times New Roman"', 'Times', 'serif'],
         syne: ['"Times New Roman"', 'Times', 'serif'],
         space: ['"Times New Roman"', 'Times', 'serif'],
-        sans: ['"Times New Roman"', 'Times', 'serif'],
-        mono: ['"Times New Roman"', 'Times', 'serif'],
+        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Courier New"', 'monospace'],
         display: ['"Times New Roman"', 'Times', 'serif'],
       },
       colors: {
@@ -58,6 +58,13 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        cobalt: {
+          DEFAULT: "#0047AB",
+          electric: "#0052FF",
+          light: "#2563EB",
+          dark: "#002D6C",
+          glow: "rgba(0, 82, 255, 0.4)",
         },
       },
       borderRadius: {
