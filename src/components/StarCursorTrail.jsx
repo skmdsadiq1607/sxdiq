@@ -109,7 +109,7 @@ const StarCursorTrail = () => {
       ctx.restore();
     };
 
-    // Spawn a star particle at (x, y)
+    // Spawn a star particle at (x, y) with gentle, slow celestial physics
     const addParticle = (x, y, force = 1) => {
       if (particles.length >= maxParticles) {
         particles.shift();
@@ -118,19 +118,20 @@ const StarCursorTrail = () => {
       const isSparkle = Math.random() > 0.4;
       const isCobalt = Math.random() < 0.35; // ~35% cobalt blue stars/sparks!
       const angle = Math.random() * Math.PI * 2;
-      const speed = (Math.random() * 1.4 + 0.3) * force;
+      // Soft, slow initial drift instead of rapid shooting
+      const speed = (Math.random() * 0.35 + 0.1) * force;
 
       particles.push({
-        x: x + (Math.random() - 0.5) * 4,
-        y: y + (Math.random() - 0.5) * 4,
+        x: x + (Math.random() - 0.5) * 3,
+        y: y + (Math.random() - 0.5) * 3,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed + 0.15,
-        size: isSparkle ? Math.random() * 4.5 + 2.5 : Math.random() * 1.5 + 0.8,
+        vy: Math.sin(angle) * speed - 0.08, // gentle upward drift
+        size: isSparkle ? Math.random() * 3.8 + 2.0 : Math.random() * 1.4 + 0.7,
         innerSizeRatio: Math.random() * 0.12 + 0.15,
         rotation: Math.random() * Math.PI,
-        rotationSpeed: (Math.random() - 0.5) * 0.1,
+        rotationSpeed: (Math.random() - 0.5) * 0.015, // Slow, peaceful twinkle
         opacity: 0.95,
-        decay: Math.random() * 0.028 + 0.022, // Crisp lifespan ~30-45 frames
+        decay: Math.random() * 0.008 + 0.006, // Long, graceful lifespan (~1.8 - 2.2s)
         isSparkle,
         isCobalt,
       });
@@ -148,9 +149,11 @@ const StarCursorTrail = () => {
 
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
+        // Smooth friction deceleration — particles settle softly in place
+        p.vx *= 0.95;
+        p.vy *= 0.95;
         p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.01;
+        p.y += p.vy - 0.08; // very soft celestial floating upward
         p.rotation += p.rotationSpeed;
         p.opacity -= p.decay;
 
@@ -196,14 +199,9 @@ const StarCursorTrail = () => {
       const dy = mouse.y - prevMouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist > 5) {
-        const steps = Math.min(Math.floor(dist / 8), 3);
-        for (let i = 0; i <= steps; i++) {
-          const t = steps === 0 ? 1 : i / steps;
-          const interpX = prevMouse.x + dx * t;
-          const interpY = prevMouse.y + dy * t;
-          addParticle(interpX, interpY);
-        }
+      // Throttled graceful emission: spawn 1 soft particle when mouse moves smoothly
+      if (dist > 18) {
+        addParticle(mouse.x, mouse.y, 0.5);
         prevMouse.x = mouse.x;
         prevMouse.y = mouse.y;
         startLoop();
@@ -211,8 +209,9 @@ const StarCursorTrail = () => {
     };
 
     const handleClick = (e) => {
-      for (let i = 0; i < 8; i++) {
-        addParticle(e.clientX, e.clientY, 1.8);
+      // Gentle burst on click
+      for (let i = 0; i < 5; i++) {
+        addParticle(e.clientX, e.clientY, 0.8);
       }
       startLoop();
     };
