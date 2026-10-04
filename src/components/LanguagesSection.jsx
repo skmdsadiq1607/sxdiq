@@ -9,24 +9,24 @@ const langs = [
     phonetic: "/ˈɪŋ.ɡlɪʃ/",
     level: "Fluent", 
     emoji: "🇬🇧", 
-    fluency: "Professional & Academic", 
-    desc: "Primary medium for software architecture, technical documentation, client communication, and cross-border engineering collaboration." 
+    fluency: "Professional Working Proficiency", 
+    desc: "Fluent in spoken and written English. Used for technical discussions, software documentation, and presentations." 
   },
   { 
     name: "Hindi", 
     phonetic: "/ˈhɪn.diː/",
     level: "Native", 
     emoji: "🇮🇳", 
-    fluency: "Bilingual / Native", 
-    desc: "Complete native fluency in spoken dialogue, technical presentations, and cross-regional engineering collaboration." 
+    fluency: "Native / Bilingual", 
+    desc: "Native spoken and written fluency in Hindi for everyday communication and collaboration." 
   },
   { 
     name: "Telugu", 
     phonetic: "/ˈtɛl.ʊ.ɡuː/",
     level: "Native", 
     emoji: "🗣️", 
-    fluency: "Bilingual / Native", 
-    desc: "Native mother tongue with comprehensive spoken fluency, cultural depth, and local community outreach." 
+    fluency: "Native Mother Tongue", 
+    desc: "Native mother tongue with full spoken and written fluency." 
   },
 ];
 
@@ -64,12 +64,11 @@ const LanguagesSection = () => {
       
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Editorial Broadsheet Section Header */}
+        {/* Section Header */}
         <SectionHeaderEditorial
           number="06"
-          tag="// 06 — Verbal Fluency & Communication"
-          headline="Trilingual communication and technical articulation"
-          badge="TRILINGUAL ARTICULATION"
+          label="06 / Languages"
+          headline="Languages I speak and communicate in"
           isWhiteBg={false}
           className="mb-14"
         />
@@ -108,7 +107,7 @@ const LanguagesSection = () => {
                   </div>
 
                   <div className="mb-4">
-                    <h3 className="font-times italic font-normal text-3xl sm:text-4xl text-white leading-tight">
+                    <h3 className="font-times not-italic font-normal text-3xl sm:text-4xl text-white leading-tight">
                       {l.name}
                     </h3>
                     <span className="font-mono text-xs text-white/40 tracking-wider">
@@ -127,9 +126,9 @@ const LanguagesSection = () => {
 
                 <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-white/40 uppercase tracking-wider">
                   <span className="flex items-center gap-1.5 group-hover:text-white transition-colors">
-                    <Volume2 size={13} /> {isHovered ? "Audio Active" : "Native Acoustic"}
+                    <Volume2 size={13} /> {isHovered ? "Audio Active" : "Spoken & Written"}
                   </span>
-                  <span>0{i + 1} // DIALECT</span>
+                  <span>0{i + 1}</span>
                 </div>
               </motion.div>
             );

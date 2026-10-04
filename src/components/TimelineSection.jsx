@@ -130,12 +130,11 @@ const TimelineSection = () => {
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Editorial Broadsheet Section Header */}
+        {/* Section Header */}
         <SectionHeaderEditorial
           number="04"
-          tag="// 04 — Academic Foundation & Trajectory"
-          headline="Academic milestones and competitive leadership trajectory"
-          badge="ACADEMIC & COMMUNITY ARCHIVE"
+          label="04 / Experience"
+          headline="Education, student leadership roles, and hackathons"
           isWhiteBg={false}
         />
 
@@ -166,7 +165,7 @@ const TimelineSection = () => {
           </div>
         </div>
 
-        {/* 1. Academic Foundation (Education) */}
+        {/* 1. Education */}
         {(activeTab === "ALL" || activeTab === "EDUCATION") && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -174,9 +173,8 @@ const TimelineSection = () => {
             className="mb-20"
           >
             <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-xs text-white/50 uppercase tracking-widest">// 04.1</span>
-              <h3 className="font-times italic text-3xl sm:text-4xl font-normal text-white">
-                Academic Foundation
+              <h3 className="font-times not-italic text-3xl sm:text-4xl font-normal text-white">
+                Education
               </h3>
             </div>
 
@@ -242,9 +240,8 @@ const TimelineSection = () => {
             className="mb-20"
           >
             <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-xs text-white/50 uppercase tracking-widest">// 04.2</span>
-              <h3 className="font-times italic text-3xl sm:text-4xl font-normal text-white">
-                Experience &amp; Community Leadership
+              <h3 className="font-times not-italic text-3xl sm:text-4xl font-normal text-white">
+                Student Leadership &amp; Clubs
               </h3>
             </div>
 
@@ -274,7 +271,7 @@ const TimelineSection = () => {
                       </div>
                     </div>
 
-                    <h4 className="font-times italic text-2xl font-normal text-white mb-4 leading-snug">
+                    <h4 className="font-times not-italic text-2xl font-normal text-white mb-4 leading-snug">
                       {item.org}
                     </h4>
 
@@ -289,7 +286,7 @@ const TimelineSection = () => {
                   </div>
 
                   <div className="pt-4 border-t border-white/10 text-[9px] font-mono text-white/40 uppercase tracking-widest">
-                    ACTIVE RESPONSIBILITY
+                    Community Role
                   </div>
                 </motion.div>
               ))}
@@ -305,9 +302,8 @@ const TimelineSection = () => {
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-white/50 uppercase tracking-widest">// 04.3</span>
-                <h3 className="font-times italic text-3xl sm:text-4xl font-normal text-white">
-                  Hackathons &amp; Competitive Sprints
+                <h3 className="font-times not-italic text-3xl sm:text-4xl font-normal text-white">
+                  Hackathons &amp; Competitions
                 </h3>
               </div>
               <span className="font-mono text-[10px] uppercase tracking-widest text-white/50">

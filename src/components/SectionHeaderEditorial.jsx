@@ -13,9 +13,9 @@ const Word = ({ children, progress, range }) => {
 
 const SectionHeaderEditorial = ({
   number = "01",
-  tag = "// 01 — Section",
-  headline = "A passionate developer turning ideas into reality",
-  badge = null,
+  label = null,
+  tag = "About",
+  headline = "Turning ideas into reality with clean code and modern web technologies",
   isWhiteBg = false,
   className = "",
 }) => {
@@ -42,8 +42,9 @@ const SectionHeaderEditorial = ({
   const words = headline.split(" ");
   const textColor = isWhiteBg ? "text-[#000000]" : "text-[#FFFFFF]";
   const watermarkColor = isWhiteBg ? "text-black/[0.04]" : "text-white/[0.04]";
-  const tagColor = isWhiteBg ? "text-black/55" : "text-white/55";
-  const badgeBorder = isWhiteBg ? "border-black/20 text-black/60 bg-black/5" : "border-white/20 text-white/60 bg-white/5";
+  const tagColor = isWhiteBg ? "text-black/60" : "text-white/60";
+
+  const displayLabel = label || tag;
 
   return (
     <div ref={bgRef} className={`relative w-full overflow-hidden ${className}`}>
@@ -59,19 +60,14 @@ const SectionHeaderEditorial = ({
       </motion.div>
 
       <div className="relative z-10 w-full flex flex-col gap-5 mb-8">
-        {/* Section Tag & Badge */}
-        <div className="flex items-center justify-between">
+        {/* Clean Section Label — No AI badges */}
+        <div className="flex items-center">
           <div className="flex items-center gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF] shadow-[0_0_8px_rgba(0,82,255,0.85)]" />
-            <span className={`font-mono text-xs tracking-[0.28em] uppercase block ${tagColor}`}>
-              {tag}
+            <span className={`font-mono text-xs tracking-[0.25em] uppercase block ${tagColor}`}>
+              {displayLabel}
             </span>
           </div>
-          {badge && (
-            <span className={`font-mono text-[9px] uppercase tracking-widest px-3 py-1 rounded-full border transition-colors ${badgeBorder}`}>
-              {badge}
-            </span>
-          )}
         </div>
 
         {/* Scroll-Driven Word Reveal Headline */}

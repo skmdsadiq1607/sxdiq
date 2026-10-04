@@ -28,7 +28,7 @@ const Footer = () => {
             Ready to collaborate?
           </h2>
           <p className="text-2xl md:text-4xl font-normal not-italic text-white/70 mb-16">
-            Let's create something extraordinary together.
+            Let's discuss your project or open opportunities.
           </p>
           
           <a 

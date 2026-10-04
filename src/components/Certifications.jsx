@@ -36,23 +36,23 @@ const mainCerts = [
     title: "Programming in Java", 
     issuer: "NPTEL – IIT Kharagpur", 
     badge: "Elite + Silver (Score: 82)", 
-    detail: "12-week national level university examination covering advanced Java paradigms, multithreading, and algorithmic design.",
+    detail: "12-week course and examination by IIT Kharagpur covering object-oriented programming, multithreading, and Java collections.",
     pdfLink: "/certs/programming-in-java.pdf",
     icon: Award
   },
   { 
     title: "Java Foundation Certification", 
     issuer: "Infosys Springboard", 
-    badge: "Accredited Credential", 
-    detail: "Comprehensive enterprise-grade foundation covering object-oriented architecture, collections, and backend logic.",
+    badge: "Infosys Accredited", 
+    detail: "Comprehensive certification covering foundational Java syntax, object-oriented principles, and core application logic.",
     pdfLink: "/certs/java-foundation-certification.png",
     icon: ShieldCheck
   },
   { 
-    title: "Course Completion Vault", 
-    issuer: `${bundleCerts.length} Accredited Programs Completed`, 
-    badge: "Interactive Archive", 
-    detail: "Extensive professional coursework spanning Java, Data Structures, Relational DBMS, NoSQL, and Agile methodologies.",
+    title: "Course Certificates", 
+    issuer: `${bundleCerts.length} Courses Completed`, 
+    badge: "Course Archive", 
+    detail: "Completed coursework covering Data Structures, Core Java, Relational DBMS, NoSQL, and Agile methodologies.",
     pdfLink: null,
     isBundle: true,
     icon: Layers
@@ -148,7 +148,7 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
           )}
 
           <span className="font-mono text-[9px] text-white/40 uppercase tracking-widest">
-            ACC-ID // 0{i + 1}
+            #{i + 1 < 10 ? `0${i + 1}` : i + 1}
           </span>
         </div>
       </motion.div>
@@ -179,12 +179,11 @@ const Certifications = () => {
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Editorial Broadsheet Section Header */}
+        {/* Section Header */}
         <SectionHeaderEditorial
           number="05"
-          tag="// 05 — Validated Expertise & Accreditations"
-          headline="Validated technical credentials and university accreditations"
-          badge="ARCHIVE // 14 ACCREDITATIONS"
+          label="05 / Certifications"
+          headline="Technical certifications and accredited courses"
           isWhiteBg={false}
           className="mb-14"
         />

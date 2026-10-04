@@ -11,48 +11,48 @@ const projectsData = [
     id: "01",
     title: "Krushi Mitra",
     subtitle: "AI-Powered Farming Assistant",
-    description: "An intelligent platform empowering farmers with multi-language support, real-time disease detection, localized weather intelligence, and comprehensive soil analysis for optimized yields.",
+    description: "A web platform designed to assist farmers with real-time crop disease diagnosis, localized weather intelligence, and soil-based crop advisory to optimize agricultural yield.",
     tech: ["HTML5", "CSS3", "JavaScript", "Vite.js", "AI APIs", "Netlify"],
     demo: "https://krushi-mitra-unquadtrium.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     image: krushiImg,
     architecture: [
-      "Gemini AI integration for real-time crop disease diagnosis & treatment guidelines",
-      "Dynamic weather intelligence aggregation pipeline with micro-climate alerts",
-      "Computer Vision processing heuristics for localized soil analysis",
-      "Progressive Web App (PWA) deployment strategy for offline rural utility"
+      "Google Gemini AI integration for real-time crop disease diagnosis and treatment advice",
+      "Weather intelligence pipeline providing regional rainfall and temperature alerts",
+      "Soil analysis guide with crop suggestions suited to seasonal cycles",
+      "Responsive web application deployed with progressive offline capabilities"
     ]
   },
   {
     id: "02",
     title: "IgniteXT",
     subtitle: "Student Community Platform",
-    description: "A centralized hub for students providing shared study notes, vibrant communities, live event tracking, and cross-college networking opportunities to foster academic growth.",
+    description: "A centralized academic platform for college students to share curated study materials, track department circulars, and explore cross-college technical events.",
     tech: ["React", "JavaScript", "Tailwind CSS", "Vercel"],
     demo: "https://ignitext2026.vercel.app/",
     github: "https://github.com/skmdsadiq1607/IgniteXT-StudentCommunity",
     image: ignitextImg,
     architecture: [
-      "React-based component architecture with dynamic route pre-fetching",
-      "Tailwind CSS for responsive, monochrome editorial aesthetics",
-      "Integrated cloud repository for community-driven study materials & circulars",
-      "Synchronized calendar event system for cross-departmental academic hackathons"
+      "Component-driven frontend built with React and Tailwind CSS",
+      "Centralized repository for semester notes, previous question papers, and study resources",
+      "Event notification system for college hackathons and technical workshops",
+      "Deployed on Vercel with responsive mobile-friendly layouts"
     ]
   },
   {
     id: "03",
-    title: "Developer Portfolio",
-    subtitle: "High-Art Personal Canvas",
-    description: "An award-winning personal showcase engineered with performant animations, precise typography, and a stripped-down monochrome design language to highlight creative engineering.",
+    title: "Personal Portfolio",
+    subtitle: "Interactive Developer Portfolio",
+    description: "My personal portfolio engineered with a high-contrast editorial aesthetic, smooth scroll-driven typography, interactive 3D components, and custom cursor physics.",
     tech: ["React", "JavaScript", "Tailwind CSS", "Framer Motion", "Vite"],
     demo: "https://sxdiq.vercel.app/",
     github: "https://github.com/skmdsadiq1607",
     image: smartCityImg,
     architecture: [
-      "Dual-layer 50/50 kinetic typography rendering with optimized DOM updates",
-      "Framer Motion & Lenis driven scroll-linked choreography across 7 chapters",
-      "Strict typographic scale utilizing Times New Roman & JetBrains Mono",
-      "Interactive 3D Fibonacci orbital sphere & integrated Unix shell console"
+      "Dual-layer 50/50 kinetic typography split screen with GSAP staggered reveals",
+      "Framer Motion scroll-linked choreography and word-by-word reveal headlines",
+      "Interactive 3D celestial sphere displaying technologies with drag and hover physics",
+      "Built with React, Vite, and Tailwind CSS"
     ]
   }
 ];
@@ -104,7 +104,7 @@ const ProjectCard = ({ project, index }) => {
             {/* View Project badge */}
             <div className="absolute bottom-4 right-4 bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-white font-mono text-[9px] uppercase tracking-widest z-30 flex items-center gap-1.5 shadow-lg group-hover:border-[#0052FF]/60">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF] shadow-[0_0_6px_#0052FF]" />
-              <span>EXPLORE ARCHITECTURE</span>
+              <span>VIEW ARCHITECTURE</span>
             </div>
           </motion.div>
         </div>
@@ -114,7 +114,7 @@ const ProjectCard = ({ project, index }) => {
           <div className="space-y-3">
             <div className="flex items-center gap-3">
               <span className="font-mono text-sm text-white/60">
-                <span className="text-[#0052FF] font-bold mr-1">{project.id}</span> // PRODUCTION
+                <span className="text-[#0052FF] font-bold mr-1">{project.id}</span> // FEATURED PROJECT
               </span>
               <div className="h-px bg-white/20 w-12" />
             </div>
@@ -224,9 +224,8 @@ const Projects = () => {
         <div className="px-6 lg:px-12 mb-12">
           <SectionHeaderEditorial
             number="03"
-            tag="// 03 — Production Software Systems"
-            headline="Selected software systems built with computational rigor"
-            badge="03 PRODUCTION SYSTEMS"
+            label="03 / Projects"
+            headline="Featured projects I've built and deployed"
             isWhiteBg={false}
           />
         </div>

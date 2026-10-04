@@ -62,7 +62,7 @@ const HeroInner = ({ isDarkLayer }) => {
           </div>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF] shadow-[0_0_8px_#0052FF] animate-pulse" />
-            <span className={`opacity-60 ${isDarkLayer ? "text-white" : "text-black"}`}>// hyderabad &bull; available for work</span>
+            <span className={`opacity-60 ${isDarkLayer ? "text-white" : "text-black"}`}>Hyderabad &bull; Available for work</span>
           </div>
         </div>
 
@@ -186,8 +186,8 @@ const Hero = () => {
         >
           <div className="w-full overflow-hidden flex">
             <div className="animate-marquee flex whitespace-nowrap gap-12 font-times font-normal uppercase text-lg sm:text-2xl md:text-3xl tracking-[0.2em]">
-              <span>SHAIK SADIQ // DESIGNER & DEVELOPER // PROBLEM SOLVER // CREATIVE WEB ENGINEERING //&nbsp;</span>
-              <span>SHAIK SADIQ // DESIGNER & DEVELOPER // PROBLEM SOLVER // CREATIVE WEB ENGINEERING //&nbsp;</span>
+              <span>SHAIK SADIQ &bull; FULL STACK DEVELOPER &bull; PROBLEM SOLVER &bull; WEB APPLICATIONS &bull;&nbsp;</span>
+              <span>SHAIK SADIQ &bull; FULL STACK DEVELOPER &bull; PROBLEM SOLVER &bull; WEB APPLICATIONS &bull;&nbsp;</span>
             </div>
           </div>
           <div className="w-full overflow-hidden flex">
@@ -195,8 +195,8 @@ const Hero = () => {
               className="animate-marquee flex whitespace-nowrap gap-12 font-mono font-bold uppercase text-xs sm:text-sm tracking-[0.35em]" 
               style={{ animationDirection: "reverse" }}
             >
-              <span>REACT NODE EXPRESS MONGODB NEXTJS GSAP THREEJS DSA ALGORITHMS CLEAN CODE //&nbsp;</span>
-              <span>REACT NODE EXPRESS MONGODB NEXTJS GSAP THREEJS DSA ALGORITHMS CLEAN CODE //&nbsp;</span>
+              <span>REACT &bull; NODE.JS &bull; EXPRESS &bull; MONGODB &bull; JAVA &bull; TAILWIND CSS &bull; DSA &bull;&nbsp;</span>
+              <span>REACT &bull; NODE.JS &bull; EXPRESS &bull; MONGODB &bull; JAVA &bull; TAILWIND CSS &bull; DSA &bull;&nbsp;</span>
             </div>
           </div>
         </div>

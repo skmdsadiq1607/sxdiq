@@ -5,10 +5,10 @@ import SectionHeaderEditorial from '@/components/SectionHeaderEditorial';
 import TerminalConsole from '@/components/TerminalConsole';
 
 const stats = [
-  { value: "9.25", label: "CGPA", desc: "Computer Science & IT" },
-  { value: "2+", label: "Production Apps", desc: "Deployed to real users" },
-  { value: "3+", label: "Hackathons", desc: "Podium finishes" },
-  { value: "5+", label: "Certifications", desc: "Industry accredited" }
+  { value: "9.25", label: "CGPA", desc: "Anurag University (IT)" },
+  { value: "2+", label: "Web Applications", desc: "Built & deployed" },
+  { value: "3+", label: "Hackathons", desc: "Podium finishes & awards" },
+  { value: "5+", label: "Certifications", desc: "Infosys & NPTEL accredited" }
 ];
 
 const techStack = [
@@ -22,12 +22,11 @@ const About = () => {
     <section id="about" className="relative w-full min-h-screen bg-[#FFFFFF] text-[#000000] font-times py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col gap-16">
         
-        {/* Editorial Broadsheet Section Header */}
+        {/* Section Header */}
         <SectionHeaderEditorial
           number="01"
-          tag="// 01 — Philosophy & Core Foundation"
-          headline="A passionate developer turning ideas into reality"
-          badge="ENGINEERING PHILOSOPHY"
+          label="01 / About"
+          headline="Building modern web applications with clean code and practical problem solving"
           isWhiteBg={true}
         />
 
@@ -38,10 +37,10 @@ const About = () => {
           <div className="flex flex-col gap-10">
             <div className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-[#000000]/75 space-y-6">
               <p>
-                I specialize in building robust backend architectures and highly responsive frontend interfaces. With a strong foundation in computer science and data structures, I approach software engineering as both an art and a science.
+                I am an Information Technology student at Anurag University, Hyderabad, focused on full-stack web development and problem solving. I primarily work with React, Node.js, Express, MongoDB, and Java for data structures and algorithms.
               </p>
               <p>
-                Whether it's optimizing database queries, orchestrating server deployments, or crafting pixel-perfect micro-interactions, I thrive in the space where computational logic meets minimalist design.
+                I enjoy building practical web applications that solve real-world problems—from agricultural tools for farmers to community platforms for college students. I focus on writing clean, maintainable code and building interfaces that feel fast, responsive, and intuitive.
               </p>
             </div>
 
@@ -49,7 +48,7 @@ const About = () => {
             <div className="space-y-5">
               <div className="flex items-center justify-between border-b border-[#000000]/10 pb-3">
                 <h3 className="text-lg tracking-wider uppercase font-mono text-xs font-semibold text-black/70">
-                  // Core Technologies &amp; Tooling
+                  Core Technologies
                 </h3>
                 <span className="font-mono text-[10px] text-black/40 uppercase">
                   {techStack.length} Technologies

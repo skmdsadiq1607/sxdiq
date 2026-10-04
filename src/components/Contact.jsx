@@ -33,8 +33,8 @@ const Contact = () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     toast({
-      title: "Message Transmitted",
-      description: "Your signal has been received. Expect a response shortly.",
+      title: "Message Sent",
+      description: "Thank you for reaching out! I will get back to you soon.",
     });
     setFormData({ name: "", email: "", message: "" });
   };
@@ -60,9 +60,12 @@ const Contact = () => {
         </div>
 
         <div className="max-w-xl mx-auto md:ml-auto md:mr-12 w-full relative z-10">
-          <span className="font-mono text-xs tracking-[0.3em] uppercase block text-black/50 mb-3">
-            // 07 &mdash; Direct Transmission
-          </span>
+          <div className="flex items-center gap-2.5 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF] shadow-[0_0_8px_rgba(0,82,255,0.85)]" />
+            <span className="font-mono text-xs tracking-[0.25em] uppercase block text-black/60">
+              07 / Contact
+            </span>
+          </div>
           <motion.h2 
             className="text-5xl md:text-7xl lg:text-8xl font-normal not-italic tracking-tight leading-none mb-6"
             initial={{ opacity: 0, y: 50 }}
@@ -114,13 +117,13 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-16"
           >
-            <p className="text-[#FFFFFF]/50 uppercase tracking-widest text-sm mb-4">// Direct Message Transmission</p>
+            <p className="text-[#FFFFFF]/60 uppercase tracking-widest text-sm mb-4">Send a message</p>
           </motion.div>
 
           <form onSubmit={handleSubmit} className="space-y-12">
             {[
-              { id: "name", label: "Full Name", type: "text", placeholder: "John Doe" },
-              { id: "email", label: "Email Address", type: "email", placeholder: "john@example.com" }
+              { id: "name", label: "Full Name", type: "text", placeholder: "Your Name" },
+              { id: "email", label: "Email Address", type: "email", placeholder: "your.email@example.com" }
             ].map((field, index) => (
               <motion.div 
                 key={field.id}
@@ -157,7 +160,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={4}
-                placeholder="What are we building?"
+                placeholder="Tell me about your project or inquiry..."
                 className="w-full bg-transparent border-b border-[#FFFFFF]/20 py-4 text-xl md:text-2xl text-[#FFFFFF] placeholder:text-[#FFFFFF]/20 focus:outline-none focus:border-[#0052FF] focus:shadow-[0_2px_15px_rgba(0,82,255,0.35)] transition-all duration-300 resize-none"
               ></textarea>
             </motion.div>
@@ -174,7 +177,7 @@ const Contact = () => {
                 className="group relative flex items-center justify-center gap-4 bg-[#FFFFFF] text-[#000000] px-8 py-5 rounded-full w-full overflow-hidden disabled:opacity-70 transition-all hover:shadow-[0_0_35px_rgba(0,82,255,0.35)] active:scale-95"
               >
                 <span className="relative z-10 text-lg uppercase tracking-widest font-medium">
-                  {isSubmitting ? "Transmitting..." : "Send Message"}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </span>
                 {isSubmitting ? (
                   <Loader2 className="relative z-10 animate-spin" size={20} />

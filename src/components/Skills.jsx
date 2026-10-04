@@ -245,12 +245,11 @@ const Skills = () => {
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         
-        {/* Editorial Broadsheet Section Header */}
+        {/* Section Header */}
         <SectionHeaderEditorial
           number="02"
-          tag="// 02 — Technical Proficiencies"
-          headline="Engineering scalable architectures and algorithmic systems"
-          badge={`${SKILLS_DATA.length} CORE TECHNOLOGIES`}
+          label="02 / Skills"
+          headline="Technologies, frameworks, and programming languages I work with"
           isWhiteBg={false}
         />
 
@@ -398,20 +397,17 @@ const Skills = () => {
 
         </div>
 
-        {/* Drag Hint & Category Matrix Breakdown */}
+        {/* Drag Hint */}
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] font-mono uppercase tracking-widest text-white/40 mb-12">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>CELESTIAL TECH ORB &bull; {SKILLS_DATA.length} OFFICIAL TECHNOLOGIES LOADED</span>
-          </div>
-          <span>CLICK &amp; DRAG TO SPIN SPHERE &bull; HOVER FOR BLUEPRINT</span>
+          <span>DRAG TO ROTATE SPHERE &bull; HOVER TO INSPECT</span>
+          <span>{SKILLS_DATA.length} TECHNOLOGIES</span>
         </div>
 
-        {/* 📋 COMPREHENSIVE TECHNOLOGY CATALOG DIRECTORY */}
+        {/* Technology Directory */}
         <div className="mt-8 pt-8 border-t border-white/10">
           <div className="flex items-center justify-between mb-8">
             <h3 className="font-times not-italic text-2xl sm:text-3xl text-white font-normal">
-              Technology Directory ({filteredSkills.length})
+              Technology Catalog ({filteredSkills.length})
             </h3>
             <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">
               CATEGORY: {activeCategory}
