@@ -232,7 +232,7 @@ const StarCursorTrail = () => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-[9999]"
+      className="fixed inset-0 pointer-events-none z-[9999] mix-blend-difference"
     />
   );
 };

@@ -40,7 +40,7 @@ const Contact = () => {
   };
 
   return (
-    <section ref={containerRef} id="contact" className="relative min-h-screen flex flex-col md:flex-row w-full font-times overflow-hidden">
+    <section ref={containerRef} id="contact" className="relative min-h-screen flex flex-col md:flex-row w-full font-times overflow-hidden bg-[#FFFFFF] text-[#000000] border-b border-black/10">
       
       {/* Center Divider - visible on md+ screens */}
       <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-[#000000]/10 z-10"></div>
@@ -103,9 +103,9 @@ const Contact = () => {
         </div>
       </motion.div>
 
-      {/* Right Half: Black BG, White Text */}
+      {/* Right Half: White BG, Black Text */}
       <motion.div 
-        className="w-full md:w-1/2 bg-[#000000] text-[#FFFFFF] p-8 md:p-16 lg:p-24 flex flex-col justify-center"
+        className="w-full md:w-1/2 bg-[#FFFFFF] text-[#000000] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative"
         initial={{ x: "100%" }}
         animate={isInView ? { x: 0 } : { x: "100%" }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -117,7 +117,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-16"
           >
-            <p className="text-[#FFFFFF]/60 uppercase tracking-widest text-sm mb-4">Send a message</p>
+            <p className="text-[#000000]/60 uppercase tracking-widest text-sm mb-4">Send a message</p>
           </motion.div>
 
           <form onSubmit={handleSubmit} className="space-y-12">
@@ -132,7 +132,7 @@ const Contact = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
               >
-                <label htmlFor={field.id} className="block text-sm uppercase tracking-widest text-[#FFFFFF]/50 mb-2">{field.label}</label>
+                <label htmlFor={field.id} className="block text-sm uppercase tracking-widest text-[#000000]/50 mb-2">{field.label}</label>
                 <input
                   type={field.type}
                   id={field.id}
@@ -141,7 +141,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder={field.placeholder}
-                  className="w-full bg-transparent border-b border-[#FFFFFF]/20 py-4 text-xl md:text-2xl text-[#FFFFFF] placeholder:text-[#FFFFFF]/20 focus:outline-none focus:border-[#0052FF] focus:shadow-[0_2px_15px_rgba(0,82,255,0.35)] transition-all duration-300"
+                  className="w-full bg-transparent border-b border-[#000000]/20 py-4 text-xl md:text-2xl text-[#000000] placeholder:text-[#000000]/30 focus:outline-none focus:border-[#0052FF] focus:shadow-[0_2px_15px_rgba(0,82,255,0.25)] transition-all duration-300"
                 />
               </motion.div>
             ))}
@@ -152,7 +152,7 @@ const Contact = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <label htmlFor="message" className="block text-sm uppercase tracking-widest text-[#FFFFFF]/50 mb-2">Message</label>
+              <label htmlFor="message" className="block text-sm uppercase tracking-widest text-[#000000]/50 mb-2">Message</label>
               <textarea
                 id="message"
                 name="message"
@@ -161,7 +161,7 @@ const Contact = () => {
                 required
                 rows={4}
                 placeholder="Tell me about your project or inquiry..."
-                className="w-full bg-transparent border-b border-[#FFFFFF]/20 py-4 text-xl md:text-2xl text-[#FFFFFF] placeholder:text-[#FFFFFF]/20 focus:outline-none focus:border-[#0052FF] focus:shadow-[0_2px_15px_rgba(0,82,255,0.35)] transition-all duration-300 resize-none"
+                className="w-full bg-transparent border-b border-[#000000]/20 py-4 text-xl md:text-2xl text-[#000000] placeholder:text-[#000000]/30 focus:outline-none focus:border-[#0052FF] focus:shadow-[0_2px_15px_rgba(0,82,255,0.25)] transition-all duration-300 resize-none"
               ></textarea>
             </motion.div>
 
@@ -174,7 +174,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative flex items-center justify-center gap-4 bg-[#FFFFFF] text-[#000000] px-8 py-5 rounded-full w-full overflow-hidden disabled:opacity-70 transition-all hover:shadow-[0_0_35px_rgba(0,82,255,0.35)] active:scale-95"
+                className="group relative flex items-center justify-center gap-4 bg-[#000000] text-[#FFFFFF] px-8 py-5 rounded-full w-full overflow-hidden disabled:opacity-70 transition-all hover:bg-neutral-800 hover:shadow-[0_0_35px_rgba(0,82,255,0.35)] active:scale-95 shadow-lg"
               >
                 <span className="relative z-10 text-lg uppercase tracking-widest font-medium">
                   {isSubmitting ? "Sending..." : "Send Message"}
@@ -184,7 +184,7 @@ const Contact = () => {
                 ) : (
                   <ArrowRight className="relative z-10 group-hover:translate-x-2 transition-transform text-[#0052FF]" size={20} />
                 )}
-                <div className="absolute inset-0 bg-[#0047AB]/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out rounded-full"></div>
+                <div className="absolute inset-0 bg-[#0047AB]/20 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out rounded-full"></div>
               </button>
             </motion.div>
           </form>

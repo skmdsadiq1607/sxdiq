@@ -75,7 +75,7 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
               opacity: isHovered ? 0.6 : 0,
             }}
             transition={{ type: "spring", stiffness: 350, damping: 24 }}
-            className="absolute inset-0 rounded-3xl border border-white/20 bg-white/[0.04] -z-10 pointer-events-none"
+            className="absolute inset-0 rounded-3xl border border-black/10 bg-black/[0.02] -z-10 pointer-events-none"
           />
           <motion.div
             animate={{
@@ -85,7 +85,7 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
               opacity: isHovered ? 0.4 : 0,
             }}
             transition={{ type: "spring", stiffness: 350, damping: 24 }}
-            className="absolute inset-0 rounded-3xl border border-white/10 bg-white/[0.02] -z-20 pointer-events-none"
+            className="absolute inset-0 rounded-3xl border border-black/10 bg-black/[0.02] -z-20 pointer-events-none"
           />
         </>
       )}
@@ -99,35 +99,35 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => c.isBundle && onOpenBundle()}
-        className={`border border-white/20 bg-gradient-to-b from-white/[0.06] to-black/80 backdrop-blur-2xl rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-[#0052FF]/60 hover:shadow-[0_0_40px_rgba(0,82,255,0.22)] min-h-[340px] relative overflow-hidden ${
+        className={`border border-black/15 bg-gradient-to-b from-black/[0.02] to-white/95 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-[#0052FF]/60 hover:shadow-[0_0_40px_rgba(0,82,255,0.18)] min-h-[340px] relative overflow-hidden shadow-sm ${
           c.isBundle ? "cursor-pointer" : ""
         }`}
       >
         {/* Subtle radial glow on hover */}
-        <div className="absolute top-0 right-0 w-44 h-44 bg-[#0047AB]/10 rounded-full blur-3xl pointer-events-none group-hover:bg-[#0052FF]/20 transition-colors" />
+        <div className="absolute top-0 right-0 w-44 h-44 bg-[#0047AB]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[#0052FF]/15 transition-colors" />
 
         <div>
           <div className="flex items-center justify-between mb-6">
-            <div className="w-14 h-14 rounded-2xl border border-white/25 bg-white/10 flex items-center justify-center text-white group-hover:bg-[#0052FF] group-hover:text-white group-hover:border-[#0052FF] group-hover:shadow-[0_0_20px_rgba(0,82,255,0.5)] transition-all duration-300 shadow-md">
+            <div className="w-14 h-14 rounded-2xl border border-black/15 bg-black/5 flex items-center justify-center text-black group-hover:bg-[#0052FF] group-hover:text-white group-hover:border-[#0052FF] group-hover:shadow-[0_0_20px_rgba(0,82,255,0.4)] transition-all duration-300 shadow-sm">
               <c.icon size={24} />
             </div>
-            <span className="font-mono text-[9px] uppercase tracking-widest text-white/40">
+            <span className="font-mono text-[9px] uppercase tracking-widest text-black/50">
               {c.badge}
             </span>
           </div>
 
-          <h3 className="font-times not-italic font-normal text-2xl sm:text-3xl text-white mb-2 tracking-wide leading-snug">
+          <h3 className="font-times not-italic font-normal text-2xl sm:text-3xl text-black mb-2 tracking-wide leading-snug">
             {c.title}
           </h3>
-          <p className="text-xs font-mono text-white/60 uppercase tracking-wider mb-4">
+          <p className="text-xs font-mono text-black/60 uppercase tracking-wider mb-4">
             {c.issuer}
           </p>
-          <p className="text-xs text-white/70 font-light font-times leading-relaxed mb-6">
+          <p className="text-xs text-black/75 font-light font-times leading-relaxed mb-6">
             {c.detail}
           </p>
         </div>
 
-        <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+        <div className="pt-4 border-t border-black/10 flex items-center justify-between">
           {c.pdfLink && (
             <motion.a
               whileHover={{ scale: 1.05 }}
@@ -135,19 +135,19 @@ const CertCard = ({ c, i, onOpenBundle, onSelectImage }) => {
               href={c.pdfLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 hover:shadow-[0_0_20px_rgba(0,82,255,0.35)] px-5 py-2.5 rounded-full shadow-lg transition-all"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-white bg-black hover:bg-neutral-800 hover:shadow-[0_0_20px_rgba(0,82,255,0.35)] px-5 py-2.5 rounded-full shadow-md transition-all"
             >
               Verify Credential <ExternalLink size={12} />
             </motion.a>
           )}
 
           {c.isBundle && (
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 hover:shadow-[0_0_20px_rgba(0,82,255,0.35)] px-5 py-2.5 rounded-full shadow-lg transition-all">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-white bg-black hover:bg-neutral-800 hover:shadow-[0_0_20px_rgba(0,82,255,0.35)] px-5 py-2.5 rounded-full shadow-md transition-all">
               Browse {bundleCerts.length} Programs <Layers size={13} />
             </div>
           )}
 
-          <span className="font-mono text-[9px] text-white/40 uppercase tracking-widest">
+          <span className="font-mono text-[9px] text-black/40 uppercase tracking-widest">
             #{i + 1 < 10 ? `0${i + 1}` : i + 1}
           </span>
         </div>
@@ -168,13 +168,13 @@ const Certifications = () => {
   );
 
   return (
-    <section id="certifications" className="min-h-screen w-full flex items-center justify-center bg-black text-white noise-overlay py-28 px-6 sm:px-12 md:px-20 border-b border-white/15 relative overflow-hidden select-none">
+    <section id="certifications" className="min-h-screen w-full flex items-center justify-center bg-[#FFFFFF] text-[#000000] py-28 px-6 sm:px-12 md:px-20 border-b border-black/10 relative overflow-hidden select-none">
       
       {/* 🔮 CONCENTRIC HOLOGRAPHIC LENS RINGS */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-25">
-        <div className="w-[550px] h-[550px] rounded-full border border-white/10" />
-        <div className="w-[850px] h-[850px] rounded-full border border-white/5 border-dashed" />
-        <div className="w-[1200px] h-[1200px] rounded-full border border-white/[0.03]" />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-10">
+        <div className="w-[550px] h-[550px] rounded-full border border-black/20" />
+        <div className="w-[850px] h-[850px] rounded-full border border-black/15 border-dashed" />
+        <div className="w-[1200px] h-[1200px] rounded-full border border-black/10" />
       </div>
 
       <div className="container mx-auto relative z-10 max-w-7xl">
@@ -184,7 +184,7 @@ const Certifications = () => {
           number="05"
           label="05 / Certifications"
           headline="Technical certifications and accredited courses"
-          isWhiteBg={false}
+          isWhiteBg={true}
           className="mb-14"
         />
 

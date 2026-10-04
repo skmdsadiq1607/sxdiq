@@ -128,7 +128,7 @@ const About = () => {
                 >
                   <div className="flex items-center justify-between pb-2 px-1">
                     <span className="font-mono text-[10px] uppercase tracking-wider text-black/50">
-                      // Interactive CLI &bull; Type &apos;help&apos; for commands
+                      Interactive Terminal &bull; Type &apos;help&apos; for commands
                     </span>
                     <button 
                       onClick={() => setShowTerminal(false)}

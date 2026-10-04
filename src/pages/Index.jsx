@@ -60,9 +60,9 @@ const Index = () => {
 
         {/* ⚡ TRANSITION 02 -> 03: Triple-Track Kinetic Ribbon Marquee */}
         <KineticRibbonTransition 
-          text1="SELECTED WORK // PRODUCTION SOFTWARE SYSTEMS // HIGH-PERFORMANCE WEB APPS //"
-          text2="KRUSHI MITRA // IGNITEXT // DEVELOPER PORTFOLIO // ARCHITECTURE & DEPLOYMENT //"
-          text3="FULL STACK WEB DEVELOPMENT // ALGORITHMIC OPTIMIZATION // SCALABLE CLOUD SYSTEMS //"
+          text1="FEATURED WORK &bull; WEB APPLICATIONS &bull; MODERN INTERFACES &bull;"
+          text2="KRUSHI MITRA &bull; IGNITEXT &bull; PERSONAL PORTFOLIO &bull;"
+          text3="REACT &bull; NODE.JS &bull; FULL STACK DEVELOPMENT &bull; JAVASCRIPT &bull;"
           rotate={-2.5}
         />
 
